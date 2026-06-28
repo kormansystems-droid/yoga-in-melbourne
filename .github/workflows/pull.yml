@@ -1,0 +1,44 @@
+name: Refresh timetables
+
+# Weekly + manual. Opens a PR with the changes — nothing publishes until you merge.
+on:
+  schedule:
+    - cron: "0 19 * * 0"   # Sundays 19:00 UTC ≈ Monday early morning Melbourne
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Playwright + Chromium
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Pull + rebuild
+        run: python pull/pull.py
+
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "Refresh teacher timetables from studio feeds"
+          title: "Timetable refresh"
+          body: |
+            Automated pull from the studio feeds (Momence + healcode).
+            Review the schedule changes below before merging.
+            Studios not covered this run were left untouched.
+          branch: timetable-refresh
+          delete-branch: true
+          add-paths: |
+            data/schedule.json
+            *.html
