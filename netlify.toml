@@ -1,0 +1,6 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# Profiles are pre-built and committed; the weekly pull regenerates them via PR.
+# No build command needed.

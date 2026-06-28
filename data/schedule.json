@@ -1,0 +1,214 @@
+{
+  "studios": {
+    "within-south-yarra": {
+      "name": "Within",
+      "location": "South Yarra",
+      "url": "https://www.withinretreat.com.au/",
+      "book": "https://www.withinretreat.com.au/timetable",
+      "platform": "mindbody",
+      "feed": {
+        "type": "healcode",
+        "page": "https://www.withinretreat.com.au/timetable"
+      }
+    },
+    "warrior-one-brighton": {
+      "name": "Warrior One",
+      "location": "Brighton",
+      "url": "https://warrioroneyoga.com.au/brighton/",
+      "book": "https://warrioroneyoga.com.au/book-my-mat/",
+      "platform": "mindbody",
+      "feed": {
+        "type": "manual",
+        "note": "Mindbody branded-web V2 — pending studio API authorisation"
+      }
+    },
+    "warrior-one-mordialloc": {
+      "name": "Warrior One",
+      "location": "Mordialloc",
+      "url": "https://warrioroneyoga.com.au/mordialloc/",
+      "book": "https://warrioroneyoga.com.au/book-my-mat/",
+      "platform": "mindbody",
+      "feed": {
+        "type": "manual",
+        "note": "Mindbody branded-web V2 — pending studio API authorisation"
+      }
+    },
+    "grass-roots-st-kilda": {
+      "name": "Grass Roots",
+      "location": "St Kilda",
+      "url": "https://www.grassrootsyoga.com/",
+      "book": "https://www.grassrootsyoga.com/booknow",
+      "platform": "momence",
+      "feed": {
+        "type": "momence",
+        "host": 34431
+      }
+    },
+    "happy-melon-armadale": {
+      "name": "Happy Melon",
+      "location": "Armadale",
+      "url": "https://happymelon.com.au/",
+      "book": "https://happymelon.com.au/timetable/",
+      "platform": "mindbody",
+      "feed": {
+        "type": "manual",
+        "note": "Mindbody branded-web V2 — not scrapable; pending studio API authorisation"
+      }
+    },
+    "here-yoga-port-melbourne": {
+      "name": "(Here) Yoga",
+      "location": "Port Melbourne",
+      "url": "https://www.hereyoga.com.au/",
+      "book": "https://www.hereyoga.com.au/",
+      "platform": "momence",
+      "feed": {
+        "type": "momence",
+        "host": 40780
+      }
+    }
+  },
+  "teachers": {
+    "Alessia Frisina": {
+      "name": {
+        "given": "Alessia",
+        "family": "Frisina"
+      },
+      "aliases": [
+        "Alessia Frisina"
+      ],
+      "classes": [
+        {
+          "studio": "within-south-yarra",
+          "day": "Wed",
+          "time": "5:00–6:00 PM",
+          "class": "Slow Flow"
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Wed",
+          "time": "6:15–7:15 PM",
+          "class": "Strong Flow"
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Wed",
+          "time": "7:30–8:30 PM",
+          "class": "Yin"
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Tue",
+          "time": "6:00–7:00 AM",
+          "class": "Vinyasa Flow"
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Tue",
+          "time": "7:30–8:30 AM",
+          "class": "Vinyasa Flow"
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Wed",
+          "time": "9:30–10:30 AM",
+          "class": "Vinyasa Flow"
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Wed",
+          "time": "10:45–11:45 AM",
+          "class": "Yin & Myofascial Release"
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Wed",
+          "time": "12:15–1:15 PM",
+          "class": "Slow Flow & Yoga Nidra"
+        },
+        {
+          "studio": "warrior-one-mordialloc",
+          "day": "Mon",
+          "time": "6:00–7:00 AM",
+          "class": "Vinyasa Flow"
+        },
+        {
+          "studio": "warrior-one-mordialloc",
+          "day": "Mon",
+          "time": "9:30–10:30 AM",
+          "class": "Slow Flow"
+        },
+        {
+          "studio": "grass-roots-st-kilda",
+          "day": "Fri",
+          "time": "12:15–1:15 PM",
+          "class": "Yin"
+        }
+      ]
+    },
+    "Emma Strembickyj": {
+      "name": {
+        "given": "Emma",
+        "family": "Strembickyj"
+      },
+      "aliases": [
+        "Emma Strembickyj"
+      ],
+      "classes": []
+    },
+    "Janita Doelken": {
+      "name": {
+        "given": "Janita",
+        "family": "Doelken"
+      },
+      "aliases": [
+        "Janita Doelken"
+      ],
+      "classes": [
+        {
+          "studio": "grass-roots-st-kilda",
+          "day": "Sun",
+          "time": "4:00–5:00 PM",
+          "class": "Vinyasa Flow"
+        },
+        {
+          "studio": "grass-roots-st-kilda",
+          "day": "Sun",
+          "time": "5:15–6:15 PM",
+          "class": "Yin"
+        },
+        {
+          "studio": "grass-roots-st-kilda",
+          "day": "Mon",
+          "time": "6:15–7:15 AM",
+          "class": "Hot Flow"
+        },
+        {
+          "studio": "grass-roots-st-kilda",
+          "day": "Mon",
+          "time": "9:30–10:30 AM",
+          "class": "Vinyasa Flow"
+        },
+        {
+          "studio": "grass-roots-st-kilda",
+          "day": "Mon",
+          "time": "5:00–6:00 PM",
+          "class": "Vinyasa Flow"
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Sat",
+          "time": "4:00–5:00 PM",
+          "class": "Slow Flow Yoga",
+          "sub": true
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Sat",
+          "time": "5:15–6:15 PM",
+          "class": "Yin Yoga",
+          "sub": true
+        }
+      ]
+    }
+  }
+}
