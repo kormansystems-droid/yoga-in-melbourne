@@ -15,7 +15,7 @@
       "name": "Warrior One",
       "location": "Brighton",
       "url": "https://warrioroneyoga.com.au/brighton/",
-      "book": "https://warrioroneyoga.com.au/book-my-mat/",
+      "book": "https://warrioroneyoga.com.au/brighton/",
       "platform": "mindbody",
       "feed": {
         "type": "manual",
@@ -26,7 +26,7 @@
       "name": "Warrior One",
       "location": "Mordialloc",
       "url": "https://warrioroneyoga.com.au/mordialloc/",
-      "book": "https://warrioroneyoga.com.au/book-my-mat/",
+      "book": "https://warrioroneyoga.com.au/mordialloc/",
       "platform": "mindbody",
       "feed": {
         "type": "manual",
@@ -81,19 +81,19 @@
           "studio": "within-south-yarra",
           "day": "Wed",
           "time": "5:00–6:00 PM",
-          "class": "Slow Flow Yoga"
+          "class": "Slow Flow"
         },
         {
           "studio": "within-south-yarra",
           "day": "Wed",
           "time": "6:15–7:15 PM",
-          "class": "Strong Flow Yoga"
+          "class": "Strong Flow"
         },
         {
           "studio": "within-south-yarra",
           "day": "Wed",
           "time": "7:30–8:30 PM",
-          "class": "Yin Yoga"
+          "class": "Yin"
         },
         {
           "studio": "warrior-one-brighton",
@@ -153,121 +153,7 @@
       "aliases": [
         "Emma Strembickyj"
       ],
-      "classes": [
-        {
-          "studio": "within-south-yarra",
-          "day": "Mon",
-          "time": "5:00–6:00 PM",
-          "class": "Slow Flow Yoga"
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Mon",
-          "time": "6:15–7:15 PM",
-          "class": "Strong Flow Yoga"
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Mon",
-          "time": "7:30–8:30 PM",
-          "class": "Yin Yoga"
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Thu",
-          "time": "6:00–7:00 AM",
-          "class": "Strong Flow Yoga",
-          "sub": true
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Thu",
-          "time": "7:30–8:30 AM",
-          "class": "Slow Flow Yoga",
-          "sub": true
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Thu",
-          "time": "9:30–10:30 AM",
-          "class": "Strong Flow Yoga",
-          "sub": true
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Fri",
-          "time": "6:00–7:00 AM",
-          "class": "Strong Flow Yoga",
-          "sub": true
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Fri",
-          "time": "7:30–8:30 AM",
-          "class": "Slow Flow Yoga",
-          "sub": true
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Fri",
-          "time": "9:30–10:30 AM",
-          "class": "Strong Flow Yoga",
-          "sub": true
-        },
-        {
-          "studio": "grass-roots-st-kilda",
-          "day": "Wed",
-          "time": "6:15–7:15 AM",
-          "class": "Vinyasa flow",
-          "sub": true
-        },
-        {
-          "studio": "grass-roots-st-kilda",
-          "day": "Wed",
-          "time": "5:00–6:00 PM",
-          "class": "Vinyasa flow",
-          "sub": true
-        },
-        {
-          "studio": "grass-roots-st-kilda",
-          "day": "Wed",
-          "time": "6:15–7:30 PM",
-          "class": "Slow Flow + Restorative (75mins)",
-          "sub": true
-        },
-        {
-          "studio": "grass-roots-st-kilda",
-          "day": "Thu",
-          "time": "6:15–7:15 PM",
-          "class": "Yin"
-        },
-        {
-          "studio": "grass-roots-st-kilda",
-          "day": "Sat",
-          "time": "11:00–1:00 PM",
-          "class": "Break it Down, Build it Up"
-        },
-        {
-          "studio": "grass-roots-st-kilda",
-          "day": "Sat",
-          "time": "4:00–5:00 PM",
-          "class": "Vinyasa flow",
-          "sub": true
-        },
-        {
-          "studio": "grass-roots-st-kilda",
-          "day": "Sat",
-          "time": "5:15–6:15 PM",
-          "class": "Yin",
-          "sub": true
-        },
-        {
-          "studio": "here-yoga-port-melbourne",
-          "day": "Tue",
-          "time": "9:30–10:30 AM",
-          "class": "Dynamic Flow"
-        }
-      ]
+      "classes": []
     },
     "Janita Doelken": {
       "name": {
@@ -278,6 +164,36 @@
         "Janita Doelken"
       ],
       "classes": [
+        {
+          "studio": "grass-roots-st-kilda",
+          "day": "Sun",
+          "time": "4:00–5:00 PM",
+          "class": "Vinyasa Flow"
+        },
+        {
+          "studio": "grass-roots-st-kilda",
+          "day": "Sun",
+          "time": "5:15–6:15 PM",
+          "class": "Yin"
+        },
+        {
+          "studio": "grass-roots-st-kilda",
+          "day": "Mon",
+          "time": "6:15–7:15 AM",
+          "class": "Hot Flow"
+        },
+        {
+          "studio": "grass-roots-st-kilda",
+          "day": "Mon",
+          "time": "9:30–10:30 AM",
+          "class": "Vinyasa Flow"
+        },
+        {
+          "studio": "grass-roots-st-kilda",
+          "day": "Mon",
+          "time": "5:00–6:00 PM",
+          "class": "Vinyasa Flow"
+        },
         {
           "studio": "within-south-yarra",
           "day": "Sat",
@@ -291,43 +207,6 @@
           "time": "5:15–6:15 PM",
           "class": "Yin Yoga",
           "sub": true
-        },
-        {
-          "studio": "grass-roots-st-kilda",
-          "day": "Mon",
-          "time": "6:15–7:15 AM",
-          "class": "Hot Flow"
-        },
-        {
-          "studio": "grass-roots-st-kilda",
-          "day": "Mon",
-          "time": "9:30–10:30 AM",
-          "class": "Vinyasa flow"
-        },
-        {
-          "studio": "grass-roots-st-kilda",
-          "day": "Mon",
-          "time": "5:00–6:00 PM",
-          "class": "Vinyasa flow"
-        },
-        {
-          "studio": "grass-roots-st-kilda",
-          "day": "Fri",
-          "time": "12:15–1:15 PM",
-          "class": "Yin",
-          "sub": true
-        },
-        {
-          "studio": "grass-roots-st-kilda",
-          "day": "Sun",
-          "time": "4:00–5:00 PM",
-          "class": "Vinyasa flow"
-        },
-        {
-          "studio": "grass-roots-st-kilda",
-          "day": "Sun",
-          "time": "5:15–6:15 PM",
-          "class": "Yin"
         }
       ]
     }
