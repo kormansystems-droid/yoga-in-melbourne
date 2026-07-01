@@ -3,7 +3,7 @@ name: Refresh timetables
 # Weekly + manual. Opens a PR with the changes — nothing publishes until you merge.
 on:
   schedule:
-    - cron: "0 19 * * 0"   # Sundays 19:00 UTC ≈ Monday early morning Melbourne
+    - cron: "0 19 * * *"   # Daily 19:00 UTC ≈ 5:00 AM Melbourne (AEST) / 6:00 AM (AEDT)
   workflow_dispatch:
 
 permissions:
