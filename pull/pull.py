@@ -32,15 +32,18 @@ SCHED = ROOT / "data" / "schedule.json"
 ANOM = Path(__file__).resolve().parent / "_anomalies.md"
 STATE = Path(__file__).resolve().parent / "_feed_state.json"
 DARK_ESCALATE = 3  # consecutive failed runs before a feed is called "likely broken", not a blip
+FORWARD_DAYS = 7   # Momence: pull a rolling week — covers every weekly slot once, keeps fetches light
 SESSION_TYPES = ["course-class", "fitness", "retreat", "special-event", "special-event-new"]
 UA = {"User-Agent": "Mozilla/5.0 (compatible; YIM-timetable/1.0)"}
 
 
-def write_anomalies(failed, unmatched, unknown_studios, recovered):
+def write_anomalies(failed, missing, unknown_studios, recovered):
     """Write a human-readable anomaly report for the workflow to raise as an issue.
     Anomalies never block publishing — clean studios still go live; this is a heads-up.
-    `failed` = list of (sid, err, dark_runs, since); escalates once a feed is down
-    DARK_ESCALATE+ consecutive runs (a real break, not a one-off blip)."""
+    `failed`  = list of (sid, err, dark_runs, since); escalates at DARK_ESCALATE+ runs.
+    `missing` = registered teachers who had classes last run but zero this run at a
+                covered studio (a real disappearance — NOT the ~150 non-profiled teachers
+                in the feeds, which are normal and never flagged)."""
     lines = []
     escalated = [f for f in failed if f[2] >= DARK_ESCALATE]
     blips = [f for f in failed if f[2] < DARK_ESCALATE]
@@ -59,12 +62,13 @@ def write_anomalies(failed, unmatched, unknown_studios, recovered):
         lines.append("**🟢 Recovered** — pulling cleanly again:")
         for sid, since in recovered:
             lines.append(f"- `{sid}` — was down since {since}")
-    if unmatched:
+    if missing:
         lines.append("")
-        lines.append("**Unknown teacher names** — classes were NOT published (a real teacher "
-                     "with a name mismatch would silently drop). Add an alias in `schedule.json` if real:")
-        for name, count in sorted(unmatched.items()):
-            lines.append(f"- \"{name}\" — {count} class(es)")
+        lines.append("**Profiled teacher dropped from the feed** — had classes last run, zero this "
+                     "run at a studio that pulled cleanly. Likely their name changed in the studio's "
+                     "system (update the alias in `schedule.json`) or they stopped teaching there:")
+        for name in missing:
+            lines.append(f"- {name}")
     if unknown_studios:
         lines.append("")
         lines.append("**Rows for unknown studio ids** — add them to the studios registry:")
@@ -81,11 +85,14 @@ def write_anomalies(failed, unmatched, unknown_studios, recovered):
 
 def momence_fetch(host):
     base = f"https://readonly-api.momence.com/host-plugins/host/{host}/host-schedule/sessions"
-    now = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
+    nowdt = datetime.datetime.now(datetime.timezone.utc)
+    fmt = "%Y-%m-%dT%H:%M:%S.000Z"
+    frm = nowdt.strftime(fmt)
+    to = (nowdt + datetime.timedelta(days=FORWARD_DAYS)).strftime(fmt)
     payload, page = [], 0
     while True:
         q = [("sessionTypes[]", t) for t in SESSION_TYPES] + \
-            [("fromDate", now), ("pageSize", "50"), ("page", str(page)), ("timeZone", "UTC")]
+            [("fromDate", frm), ("toDate", to), ("pageSize", "50"), ("page", str(page)), ("timeZone", "UTC")]
         req = Request(base + "?" + urlencode(q), headers=UA)
         d = json.loads(urlopen(req, timeout=30).read().decode("utf-8"))
         payload += d.get("payload", [])
@@ -156,14 +163,25 @@ def main():
 
     if not covered:
         print("No studios pulled successfully; leaving schedule.json untouched.")
-        write_anomalies(failed_detail, {}, {}, recovered)
+        write_anomalies(failed_detail, [], {}, recovered)
         return
+
+    # count each profiled teacher's classes AT COVERED STUDIOS, before the merge overwrites
+    covset = set(covered)
+    def _counts(sched):
+        return {n: sum(1 for c in t.get("classes", []) if c.get("studio") in covset)
+                for n, t in sched.get("teachers", {}).items()}
+    old_counts = _counts(schedule)
 
     merged, report = M.merge(schedule, rows, covered)
     SCHED.write_text(json.dumps(merged, indent=2, ensure_ascii=False))
     print(f"\nmerged {report['matched']} rows; covered: {', '.join(covered)}")
 
-    write_anomalies(failed_detail, report["unmatched_names"], report["unknown_studios"], recovered)
+    new_counts = _counts(merged)
+    # only a REAL disappearance: had classes at a covered studio last run, none now.
+    missing = sorted(n for n in old_counts if old_counts[n] > 0 and new_counts.get(n, 0) == 0)
+
+    write_anomalies(failed_detail, missing, report["unknown_studios"], recovered)
 
     subprocess.run([sys.executable, str(ROOT / "build_profiles.py")], check=True, cwd=str(ROOT))
     print("profiles rebuilt.")
