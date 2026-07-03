@@ -48,7 +48,7 @@ jobs:
           # Rebase onto the latest and retry rather than failing the whole run.
           BR="${GITHUB_REF_NAME:-main}"
           for attempt in 1 2 3; do
-            git pull --rebase origin "$BR" || true
+            git pull --rebase --autostash origin "$BR" || true
             if git push origin "HEAD:$BR"; then
               echo "Published (attempt $attempt)."
               exit 0
