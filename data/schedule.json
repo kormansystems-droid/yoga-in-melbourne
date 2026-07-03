@@ -260,12 +260,6 @@
         {
           "studio": "grass-roots-st-kilda",
           "day": "Sat",
-          "time": "11:30–1:30 PM",
-          "class": "Break it Down. Build it Up"
-        },
-        {
-          "studio": "grass-roots-st-kilda",
-          "day": "Sat",
           "time": "4:00–5:00 PM",
           "class": "Vinyasa flow",
           "sub": true
@@ -276,12 +270,6 @@
           "time": "5:15–6:15 PM",
           "class": "Yin",
           "sub": true
-        },
-        {
-          "studio": "grass-roots-st-kilda",
-          "day": "Sun",
-          "time": "7:00–8:30 PM",
-          "class": "Yin & Cello"
         },
         {
           "studio": "here-yoga-port-melbourne",
@@ -337,13 +325,6 @@
           "day": "Mon",
           "time": "6:15–7:30 PM",
           "class": "Slow Flow + Restorative (75mins)"
-        },
-        {
-          "studio": "grass-roots-st-kilda",
-          "day": "Fri",
-          "time": "12:15–1:15 PM",
-          "class": "Yin",
-          "sub": true
         },
         {
           "studio": "grass-roots-st-kilda",
