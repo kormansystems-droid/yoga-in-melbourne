@@ -3,8 +3,8 @@ name: Refresh timetables
 # Daily + manual. Runs unattended:
 #   - Studios that pull cleanly are committed straight to main (Netlify publishes).
 #   - Studios that fail keep their last-good data (never wiped).
-#   - Anything needing a human (a feed down, an unknown teacher/studio) raises a
-#     GitHub issue — it does NOT block the studios that worked.
+#   - Anything needing a human (a feed down N runs, a profiled teacher dropped) raises
+#     a GitHub issue — it does NOT block the studios that worked.
 on:
   schedule:
     - cron: "0 19 * * *"   # Daily 19:00 UTC ≈ 5:00 AM Melbourne (AEST) / 6:00 AM (AEDT)
@@ -19,6 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0        # full history so the rebase-before-push works cleanly
 
       - uses: actions/setup-python@v5
         with:
@@ -39,11 +41,23 @@ jobs:
           git add data/schedule.json *.html pull/_feed_state.json
           if git diff --cached --quiet; then
             echo "No timetable changes to publish."
-          else
-            git commit -m "Auto-refresh teacher timetables from studio feeds"
-            git push
-            echo "Published timetable changes to main."
+            exit 0
           fi
+          git commit -m "Auto-refresh teacher timetables from studio feeds"
+          # main may have moved (a concurrent commit, or a re-run on an older sha).
+          # Rebase onto the latest and retry rather than failing the whole run.
+          BR="${GITHUB_REF_NAME:-main}"
+          for attempt in 1 2 3; do
+            git pull --rebase origin "$BR" || true
+            if git push origin "HEAD:$BR"; then
+              echo "Published (attempt $attempt)."
+              exit 0
+            fi
+            echo "Push attempt $attempt rejected; rebasing and retrying..."
+            sleep 3
+          done
+          echo "Could not push after 3 attempts."
+          exit 1
 
       - name: Raise issue on anomalies
         if: always()
