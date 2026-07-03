@@ -1,6 +1,10 @@
 name: Refresh timetables
 
-# Weekly + manual. Opens a PR with the changes — nothing publishes until you merge.
+# Daily + manual. Runs unattended:
+#   - Studios that pull cleanly are committed straight to main (Netlify publishes).
+#   - Studios that fail keep their last-good data (never wiped).
+#   - Anything needing a human (a feed down, an unknown teacher/studio) raises a
+#     GitHub issue — it does NOT block the studios that worked.
 on:
   schedule:
     - cron: "0 19 * * *"   # Daily 19:00 UTC ≈ 5:00 AM Melbourne (AEST) / 6:00 AM (AEDT)
@@ -8,7 +12,7 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
+  issues: write
 
 jobs:
   refresh:
@@ -28,17 +32,34 @@ jobs:
       - name: Pull + rebuild
         run: python pull/pull.py
 
-      - name: Open pull request
-        uses: peter-evans/create-pull-request@v6
-        with:
-          commit-message: "Refresh teacher timetables from studio feeds"
-          title: "Timetable refresh"
-          body: |
-            Automated pull from the studio feeds (Momence + healcode).
-            Review the schedule changes below before merging.
-            Studios not covered this run were left untouched.
-          branch: timetable-refresh
-          delete-branch: true
-          add-paths: |
-            data/schedule.json
-            *.html
+      - name: Publish clean schedule changes
+        run: |
+          git config user.name  "yim-timetable-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/schedule.json *.html pull/_feed_state.json
+          if git diff --cached --quiet; then
+            echo "No timetable changes to publish."
+          else
+            git commit -m "Auto-refresh teacher timetables from studio feeds"
+            git push
+            echo "Published timetable changes to main."
+          fi
+
+      - name: Raise issue on anomalies
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ ! -s pull/_anomalies.md ]; then
+            echo "No anomalies."
+            exit 0
+          fi
+          TITLE="⚠ Timetable pull needs attention"
+          NUM=$(gh issue list --state open --search "$TITLE in:title" --json number --jq '.[0].number' 2>/dev/null || true)
+          if [ -n "$NUM" ]; then
+            gh issue comment "$NUM" --body-file pull/_anomalies.md
+            echo "Appended to existing issue #$NUM."
+          else
+            gh issue create --title "$TITLE" --body-file pull/_anomalies.md
+            echo "Opened a new issue."
+          fi
