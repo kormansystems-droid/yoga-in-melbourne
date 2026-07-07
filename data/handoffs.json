@@ -1,0 +1,18 @@
+{
+  "_comment": "Studios we don't have a live feed for. Teachers who teach there get a 'Go to <studio>' card on their profile (no class times). When API access lands, give the studio a live feed in schedule.json and remove its teachers here — the migration is that clean.",
+  "brands": {
+    "warrior-one": {
+      "name": "Warrior One",
+      "book_url": "https://warrioroneyoga.com.au/",
+      "match": ["warrior-one"]
+    },
+    "happy-melon": {
+      "name": "Happy Melon",
+      "book_url": "https://happymelon.com.au/timetable/",
+      "match": ["happy-melon"]
+    }
+  },
+  "teachers": {
+    "alessia-frisina": ["warrior-one"]
+  }
+}
