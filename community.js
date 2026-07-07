@@ -71,7 +71,7 @@
   btn.className = "yim-join";
   btn.type = "button";
   btn.textContent = "Join the Community";
-  var mast = document.querySelector(".masthead") || document.querySelector("header");
+  var mast = document.querySelector(".masthead") || document.querySelector(".topbar-inner") || document.querySelector("header");
   if (mast) {
     mast.style.display = mast.style.display || "flex";
     mast.style.alignItems = mast.style.alignItems || "center";
@@ -178,7 +178,9 @@
         email_consent: !!m.email_consent,
         consent_at: m.consent_at || null,
         consent_source: m.consent_source || null
-      }).eq("id", user.id).then(function () { /* consent recorded */ });
+      }).eq("id", user.id).then(function () { /* consent recorded (backup to the DB trigger) */ });
+      renderMember(user);
+      overlay.classList.add("open");
     }
   });
 
