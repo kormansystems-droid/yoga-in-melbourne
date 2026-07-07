@@ -18,7 +18,7 @@ live until a human reviews and merges.
 Adding a studio to the automation = one registry entry with a feed block.
 Belongs in the REAL site repo (with build_profiles.py, templates/, data/, *.html).
 """
-import json, sys, datetime, subprocess
+import json, sys, re, datetime, subprocess
 from pathlib import Path
 from urllib.request import urlopen, Request
 from urllib.parse import urlencode
@@ -40,6 +40,9 @@ UA = {"User-Agent": "Mozilla/5.0 (compatible; YIM-timetable/1.0)"}
 # Mindbody bw-widget ids for the direct load_markup endpoint (no browser needed).
 # studio_id -> widget id. A feed may also carry its own "widget" to override this.
 HEALCODE_WIDGETS = {"within-south-yarra": "188058"}
+
+# go.mindbody branded-web V2 widget slugs (Warrior One). studio_id -> slug.
+GOMINDBODY_SLUGS = {"warrior-one-brighton": "751447bfa", "warrior-one-mordialloc": "751457bfa"}
 
 
 def write_anomalies(failed, missing, unknown_studios, recovered):
@@ -126,6 +129,52 @@ def healcode_fetch(feed, sid):
         return raw  # response was already raw markup
 
 
+def gomindbody_fetch(feed, sid):
+    """Render the go.mindbody branded-web V2 Schedules widget headless, click through
+    the 7 day tabs (they're div[role=button], not <button>), and return per-day class
+    data. Heavy (browser + interaction) but the only path for V2. keep-last-good and
+    the 0-rows guard protect the live schedule if Mindbody changes the widget."""
+    from playwright.sync_api import sync_playwright
+    slug = feed.get("slug") or GOMINDBODY_SLUGS.get(sid)
+    if not slug:
+        raise RuntimeError(f"no gomindbody slug for '{sid}'")
+    url = f"https://go.mindbodyonline.com/book/widgets/schedules/view/{slug}/schedule"
+    extract = (
+        "() => {"
+        "const dh=(document.body.innerText.match(/(Mon|Tues|Wednes|Thurs|Fri|Satur|Sun)day, [A-Z][a-z]+ \\d+/)||[''])[0];"
+        "const anchors=[...document.querySelectorAll('*')].filter(e=>e.children.length===0 && /^(BOOK MY MAT|Book|Waitlist|Sign Up|Join Waitlist)$/i.test((e.textContent||'').trim()));"
+        "const seen=new Set(),cards=[];"
+        "for(const a of anchors){let c=a;for(let i=0;i<7&&c;i++){if(/\\d{1,2}:\\d{2}\\s?(AM|PM)/i.test(c.textContent||'')&&(c.textContent||'').length<260)break;c=c.parentElement;}"
+        "if(!c)continue;const leaves=[];const walk=n=>{if(n.nodeType===3){const s=n.textContent.trim();if(s)leaves.push(s);}else n.childNodes.forEach(walk);};walk(c);"
+        "const sig=leaves.join('|');if(seen.has(sig))continue;seen.add(sig);cards.push(leaves);}"
+        "return {date:dh,cards};}"
+    )
+    days = []
+    with sync_playwright() as p:
+        b = p.chromium.launch()
+        pg = b.new_page(user_agent=UA["User-Agent"])
+        pg.goto(url, wait_until="load", timeout=60000)
+        pg.wait_for_selector("text=Today", timeout=30000)
+        pg.wait_for_timeout(4000)
+        tabs = pg.locator("[role=button]").filter(
+            has_text=re.compile(r"^(Today|Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s*\d{1,2}$", re.I))
+        try:
+            ntab = tabs.count()
+        except Exception:
+            ntab = 0
+        for i in range(min(ntab, 7)):
+            try:
+                tabs.nth(i).click(timeout=8000)
+                pg.wait_for_timeout(2500)
+                days.append(pg.evaluate(extract))
+            except Exception:
+                continue
+        b.close()
+    samp = next((d["cards"][:2] for d in days if d.get("cards")), [])
+    print(f"    [gomindbody:{slug}] days={len(days)} sample={json.dumps(samp)[:400]}")
+    return days
+
+
 def main():
     if ANOM.exists():
         ANOM.unlink()  # start clean; only present if this run finds something
@@ -135,13 +184,15 @@ def main():
     for sid, meta in schedule["studios"].items():
         feed = meta.get("feed", {})
         ftype = feed.get("type")
-        if ftype not in ("momence", "healcode"):
+        if ftype not in ("momence", "healcode", "gomindbody"):
             continue  # manual / unconfigured — left untouched, not expected to auto-pull
         try:
             if ftype == "momence":
                 r = N.momence_rows(momence_fetch(feed["host"]), sid)
-            else:  # healcode
+            elif ftype == "healcode":
                 r = N.healcode_rows(healcode_fetch(feed, sid), sid)
+            else:  # gomindbody
+                r = N.gomindbody_rows(gomindbody_fetch(feed, sid), sid)
             if not r:
                 # A feed that responds but yields nothing is a FAILURE, never
                 # "this studio now has no classes" — otherwise a block, challenge,

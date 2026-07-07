@@ -88,3 +88,64 @@ def healcode_rows(html, studio_id):
         seen.add(key)
         rows.append(_row(studio_id, staff, start, end, name, sub))
     return rows
+
+
+# ---- go.mindbody branded-web V2 (Warrior One) ------------------------------
+_GMB_NOISE = {"show details", "book my mat", "book", "waitlist", "sign up",
+              "join waitlist", "add to calendar", "full", "cancelled", "sold out"}
+_GMB_MONTHS = {m: i for i, m in enumerate(
+    ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], 1)}
+
+def gomindbody_rows(days, studio_id):
+    """days = [{'date': 'Tuesday, Jul 7', 'cards': [[leaf, leaf, ...], ...]}, ...]
+    from the rendered V2 widget. Each card's leaves are the ordered text nodes:
+    time, duration, class, teacher, (Show Details), location, (Book). Times are
+    already Melbourne-local (widget: 'displayed in the location's timezone')."""
+    now = datetime.datetime.now(MELB)
+    rows, seen = [], set()
+    for day in days or []:
+        dm = re.search(r"([A-Z][a-z]{2})[a-z]*\s+(\d{1,2})", day.get("date", ""))  # 'Jul 7'
+        if not dm:
+            continue
+        mon = _GMB_MONTHS.get(dm.group(1))
+        if not mon:
+            continue
+        dnum = int(dm.group(2))
+        try:
+            date0 = datetime.date(now.year, mon, dnum)
+        except ValueError:
+            continue
+        if (now.date() - date0).days > 30:          # Dec -> Jan rollover
+            try:
+                date0 = datetime.date(now.year + 1, mon, dnum)
+            except ValueError:
+                continue
+        for leaves in day.get("cards", []):
+            leaves = [H.unescape(str(x)).strip() for x in leaves if str(x).strip()]
+            time_s = next((l for l in leaves if re.match(r"^\d{1,2}:\d{2}\s?[AP]M$", l, re.I)), None)
+            if not time_s:
+                continue
+            dur_s = next((l for l in leaves if re.match(r"^\d+\s*min$", l, re.I)), None)
+            loc_s = next((l for l in leaves if re.search(r"warrior one|studio", l, re.I)), "")
+            sub = any("sub" in l.lower() for l in leaves)
+            # meaningful content leaves, in order: [class, teacher]
+            core = [l for l in leaves
+                    if l not in (time_s, dur_s, loc_s)
+                    and l.lower() not in _GMB_NOISE
+                    and not re.match(r"^\d+\s*min$", l, re.I)
+                    and not re.match(r"^\d{1,2}:\d{2}\s?[AP]M$", l, re.I)]
+            cls = core[0] if len(core) >= 1 else ""
+            teacher = core[1] if len(core) >= 2 else ""
+            try:
+                t = datetime.datetime.strptime(time_s.upper().replace(" ", ""), "%I:%M%p").time()
+            except ValueError:
+                continue
+            start = datetime.datetime.combine(date0, t)
+            mins = int(re.match(r"(\d+)", dur_s).group(1)) if dur_s else 60
+            end = start + datetime.timedelta(minutes=mins)
+            key = (teacher, start.isoformat(), cls)
+            if key in seen:
+                continue
+            seen.add(key)
+            rows.append(_row(studio_id, teacher, start, end, cls, sub))
+    return rows
