@@ -39,7 +39,7 @@
       <h1 class="fade d1"><span class="given">{{NAME_GIVEN}}</span><span class="family">{{NAME_FAMILY}}</span></h1>
       <p class="essence fade d2"><!-- EDITORIAL: one-line essence of the teacher --></p>
       <div class="hero-actions fade d3">
-        <a class="btn hero-follow" href="#follow">＋ Follow {{NAME_GIVEN}}</a>
+        <button class="btn hero-follow yim-follow-btn" type="button" data-teacher="{{NAME_FULL}}" data-given="{{NAME_GIVEN}}">＋ Follow {{NAME_GIVEN}}</button>
         <a class="listen-cue" href="#listen"><span class="dot">▶</span> Hear {{NAME_GIVEN}} tell her story</a>
       </div>
     </div>
@@ -132,15 +132,10 @@
   <div class="wrap">
     <h3>Follow {{NAME_GIVEN}} to know when she's <em>teaching, subbing, or away</em>.</h3>
     <div class="right">
-      <form class="follow-form" id="followForm" data-teacher="{{NAME_FULL}}">
-        <div class="ff-row">
-          <input type="text" name="name" placeholder="Your name" autocomplete="name" required>
-          <input type="email" name="email" placeholder="Your email" autocomplete="email" required>
-          <button type="submit" class="btn light">＋ Follow</button>
-        </div>
-        <p class="ff-note">You'll hear from {{NAME_GIVEN}} about schedule changes, subs and workshops — nothing else.</p>
-        <p class="ff-done" hidden>Thanks — you're following {{NAME_GIVEN}}. Keep an eye on your inbox.</p>
-      </form>
+      <div class="follow-cta">
+        <button class="btn light yim-follow-btn" type="button" data-teacher="{{NAME_FULL}}" data-given="{{NAME_GIVEN}}">＋ Follow {{NAME_GIVEN}}</button>
+        <p class="ff-note">Following saves {{NAME_GIVEN}} to your account. Not a member yet? We'll set you up in one step.</p>
+      </div>
       <div class="links">
         <!-- EDITORIAL: social / website links -->
       </div>
@@ -155,40 +150,6 @@
   </div>
 </footer>
 
-<script>
-  (function(){
-    var form = document.getElementById('followForm');
-    if(!form) return;
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      var btn = form.querySelector('button[type=submit]');
-      var note = form.querySelector('.ff-note');
-      var done = form.querySelector('.ff-done');
-      var payload = {
-        name: form.name.value,
-        email: form.email.value,
-        teacher: form.getAttribute('data-teacher')
-      };
-      btn.disabled = true; btn.textContent = 'Following…';
-      fetch('/.netlify/functions/follow', {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify(payload)
-      }).then(function(r){
-        if(r.ok){
-          form.querySelector('.ff-row').hidden = true;
-          if(note) note.hidden = true;
-          if(done) done.hidden = false;
-        } else {
-          btn.disabled = false; btn.textContent = '＋ Follow';
-          if(note){ note.textContent = 'Something went wrong — please try again.'; }
-        }
-      }).catch(function(){
-        btn.disabled = false; btn.textContent = '＋ Follow';
-        if(note){ note.textContent = 'Something went wrong — please try again.'; }
-      });
-    });
-  })();
-</script>
+
 </body>
 </html>
