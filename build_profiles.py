@@ -25,6 +25,12 @@ BASE_CSS = (ROOT / "partials" / "base.css").read_text()
 DAY_ORDER = {"Mon":0,"Tue":1,"Wed":2,"Thu":3,"Fri":4,"Sat":5,"Sun":6}
 WORDS = ["zero","one","two","three","four","five","six","seven","eight","nine"]
 
+# Loaded on every profile; community.js self-injects the "Join the Community" button + popup.
+COMMUNITY_SCRIPTS = (
+    '<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>\n'
+    '<script src="/community.js"></script>\n'
+)
+
 def esc(s): return html.escape(s, quote=False)
 
 def start_minutes(t):
@@ -86,6 +92,7 @@ def build_one(tpl, data):
               .replace("{{NAME_GIVEN}}", esc(given))
               .replace("{{NAME_FAMILY}}", esc(family))
               .replace("{{SCHED_NOTE}}", esc(note)))
+    out = out.replace("</body>", COMMUNITY_SCRIPTS + "</body>", 1)
     leftover = re.findall(r"\{\{[A-Z_]+\}\}", out)
     if leftover: raise SystemExit(f"{tpl.name}: unfilled tokens {leftover}")
     return out
