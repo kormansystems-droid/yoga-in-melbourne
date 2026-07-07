@@ -1,20 +1,17 @@
 """
-probe_gomindbody.py  (v2)
+probe_gomindbody.py  (v3 — diagnostic)
 
-v1 was inconclusive for a dumb reason: it waited for `networkidle`, but the
-Schedules V2 widget streams telemetry forever, so networkidle never fires and
-goto timed out before the schedule rendered. v1 DID confirm the important thing:
-no challenge/block on a GitHub Actions (datacenter) IP.
+v1/v2 confirmed: NO block on a datacenter IP. But the schedule wouldn't populate
+headless and my day-tab locator found 0 tabs. v3 stops guessing: it dumps every
+button's text and a body snippet so we can SEE what's on the page, then clicks
+the date-strip tabs by position (not regex) and measures what renders.
 
-v2 fixes the waits: load the DOM, wait for the schedule shell to hydrate, then
-click through the day tabs and count what renders.
-
-PASS = classes render headless on a datacenter IP -> scraper is a viable build.
-FAIL = challenge/block detected -> drop scraper, pursue official Mindbody API.
+Send me the whole JSON. It tells us: locator bug (tabs present -> scrape viable)
+vs genuine under-render (no tabs -> drop the scrape).
 """
 import json, re, sys
 
-WIDGET = "https://go.mindbodyonline.com/book/widgets/schedules/view/751447bfa/schedule"  # Warrior One Brighton
+WIDGET = "https://go.mindbodyonline.com/book/widgets/schedules/view/751447bfa/schedule"
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/125.0 Safari/537.36")
 
@@ -27,12 +24,12 @@ def metrics(text):
 
 def main():
     from playwright.sync_api import sync_playwright
-    out = {"widget": WIDGET, "days": []}
+    out = {"widget": WIDGET, "day_clicks": []}
     with sync_playwright() as p:
         b = p.chromium.launch()
         pg = b.new_page(user_agent=UA)
         try:
-            pg.goto(WIDGET, wait_until="load", timeout=60000)  # NOT networkidle
+            pg.goto(WIDGET, wait_until="load", timeout=60000)
         except Exception as e:
             out["goto_error"] = str(e)[:150]
         try:
@@ -40,36 +37,47 @@ def main():
             out["shell_rendered"] = True
         except Exception as e:
             out["shell_rendered"] = False
-            out["shell_error"] = str(e)[:150]
-        pg.wait_for_timeout(5000)
+            out["shell_error"] = str(e)[:120]
+        pg.wait_for_timeout(6000)
         out["title"] = pg.title()
         out["initial"] = metrics(pg.inner_text("body"))
+        out["initial_snippet"] = re.sub(r"\s+", " ", pg.inner_text("body"))[:500]
 
-        tabs = pg.locator("button", has_text=re.compile(r"\b(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\b"))
-        try:
-            out["day_tabs_found"] = tabs.count()
-        except Exception:
-            out["day_tabs_found"] = 0
-        for i in range(min(out["day_tabs_found"], 7)):
+        # DIAGNOSTIC: dump every button's text
+        btns = pg.locator("button")
+        nb = btns.count()
+        out["button_count"] = nb
+        out["button_texts"] = []
+        for i in range(min(nb, 30)):
             try:
-                tabs.nth(i).click(timeout=8000)
-                pg.wait_for_timeout(3500)
-                body = pg.inner_text("body")
-                m = metrics(body)
-                m["snippet"] = re.sub(r"\s+", " ", body)[:110]
-                out["days"].append(m)
+                out["button_texts"].append(btns.nth(i).inner_text()[:24].replace("\n", "|"))
+            except Exception:
+                out["button_texts"].append("<err>")
+
+        # click buttons that look like date tabs (short text ending in a number), by position
+        clicked = 0
+        for i in range(min(nb, 30)):
+            try:
+                txt = btns.nth(i).inner_text().replace("\n", " ").strip()
+                if re.search(r"\d{1,2}$", txt) and len(txt) <= 8 and clicked < 6:
+                    btns.nth(i).click(timeout=6000)
+                    pg.wait_for_timeout(3500)
+                    m = metrics(pg.inner_text("body"))
+                    m["tab"] = txt
+                    out["day_clicks"].append(m)
+                    clicked += 1
             except Exception as e:
-                out["days"].append({"error": str(e)[:110]})
+                out["day_clicks"].append({"tab_idx": i, "error": str(e)[:90]})
         b.close()
 
-    total = out.get("initial", {}).get("times", 0) + sum(d.get("times", 0) for d in out["days"])
-    challenged = out.get("initial", {}).get("challenge") or any(d.get("challenge") for d in out["days"])
+    total = out.get("initial", {}).get("times", 0) + sum(d.get("times", 0) for d in out["day_clicks"])
+    challenged = out.get("initial", {}).get("challenge") or any(d.get("challenge") for d in out["day_clicks"])
     if challenged:
-        verdict = "FAIL - challenge/block on datacenter IP. Drop the scraper; pursue the official Mindbody API."
+        verdict = "FAIL - challenge/block on datacenter IP."
     elif total >= 10:
-        verdict = f"PASS - {total} class-times rendered headless on a datacenter IP, no block. Scraper is viable."
+        verdict = f"PASS - {total} class-times rendered headless, no block. Scraper viable."
     else:
-        verdict = f"INCONCLUSIVE - no block, but only {total} class-times rendered. Metrics below (send me the JSON)."
+        verdict = f"DIAGNOSTIC - {total} times, {out.get('button_count',0)} buttons. Read button_texts below."
     print("=" * 70)
     print("VERDICT:", verdict)
     print("=" * 70)
