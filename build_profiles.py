@@ -20,6 +20,12 @@ ROOT = Path(__file__).parent
 TEMPLATES = ROOT / "templates"
 OUT = ROOT
 DATA = ROOT / "data" / "schedule.json"
+HANDOFFS = ROOT / "data" / "handoffs.json"
+try:
+    HANDOFF = json.loads(HANDOFFS.read_text())
+except Exception:
+    HANDOFF = {"brands": {}, "teachers": {}}
+HANDOFF_PREFIXES = tuple(m for br in HANDOFF.get("brands", {}).values() for m in br.get("match", []))
 BASE_CSS = (ROOT / "partials" / "base.css").read_text()
 
 DAY_ORDER = {"Mon":0,"Tue":1,"Wed":2,"Thu":3,"Fri":4,"Sat":5,"Sun":6}
@@ -42,6 +48,8 @@ def start_minutes(t):
     return h*60+m
 
 def render_cards(classes, studios):
+    if HANDOFF_PREFIXES:
+        classes = [c for c in classes if not str(c.get("studio", "")).startswith(HANDOFF_PREFIXES)]
     by = {}
     for c in classes: by.setdefault(c["studio"], []).append(c)
     cards=[]
@@ -67,6 +75,24 @@ def render_cards(classes, studios):
             f'        </div>\n{rh}\n      </div>')
     return "\n\n".join(cards), len(cards)
 
+def render_handoff_cards(slug):
+    """Manual 'Also at <studio>' cards for teachers at feed-less studios — a link to
+    book directly, no class times. Retired per studio once it gets a live feed."""
+    out = []
+    for bid in HANDOFF.get("teachers", {}).get(slug, []):
+        b = HANDOFF.get("brands", {}).get(bid)
+        if not b:
+            continue
+        url, nm = esc(b.get("book_url", "#")), esc(b.get("name", bid))
+        out.append(
+            '      <div class="studio studio-handoff">\n        <div class="studio-head">\n          <div>\n'
+            f'            <a class="studio-name" href="{url}" target="_blank" rel="noopener">{nm}</a>\n'
+            '            <span class="studio-loc">Book directly at their studio</span>\n'
+            '          </div>\n'
+            f'          <a class="book-link" href="{url}" target="_blank" rel="noopener">Go to {nm} ↗</a>\n'
+            '        </div>\n      </div>')
+    return out
+
 def build_one(tpl, data):
     src = tpl.read_text()
     teacher = re.search(r'studio-grid" data-teacher="([^"]+)"', src)
@@ -78,9 +104,15 @@ def build_one(tpl, data):
     given, family = rec["name"]["given"], rec["name"]["family"]
     full = f"{given} {family}"
     cards, count = render_cards(rec.get("classes", []), data["studios"])
+    handoff_cards = render_handoff_cards(teacher)
+    if handoff_cards:
+        joined = "\n\n".join(handoff_cards)
+        cards = (cards + "\n\n" + joined) if cards.strip() else joined
     if count:
         cw = WORDS[count] if count < len(WORDS) else str(count)
         note = f"{given}'s current weekly classes across {cw} studios. Tap a studio to book."
+    elif handoff_cards:
+        note = f"Book with {given} directly at their studio."
     else:
         note = f"{given}'s class timetable is coming soon."
 
