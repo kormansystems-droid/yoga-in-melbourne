@@ -22,6 +22,7 @@ import json, sys, datetime, subprocess
 from pathlib import Path
 from urllib.request import urlopen, Request
 from urllib.parse import urlencode
+from zoneinfo import ZoneInfo
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import normalizers as N
@@ -35,6 +36,10 @@ DARK_ESCALATE = 3  # consecutive failed runs before a feed is called "likely bro
 FORWARD_DAYS = 7   # Momence: pull a rolling week — covers every weekly slot once, keeps fetches light
 SESSION_TYPES = ["course-class", "fitness", "retreat", "special-event", "special-event-new"]
 UA = {"User-Agent": "Mozilla/5.0 (compatible; YIM-timetable/1.0)"}
+
+# Mindbody bw-widget ids for the direct load_markup endpoint (no browser needed).
+# studio_id -> widget id. A feed may also carry its own "widget" to override this.
+HEALCODE_WIDGETS = {"within-south-yarra": "188058"}
 
 
 def write_anomalies(failed, missing, unknown_studios, recovered):
@@ -103,19 +108,22 @@ def momence_fetch(host):
     return payload
 
 
-def healcode_fetch(url):
-    from playwright.sync_api import sync_playwright
-    with sync_playwright() as p:
-        b = p.chromium.launch()
-        pg = b.new_page()
-        try:
-            pg.goto(url, wait_until="networkidle", timeout=60000)
-        except Exception:
-            pass
-        pg.wait_for_timeout(6000)
-        html = pg.content()
-        b.close()
-    return html
+def healcode_fetch(feed, sid):
+    """Direct load_markup GET — no browser. Returns the week's bw-session HTML.
+    feed = {"type":"healcode","widget":"188058", ...}. The bw-widget returns 7 days
+    from start_date; datetimes in the markup are already Melbourne-local."""
+    wid = feed.get("widget") or HEALCODE_WIDGETS.get(sid)
+    if not wid:
+        raise RuntimeError(f"no healcode widget id for '{sid}'")
+    start = datetime.datetime.now(ZoneInfo("Australia/Melbourne")).strftime("%Y-%m-%d")
+    url = (f"https://widgets.mindbodyonline.com/widgets/schedules/{wid}"
+           f"/load_markup?options[start_date]={start}")
+    raw = urlopen(Request(url, headers=UA), timeout=45).read().decode("utf-8")
+    try:
+        data = json.loads(raw)
+        return data.get("class_sessions") or data.get("contents") or raw
+    except (ValueError, AttributeError):
+        return raw  # response was already raw markup
 
 
 def main():
@@ -133,7 +141,7 @@ def main():
             if ftype == "momence":
                 r = N.momence_rows(momence_fetch(feed["host"]), sid)
             else:  # healcode
-                r = N.healcode_rows(healcode_fetch(feed["page"]), sid)
+                r = N.healcode_rows(healcode_fetch(feed, sid), sid)
             if not r:
                 # A feed that responds but yields nothing is a FAILURE, never
                 # "this studio now has no classes" — otherwise a block, challenge,
