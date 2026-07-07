@@ -88,6 +88,21 @@ def build_one(tpl, data):
     out = re.sub(r"(<!-- SCHEDULE:START -->).*?(<!-- SCHEDULE:END -->)",
                  lambda _: f"<!-- SCHEDULE:START -->\n{cards}\n      <!-- SCHEDULE:END -->",
                  out, count=1, flags=re.S)
+    # Legacy name+email follow form -> account-based follow buttons (tokens filled below).
+    out = re.sub(r'<a class="btn hero-follow" href="#follow">[^<]*</a>',
+                 '<button class="btn hero-follow yim-follow-btn" type="button" '
+                 'data-teacher="{{NAME_FULL}}" data-given="{{NAME_GIVEN}}">＋ Follow {{NAME_GIVEN}}</button>',
+                 out, count=1)
+    out = re.sub(r'<form class="follow-form" id="followForm".*?</form>',
+                 '<div class="follow-cta">\n'
+                 '        <button class="btn light yim-follow-btn" type="button" '
+                 'data-teacher="{{NAME_FULL}}" data-given="{{NAME_GIVEN}}">＋ Follow {{NAME_GIVEN}}</button>\n'
+                 '        <p class="ff-note">Following saves {{NAME_GIVEN}} to your account. '
+                 "Not a member yet? We'll set you up in one step.</p>\n"
+                 '      </div>',
+                 out, count=1, flags=re.S)
+    out = re.sub(r"<script>\s*\(function\(\)\{\s*var form = document\.getElementById\(['\"]followForm['\"]\).*?</script>",
+                 '', out, count=1, flags=re.S)
     out = (out.replace("{{NAME_FULL}}", esc(full))
               .replace("{{NAME_GIVEN}}", esc(given))
               .replace("{{NAME_FAMILY}}", esc(family))
