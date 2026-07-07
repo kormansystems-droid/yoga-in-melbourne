@@ -132,8 +132,8 @@
         }
       }).then(function (res) {
         if (res.error) { err.textContent = res.error.message || "Something went wrong."; submit.disabled = false; submit.textContent = "Send me a link"; return; }
-        body.innerHTML = '<h2>Check your inbox</h2><p class="yim-msg">We sent a link to <strong>' +
-          email.replace(/</g, "&lt;") + '</strong>. Tap it to finish joining \u2014 you can close this.</p>';
+        body.innerHTML = '<h2>You\u2019re in \u2713</h2><p class="yim-msg">Welcome to the community. We\u2019ve emailed <strong>' +
+          email.replace(/</g, "&lt;") + '</strong> a link to confirm your account whenever you\u2019re ready \u2014 no rush.</p>';
       });
     });
   }
