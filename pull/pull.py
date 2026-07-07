@@ -142,11 +142,14 @@ def gomindbody_fetch(feed, sid):
     extract = (
         "() => {"
         "const dh=(document.body.innerText.match(/(Mon|Tues|Wednes|Thurs|Fri|Satur|Sun)day, [A-Z][a-z]+ \\d+/)||[''])[0];"
-        "const anchors=[...document.querySelectorAll('*')].filter(e=>e.children.length===0 && /^(BOOK MY MAT|Book|Waitlist|Sign Up|Join Waitlist)$/i.test((e.textContent||'').trim()));"
+        "const timeRe=/^\\d{1,2}:\\d{2}\\s?(AM|PM)$/i;"
+        "const SKIP=new Set(['SCRIPT','STYLE','NOSCRIPT','SVG','PATH']);"
+        "const leavesOf=el=>{const out=[];const w=n=>{if(n.nodeType===3){const s=n.textContent.trim();if(s)out.push(s);}else if(n.nodeType===1&&!SKIP.has((n.tagName||'').toUpperCase())){n.childNodes.forEach(w);}};w(el);return out;};"
+        "const timeEls=[...document.querySelectorAll('*')].filter(e=>{const own=[...e.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent.trim()).join('');return timeRe.test(own);});"
         "const seen=new Set(),cards=[];"
-        "for(const a of anchors){let c=a;for(let i=0;i<7&&c;i++){if(/\\d{1,2}:\\d{2}\\s?(AM|PM)/i.test(c.textContent||'')&&(c.textContent||'').length<260)break;c=c.parentElement;}"
-        "if(!c)continue;const leaves=[];const walk=n=>{if(n.nodeType===3){const s=n.textContent.trim();if(s)leaves.push(s);}else n.childNodes.forEach(walk);};walk(c);"
-        "const sig=leaves.join('|');if(seen.has(sig))continue;seen.add(sig);cards.push(leaves);}"
+        "for(const te of timeEls){let c=te;for(let i=0;i<6&&c;i++){if(/BOOK MY MAT|Waitlist|(^|\\s)Book(\\s|$)/i.test(c.textContent||''))break;c=c.parentElement;}"
+        "if(!c)continue;const lv=leavesOf(c);if(lv.join(' ').length>200)continue;"
+        "const sig=lv.join('|');if(seen.has(sig))continue;seen.add(sig);cards.push(lv);}"
         "return {date:dh,cards};}"
     )
     days = []
