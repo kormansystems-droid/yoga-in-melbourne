@@ -4,15 +4,21 @@
     "warrior-one": {
       "name": "Warrior One",
       "book_url": "https://warrioroneyoga.com.au/",
-      "match": ["warrior-one"]
+      "match": [
+        "warrior-one"
+      ]
     },
     "happy-melon": {
       "name": "Happy Melon",
       "book_url": "https://happymelon.com.au/timetable/",
-      "match": ["happy-melon"]
+      "match": [
+        "happy-melon"
+      ]
     }
   },
   "teachers": {
-    "alessia-frisina": ["warrior-one"]
+    "Alessia Frisina": [
+      "warrior-one"
+    ]
   }
 }
