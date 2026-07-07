@@ -66,6 +66,14 @@
   .yim-login:hover{color:var(--henna,#a24b34)}
   .yim-switch{margin-top:16px;font-size:13px;color:var(--ink-soft,#6b5d50)}
   .yim-switch a{color:var(--henna,#a24b34);cursor:pointer;text-decoration:underline}
+  .yim-follow-btn[data-following="true"]{background:var(--henna,#a24b34);color:var(--paper,#faf6ef);border-color:var(--henna,#a24b34)}
+  .yim-follows{margin:18px 0 4px;text-align:left}
+  .yim-follows-h{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--sage,#7a8a6f);margin:0 0 8px}
+  .yim-follow-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid rgba(42,32,26,.1);font-size:15px}
+  .yim-follow-row a{color:var(--ink,#2a201a);text-decoration:none;font-weight:500}
+  .yim-follow-row a:hover{color:var(--henna,#a24b34)}
+  .yim-unfollow{background:none;border:none;color:var(--ink-soft,#6b5d50);font-size:12px;cursor:pointer;text-decoration:underline;padding:0}
+  .yim-unfollow:hover{color:#b3261e}
   `;
   var style = document.createElement("style");
   style.textContent = css;
@@ -113,10 +121,15 @@
   overlay.querySelector(".yim-close").addEventListener("click", close);
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
 
-  function renderSignup() {
+  function renderSignup(followGiven) {
+    var _e = function (s) { return String(s || "").replace(/</g, "&lt;"); };
+    var _h = followGiven ? ("Follow " + _e(followGiven)) : "Join the Community";
+    var _s = followGiven
+      ? ("Create your free account to follow " + _e(followGiven) + " and save them to your dashboard. No password — we\u2019ll email you a link.")
+      : "Follow your favourite teachers and studios, and keep up with Melbourne yoga. No password — we\u2019ll email you a link.";
     body.innerHTML =
-      '<h2>Join the Community</h2>' +
-      '<p class="sub">Follow your favourite teachers and studios, and keep up with Melbourne yoga. No password — we\u2019ll email you a link.</p>' +
+      '<h2>' + _h + '</h2>' +
+      '<p class="sub">' + _s + '</p>' +
       '<input class="yim-field" id="yim-name" type="text" placeholder="Your name (optional)" autocomplete="name">' +
       '<input class="yim-field" id="yim-email" type="email" placeholder="Email address" autocomplete="email" required>' +
       '<div class="yim-err" id="yim-err"></div>' +
@@ -160,13 +173,27 @@
     var label = (user.user_metadata && user.user_metadata.full_name) || user.email;
     body.innerHTML =
       '<h2>You\u2019re in \u2713</h2>' +
-      '<p class="yim-msg">Signed in as <strong>' + String(label).replace(/</g, "&lt;") + '</strong>.<br>' +
-      'Follow buttons on teacher and studio pages will now save to your account.</p>' +
+      '<p class="yim-msg">Signed in as <strong>' + String(label).replace(/</g, "&lt;") + '</strong>.</p>' +
+      '<div class="yim-follows" id="yim-follows"><p class="yim-msg" style="opacity:.6">Loading your follows\u2026</p></div>' +
       '<button class="yim-submit" id="yim-welcome" style="margin-top:18px">Welcome to Yoga in Melbourne</button>' +
       '<p class="yim-switch" style="text-align:center;margin-top:14px"><a id="yim-signout">Sign out</a></p>';
     body.querySelector("#yim-welcome").addEventListener("click", close);
     body.querySelector("#yim-signout").addEventListener("click", function () {
       sb.auth.signOut().then(function () { close(); updateButton(null); });
+    });
+    sb.from("follows").select("target_id,target_label,target_url").eq("target_type", "teacher").then(function (r) {
+      var el = body.querySelector("#yim-follows"); if (!el) return;
+      var list = (r.data) || [];
+      if (!list.length) { el.innerHTML = '<p class="yim-msg" style="opacity:.7">You\u2019re not following anyone yet. Tap \u201cFollow\u201d on a teacher\u2019s page.</p>'; return; }
+      el.innerHTML = '<p class="yim-follows-h">Teachers you follow</p>' + list.map(function (f) {
+        var nm = String(f.target_label || f.target_id).replace(/</g, "&lt;");
+        return '<div class="yim-follow-row"><a href="' + (f.target_url || "#") + '">' + nm + '</a><button class="yim-unfollow" data-id="' + String(f.target_id).replace(/"/g, "") + '">Unfollow</button></div>';
+      }).join("");
+      [].slice.call(el.querySelectorAll(".yim-unfollow")).forEach(function (b) {
+        b.addEventListener("click", function () {
+          sb.from("follows").delete().eq("target_type", "teacher").eq("target_id", b.getAttribute("data-id")).eq("user_id", user.id).then(function () { renderMember(user); refreshFollowButtons(); });
+        });
+      });
     });
   }
 
@@ -235,10 +262,61 @@
         consent_at: m.consent_at || null,
         consent_source: m.consent_source || null
       }).eq("id", user.id).then(function () { /* consent recorded (backup to the DB trigger) */ });
+      executePendingFollow(user);
+      refreshFollowButtons();
       renderMember(user);
       overlay.classList.add("open");
     }
   });
+
+  // ---------- follows (account-based) ----------
+  var YIM_PENDING = "yim_pending_follow";
+  function slugFromPath() { return location.pathname.replace(/^\//, "").replace(/\.html$/, "") || "home"; }
+  function followBtns() { return [].slice.call(document.querySelectorAll(".yim-follow-btn")); }
+  function setFollowBtn(btn, following) {
+    var g = btn.getAttribute("data-given") || "";
+    btn.setAttribute("data-following", following ? "true" : "false");
+    btn.textContent = following ? ("\u2713 Following " + g) : ("\uFF0B Follow " + g);
+  }
+  function refreshFollowButtons() {
+    var btns = followBtns(); if (!btns.length) return;
+    sb.auth.getUser().then(function (res) {
+      var user = res.data && res.data.user;
+      if (!user) { btns.forEach(function (b) { setFollowBtn(b, false); }); return; }
+      sb.from("follows").select("target_id").eq("target_type", "teacher").then(function (r) {
+        var ids = ((r.data) || []).map(function (x) { return x.target_id; });
+        var slug = slugFromPath();
+        btns.forEach(function (b) { setFollowBtn(b, ids.indexOf(slug) !== -1); });
+      });
+    });
+  }
+  function doFollow(user, btn) {
+    var slug = slugFromPath(), label = btn.getAttribute("data-teacher") || "";
+    if (btn.getAttribute("data-following") === "true") {
+      sb.from("follows").delete().eq("target_type", "teacher").eq("target_id", slug).eq("user_id", user.id).then(function () { setFollowBtn(btn, false); });
+    } else {
+      sb.from("follows").insert({ user_id: user.id, target_type: "teacher", target_id: slug, target_label: label, target_url: location.pathname }).then(function () { setFollowBtn(btn, true); });
+    }
+  }
+  function onFollowClick(btn) {
+    sb.auth.getUser().then(function (res) {
+      var user = res.data && res.data.user;
+      if (user) { doFollow(user, btn); return; }
+      try { localStorage.setItem(YIM_PENDING, JSON.stringify({ slug: slugFromPath(), label: btn.getAttribute("data-teacher") || "", url: location.pathname })); } catch (e) {}
+      renderSignup(btn.getAttribute("data-given") || "");
+      overlay.classList.add("open");
+    });
+  }
+  function executePendingFollow(user) {
+    var raw; try { raw = localStorage.getItem(YIM_PENDING); } catch (e) {}
+    if (!raw) return;
+    var p; try { p = JSON.parse(raw); } catch (e) { return; }
+    try { localStorage.removeItem(YIM_PENDING); } catch (e) {}
+    if (!p || !p.slug) return;
+    sb.from("follows").insert({ user_id: user.id, target_type: "teacher", target_id: p.slug, target_label: p.label, target_url: p.url }).then(function () { refreshFollowButtons(); });
+  }
+  followBtns().forEach(function (b) { b.addEventListener("click", function () { onFollowClick(b); }); });
+  refreshFollowButtons();
 
   // Reflect existing session on load.
   sb.auth.getUser().then(function (res) { updateButton(res.data && res.data.user); });
