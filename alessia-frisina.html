@@ -397,7 +397,7 @@
       <h1 class="fade d1"><span class="given">Alessia</span><span class="family">Frisina</span></h1>
       <p class="essence fade d2">From the strength of Ashtanga to the stillness of Yin — a practice shaped by India, motherhood, and her body's own teaching.</p>
       <div class="hero-actions fade d3">
-        <a class="btn hero-follow" href="#follow">＋ Follow Alessia</a>
+        <button class="btn hero-follow yim-follow-btn" type="button" data-teacher="Alessia Frisina" data-given="Alessia">＋ Follow Alessia</button>
         <a class="listen-cue" href="#listen"><span class="dot">▶</span> Hear Alessia tell her story</a>
       </div>
     </div>
@@ -594,15 +594,10 @@
   <div class="wrap">
     <h3>Follow Alessia to know when she's <em>teaching, subbing, or away</em>.</h3>
     <div class="right">
-      <form class="follow-form" id="followForm" data-teacher="Alessia Frisina">
-        <div class="ff-row">
-          <input type="text" name="name" placeholder="Your name" autocomplete="name" required>
-          <input type="email" name="email" placeholder="Your email" autocomplete="email" required>
-          <button type="submit" class="btn light">＋ Follow</button>
-        </div>
-        <p class="ff-note">You'll hear from Alessia about schedule changes, subs and workshops — nothing else.</p>
-        <p class="ff-done" hidden>Thanks — you're following Alessia. Keep an eye on your inbox.</p>
-      </form>
+      <div class="follow-cta">
+        <button class="btn light yim-follow-btn" type="button" data-teacher="Alessia Frisina" data-given="Alessia">＋ Follow Alessia</button>
+        <p class="ff-note">Following saves Alessia to your account. Not a member yet? We'll set you up in one step.</p>
+      </div>
       <div class="links">
         <a href="https://www.instagram.com/aleyogabjj" target="_blank" rel="noopener">Instagram</a>
         <a href="https://www.withinretreat.com.au/yintouch" target="_blank" rel="noopener">Yin &amp; Touch</a>
@@ -619,41 +614,7 @@
   </div>
 </footer>
 
-<script>
-  (function(){
-    var form = document.getElementById('followForm');
-    if(!form) return;
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      var btn = form.querySelector('button[type=submit]');
-      var note = form.querySelector('.ff-note');
-      var done = form.querySelector('.ff-done');
-      var payload = {
-        name: form.name.value,
-        email: form.email.value,
-        teacher: form.getAttribute('data-teacher')
-      };
-      btn.disabled = true; btn.textContent = 'Following…';
-      fetch('/.netlify/functions/follow', {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify(payload)
-      }).then(function(r){
-        if(r.ok){
-          form.querySelector('.ff-row').hidden = true;
-          if(note) note.hidden = true;
-          if(done) done.hidden = false;
-        } else {
-          btn.disabled = false; btn.textContent = '＋ Follow';
-          if(note){ note.textContent = 'Something went wrong — please try again.'; }
-        }
-      }).catch(function(){
-        btn.disabled = false; btn.textContent = '＋ Follow';
-        if(note){ note.textContent = 'Something went wrong — please try again.'; }
-      });
-    });
-  })();
-</script>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="/community.js"></script>
 </body>
