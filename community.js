@@ -162,7 +162,9 @@
       '<h2>You\u2019re in \u2713</h2>' +
       '<p class="yim-msg">Signed in as <strong>' + String(label).replace(/</g, "&lt;") + '</strong>.<br>' +
       'Follow buttons on teacher and studio pages will now save to your account.</p>' +
-      '<button class="yim-submit" id="yim-signout" style="margin-top:18px">Sign out</button>';
+      '<button class="yim-submit" id="yim-welcome" style="margin-top:18px">Welcome to Yoga in Melbourne</button>' +
+      '<p class="yim-switch" style="text-align:center;margin-top:14px"><a id="yim-signout">Sign out</a></p>';
+    body.querySelector("#yim-welcome").addEventListener("click", close);
     body.querySelector("#yim-signout").addEventListener("click", function () {
       sb.auth.signOut().then(function () { close(); updateButton(null); });
     });
