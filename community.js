@@ -31,6 +31,11 @@
 
   var sb = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
 
+  // True only when THIS page load is the magic-link callback (URL carries the auth
+  // tokens). supabase-js fires SIGNED_IN on every load with a stored session, so we
+  // gate the one-time "You're in" welcome on the callback to stop it re-popping.
+  var authCallback = /[#&?](access_token|code|error_description)=/.test((location.hash || "") + (location.search || ""));
+
   // ---------- styles (self-contained; uses site vars with on-brand fallbacks) ----------
   var css = `
   .yim-join{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:11.5px;
@@ -254,7 +259,9 @@
   sb.auth.onAuthStateChange(function (event, session) {
     var user = session && session.user;
     updateButton(user);
-    if (event === "SIGNED_IN" && user) {
+    refreshFollowButtons();
+    if (event === "SIGNED_IN" && user && authCallback) {
+      authCallback = false;
       var m = user.user_metadata || {};
       sb.from("profiles").update({
         full_name: m.full_name || null,
@@ -263,7 +270,6 @@
         consent_source: m.consent_source || null
       }).eq("id", user.id).then(function () { /* consent recorded (backup to the DB trigger) */ });
       executePendingFollow(user);
-      refreshFollowButtons();
       renderMember(user);
       overlay.classList.add("open");
     }
