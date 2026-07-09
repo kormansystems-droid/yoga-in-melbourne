@@ -187,6 +187,13 @@
         {
           "studio": "within-south-yarra",
           "day": "Thu",
+          "time": "6:00–7:00 AM",
+          "class": "Strong Flow Yoga",
+          "sub": true
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Thu",
           "time": "7:30–8:30 AM",
           "class": "Slow Flow Yoga",
           "sub": true
@@ -195,13 +202,6 @@
           "studio": "within-south-yarra",
           "day": "Thu",
           "time": "9:30–10:30 AM",
-          "class": "Strong Flow Yoga",
-          "sub": true
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Fri",
-          "time": "6:00–7:00 AM",
           "class": "Strong Flow Yoga",
           "sub": true
         },
