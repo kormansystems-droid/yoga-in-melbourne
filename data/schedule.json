@@ -96,18 +96,6 @@
           "class": "Yin Yoga"
         },
         {
-          "studio": "within-south-yarra",
-          "day": "Sun",
-          "time": "8:00–9:00 AM",
-          "class": "Strong Flow Yoga"
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Sun",
-          "time": "9:30–10:30 AM",
-          "class": "Yin Yoga"
-        },
-        {
           "studio": "warrior-one-brighton",
           "day": "Tue",
           "time": "6:00–7:00 AM",
@@ -250,12 +238,6 @@
           "day": "Thu",
           "time": "7:30–8:30 PM",
           "class": "Yin"
-        },
-        {
-          "studio": "here-yoga-port-melbourne",
-          "day": "Tue",
-          "time": "9:30–10:30 AM",
-          "class": "Dynamic Flow"
         }
       ]
     },
@@ -279,6 +261,20 @@
           "studio": "within-south-yarra",
           "day": "Sat",
           "time": "5:15–6:15 PM",
+          "class": "Yin Yoga",
+          "sub": true
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Sun",
+          "time": "8:00–9:00 AM",
+          "class": "Strong Flow Yoga",
+          "sub": true
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Sun",
+          "time": "9:30–10:30 AM",
           "class": "Yin Yoga",
           "sub": true
         },
