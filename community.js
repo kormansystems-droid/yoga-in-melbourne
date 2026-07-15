@@ -174,13 +174,19 @@
     });
   }
 
-  function renderMember(user) {
-    var label = (user.user_metadata && user.user_metadata.full_name) || user.email;
+  function renderMember(user, welcome) {
+    var full = (user.user_metadata && user.user_metadata.full_name) || user.email;
+    var first = String(full).split(" ")[0] || "Your";
+    var e = function (s) { return String(s || "").replace(/</g, "&lt;"); };
+    var heading = welcome ? "You\u2019re in \u2713" : (e(first) + "\u2019s dashboard");
+    var sub = welcome
+      ? ("Welcome, " + e(first) + " \u2014 this is your dashboard. Follow teachers and they\u2019ll show up here.")
+      : ("Signed in as <strong>" + e(user.email) + "</strong>.");
     body.innerHTML =
-      '<h2>You\u2019re in \u2713</h2>' +
-      '<p class="yim-msg">Signed in as <strong>' + String(label).replace(/</g, "&lt;") + '</strong>.</p>' +
+      '<h2>' + heading + '</h2>' +
+      '<p class="yim-msg">' + sub + '</p>' +
       '<div class="yim-follows" id="yim-follows"><p class="yim-msg" style="opacity:.6">Loading your follows\u2026</p></div>' +
-      '<button class="yim-submit" id="yim-welcome" style="margin-top:18px">Welcome to Yoga in Melbourne</button>' +
+      '<button class="yim-submit" id="yim-welcome" style="margin-top:18px">' + (welcome ? "Welcome to Yoga in Melbourne" : "Done") + '</button>' +
       '<p class="yim-switch" style="text-align:center;margin-top:14px"><a id="yim-signout">Sign out</a></p>';
     body.querySelector("#yim-welcome").addEventListener("click", close);
     body.querySelector("#yim-signout").addEventListener("click", function () {
@@ -247,7 +253,7 @@
   function updateButton(user) {
     if (user) {
       var name = (user.user_metadata && user.user_metadata.full_name) || "My Community";
-      btn.textContent = name.split(" ")[0] || "My Community";
+      btn.textContent = (name.split(" ")[0] || "My") + "\u2019s Dashboard";
       loginBtn.style.display = "none";
     } else {
       btn.textContent = "Join the Community";
@@ -270,7 +276,7 @@
         consent_source: m.consent_source || null
       }).eq("id", user.id).then(function () { /* consent recorded (backup to the DB trigger) */ });
       executePendingFollow(user);
-      renderMember(user);
+      renderMember(user, true);
       overlay.classList.add("open");
     }
   });
