@@ -191,7 +191,7 @@ def main():
             continue  # manual / unconfigured — left untouched, not expected to auto-pull
         try:
             if ftype == "momence":
-                r = N.momence_rows(momence_fetch(feed["host"]), sid)
+                r = N.momence_rows(momence_fetch(feed["host"]), sid, feed.get("location"))
             elif ftype == "healcode":
                 r = N.healcode_rows(healcode_fetch(feed, sid), sid)
             else:  # gomindbody

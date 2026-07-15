@@ -42,11 +42,15 @@ def _row(studio_id, teacher, start, end, cls, sub):
 
 
 # ---- Momence ---------------------------------------------------------------
-def momence_rows(payload, studio_id):
-    """payload = list of Momence session dicts (UTC times)."""
+def momence_rows(payload, studio_id, location=None):
+    """payload = list of Momence session dicts (UTC times).
+    If `location` is given, keep only sessions at that venue — a single Momence
+    host can serve multiple locations (e.g. Here Yoga Malvern + Port Melbourne)."""
     rows = []
     for s in payload:
         if s.get("isCancelled"):
+            continue
+        if location and str(s.get("location", "")).strip() != location:
             continue
         st = datetime.datetime.fromisoformat(s["startsAt"].replace("Z", "+00:00")).astimezone(MELB)
         en = datetime.datetime.fromisoformat(s["endsAt"].replace("Z", "+00:00")).astimezone(MELB)
