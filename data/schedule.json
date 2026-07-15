@@ -102,6 +102,24 @@
       ],
       "classes": [
         {
+          "studio": "within-south-yarra",
+          "day": "Wed",
+          "time": "5:00–6:00 PM",
+          "class": "Slow Flow Yoga"
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Wed",
+          "time": "6:15–7:15 PM",
+          "class": "Strong Flow Yoga"
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Wed",
+          "time": "7:30–8:30 PM",
+          "class": "Yin Yoga"
+        },
+        {
           "studio": "warrior-one-brighton",
           "day": "Tue",
           "time": "6:00–7:00 AM",
@@ -171,13 +189,6 @@
           "day": "Mon",
           "time": "7:30–8:30 PM",
           "class": "Yin Yoga"
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Thu",
-          "time": "6:00–7:00 AM",
-          "class": "Strong Flow Yoga",
-          "sub": true
         },
         {
           "studio": "within-south-yarra",
