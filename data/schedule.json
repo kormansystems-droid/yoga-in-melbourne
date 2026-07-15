@@ -63,7 +63,31 @@
       "platform": "momence",
       "feed": {
         "type": "momence",
-        "host": 40780
+        "host": 40780,
+        "location": "Here Yoga Port Melbourne"
+      }
+    },
+    "kozen-yoga-hawthorn": {
+      "name": "Kozen Yoga",
+      "location": "Hawthorn",
+      "url": "https://www.kozenyoga.com.au/",
+      "book": "https://www.kozenyoga.com.au/timetable-bookings",
+      "platform": "momence",
+      "feed": {
+        "type": "momence",
+        "host": 44752
+      }
+    },
+    "here-yoga-malvern": {
+      "name": "(Here) Yoga",
+      "location": "Malvern",
+      "url": "https://www.hereyoga.com.au/",
+      "book": "https://www.hereyoga.com.au/",
+      "platform": "momence",
+      "feed": {
+        "type": "momence",
+        "host": 40780,
+        "location": "Here Yoga Malvern"
       }
     }
   },
