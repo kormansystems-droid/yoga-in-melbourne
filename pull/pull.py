@@ -18,7 +18,7 @@ live until a human reviews and merges.
 Adding a studio to the automation = one registry entry with a feed block.
 Belongs in the REAL site repo (with build_profiles.py, templates/, data/, *.html).
 """
-import json, sys, re, datetime, subprocess
+import json, sys, re, os, datetime, subprocess
 from pathlib import Path
 from urllib.request import urlopen, Request
 from urllib.parse import urlencode
@@ -36,6 +36,8 @@ DARK_ESCALATE = 3  # consecutive failed runs before a feed is called "likely bro
 FORWARD_DAYS = 7   # Momence: pull a rolling week — covers every weekly slot once, keeps fetches light
 SESSION_TYPES = ["course-class", "fitness", "retreat", "special-event", "special-event-new"]
 UA = {"User-Agent": "Mozilla/5.0 (compatible; YIM-timetable/1.0)"}
+MB_API_KEY = os.environ.get("MINDBODY_API_KEY", "")   # GitHub Actions secret
+MB_BASE = "https://api.mindbodyonline.com/public/v6"
 
 # Mindbody bw-widget ids for the direct load_markup endpoint (no browser needed).
 # studio_id -> widget id. A feed may also carry its own "widget" to override this.
@@ -109,6 +111,27 @@ def momence_fetch(host):
         if page * 50 >= total or page > 40:
             break
     return payload
+
+
+def mindbody_fetch(site_id):
+    """Mindbody Public API v6 GetClasses. Needs only Api-Key + SiteId once a
+    studio has activated our key — no per-studio login. Paginated; local times."""
+    now = datetime.datetime.now()
+    frm = now.date().isoformat()
+    to = (now + datetime.timedelta(days=FORWARD_DAYS)).date().isoformat()
+    headers = {**UA, "Api-Key": MB_API_KEY, "SiteId": str(site_id)}
+    out, offset = [], 0
+    while True:
+        q = urlencode({"StartDateTime": frm, "EndDateTime": to, "Limit": 100, "Offset": offset})
+        req = Request(f"{MB_BASE}/class/classes?{q}", headers=headers)
+        d = json.loads(urlopen(req, timeout=30).read().decode("utf-8"))
+        batch = d.get("Classes", [])
+        out += batch
+        total = (d.get("PaginationResponse") or {}).get("TotalResults", len(out))
+        offset += 100
+        if len(batch) < 100 or offset >= total or offset > 4000:
+            break
+    return out
 
 
 def healcode_fetch(feed, sid):
@@ -192,6 +215,8 @@ def main():
         try:
             if ftype == "momence":
                 r = N.momence_rows(momence_fetch(feed["host"]), sid, feed.get("location"))
+            elif ftype == "mindbody":
+                r = N.mindbody_rows(mindbody_fetch(feed["site_id"]), sid, feed.get("location"))
             elif ftype == "healcode":
                 r = N.healcode_rows(healcode_fetch(feed, sid), sid)
             else:  # gomindbody

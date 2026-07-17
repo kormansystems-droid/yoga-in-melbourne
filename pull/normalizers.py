@@ -64,6 +64,31 @@ def momence_rows(payload, studio_id, location=None):
     return rows
 
 
+# ---- Mindbody Public API (v6 GetClasses) -----------------------------------
+def mindbody_rows(payload, studio_id, location=None):
+    """payload = list of Mindbody v6 Class dicts (from GetClasses).
+    StartDateTime/EndDateTime are the site's LOCAL time (no offset) — for a
+    Melbourne studio that's already Melbourne, so we just localise it. If
+    `location` is given, keep only that venue (a Mindbody site can host several,
+    e.g. Warrior One Brighton / Mordialloc / Mornington)."""
+    rows = []
+    for c in payload:
+        if c.get("IsCanceled"):
+            continue
+        if location and str((c.get("Location") or {}).get("Name", "")).strip() != location:
+            continue
+        staff = c.get("Staff") or {}
+        tname = (staff.get("Name")
+                 or (staff.get("FirstName", "") + " " + staff.get("LastName", "")).strip())
+        if not tname or not c.get("StartDateTime"):
+            continue
+        st = datetime.datetime.fromisoformat(c["StartDateTime"]).replace(tzinfo=MELB)
+        en = datetime.datetime.fromisoformat(c["EndDateTime"]).replace(tzinfo=MELB)
+        cname = (c.get("ClassDescription") or {}).get("Name", "")
+        rows.append(_row(studio_id, tname, st, en, cname, bool(c.get("Substitute"))))
+    return rows
+
+
 # ---- Mindbody healcode -----------------------------------------------------
 def healcode_rows(html, studio_id):
     """html = rendered DOM containing bw-session blocks (datetime attrs are local)."""
