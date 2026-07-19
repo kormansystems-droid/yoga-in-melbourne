@@ -120,6 +120,18 @@
           "class": "Yin Yoga"
         },
         {
+          "studio": "within-south-yarra",
+          "day": "Sun",
+          "time": "8:00–9:00 AM",
+          "class": "Strong Flow Yoga"
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Sun",
+          "time": "9:30–10:30 AM",
+          "class": "Yin Yoga"
+        },
+        {
           "studio": "warrior-one-brighton",
           "day": "Tue",
           "time": "6:00–7:00 AM",
@@ -218,18 +230,6 @@
           "sub": true
         },
         {
-          "studio": "within-south-yarra",
-          "day": "Sun",
-          "time": "4:00–5:00 PM",
-          "class": "Slow Flow Yoga"
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Sun",
-          "time": "5:15–6:15 PM",
-          "class": "Yin Yoga"
-        },
-        {
           "studio": "grass-roots-st-kilda",
           "day": "Wed",
           "time": "6:15–7:15 AM",
@@ -247,6 +247,12 @@
           "day": "Thu",
           "time": "7:30–8:30 PM",
           "class": "Yin"
+        },
+        {
+          "studio": "grass-roots-st-kilda",
+          "day": "Sun",
+          "time": "7:00–8:30 PM",
+          "class": "Yin & Cello"
         },
         {
           "studio": "kozen-yoga-hawthorn",
@@ -271,20 +277,6 @@
         "Janita Doelken"
       ],
       "classes": [
-        {
-          "studio": "within-south-yarra",
-          "day": "Sun",
-          "time": "8:00–9:00 AM",
-          "class": "Strong Flow Yoga",
-          "sub": true
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Sun",
-          "time": "9:30–10:30 AM",
-          "class": "Yin Yoga",
-          "sub": true
-        },
         {
           "studio": "grass-roots-st-kilda",
           "day": "Mon",
