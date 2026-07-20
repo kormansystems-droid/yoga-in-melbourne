@@ -230,6 +230,27 @@
           "sub": true
         },
         {
+          "studio": "within-south-yarra",
+          "day": "Fri",
+          "time": "6:00–7:00 AM",
+          "class": "Strong Flow Yoga",
+          "sub": true
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Fri",
+          "time": "7:30–8:30 AM",
+          "class": "Slow Flow Yoga",
+          "sub": true
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Fri",
+          "time": "9:30–10:30 AM",
+          "class": "Strong Flow Yoga",
+          "sub": true
+        },
+        {
           "studio": "grass-roots-st-kilda",
           "day": "Wed",
           "time": "6:15–7:15 AM",
@@ -277,6 +298,20 @@
         "Janita Doelken"
       ],
       "classes": [
+        {
+          "studio": "within-south-yarra",
+          "day": "Sat",
+          "time": "4:00–5:00 PM",
+          "class": "Slow Flow Yoga",
+          "sub": true
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Sat",
+          "time": "5:15–6:15 PM",
+          "class": "Yin Yoga",
+          "sub": true
+        },
         {
           "studio": "grass-roots-st-kilda",
           "day": "Mon",
