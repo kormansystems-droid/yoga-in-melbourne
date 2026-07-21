@@ -99,7 +99,10 @@ def build_one(tpl, data):
     if not teacher: raise SystemExit(f"{tpl.name}: no schedule data-teacher")
     teacher = teacher.group(1)
     rec = data["teachers"].get(teacher)
-    if rec is None: raise SystemExit(f"{tpl.name}: '{teacher}' not in schedule.json")
+    if rec is None:
+        # online-only teacher (no studio feed): derive name, render an empty schedule slot
+        parts = teacher.split()
+        rec = {"name": {"given": parts[0], "family": " ".join(parts[1:])}, "classes": []}
 
     given, family = rec["name"]["given"], rec["name"]["family"]
     full = f"{given} {family}"
