@@ -94,6 +94,78 @@ def render_handoff_cards(slug, classes):
             '        </div>\n      </div>')
     return out
 
+
+# ---- SEO head generation (per-teacher; suburbs from where they teach + capped catchment) ----
+SITE = "https://yogainmelbourne.com.au"
+try:
+    CATCHMENT = json.loads((ROOT / "data" / "catchment.json").read_text())
+except Exception:
+    CATCHMENT = {}
+
+def _teacher_suburbs(rec, studios):
+    from collections import Counter
+    c = Counter()
+    for cls in rec.get("classes", []):
+        loc = studios.get(cls.get("studio"), {}).get("location")
+        if loc: c[loc] += 1
+    return [loc for loc, _ in c.most_common()]
+
+def _handoff_suburbs(teacher, studios):
+    out = []
+    for bid in HANDOFF.get("teachers", {}).get(teacher, []):
+        prefixes = tuple(HANDOFF.get("brands", {}).get(bid, {}).get("match", []))
+        for sid, meta in studios.items():
+            if prefixes and sid.startswith(prefixes):
+                loc = meta.get("location")
+                if loc and loc not in out: out.append(loc)
+    return out
+
+def _join_suburbs(subs):
+    if not subs: return ""
+    if len(subs) == 1: return subs[0]
+    return ", ".join(subs[:-1]) + " & " + subs[-1]
+
+def seo_head(teacher, rec, studios, slug):
+    given = rec["name"]["given"]; family = rec["name"]["family"]; full = (given + " " + family).strip()
+    url = SITE + "/" + slug + ".html"; img = SITE + "/img/" + slug + ".jpg"
+    teaching = _teacher_suburbs(rec, studios)
+    for s in _handoff_suburbs(teacher, studios):
+        if s not in teaching: teaching.append(s)
+    # capped catchment: nearest 3 per teaching suburb, deduped, excluding teaching suburbs
+    catch = []
+    for s in teaching:
+        for c in CATCHMENT.get(s, [])[:3]:
+            if c not in teaching and c not in catch: catch.append(c)
+    area = teaching + catch
+    if teaching:
+        title = full + ", Yoga in " + _join_suburbs(teaching[:2]) + " | Yoga in Melbourne"
+        desc = given + " teaches yoga across " + _join_suburbs(teaching[:4]) + ". Explore " + given + "'s weekly class schedule, story and where to book, on Yoga in Melbourne."
+    else:
+        title = full + ", Yoga Nidra & Meditation | Yoga in Melbourne"
+        desc = given + " guides Yoga Nidra and meditation, in Melbourne and online. Explore " + given + "'s story and practices on Yoga in Melbourne."
+    person = {"@context":"https://schema.org","@type":"Person","name":full,"jobTitle":"Yoga Teacher","url":url,"image":img,"description":desc,"worksFor":{"@type":"Organization","name":"Yoga in Melbourne","url":SITE+"/"}}
+    if area: person["areaServed"] = [{"@type":"Place","name":s} for s in area]
+    crumb = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Yoga in Melbourne","item":SITE+"/"},{"@type":"ListItem","position":2,"name":"Teachers","item":SITE+"/#teachers"},{"@type":"ListItem","position":3,"name":full}]}
+    def a(x): return html.escape(x, quote=True)
+    return "\n".join([
+        "<title>"+a(title)+"</title>",
+        '<meta name="description" content="'+a(desc)+'">',
+        '<link rel="canonical" href="'+url+'">',
+        '<meta property="og:type" content="profile">',
+        '<meta property="og:title" content="'+a(title)+'">',
+        '<meta property="og:description" content="'+a(desc)+'">',
+        '<meta property="og:url" content="'+url+'">',
+        '<meta property="og:image" content="'+img+'">',
+        '<meta property="og:site_name" content="Yoga in Melbourne">',
+        '<meta name="twitter:card" content="summary_large_image">',
+        '<meta name="twitter:title" content="'+a(title)+'">',
+        '<meta name="twitter:description" content="'+a(desc)+'">',
+        '<meta name="twitter:image" content="'+img+'">',
+        '<script type="application/ld+json">'+json.dumps(person, ensure_ascii=False)+'</script>',
+        '<script type="application/ld+json">'+json.dumps(crumb, ensure_ascii=False)+'</script>',
+    ])
+# ---- end SEO ----
+
 def build_one(tpl, data):
     src = tpl.read_text()
     teacher = re.search(r'studio-grid" data-teacher="([^"]+)"', src)
@@ -121,6 +193,7 @@ def build_one(tpl, data):
         note = f"{given}'s class timetable is coming soon."
 
     out = src.replace("/* BASE_CSS:INJECT */", BASE_CSS, 1)
+    out = out.replace("<!-- SEO_HEAD -->", seo_head(teacher, rec, data["studios"], tpl.name.replace(".template.html","")), 1)
     out = re.sub(r"(<!-- SCHEDULE:START -->).*?(<!-- SCHEDULE:END -->)",
                  lambda _: f"<!-- SCHEDULE:START -->\n{cards}\n      <!-- SCHEDULE:END -->",
                  out, count=1, flags=re.S)
