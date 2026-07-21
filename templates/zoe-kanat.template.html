@@ -10,8 +10,8 @@
 <style>/* BASE_CSS:INJECT */</style>
 </head>
 <body>
-<div class="wrap"><header class="masthead"><a class="pub" href="#">Yoga <em>in</em> Melbourne</a>
-<nav class="nav"><a href="#">Teachers</a><a href="#">Studios</a><a href="#">What's On</a><a href="#">Journal</a></nav></header></div>
+<div class="wrap"><header class="masthead"><a class="pub" href="/">Yoga <em>in</em> Melbourne</a>
+<nav class="nav"><a href="/#teachers">Teachers</a><a href="/#studios">Studios</a><a href="/#events">What's On</a><a href="/#journal">Journal</a></nav></header></div>
 
 <div class="wrap"><section class="hero"><div class="omega" aria-hidden="true">ॐ</div>
 <div class="hero-text"><div class="eyebrow fade">Teacher</div>
@@ -85,15 +85,16 @@
 <a class="book-link" href="https://insighttimer.com/zoekanat" target="_blank" rel="noopener">Listen on Insight Timer ↗</a></div></div>
 </div></section></div>
 
-<section class="follow" id="follow"><div class="wrap"><h3>Follow {{NAME_GIVEN}} for <em>new practices, courses & live sessions</em>.</h3>
+<section class="follow" id="follow"><div class="wrap"><h3>Follow {{NAME_GIVEN}} to stay in touch with the latest on their <em>classes, workshops and retreats</em>.</h3>
 <div class="right"><form class="follow-form" id="followForm" data-teacher="{{NAME_FULL}}">
 <div class="ff-row"><input type="text" name="name" placeholder="Your name" autocomplete="name" required>
 <input type="email" name="email" placeholder="Your email" autocomplete="email" required>
 <button type="submit" class="btn light">＋ Follow</button></div>
 <p class="ff-note">You'll hear from {{NAME_GIVEN}} about new practices, courses and live sessions, nothing else.</p>
 <p class="ff-done" hidden>Thanks, you're following {{NAME_GIVEN}}.</p></form>
-<div class="links"><a href="https://www.instagram.com/zoekanat/" target="_blank" rel="noopener">Instagram</a><a href="https://insighttimer.com/zoekanat" target="_blank" rel="noopener">Insight Timer</a><a href="https://www.zoekanat.com/" target="_blank" rel="noopener">Website</a></div></div></div></section>
+<div class="links"><a href="https://insighttimer.com/zoekanat" target="_blank" rel="noopener">Insight Timer</a><a href="https://www.zoekanat.com/" target="_blank" rel="noopener">Website</a></div></div></div></section>
 
-<footer><div class="wrap"><a class="pub" href="#">Yoga <em>in</em> Melbourne</a><p>Teacher profiles · Studios · What's on · Melbourne</p></div></footer>
+<footer><div class="wrap"><a class="pub" href="/">Yoga <em>in</em> Melbourne</a><p class="foot-nav"><a href="/#teachers">Teachers</a> · <a href="/#studios">Studios</a> · <a href="/#conversations">Conversations</a> · <a href="/#journal">Journal</a> · <a href="/#journeys">Journeys</a> · <a href="/#events">Events &amp; Workshops</a> · <a href="/#retreats">Retreats</a> · <a href="/#training">Teacher Training</a></p></div></footer>
 <script>(function(){var form=document.getElementById('followForm');if(!form)return;form.addEventListener('submit',function(e){e.preventDefault();var btn=form.querySelector('button[type=submit]'),note=form.querySelector('.ff-note'),done=form.querySelector('.ff-done');var payload={name:form.name.value,email:form.email.value,teacher:form.getAttribute('data-teacher')};btn.disabled=true;btn.textContent='Following…';fetch('/.netlify/functions/follow',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).then(function(r){if(r.ok){form.querySelector('.ff-row').hidden=true;if(note)note.hidden=true;if(done)done.hidden=false;}else{btn.disabled=false;btn.textContent='＋ Follow';}}).catch(function(){btn.disabled=false;btn.textContent='＋ Follow';});});})();</script>
+<script>(function(){var t=new Date().toISOString().slice(0,10);var evs=document.querySelectorAll(".event[data-until]");var shown=0;evs.forEach(function(e){if(e.getAttribute("data-until")<t){e.style.display="none";}else{shown++;}});var sec=document.querySelector(".coming-up");if(sec&&evs.length>0&&shown===0)sec.style.display="none";})();</script>
 </body></html>

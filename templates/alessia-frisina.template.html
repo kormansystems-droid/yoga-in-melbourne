@@ -16,12 +16,12 @@
 
 <div class="wrap">
   <header class="masthead">
-    <a class="pub" href="#">Yoga <em>in</em> Melbourne</a>
+    <a class="pub" href="/">Yoga <em>in</em> Melbourne</a>
     <nav class="nav">
-      <a href="#">Teachers</a>
-      <a href="#">Studios</a>
-      <a href="#">What's On</a>
-      <a href="#">Journal</a>
+      <a href="/#teachers">Teachers</a>
+      <a href="/#studios">Studios</a>
+      <a href="/#events">What's On</a>
+      <a href="/#journal">Journal</a>
     </nav>
   </header>
 </div>
@@ -177,7 +177,7 @@
 
 <section class="follow" id="follow">
   <div class="wrap">
-    <h3>Follow {{NAME_GIVEN}} to know when she's <em>teaching, subbing, or away</em>.</h3>
+    <h3>Follow {{NAME_GIVEN}} to stay in touch with the latest on their <em>classes, workshops and retreats</em>.</h3>
     <div class="right">
       <form class="follow-form" id="followForm" data-teacher="{{NAME_FULL}}">
         <div class="ff-row">
@@ -189,9 +189,7 @@
         <p class="ff-done" hidden>Thanks, you're following {{NAME_GIVEN}}. Keep an eye on your inbox.</p>
       </form>
       <div class="links">
-        <a href="https://www.instagram.com/aleyogabjj" target="_blank" rel="noopener">Instagram</a>
         <a href="https://www.withinretreat.com.au/yintouch" target="_blank" rel="noopener">Yin &amp; Touch</a>
-        <a href="https://www.yogawithalessia.com" target="_blank" rel="noopener">Website</a>
       </div>
     </div>
   </div>
@@ -199,8 +197,8 @@
 
 <footer>
   <div class="wrap">
-    <a class="pub" href="#">Yoga <em>in</em> Melbourne</a>
-    <p>Teacher profiles · Studios · What's on · Melbourne</p>
+    <a class="pub" href="/">Yoga <em>in</em> Melbourne</a>
+    <p class="foot-nav"><a href="/#teachers">Teachers</a> · <a href="/#studios">Studios</a> · <a href="/#conversations">Conversations</a> · <a href="/#journal">Journal</a> · <a href="/#journeys">Journeys</a> · <a href="/#events">Events &amp; Workshops</a> · <a href="/#retreats">Retreats</a> · <a href="/#training">Teacher Training</a></p>
   </div>
 </footer>
 
@@ -239,5 +237,6 @@
     });
   })();
 </script>
+<script>(function(){var t=new Date().toISOString().slice(0,10);var evs=document.querySelectorAll(".event[data-until]");var shown=0;evs.forEach(function(e){if(e.getAttribute("data-until")<t){e.style.display="none";}else{shown++;}});var sec=document.querySelector(".coming-up");if(sec&&evs.length>0&&shown===0)sec.style.display="none";})();</script>
 </body>
 </html>
