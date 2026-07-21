@@ -300,7 +300,7 @@
   /* ---------- listen ---------- */
   .listen{padding:66px 0;max-width:760px;margin:0 auto;text-align:center}
   .listen .eyebrow{justify-content:center;margin-bottom:18px}
-  .listen .eyebrow::before{display:none}
+  .listen .eyebrow::before{content:"";width:34px;height:1px;background:var(--ochre)}
   .listen h3{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(28px,4vw,40px);margin-bottom:14px}
   .listen p{color:var(--ink-soft);max-width:46ch;margin:0 auto 30px}
   .player{
@@ -370,11 +370,14 @@
     .nav{display:none}
     .wrap{padding:0 20px}
   }
+.foot-nav{font-family:'Spline Sans Mono',monospace;font-size:12px;letter-spacing:.04em}
+.foot-nav a{color:var(--ink-soft);text-decoration:none}
+.foot-nav a:hover{color:var(--paper)}
 </style>
 </head>
 <body>
-<div class="wrap"><header class="masthead"><a class="pub" href="#">Yoga <em>in</em> Melbourne</a>
-<nav class="nav"><a href="#">Teachers</a><a href="#">Studios</a><a href="#">What's On</a><a href="#">Journal</a></nav></header></div>
+<div class="wrap"><header class="masthead"><a class="pub" href="/">Yoga <em>in</em> Melbourne</a>
+<nav class="nav"><a href="/#teachers">Teachers</a><a href="/#studios">Studios</a><a href="/#events">What's On</a><a href="/#journal">Journal</a></nav></header></div>
 
 <div class="wrap"><section class="hero"><div class="omega" aria-hidden="true">ॐ</div>
 <div class="hero-text"><div class="eyebrow fade">Teacher</div>
@@ -466,7 +469,7 @@
 <div class="wrap"><section class="coming-up">
 <h3 class="sched-title">Coming up</h3>
 <div class="event-grid">
-<div class="event">
+<div class="event" data-until="2026-08-31">
 <div class="when">August 2026 · Grass Roots</div>
 <div class="what">The Yin Path, Teacher Training<small>A 30-hour Yin Yoga teacher training with Janita Doelken. Last year's intake graduated fifteen.</small></div>
 <a class="event-link" href="https://www.grassrootsyoga.com/30hour-yinytt" target="_blank" rel="noopener">About the training ↗</a>
@@ -474,15 +477,16 @@
 </div>
 </section></div>
 
-<section class="follow" id="follow"><div class="wrap"><h3>Follow Janita to know when she's <em>teaching, subbing, or away</em>.</h3>
+<section class="follow" id="follow"><div class="wrap"><h3>Follow Janita to stay in touch with the latest on their <em>classes, workshops and retreats</em>.</h3>
 <div class="right"><div class="follow-cta">
         <button class="btn light yim-follow-btn" type="button" data-teacher="Janita Doelken" data-given="Janita">＋ Follow Janita</button>
         <p class="ff-note">Following saves Janita to your account. Not a member yet? We'll set you up in one step.</p>
       </div>
 <div class="links"><!-- TODO: Janita's Instagram / website --></div></div></div></section>
 
-<footer><div class="wrap"><a class="pub" href="#">Yoga <em>in</em> Melbourne</a><p>Teacher profiles · Studios · What's on · Melbourne</p></div></footer>
+<footer><div class="wrap"><a class="pub" href="/">Yoga <em>in</em> Melbourne</a><p class="foot-nav"><a href="/#teachers">Teachers</a> · <a href="/#studios">Studios</a> · <a href="/#conversations">Conversations</a> · <a href="/#journal">Journal</a> · <a href="/#journeys">Journeys</a> · <a href="/#events">Events &amp; Workshops</a> · <a href="/#retreats">Retreats</a> · <a href="/#training">Teacher Training</a></p></div></footer>
 <script>(function(){var form=document.getElementById('followForm');if(!form)return;form.addEventListener('submit',function(e){e.preventDefault();var btn=form.querySelector('button[type=submit]'),note=form.querySelector('.ff-note'),done=form.querySelector('.ff-done');var payload={name:form.name.value,email:form.email.value,teacher:form.getAttribute('data-teacher')};btn.disabled=true;btn.textContent='Following…';fetch('/.netlify/functions/follow',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).then(function(r){if(r.ok){form.querySelector('.ff-row').hidden=true;if(note)note.hidden=true;if(done)done.hidden=false;}else{btn.disabled=false;btn.textContent='＋ Follow';}}).catch(function(){btn.disabled=false;btn.textContent='＋ Follow';});});})();</script>
+<script>(function(){var t=new Date().toISOString().slice(0,10);var evs=document.querySelectorAll(".event[data-until]");var shown=0;evs.forEach(function(e){if(e.getAttribute("data-until")<t){e.style.display="none";}else{shown++;}});var sec=document.querySelector(".coming-up");if(sec&&evs.length>0&&shown===0)sec.style.display="none";})();</script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="/community.js"></script>
 </body></html>
