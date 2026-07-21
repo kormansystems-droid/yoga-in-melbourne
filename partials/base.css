@@ -291,7 +291,7 @@
   /* ---------- listen ---------- */
   .listen{padding:66px 0;max-width:760px;margin:0 auto;text-align:center}
   .listen .eyebrow{justify-content:center;margin-bottom:18px}
-  .listen .eyebrow::before{display:none}
+  .listen .eyebrow::before{content:"";width:34px;height:1px;background:var(--ochre)}
   .listen h3{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(28px,4vw,40px);margin-bottom:14px}
   .listen p{color:var(--ink-soft);max-width:46ch;margin:0 auto 30px}
   .player{
@@ -361,3 +361,6 @@
     .nav{display:none}
     .wrap{padding:0 20px}
   }
+.foot-nav{font-family:'Spline Sans Mono',monospace;font-size:12px;letter-spacing:.04em}
+.foot-nav a{color:var(--ink-soft);text-decoration:none}
+.foot-nav a:hover{color:var(--paper)}
