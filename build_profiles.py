@@ -48,8 +48,6 @@ def start_minutes(t):
     return h*60+m
 
 def render_cards(classes, studios):
-    if HANDOFF_PREFIXES:
-        classes = [c for c in classes if not str(c.get("studio", "")).startswith(HANDOFF_PREFIXES)]
     by = {}
     for c in classes: by.setdefault(c["studio"], []).append(c)
     cards=[]
@@ -75,7 +73,7 @@ def render_cards(classes, studios):
             f'        </div>\n{rh}\n      </div>')
     return "\n\n".join(cards), len(cards)
 
-def render_handoff_cards(slug):
+def render_handoff_cards(slug, classes):
     """Manual 'Also at <studio>' cards for teachers at feed-less studios — a link to
     book directly, no class times. Retired per studio once it gets a live feed."""
     out = []
@@ -83,6 +81,9 @@ def render_handoff_cards(slug):
         b = HANDOFF.get("brands", {}).get(bid)
         if not b:
             continue
+        prefixes = tuple(b.get("match", []))
+        if prefixes and any(str(c.get("studio","")).startswith(prefixes) for c in classes):
+            continue  # real timed classes exist here -> show those instead of a book-direct card
         url, nm = esc(b.get("book_url", "#")), esc(b.get("name", bid))
         out.append(
             '      <div class="studio studio-handoff">\n        <div class="studio-head">\n          <div>\n'
@@ -107,7 +108,7 @@ def build_one(tpl, data):
     given, family = rec["name"]["given"], rec["name"]["family"]
     full = f"{given} {family}"
     cards, count = render_cards(rec.get("classes", []), data["studios"])
-    handoff_cards = render_handoff_cards(teacher)
+    handoff_cards = render_handoff_cards(teacher, rec.get("classes", []))
     if handoff_cards:
         joined = "\n\n".join(handoff_cards)
         cards = (cards + "\n\n" + joined) if cards.strip() else joined
