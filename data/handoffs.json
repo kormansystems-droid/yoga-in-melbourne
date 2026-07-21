@@ -14,6 +14,13 @@
       "match": [
         "happy-melon"
       ]
+    },
+    "within": {
+      "name": "Within",
+      "book_url": "https://www.withinretreat.com.au/timetable",
+      "match": [
+        "within"
+      ]
     }
   },
   "teachers": {
@@ -22,6 +29,9 @@
     ],
     "Emma Strembickyj": [
       "happy-melon"
+    ],
+    "Janita Doelken": [
+      "within"
     ]
   }
 }
