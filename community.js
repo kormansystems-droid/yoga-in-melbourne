@@ -65,6 +65,7 @@
     line-height:1;color:var(--ink-soft,#6b5d50);cursor:pointer}
   .yim-msg{font-size:14px;line-height:1.5;color:var(--ink,#2a201a);margin-top:4px}
   .yim-err{color:#b3261e;font-size:13px;margin:-6px 0 12px;min-height:1em}
+  .yim-fineprint a{color:var(--henna,#9E3B26)}
   .yim-fineprint{font-size:11px;color:var(--ink-soft,#6b5d50);margin-top:16px;line-height:1.4}
   .yim-auth{display:flex;align-items:center;gap:16px;margin-left:auto}
   .yim-login{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--sage,#7a8a6f);background:none;border:none;cursor:pointer;padding:0;white-space:nowrap}
@@ -141,7 +142,7 @@
       '<label class="yim-consent"><input type="checkbox" id="yim-consent">' +
         '<span>Yes, email me updates from Yoga in Melbourne. I can unsubscribe anytime.</span></label>' +
       '<button class="yim-submit" id="yim-submit">Send me a link</button>' +
-      '<p class="yim-fineprint">We only use your email to send what you asked for. See our privacy policy.</p>' +
+      '<p class="yim-fineprint">We only use your email to send what you asked for. See our <a href="/privacy.html" target="_blank" rel="noopener">privacy policy</a>.</p>' +
       '<p class="yim-switch">Already joined? <a id="yim-to-login">Log in</a></p>';
 
     body.querySelector("#yim-to-login").addEventListener("click", renderLogin);
