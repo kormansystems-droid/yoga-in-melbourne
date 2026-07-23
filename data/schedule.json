@@ -334,7 +334,38 @@
         "Rayne W",
         "Rayne Watkin"
       ],
-      "classes": []
+      "classes": [
+        {
+          "studio": "warrior-one-mordialloc",
+          "day": "Tue",
+          "time": "6:00–7:00 AM",
+          "class": "Slow Flow"
+        },
+        {
+          "studio": "warrior-one-mordialloc",
+          "day": "Tue",
+          "time": "10:45–11:45 AM",
+          "class": "Yin & Yoga Nidra"
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Thu",
+          "time": "7:30–8:30 PM",
+          "class": "Yin & Yoga Nidra"
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Fri",
+          "time": "10:45–11:45 AM",
+          "class": "Yin & Yoga Nidra"
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Fri",
+          "time": "12:15–1:15 PM",
+          "class": "Slow Flow"
+        }
+      ]
     }
   }
 }
