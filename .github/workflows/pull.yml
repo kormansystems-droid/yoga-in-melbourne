@@ -32,6 +32,8 @@ jobs:
           python -m playwright install --with-deps chromium
 
       - name: Pull + rebuild
+        env:
+          MINDBODY_API_KEY: ${{ secrets.MINDBODY_API_KEY }}
         run: python pull/pull.py
 
       - name: Publish clean schedule changes
