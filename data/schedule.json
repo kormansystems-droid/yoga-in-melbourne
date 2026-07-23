@@ -176,6 +176,13 @@
         {
           "studio": "grass-roots-st-kilda",
           "day": "Fri",
+          "time": "9:30–10:30 AM",
+          "class": "Vinyasa flow",
+          "sub": true
+        },
+        {
+          "studio": "grass-roots-st-kilda",
+          "day": "Fri",
           "time": "12:15–1:15 PM",
           "class": "Yin"
         }
@@ -207,20 +214,6 @@
           "day": "Mon",
           "time": "7:30–8:30 PM",
           "class": "Yin Yoga"
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Thu",
-          "time": "7:30–8:30 AM",
-          "class": "Slow Flow Yoga",
-          "sub": true
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Thu",
-          "time": "9:30–10:30 AM",
-          "class": "Strong Flow Yoga",
-          "sub": true
         },
         {
           "studio": "within-south-yarra",
@@ -316,12 +309,6 @@
           "day": "Mon",
           "time": "5:00–6:00 PM",
           "class": "Vinyasa flow"
-        },
-        {
-          "studio": "grass-roots-st-kilda",
-          "day": "Mon",
-          "time": "6:15–7:30 PM",
-          "class": "Slow Flow + Restorative (75mins)"
         },
         {
           "studio": "grass-roots-st-kilda",
