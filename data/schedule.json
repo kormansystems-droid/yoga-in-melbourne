@@ -336,6 +336,18 @@
           "class": "Yin"
         }
       ]
+    },
+    "Rayne Watkin": {
+      "name": {
+        "given": "Rayne",
+        "family": "Watkin"
+      },
+      "aliases": [
+        "Rayne",
+        "Rayne W",
+        "Rayne Watkin"
+      ],
+      "classes": []
     }
   }
 }
