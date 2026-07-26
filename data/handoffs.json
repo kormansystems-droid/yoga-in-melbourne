@@ -21,6 +21,13 @@
       "match": [
         "within"
       ]
+    },
+    "inndriya": {
+      "name": "Inndriya",
+      "book_url": "https://inndriya.com/timetable",
+      "match": [
+        "inndriya"
+      ]
     }
   },
   "teachers": {
@@ -32,6 +39,10 @@
     ],
     "Janita Doelken": [
       "within"
+    ],
+    "Rayne Watkin": [
+      "warrior-one",
+      "inndriya"
     ]
   }
 }

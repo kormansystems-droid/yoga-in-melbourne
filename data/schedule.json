@@ -89,6 +89,17 @@
         "host": 40780,
         "location": "Here Yoga Malvern"
       }
+    },
+    "inndriya-highett": {
+      "name": "Inndriya",
+      "location": "Highett",
+      "platform": "squarespace",
+      "url": "https://inndriya.com/timetable",
+      "book": "https://inndriya.com/timetable",
+      "feed": {
+        "type": "manual",
+        "note": "Plain-HTML Squarespace timetable, easiest future live scrape; bookings only via the Inndriya app, so book-direct card links the timetable page"
+      }
     }
   },
   "teachers": {
@@ -327,34 +338,46 @@
       ],
       "classes": [
         {
-          "studio": "warrior-one-brighton",
-          "day": "Thu",
-          "time": "7:30–8:30 PM",
-          "class": "Yin & Yoga Nidra"
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Fri",
-          "time": "10:45–11:45 AM",
-          "class": "Yin & Yoga Nidra"
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Fri",
-          "time": "12:15–1:15 PM",
-          "class": "Slow Flow"
-        },
-        {
-          "studio": "warrior-one-mordialloc",
           "day": "Tue",
           "time": "6:00–7:00 AM",
-          "class": "Slow Flow"
+          "class": "Slow Flow",
+          "studio": "warrior-one-mordialloc"
         },
         {
-          "studio": "warrior-one-mordialloc",
           "day": "Tue",
           "time": "10:45–11:45 AM",
-          "class": "Yin & Yoga Nidra"
+          "class": "Yin & Yoga Nidra",
+          "studio": "warrior-one-mordialloc"
+        },
+        {
+          "day": "Thu",
+          "time": "7:30–8:30 PM",
+          "class": "Yin & Yoga Nidra",
+          "studio": "warrior-one-brighton"
+        },
+        {
+          "day": "Fri",
+          "time": "10:45–11:45 AM",
+          "class": "Yin & Yoga Nidra",
+          "studio": "warrior-one-brighton"
+        },
+        {
+          "day": "Fri",
+          "time": "12:15–1:15 PM",
+          "class": "Slow Flow",
+          "studio": "warrior-one-brighton"
+        },
+        {
+          "day": "Tue",
+          "time": "7:30–8:30 PM",
+          "class": "Embodied Yin",
+          "studio": "inndriya-highett"
+        },
+        {
+          "day": "Sun",
+          "time": "3:45–5:00 PM",
+          "class": "Yin + Yoga Nidra",
+          "studio": "inndriya-highett"
         }
       ]
     }
