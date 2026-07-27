@@ -8,7 +8,8 @@
       "platform": "mindbody",
       "feed": {
         "type": "healcode",
-        "page": "https://www.withinretreat.com.au/timetable"
+        "page": "https://www.withinretreat.com.au/timetable",
+        "min_rows": 10
       }
     },
     "warrior-one-brighton": {
@@ -18,8 +19,10 @@
       "book": "https://warrioroneyoga.com.au/brighton/",
       "platform": "mindbody",
       "feed": {
-        "type": "manual",
-        "note": "Mindbody branded-web V2 — scrape unreliable (inconsistent render); pending studio API"
+        "type": "gomindbody",
+        "slug": "751447bfa",
+        "min_rows": 15,
+        "note": "Interim widget scrape (min_rows guards partial renders). Swap to {type: mindbody, site_id: 211566, location: <Location.Name>} when activation approved."
       }
     },
     "warrior-one-mordialloc": {
@@ -29,8 +32,10 @@
       "book": "https://warrioroneyoga.com.au/mordialloc/",
       "platform": "mindbody",
       "feed": {
-        "type": "manual",
-        "note": "Mindbody branded-web V2 — scrape unreliable (inconsistent render); pending studio API"
+        "type": "gomindbody",
+        "slug": "751457bfa",
+        "min_rows": 10,
+        "note": "Interim widget scrape (min_rows guards partial renders). Swap to {type: mindbody, site_id: 211566, location: <Location.Name>} when activation approved."
       }
     },
     "grass-roots-st-kilda": {
@@ -51,8 +56,10 @@
       "book": "https://happymelon.com.au/timetable/",
       "platform": "mindbody",
       "feed": {
-        "type": "manual",
-        "note": "Mindbody branded-web V2 — not scrapable; pending studio API authorisation"
+        "type": "gomindbody",
+        "slug": "5f45627f0b7",
+        "min_rows": 20,
+        "note": "Mindbody branded-web V2 widget. Location confirmed Armadale (Mark, 27 Jul). Interim until HM approves official API activation."
       }
     },
     "here-yoga-port-melbourne": {
@@ -97,8 +104,10 @@
       "url": "https://inndriya.com/timetable",
       "book": "https://inndriya.com/timetable",
       "feed": {
-        "type": "manual",
-        "note": "Plain-HTML Squarespace timetable, easiest future live scrape; bookings only via the Inndriya app, so book-direct card links the timetable page"
+        "type": "squarespace",
+        "url": "https://www.inndriya.com/timetable",
+        "min_rows": 12,
+        "note": "Plain-HTML Squarespace weekly grid; bookings only via the Inndriya app (book-direct card links the timetable page)"
       }
     }
   },
