@@ -178,3 +178,67 @@ def gomindbody_rows(days, studio_id):
             seen.add(key)
             rows.append(_row(studio_id, teacher, start, end, cls, sub))
     return rows
+
+
+# ---- Squarespace plain-HTML weekly timetable (Inndriya) --------------------
+_SQS_DAY = {"MONDAY": 0, "TUESDAY": 1, "WEDNESDAY": 2, "THURSDAY": 3,
+            "FRIDAY": 4, "SATURDAY": 5, "SUNDAY": 6}
+_SQS_SMALL = {"to", "the", "and", "of", "with", "for", "a", "in"}
+
+def _sqs_title(s):
+    out = []
+    for i, w in enumerate(s.strip().split()):
+        lw = w.lower()
+        out.append(lw if (i and lw in _SQS_SMALL) else (w[:1].upper() + w[1:].lower()))
+    return " ".join(out)
+
+_SQS_LINE = re.compile(
+    r"^\s*(\d{1,2})(?:[.:](\d{2}))?\s*([AP]M)?\s*[-\u2013]\s*"
+    r"(\d{1,2})(?:[.:](\d{2}))?\s*([AP]M)\s+(.+?)\s*,\s*([^,]+?)\s*$", re.I)
+
+def squarespace_rows(page_html, studio_id):
+    """page_html = raw Squarespace page HTML. The weekly timetable is plain text
+    in <p> blocks: a MONDAY..SUNDAY header, then lines like
+    '9.30-10.30AM SLOW FLOW, Sary Davis' / '6-7AM FLOW, Phil Kayumba' /
+    '11.15AM - 12.30PM YIN + YOGA NIDRA, Jori Sandler'.
+    The grid is weekly (no dates), so each row is stamped on the NEXT occurrence
+    of its weekday purely to drive day/start/time formatting. A non-class,
+    non-header line CLEARS the day context, so the dated one-off events and
+    pricing copy lower on the page are never swallowed as classes."""
+    text = re.sub(r"(?i)<\s*br[^>]*>", "\n", page_html)
+    text = re.sub(r"(?i)</\s*(p|div|h[1-6])\s*>", "\n", text)
+    text = H.unescape(re.sub(r"<[^>]+>", "", text))
+    today = datetime.datetime.now(MELB).date()
+    rows, day_idx, seen = [], None, set()
+    for line in text.splitlines():
+        line = line.replace("\u00a0", " ").strip()
+        if not line:
+            continue
+        up = line.upper().rstrip(":")
+        if up in _SQS_DAY:
+            day_idx = _SQS_DAY[up]
+            continue
+        m = _SQS_LINE.match(line)
+        if not m:
+            day_idx = None          # left the timetable block
+            continue
+        if day_idx is None:
+            continue                # a dated event line, not the weekly grid
+        h1, m1, ap1, h2, m2, ap2, cls, teacher = m.groups()
+        ap1, ap2 = (ap1 or "").upper(), ap2.upper()
+        eh = int(h2) % 12 + (12 if ap2 == "PM" else 0)
+        if ap1:
+            sh = int(h1) % 12 + (12 if ap1 == "PM" else 0)
+        else:
+            sh = int(h1) % 12 + (12 if ap2 == "PM" else 0)
+            if sh > eh:             # '11-12.30PM' style morning start
+                sh -= 12
+        date0 = today + datetime.timedelta(days=(day_idx - today.weekday()) % 7)
+        start = datetime.datetime.combine(date0, datetime.time(sh, int(m1 or 0)), tzinfo=MELB)
+        end = datetime.datetime.combine(date0, datetime.time(eh, int(m2 or 0)), tzinfo=MELB)
+        key = (teacher.strip(), start.isoformat(), cls)
+        if key in seen:
+            continue
+        seen.add(key)
+        rows.append(_row(studio_id, teacher, start, end, _sqs_title(cls), False))
+    return rows

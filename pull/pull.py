@@ -152,6 +152,14 @@ def healcode_fetch(feed, sid):
         return raw  # response was already raw markup
 
 
+
+def squarespace_fetch(feed, sid):
+    """Plain GET of a static Squarespace page (Inndriya). No browser, no JS."""
+    url = feed.get("url")
+    if not url:
+        raise RuntimeError(f"no squarespace url for '{sid}'")
+    return urlopen(Request(url, headers=UA), timeout=45).read().decode("utf-8")
+
 def gomindbody_fetch(feed, sid):
     """Render the go.mindbody branded-web V2 Schedules widget headless, click through
     the 7 day tabs (they're div[role=button], not <button>), and return per-day class
@@ -210,22 +218,28 @@ def main():
     for sid, meta in schedule["studios"].items():
         feed = meta.get("feed", {})
         ftype = feed.get("type")
-        if ftype not in ("momence", "healcode", "gomindbody"):
+        if ftype not in ("momence", "mindbody", "healcode", "gomindbody", "squarespace"):
             continue  # manual / unconfigured — left untouched, not expected to auto-pull
         try:
             if ftype == "momence":
                 r = N.momence_rows(momence_fetch(feed["host"]), sid, feed.get("location"))
             elif ftype == "mindbody":
                 r = N.mindbody_rows(mindbody_fetch(feed["site_id"]), sid, feed.get("location"))
+            elif ftype == "squarespace":
+                r = N.squarespace_rows(squarespace_fetch(feed, sid), sid)
             elif ftype == "healcode":
                 r = N.healcode_rows(healcode_fetch(feed, sid), sid)
             else:  # gomindbody
                 r = N.gomindbody_rows(gomindbody_fetch(feed, sid), sid)
-            if not r:
-                # A feed that responds but yields nothing is a FAILURE, never
-                # "this studio now has no classes" — otherwise a block, challenge,
-                # or markup change would silently WIPE a real schedule.
-                raise RuntimeError("feed returned 0 sessions (block or markup change?)")
+            need = int(feed.get("min_rows", 1))
+            if len(r) < need:
+                # A feed that responds with nothing — or suspiciously little (a
+                # half-rendered widget) — is a FAILURE, never "the studio shrank".
+                # Otherwise a block, challenge, or partial render would silently
+                # WIPE or THIN a real schedule. Tune per-feed via "min_rows".
+                raise RuntimeError(
+                    f"feed returned {len(r)} sessions (< min_rows {need}) — "
+                    "block, markup change, or partial render?")
             rows += r
             covered.append(sid)
             print(f"  {sid}: {len(r)} rows [{ftype}]")
