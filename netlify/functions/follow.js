@@ -1,12 +1,13 @@
 // netlify/functions/follow.js
-// Teacher-agnostic follow handler. Reusable across ALL teacher pages.
-// Receives { name, email, teacher } and upserts the contact into a single
-// Brevo "Followers" list, tagging which teacher(s) they follow.
+// Teacher-agnostic follow handler. Stores followers in Supabase — the list
+// stays with YIM (per the privacy policy), one datastore alongside members
+// and inbound. Receives { name, email, teacher }.
 //
-// Setup required (once):
-//   - Netlify env var BREVO_API_KEY  (your Brevo API v3 key)
-//   - Netlify env var BREVO_LIST_ID  (numeric id of your "Followers" list)
-// No per-teacher code changes needed — the teacher is read from the request.
+// Table: public.followers (see followers-table.sql). One row per
+// (email, teacher) pair — following a second teacher adds a second row;
+// re-following the same teacher is a no-op, never an error.
+//
+// Netlify env vars (already set): SUPABASE_URL, SUPABASE_SERVICE_KEY.
 
 export async function handler(event) {
   if (event.httpMethod !== "POST") {
@@ -20,59 +21,38 @@ export async function handler(event) {
     return { statusCode: 400, body: "Bad request" };
   }
 
-  const name = (data.name || "").trim();
-  const email = (data.email || "").trim().toLowerCase();
-  const teacher = (data.teacher || "").trim();
+  const name = (data.name || "").trim().slice(0, 200);
+  const email = (data.email || "").trim().toLowerCase().slice(0, 200);
+  const teacher = (data.teacher || "").trim().slice(0, 200);
 
-  // Basic validation
   if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
     return { statusCode: 422, body: JSON.stringify({ error: "Valid email required." }) };
   }
 
-  const API_KEY = process.env.BREVO_API_KEY;
-  const LIST_ID = Number(process.env.BREVO_LIST_ID);
-  if (!API_KEY || !LIST_ID) {
+  const SB_URL = process.env.SUPABASE_URL;
+  const SB_KEY = process.env.SUPABASE_SERVICE_KEY;
+  if (!SB_URL || !SB_KEY) {
     return { statusCode: 500, body: JSON.stringify({ error: "Server not configured." }) };
   }
 
-  // Split a single name field into first/last for Brevo attributes
-  const [firstName, ...rest] = name.split(" ");
-  const lastName = rest.join(" ");
-
-  // Brevo "create or update contact" — updateEnabled:true makes it an upsert,
-  // so an existing follower simply gains the new teacher tag rather than erroring.
-  const payload = {
-    email,
-    updateEnabled: true,
-    listIds: [LIST_ID],
-    attributes: {
-      FIRSTNAME: firstName || "",
-      LASTNAME: lastName || "",
-      // FOLLOWS is a comma-separated list of teacher slugs/names.
-      // Brevo overwrites the attribute, so to truly append across multiple
-      // follows you'd read-then-merge; for v1 we store the latest teacher.
-      FOLLOWS: teacher || "",
-    },
-  };
-
   try {
-    const res = await fetch("https://api.brevo.com/v3/contacts", {
+    // Upsert on (email, teacher): merge-duplicates makes a repeat follow a no-op.
+    const res = await fetch(`${SB_URL}/rest/v1/followers?on_conflict=email,teacher`, {
       method: "POST",
       headers: {
-        "api-key": API_KEY,
+        apikey: SB_KEY,
+        Authorization: `Bearer ${SB_KEY}`,
         "Content-Type": "application/json",
-        Accept: "application/json",
+        Prefer: "resolution=merge-duplicates,return=minimal",
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify({ name, email, teacher }),
     });
-
-    if (res.status === 201 || res.status === 204) {
+    if (res.status === 201 || res.status === 200 || res.status === 204) {
       return { statusCode: 200, body: JSON.stringify({ ok: true }) };
     }
-    // 400 "Contact already exists" is benign with updateEnabled, but surface others.
     const detail = await res.text();
-    return { statusCode: 502, body: JSON.stringify({ error: "Brevo error", detail }) };
-  } catch (err) {
+    return { statusCode: 502, body: JSON.stringify({ error: "Store error", detail: detail.slice(0, 300) }) };
+  } catch {
     return { statusCode: 502, body: JSON.stringify({ error: "Network error" }) };
   }
 }
