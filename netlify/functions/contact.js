@@ -68,17 +68,21 @@ export async function handler(event) {
   // --- 2. Supabase pipeline row ---
   const SB_URL = process.env.SUPABASE_URL, SB_KEY = process.env.SUPABASE_SERVICE_KEY;
   if (SB_URL && SB_KEY) {
-    try {
-      const r = await fetch(`${SB_URL}/rest/v1/inbound`, {
-        method: "POST",
-        headers: {
-          apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}`,
-          "Content-Type": "application/json", Prefer: "return=minimal",
-        },
-        body: JSON.stringify({ intent, name, email, org, links, message, status: "new" }),
-      });
-      results.log = r.status === 201;
-    } catch { /* mail may have succeeded */ }
+    const row = JSON.stringify({ intent, name, email, org, links, message, status: "new" });
+    // New-style sb_secret keys authenticate via the apikey header alone;
+    // legacy JWT keys want Authorization: Bearer too. Try apikey-only first,
+    // fall back to Bearer so either key style works.
+    const attempts = [
+      { apikey: SB_KEY, "Content-Type": "application/json", Prefer: "return=minimal" },
+      { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}`, "Content-Type": "application/json", Prefer: "return=minimal" },
+    ];
+    for (const headers of attempts) {
+      try {
+        const r = await fetch(`${SB_URL}/rest/v1/inbound`, { method: "POST", headers, body: row });
+        if (r.status === 201) { results.log = true; break; }
+        console.log("supabase insert failed", r.status, (await r.text()).slice(0, 200));
+      } catch (e) { console.log("supabase insert error", String(e).slice(0, 200)); }
+    }
   }
 
   if (results.mail || results.log) return { statusCode: 200, body: JSON.stringify({ ok: true }) };
