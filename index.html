@@ -34,13 +34,17 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth;background:var(--paper)}
-  /* anchor offsets: land each heading just below the sticky nav. --nav-h is measured
-     live in JS (see foot script) since the nav wraps to extra lines on narrow screens,
-     so a fixed px guess drifts out of sync with the real nav height. */
+  /* anchor offsets: land each section's top edge just under the sticky nav. --nav-h is
+     measured live in JS (see foot script) since the nav wraps to extra lines on narrow
+     screens, so a fixed px guess drifts out of sync with the real nav height. The 4px
+     is a deliberate overlap, not a gap: any positive buffer exposes whatever sits
+     immediately above the target, and above #teachers that is .feature-band's 2px ink
+     border, which read as a stray line under the nav. Sections carry 54px of their own
+     top padding, so overlapping by 4px costs nothing visible. */
   :root{--nav-h:49px}
-  section.section[id]{scroll-margin-top:calc(var(--nav-h) + 8px)}
-  div[id]{scroll-margin-top:calc(var(--nav-h) + 8px)}
-  a.strip-card[id]{scroll-margin-top:calc(var(--nav-h) + 8px)}
+  section.section[id]{scroll-margin-top:calc(var(--nav-h) - 4px)}
+  div[id]{scroll-margin-top:calc(var(--nav-h) - 4px)}
+  a.strip-card[id]{scroll-margin-top:calc(var(--nav-h) - 4px)}
   main{padding-bottom:22vh}
   body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;
     font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden}
