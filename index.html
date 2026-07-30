@@ -34,10 +34,13 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth;background:var(--paper)}
-  /* anchor offsets: land each heading just below the sticky nav */
-  section.section[id]{scroll-margin-top:65px}
-  div[id]{scroll-margin-top:65px}
-  a.strip-card[id]{scroll-margin-top:65px}
+  /* anchor offsets: land each heading just below the sticky nav. --nav-h is measured
+     live in JS (see foot script) since the nav wraps to extra lines on narrow screens,
+     so a fixed px guess drifts out of sync with the real nav height. */
+  :root{--nav-h:49px}
+  section.section[id]{scroll-margin-top:calc(var(--nav-h) + 16px)}
+  div[id]{scroll-margin-top:calc(var(--nav-h) + 16px)}
+  a.strip-card[id]{scroll-margin-top:calc(var(--nav-h) + 16px)}
   main{padding-bottom:22vh}
   body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;
     font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden}
@@ -159,8 +162,6 @@
     .jb-card{aspect-ratio:16/10}
     .strip{grid-template-columns:1fr}
     .nav-inner a{padding:11px 12px;font-size:10.5px;letter-spacing:.06em}
-  section.section[id]{scroll-margin-top:53px}
-  div[id],a.strip-card[id]{scroll-margin-top:53px}
   }
 #retreats .retreat-band{grid-template-columns:repeat(4,1fr)}#retreats .strip{grid-template-columns:repeat(4,1fr)}@media(max-width:820px){#retreats .retreat-band,#retreats .strip{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){#retreats .retreat-band,#retreats .strip{grid-template-columns:1fr}}</style>
 </head>
@@ -326,5 +327,27 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="/community.js"></script>
 <script>(function(){var t=new Date().toISOString().slice(0,10);document.querySelectorAll("[data-until]").forEach(function(e){if(e.getAttribute("data-until")<t)e.style.display="none";});})();</script>
+<script>(function(){
+  // keep --nav-h in sync with the sticky nav's real rendered height, which changes
+  // as its links wrap to extra lines on narrow screens, so anchor scrolls always
+  // clear it instead of landing partway under it.
+  var nav=document.querySelector('.nav');
+  if(!nav)return;
+  function setNavH(){document.documentElement.style.setProperty('--nav-h',nav.getBoundingClientRect().height+'px');}
+  setNavH();
+  window.addEventListener('resize',setNavH);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(setNavH);
+  // arriving straight to a #section link (from another page) can scroll before --nav-h
+  // is measured, so re-snap once it's accurate, no visible jump since it's instant.
+  if(location.hash){
+    var target=document.querySelector(location.hash);
+    if(target){
+      var prev=document.documentElement.style.scrollBehavior;
+      document.documentElement.style.scrollBehavior='auto';
+      target.scrollIntoView();
+      document.documentElement.style.scrollBehavior=prev;
+    }
+  }
+})();</script>
 </body>
 </html>
