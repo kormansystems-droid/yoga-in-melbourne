@@ -38,9 +38,9 @@
      live in JS (see foot script) since the nav wraps to extra lines on narrow screens,
      so a fixed px guess drifts out of sync with the real nav height. */
   :root{--nav-h:49px}
-  section.section[id]{scroll-margin-top:calc(var(--nav-h) + 16px)}
-  div[id]{scroll-margin-top:calc(var(--nav-h) + 16px)}
-  a.strip-card[id]{scroll-margin-top:calc(var(--nav-h) + 16px)}
+  section.section[id]{scroll-margin-top:calc(var(--nav-h) + 8px)}
+  div[id]{scroll-margin-top:calc(var(--nav-h) + 8px)}
+  a.strip-card[id]{scroll-margin-top:calc(var(--nav-h) + 8px)}
   main{padding-bottom:22vh}
   body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;
     font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden}
@@ -337,16 +337,22 @@
   setNavH();
   window.addEventListener('resize',setNavH);
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(setNavH);
-  // arriving straight to a #section link (from another page) can scroll before --nav-h
-  // is measured, so re-snap once it's accurate, no visible jump since it's instant.
+  // arriving straight to a #section link (from another page, e.g. /about#retreats)
+  // fires the browser's own scroll-to-hash before this script runs and before images
+  // below the target finish loading, so the page can grow after landing and push the
+  // target down (previous section peeking through at top). Re-snap once on window
+  // 'load', when every image has settled, so the position is correct once and stays
+  // put rather than yanking the page around while someone's mid-scroll.
   if(location.hash){
-    var target=document.querySelector(location.hash);
-    if(target){
+    window.addEventListener('load',function(){
+      var target=document.querySelector(location.hash);
+      if(!target)return;
+      setNavH();
       var prev=document.documentElement.style.scrollBehavior;
       document.documentElement.style.scrollBehavior='auto';
       target.scrollIntoView();
       document.documentElement.style.scrollBehavior=prev;
-    }
+    });
   }
 })();</script>
 </body>
