@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conversations | Yoga in Melbourne</title>
+<meta name="description" content="The Yoga in Melbourne podcast. Melbourne yoga teachers in their own words, one story at a time.">
+<link rel="canonical" href="https://yogainmelbourne.com.au/conversations.html">
+<meta property="og:title" content="Conversations | Yoga in Melbourne">
+<meta property="og:description" content="Melbourne yoga teachers in their own words, one story at a time.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yogainmelbourne.com.au/conversations.html">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+:root{
+    color-scheme:light only;
+    --paper:#E7D9C0; --paper-deep:#DECDAE; --ink:#2A201A; --ink-soft:#5A4B3E;
+    --henna:#9E3B26; --clay:#BC6B3C; --sage:#6F7155; --ochre:#C2974F;
+    --max:1240px; --rule:rgba(42,32,26,.18);
+  }
+.topbar{border-bottom:1px solid var(--rule);background:var(--paper);position:relative;z-index:51}
+.topbar-inner{display:flex;position:relative;justify-content:space-between;align-items:center;padding:12px 0;
+    font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage)}
+.topbar-inner .wordmark{font-family:'Fraunces',serif;font-weight:500;font-size:17px;letter-spacing:0;color:var(--ink);text-transform:none;text-decoration:none;white-space:nowrap}
+.topbar-inner .wordmark em{font-style:italic;color:var(--henna);font-weight:400}
+.topbar-inner span:not(.wordmark){display:none}
+.nav-inner{display:flex;justify-content:center;flex-wrap:wrap;
+    font-family:'Spline Sans Mono',monospace;letter-spacing:.1em;text-transform:uppercase}
+.nav-inner a{padding:11px 12px;font-size:10.5px;letter-spacing:.06em;color:var(--ink);transition:color .15s,background .15s}
+.nav-inner a:hover{color:var(--henna);background:rgba(158,59,38,.05)}
+html{background:var(--paper)}
+body{background:var(--paper);color:var(--ink);font-family:'Fraunces',Georgia,serif;line-height:1.6}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.nav a,.foot-links a{text-decoration:none;color:var(--ink)}
+.eyebrow{font-family:'Spline Sans Mono',monospace;font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--sage);margin-bottom:22px;display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--ochre)}
+
+.conv-head{max-width:720px;margin:0 auto;padding:70px 24px 8px;text-align:center}
+.conv-head .eyebrow{justify-content:center;margin-bottom:18px}
+.conv-head h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(34px,5.5vw,54px);line-height:1.12;margin-bottom:20px}
+.conv-head p{color:var(--ink-soft);font-size:19px;line-height:1.75;max-width:56ch;margin:0 auto}
+
+.episodes{max-width:760px;margin:0 auto;padding:0 24px 24px}
+.episode{padding:52px 0;border-bottom:1px solid var(--rule)}
+.episode:last-child{border-bottom:0}
+.episode .cat{font-family:'Spline Sans Mono',monospace;font-size:11.5px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--henna);margin-bottom:12px}
+.episode h2{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(26px,3.6vw,34px);line-height:1.2;margin-bottom:12px}
+.episode > p{color:var(--ink-soft);font-size:18px;line-height:1.75;margin-bottom:26px}
+.player{background:var(--paper-deep);border:1px solid rgba(42,32,26,.16);padding:22px 22px 24px;text-align:left}
+.player-meta{margin-bottom:14px}
+.player-meta strong{font-family:'Fraunces',serif;font-weight:500;font-size:19px;color:var(--ink);display:block}
+.player-meta span{font-family:'Spline Sans Mono',monospace;font-size:12px;color:var(--sage);
+    letter-spacing:.04em;display:block;margin-top:3px}
+.player audio{width:100%;height:42px;display:block}
+.episode .read{display:inline-block;margin-top:22px;font-family:'Spline Sans Mono',monospace;font-size:12px;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--ink);text-decoration:none;
+    border-bottom:1px solid var(--rule);padding-bottom:3px;transition:border-color .2s,color .2s}
+.episode .read:hover{color:var(--henna);border-color:var(--henna)}
+
+.conv-note{max-width:760px;margin:0 auto;padding:8px 24px 0;text-align:center;
+    font-family:'Spline Sans Mono',monospace;font-size:11.5px;letter-spacing:.05em;color:var(--sage);line-height:1.9}
+.conv-note a{color:inherit}
+
+footer{border-top:2px solid var(--ink);margin-top:64px;padding:46px 0 64px}
+.foot-grid{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:30px}
+.foot-name{font-family:'Fraunces',serif;font-weight:500;font-size:32px}
+.foot-name em{font-style:italic;color:var(--henna);font-weight:400}
+.foot-links{display:flex;gap:26px;flex-wrap:wrap;font-family:'Spline Sans Mono',monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase}
+.foot-note{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:.05em;color:var(--sage);margin-top:26px;line-height:1.7}
+@media(max-width:620px){
+  .conv-head{padding-top:48px}
+  .conv-head p{font-size:17px}
+  .episode{padding:40px 0}
+  .episode > p{font-size:17px}
+}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap topbar-inner">
+<span>Melbourne · Naarm</span><a href="/" class="wordmark">Yoga <em>in</em> Melbourne</a>
+</div></div>
+<nav class="nav"><div class="wrap nav-inner">
+<a href="/#teachers">Teachers</a><a href="/#studios">Studios</a><a href="/conversations.html" style="color:var(--henna)">Conversations</a><a href="/#journal">Journal</a><a href="/#events">Events and Workshops</a><a href="/#retreats">Retreats</a><a href="/#training">Teacher Training</a><a href="/about.html">About</a><a href="/contact.html">Contact</a>
+</div></nav>
+
+<main>
+<div class="conv-head">
+<div class="eyebrow">The podcast</div>
+<h1>Conversations</h1>
+<p>Melbourne teachers in their own words. No panels, no method, no five steps to anything, just one teacher at a time telling the story of how they came to this work and what it asks of them.</p>
+</div>
+
+<div class="episodes">
+
+<article class="episode">
+<div class="cat">Episode 2</div>
+<h2>Janita Doelken, her story</h2>
+<p>An injury, a corporate life she never felt at home in, and the long turn toward touch and stillness.</p>
+<div class="player">
+<div class="player-meta">
+<strong>Janita Doelken, her story</strong>
+<span>18:58 · Yoga in Melbourne</span>
+</div>
+<audio controls preload="metadata" src="https://media.transistor.fm/37433fb5/6d757582.mp3">
+Your browser doesn't support audio playback ,
+<a href="https://media.transistor.fm/37433fb5/6d757582.mp3">download the episode</a>.
+</audio>
+</div>
+<a class="read" href="/janita-doelken.html">Read Janita's profile →</a>
+</article>
+
+<article class="episode">
+<div class="cat">Episode 1</div>
+<h2>Alessia Frisina, her story</h2>
+<p>Rishikesh, Beijing, two pregnancies, and the turn from strong to soft.</p>
+<div class="player">
+<div class="player-meta">
+<strong>Alessia Frisina, her story</strong>
+<span>9:33 · Yoga in Melbourne</span>
+</div>
+<audio controls preload="metadata" src="https://media.transistor.fm/619b79ac/fc1550e0.mp3">
+Your browser doesn't support audio playback ,
+<a href="https://media.transistor.fm/619b79ac/fc1550e0.mp3">download the episode</a>.
+</audio>
+</div>
+<a class="read" href="/alessia-frisina.html">Read Alessia's profile →</a>
+</article>
+
+</div>
+
+<!-- SUBSCRIBE:START
+     Directory buttons go here once Apple / Spotify / YouTube Music have approved the feed.
+     Keep the markup simple: a centred row of three text links in Spline Sans Mono,
+     matching .episode .read, above .conv-note.
+     SUBSCRIBE:END -->
+
+<div class="conv-note">
+New conversations as we record them.<br>
+Teach, or run a studio, in Melbourne? <a href="/contact.html">We'd love to hear from you</a>.
+</div>
+</main>
+
+<footer><div class="wrap"> <div class="foot-grid"> <div class="foot-name">Yoga <em>in</em> Melbourne</div> <div class="foot-links"><a href="/#teachers">Teachers</a><a href="/#studios">Studios</a><a href="/conversations.html">Conversations</a><a href="/#journal">Journal</a><a href="/#events">Events</a><a href="/#training">Training</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a></div> </div> <p class="foot-note">A publication-led map of the people, studios, and practice of Melbourne yoga.<br>Made on the lands of the Boon Wurrung and Wurundjeri peoples of the Kulin Nation.<br>Teach, or run a studio, in Melbourne? <a href="/contact.html" style="color:inherit">We'd love to hear from you</a>.</p> </div></footer>
+</body>
+</html>
