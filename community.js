@@ -181,7 +181,7 @@
     var e = function (s) { return String(s || "").replace(/</g, "&lt;"); };
     var heading = welcome ? "You\u2019re in \u2713" : (e(first) + "\u2019s dashboard");
     var sub = welcome
-      ? ("Welcome, " + e(first) + " \u2014 this is your dashboard. Follow teachers and they\u2019ll show up here.")
+      ? ("Welcome, " + e(first) + " \u2014 this is your dashboard. Follow teachers and studios and they\u2019ll show up here.")
       : ("Signed in as <strong>" + e(user.email) + "</strong>.");
     body.innerHTML =
       '<h2>' + heading + '</h2>' +
@@ -193,17 +193,26 @@
     body.querySelector("#yim-signout").addEventListener("click", function () {
       sb.auth.signOut().then(function () { close(); updateButton(null); });
     });
-    sb.from("follows").select("target_id,target_label,target_url").eq("target_type", "teacher").then(function (r) {
+    sb.from("follows").select("target_type,target_id,target_label,target_url").then(function (r) {
       var el = body.querySelector("#yim-follows"); if (!el) return;
       var list = (r.data) || [];
-      if (!list.length) { el.innerHTML = '<p class="yim-msg" style="opacity:.7">You\u2019re not following anyone yet. Tap \u201cFollow\u201d on a teacher\u2019s page.</p>'; return; }
-      el.innerHTML = '<p class="yim-follows-h">Teachers you follow</p>' + list.map(function (f) {
-        var nm = String(f.target_label || f.target_id).replace(/</g, "&lt;");
-        return '<div class="yim-follow-row"><a href="' + (f.target_url || "#") + '">' + nm + '</a><button class="yim-unfollow" data-id="' + String(f.target_id).replace(/"/g, "") + '">Unfollow</button></div>';
+      if (!list.length) { el.innerHTML = '<p class="yim-msg" style="opacity:.7">You’re not following anyone yet. Tap “Follow” on a teacher’s or studio’s page.</p>'; return; }
+      var groups = [{ type: "teacher", heading: "Teachers you follow" }, { type: "studio", heading: "Studios you follow" }];
+      list.forEach(function (f) {
+        var t = f.target_type || "teacher";
+        if (!groups.some(function (g) { return g.type === t; })) groups.push({ type: t, heading: "Also following" });
+      });
+      el.innerHTML = groups.map(function (g) {
+        var rows = list.filter(function (f) { return (f.target_type || "teacher") === g.type; });
+        if (!rows.length) return "";
+        return '<p class="yim-follows-h">' + g.heading + '</p>' + rows.map(function (f) {
+          var nm = String(f.target_label || f.target_id).replace(/</g, "&lt;");
+          return '<div class="yim-follow-row"><a href="' + (f.target_url || "#") + '">' + nm + '</a><button class="yim-unfollow" data-type="' + String(g.type).replace(/"/g, "") + '" data-id="' + String(f.target_id).replace(/"/g, "") + '">Unfollow</button></div>';
+        }).join("");
       }).join("");
       [].slice.call(el.querySelectorAll(".yim-unfollow")).forEach(function (b) {
         b.addEventListener("click", function () {
-          sb.from("follows").delete().eq("target_type", "teacher").eq("target_id", b.getAttribute("data-id")).eq("user_id", user.id).then(function () { renderMember(user); refreshFollowButtons(); });
+          sb.from("follows").delete().eq("target_type", b.getAttribute("data-type") || "teacher").eq("target_id", b.getAttribute("data-id")).eq("user_id", user.id).then(function () { renderMember(user); refreshFollowButtons(); });
         });
       });
     });
