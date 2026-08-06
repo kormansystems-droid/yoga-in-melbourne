@@ -285,6 +285,8 @@
   // ---------- follows (account-based) ----------
   var YIM_PENDING = "yim_pending_follow";
   function slugFromPath() { return location.pathname.replace(/^\//, "").replace(/\.html$/, "") || "home"; }
+  function btnType(btn) { return btn.getAttribute("data-type") || "teacher"; }
+  function btnLabel(btn) { return btn.getAttribute("data-label") || btn.getAttribute("data-teacher") || ""; }
   function followBtns() { return [].slice.call(document.querySelectorAll(".yim-follow-btn")); }
   function setFollowBtn(btn, following) {
     var g = btn.getAttribute("data-given") || "";
@@ -296,26 +298,29 @@
     sb.auth.getUser().then(function (res) {
       var user = res.data && res.data.user;
       if (!user) { btns.forEach(function (b) { setFollowBtn(b, false); }); return; }
-      sb.from("follows").select("target_id").eq("target_type", "teacher").then(function (r) {
-        var ids = ((r.data) || []).map(function (x) { return x.target_id; });
+      sb.from("follows").select("target_type,target_id").then(function (r) {
+        var rows = (r.data) || [];
         var slug = slugFromPath();
-        btns.forEach(function (b) { setFollowBtn(b, ids.indexOf(slug) !== -1); });
+        btns.forEach(function (b) {
+          var t = btnType(b);
+          setFollowBtn(b, rows.some(function (x) { return x.target_id === slug && x.target_type === t; }));
+        });
       });
     });
   }
   function doFollow(user, btn) {
-    var slug = slugFromPath(), label = btn.getAttribute("data-teacher") || "";
+    var slug = slugFromPath(), label = btnLabel(btn), type = btnType(btn);
     if (btn.getAttribute("data-following") === "true") {
-      sb.from("follows").delete().eq("target_type", "teacher").eq("target_id", slug).eq("user_id", user.id).then(function () { setFollowBtn(btn, false); });
+      sb.from("follows").delete().eq("target_type", type).eq("target_id", slug).eq("user_id", user.id).then(function () { setFollowBtn(btn, false); });
     } else {
-      sb.from("follows").insert({ user_id: user.id, target_type: "teacher", target_id: slug, target_label: label, target_url: location.pathname }).then(function () { setFollowBtn(btn, true); });
+      sb.from("follows").insert({ user_id: user.id, target_type: type, target_id: slug, target_label: label, target_url: location.pathname }).then(function () { setFollowBtn(btn, true); });
     }
   }
   function onFollowClick(btn) {
     sb.auth.getUser().then(function (res) {
       var user = res.data && res.data.user;
       if (user) { doFollow(user, btn); return; }
-      try { localStorage.setItem(YIM_PENDING, JSON.stringify({ slug: slugFromPath(), label: btn.getAttribute("data-teacher") || "", url: location.pathname })); } catch (e) {}
+      try { localStorage.setItem(YIM_PENDING, JSON.stringify({ slug: slugFromPath(), label: btnLabel(btn), type: btnType(btn), url: location.pathname })); } catch (e) {}
       renderSignup(btn.getAttribute("data-given") || "");
       overlay.classList.add("open");
     });
@@ -326,7 +331,7 @@
     var p; try { p = JSON.parse(raw); } catch (e) { return; }
     try { localStorage.removeItem(YIM_PENDING); } catch (e) {}
     if (!p || !p.slug) return;
-    sb.from("follows").insert({ user_id: user.id, target_type: "teacher", target_id: p.slug, target_label: p.label, target_url: p.url }).then(function () { refreshFollowButtons(); });
+    sb.from("follows").insert({ user_id: user.id, target_type: p.type || "teacher", target_id: p.slug, target_label: p.label, target_url: p.url }).then(function () { refreshFollowButtons(); });
   }
   followBtns().forEach(function (b) { b.addEventListener("click", function () { onFollowClick(b); }); });
   refreshFollowButtons();
