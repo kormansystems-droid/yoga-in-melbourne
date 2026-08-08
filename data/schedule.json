@@ -180,6 +180,13 @@
           "day": "Mon",
           "time": "9:30–10:30 AM",
           "class": "Slow Flow"
+        },
+        {
+          "studio": "grass-roots-st-kilda",
+          "day": "Sat",
+          "time": "5:15–6:15 PM",
+          "class": "Yin",
+          "sub": true
         }
       ]
     },
