@@ -235,6 +235,18 @@
         },
         {
           "studio": "grass-roots-st-kilda",
+          "day": "Mon",
+          "time": "5:00–6:00 PM",
+          "class": "Vinyasa flow"
+        },
+        {
+          "studio": "grass-roots-st-kilda",
+          "day": "Mon",
+          "time": "6:15–7:30 PM",
+          "class": "Slow Flow + Restorative (75mins)"
+        },
+        {
+          "studio": "grass-roots-st-kilda",
           "day": "Sun",
           "time": "4:00–5:00 PM",
           "class": "Vinyasa flow"
