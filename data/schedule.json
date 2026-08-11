@@ -210,7 +210,14 @@
       "aliases": [
         "Emma Strembickyj"
       ],
-      "classes": []
+      "classes": [
+        {
+          "studio": "here-yoga-port-melbourne",
+          "day": "Tue",
+          "time": "9:30–10:30 AM",
+          "class": "Dynamic Flow"
+        }
+      ]
     },
     "Janita Doelken": {
       "name": {
