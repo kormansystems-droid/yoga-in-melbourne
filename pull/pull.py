@@ -33,7 +33,13 @@ SCHED = ROOT / "data" / "schedule.json"
 ANOM = Path(__file__).resolve().parent / "_anomalies.md"
 STATE = Path(__file__).resolve().parent / "_feed_state.json"
 DARK_ESCALATE = 3  # consecutive failed runs before a feed is called "likely broken", not a blip
-FORWARD_DAYS = 7   # Momence: pull a rolling week — covers every weekly slot once, keeps fetches light
+# A rolling fortnight, not a week. Seven days catches every *weekly* slot once, but
+# silently misses anyone who teaches fortnightly, rotates, or is simply rostered
+# further out — they render as an empty timetable, which reads as "no classes"
+# rather than "outside our window" (Emma Strembickyj, 16 Aug: her only two classes
+# were on 24 and 26 Aug). merge dedups on (studio, day, start, class), so a weekly
+# class seen twice in the window still collapses to one row.
+FORWARD_DAYS = 14
 SESSION_TYPES = ["course-class", "fitness", "retreat", "special-event", "special-event-new"]
 UA = {"User-Agent": "Mozilla/5.0 (compatible; YIM-timetable/1.0)"}
 MB_API_KEY = os.environ.get("MINDBODY_API_KEY", "")   # GitHub Actions secret
@@ -47,7 +53,27 @@ HEALCODE_WIDGETS = {"within-south-yarra": "188058"}
 GOMINDBODY_SLUGS = {"warrior-one-brighton": "751447bfa", "warrior-one-mordialloc": "751457bfa"}
 
 
-def write_anomalies(failed, missing, unknown_studios, recovered):
+def shared_path_diagnosis(failed, covered, studios):
+    """If every failing feed uses one platform adapter and *no* feed on that
+    adapter succeeded, the adapter is broken — not the studios. Three separate
+    'studio down' lines hide that; one line names the actual fix.
+
+    (This is exactly what happened from 27 Jul 2026: Warrior One x2 and Happy
+    Melon all went dark on the same run, and all three — and only those three —
+    are `gomindbody`.)"""
+    def ftype(sid):
+        return (studios.get(sid, {}).get("feed") or {}).get("type")
+    failed_types = {ftype(sid) for sid, *_ in failed}
+    if len(failed_types) != 1:
+        return None
+    t = failed_types.pop()
+    if not t or any(ftype(sid) == t for sid in covered):
+        return None  # some feed on this adapter still works — so it's the studio
+    return t
+
+
+def write_anomalies(failed, missing, unknown_studios, recovered,
+                    no_schedule=(), broken_adapter=None):
     """Write a human-readable anomaly report for the workflow to raise as an issue.
     Anomalies never block publishing — clean studios still go live; this is a heads-up.
     `failed`  = list of (sid, err, dark_runs, since); escalates at DARK_ESCALATE+ runs.
@@ -57,6 +83,13 @@ def write_anomalies(failed, missing, unknown_studios, recovered):
     lines = []
     escalated = [f for f in failed if f[2] >= DARK_ESCALATE]
     blips = [f for f in failed if f[2] < DARK_ESCALATE]
+    if broken_adapter:
+        lines.append(
+            f"**🔴 The `{broken_adapter}` adapter is down, not the studios.** Every feed that "
+            f"failed this run uses `{broken_adapter}`, and no `{broken_adapter}` feed succeeded. "
+            "Fix (or replace) that one code path and all of them come back together — "
+            "chasing the studios individually will not find anything.")
+        lines.append("")
     if escalated:
         lines.append(f"**🔴 Feeds DOWN {DARK_ESCALATE}+ runs — likely broken, not a blip. "
                      "Fix the scrape, switch the studio to `manual`, or move it to the official API:**")
@@ -78,6 +111,14 @@ def write_anomalies(failed, missing, unknown_studios, recovered):
                      "run at a studio that pulled cleanly. Likely their name changed in the studio's "
                      "system (update the alias in `schedule.json`) or they stopped teaching there:")
         for name in missing:
+            lines.append(f"- {name}")
+    if no_schedule:
+        lines.append("")
+        lines.append("**Registered teacher with an empty timetable everywhere** — her page is live "
+                     f"but shows no classes at all. Either she is rostered beyond the {FORWARD_DAYS}-day "
+                     "window, teaches somewhere YiM does not ingest yet (ask her where else she "
+                     "teaches), or her name is spelled differently in the feed and needs an alias:")
+        for name in no_schedule:
             lines.append(f"- {name}")
     if unknown_studios:
         lines.append("")
@@ -262,9 +303,14 @@ def main():
     failed_detail = [(sid, err, new_state[sid]["dark_runs"], new_state[sid]["since"])
                      for sid, err in failed]
 
+    broken_adapter = shared_path_diagnosis(failed_detail, covered, schedule["studios"])
+    if broken_adapter:
+        print(f"\n⚠ every failed feed is '{broken_adapter}' and none succeeded — "
+              "the adapter is broken, not the studios.")
+
     if not covered:
         print("No studios pulled successfully; leaving schedule.json untouched.")
-        write_anomalies(failed_detail, [], {}, recovered)
+        write_anomalies(failed_detail, [], {}, recovered, broken_adapter=broken_adapter)
         return
 
     # count each profiled teacher's classes AT COVERED STUDIOS, before the merge overwrites
@@ -282,7 +328,14 @@ def main():
     # only a REAL disappearance: had classes at a covered studio last run, none now.
     missing = sorted(n for n in old_counts if old_counts[n] > 0 and new_counts.get(n, 0) == 0)
 
-    write_anomalies(failed_detail, missing, report["unknown_studios"], recovered)
+    # Distinct from `missing`: a teacher who has never had a class at any studio,
+    # covered or not. She never "disappeared", so the check above can't see her —
+    # her page has simply been publishing an empty timetable, possibly for weeks.
+    no_schedule = sorted(n for n, t in merged.get("teachers", {}).items()
+                         if not t.get("classes"))
+
+    write_anomalies(failed_detail, missing, report["unknown_studios"], recovered,
+                    no_schedule=no_schedule, broken_adapter=broken_adapter)
 
     subprocess.run([sys.executable, str(ROOT / "build_profiles.py")], check=True, cwd=str(ROOT))
     print("profiles rebuilt.")
