@@ -4,3 +4,12 @@
 
 # Profiles are pre-built and committed; the weekly pull regenerates them via PR.
 # No build command needed.
+
+# Steph's page shipped on 17 Aug under the (Here) Yoga feed's spelling of her name.
+# Her own spelling is Philip, one L, so the slug changed the same day. The old URL
+# was live and crawlable, so it redirects rather than 404s.
+[[redirects]]
+  from = "/steph-phillip.html"
+  to = "/steph-philip.html"
+  status = 301
+  force = true
