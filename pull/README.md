@@ -17,12 +17,33 @@ systems until the official Mindbody API replaces the pull layer.
   `pronoun_possessive`, and `classes`.
 - **build_profiles.py** — fills each `templates/*.template.html` from schedule.json. Done & verified.
 - **pull/merge.py** — folds normalized rows into schedule.json: matches each feed's raw
-  teacher name via `aliases`, dedups, and only rewrites studios passed in `--covered`
-  (a failed feed can't wipe a studio off every profile). Done & verified.
+  teacher name via `aliases`, drops anyone on the `suppressed` opt-out list, dedups, and
+  only rewrites studios passed in `--covered` (a failed feed can't wipe a studio off
+  every profile). Done & verified.
 - **pull/recon.py** + **.github/workflows/recon.yml** — one-time capture of what the
   widgets actually fetch, so the normalizers are written against real data.
-- **normalizers** — *not built yet*; written after recon. One small function per platform
-  that turns its captured JSON into normalized rows (below).
+- **pull/normalizers.py** — one function per platform, turning its captured payload into
+  normalized rows. Built: `momence_rows`, `healcode_rows`, `mindbody_rows` (Public API v6),
+  `gomindbody_rows`, `squarespace_rows`.
+- **build_story_cards.py** — renders the same schedule data as Instagram story cards.
+  Run nightly by `.github/workflows/story.yml`.
+
+## The opt-out list
+
+A teacher's classes arrive through her studio's feed whether or not she has heard of
+YiM. If she is asked to be listed and says no, that no has to survive every future
+pull. Add her to the top-level `suppressed` list in `schedule.json`:
+
+```json
+"suppressed": [
+  {"name": "Jane Smith", "note": "declined 12 Sep", "date": "2026-09-12"}
+]
+```
+
+Matched on the raw string as the feed spells it, case- and whitespace-insensitive.
+She is dropped *before* alias matching, so nothing downstream — profiles, story cards,
+line-ups — can leak her by forgetting to check. merge refuses to run if a name is both
+registered and suppressed, since that would silently empty a live profile.
 
 ## Normalized row (the contract between normalize and merge)
 
@@ -32,6 +53,12 @@ systems until the official Mindbody API replaces the pull layer.
 ```
 
 `teacher` is the raw string as that feed spells it — merge resolves it via aliases.
+
+Two optional keys: `sub` (true when the feed marks a cover) and `url` (a deep link to
+that session's booking page). Where `url` is present the profile links the class row
+straight at it; otherwise the row falls back to the studio's booking page. No
+normalizer sets `url` yet — adding it to one is the whole change, since merge and the
+templates already carry it through.
 
 ## The recon step (do this once)
 
