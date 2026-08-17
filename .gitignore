@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+
+# Generated story cards. The nightly workflow commits the dated folders it builds;
+# local runs should not add noise to the diff.
+story/_*/
