@@ -235,7 +235,98 @@
       "aliases": [
         "Emma Strembickyj"
       ],
-      "classes": []
+      "classes": [
+        {
+          "studio": "within-south-yarra",
+          "day": "Mon",
+          "time": "5:00–6:00 PM",
+          "class": "Slow Flow Yoga"
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Mon",
+          "time": "6:15–7:15 PM",
+          "class": "Strong Flow Yoga"
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Mon",
+          "time": "7:30–8:30 PM",
+          "class": "Yin Yoga"
+        },
+        {
+          "studio": "grass-roots-st-kilda",
+          "day": "Tue",
+          "time": "5:00–6:00 PM",
+          "class": "Hot Flow",
+          "sub": true
+        },
+        {
+          "studio": "grass-roots-st-kilda",
+          "day": "Tue",
+          "time": "6:15–7:15 PM",
+          "class": "Vinyasa flow",
+          "sub": true
+        },
+        {
+          "studio": "grass-roots-st-kilda",
+          "day": "Tue",
+          "time": "7:30–8:30 PM",
+          "class": "Yin",
+          "sub": true
+        },
+        {
+          "studio": "grass-roots-st-kilda",
+          "day": "Wed",
+          "time": "6:15–7:15 AM",
+          "class": "Vinyasa flow",
+          "sub": true
+        },
+        {
+          "studio": "grass-roots-st-kilda",
+          "day": "Thu",
+          "time": "6:15–7:15 PM",
+          "class": "Yoga Fundamentals"
+        },
+        {
+          "studio": "grass-roots-st-kilda",
+          "day": "Thu",
+          "time": "7:30–8:30 PM",
+          "class": "Yin"
+        },
+        {
+          "studio": "here-yoga-port-melbourne",
+          "day": "Tue",
+          "time": "9:30–10:30 AM",
+          "class": "Dynamic Flow"
+        },
+        {
+          "studio": "here-yoga-port-melbourne",
+          "day": "Sun",
+          "time": "8:30–9:30 AM",
+          "class": "Dynamic Flow",
+          "sub": true
+        },
+        {
+          "studio": "here-yoga-port-melbourne",
+          "day": "Sun",
+          "time": "10:00–11:00 AM",
+          "class": "Slow Flow",
+          "sub": true
+        },
+        {
+          "studio": "kozen-yoga-hawthorn",
+          "day": "Wed",
+          "time": "6:15–7:15 PM",
+          "class": "Flow Class"
+        },
+        {
+          "studio": "kozen-yoga-hawthorn",
+          "day": "Wed",
+          "time": "7:30–8:30 PM",
+          "class": "Yin Class"
+        }
+      ]
     },
     "Janita Doelken": {
       "name": {
@@ -351,27 +442,27 @@
       ],
       "classes": [
         {
-          "studio": "good-vibes-northcote",
-          "day": "Wed",
-          "time": "10:00–11:00 AM",
+          "studio": "good-vibes-collingwood",
+          "day": "Tue",
+          "time": "12:30–1:30 PM",
+          "class": "Vinyasa Flow"
+        },
+        {
+          "studio": "good-vibes-collingwood",
+          "day": "Tue",
+          "time": "4:30–5:30 PM",
+          "class": "Vinyasa Flow"
+        },
+        {
+          "studio": "good-vibes-collingwood",
+          "day": "Tue",
+          "time": "6:00–7:00 PM",
           "class": "Vinyasa Flow"
         },
         {
           "studio": "good-vibes-collingwood",
           "day": "Wed",
           "time": "12:30–1:30 PM",
-          "class": "Vinyasa Flow"
-        },
-        {
-          "studio": "good-vibes-northcote",
-          "day": "Wed",
-          "time": "4:45–5:45 PM",
-          "class": "Keep It Mellow"
-        },
-        {
-          "studio": "good-vibes-northcote",
-          "day": "Wed",
-          "time": "6:00–7:00 PM",
           "class": "Vinyasa Flow"
         },
         {
@@ -391,6 +482,24 @@
           "day": "Sun",
           "time": "5:00–6:00 PM",
           "class": "Yin"
+        },
+        {
+          "studio": "good-vibes-northcote",
+          "day": "Wed",
+          "time": "10:00–11:00 AM",
+          "class": "Vinyasa Flow"
+        },
+        {
+          "studio": "good-vibes-northcote",
+          "day": "Wed",
+          "time": "4:45–5:45 PM",
+          "class": "Keep It Mellow"
+        },
+        {
+          "studio": "good-vibes-northcote",
+          "day": "Wed",
+          "time": "6:00–7:00 PM",
+          "class": "Vinyasa Flow"
         }
       ]
     },
@@ -406,6 +515,30 @@
         "Stephanie Phillip"
       ],
       "classes": [
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Mon",
+          "time": "10:45–11:45 AM",
+          "class": "Yin & Sound Bowls"
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Mon",
+          "time": "12:15–1:15 PM",
+          "class": "Slow Flow"
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Fri",
+          "time": "5:00–6:00 PM",
+          "class": "Slow Flow"
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Fri",
+          "time": "6:15–7:15 PM",
+          "class": "Yin & Sound Bowls"
+        },
         {
           "studio": "here-yoga-malvern",
           "day": "Tue",
@@ -447,30 +580,6 @@
           "day": "Sun",
           "time": "10:00–11:00 AM",
           "class": "Slow Flow"
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Mon",
-          "time": "10:45–11:45 AM",
-          "class": "Yin & Sound Bowls"
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Mon",
-          "time": "12:15–1:15 PM",
-          "class": "Slow Flow"
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Fri",
-          "time": "5:00–6:00 PM",
-          "class": "Slow Flow"
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Fri",
-          "time": "6:15–7:15 PM",
-          "class": "Yin & Sound Bowls"
         }
       ]
     }
