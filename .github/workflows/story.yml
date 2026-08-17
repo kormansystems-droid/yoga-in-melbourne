@@ -1,0 +1,103 @@
+name: Build story cards
+
+# Yoga Tomorrow, built for you every evening.
+#
+# The point of automating this is that the daily ritual survives a founder without
+# a laptop. So the run does two things a phone can use:
+#   - commits story/<date>-tomorrow/ (the PNGs) to main, so the images can be saved
+#     straight from the GitHub app;
+#   - opens an issue holding captions.md — the mention + link-sticker table — so it
+#     arrives as a notification and can be ticked through while posting.
+#
+# On a thin day (under 3 classes) the script refuses to build and the run exits
+# quietly. That is the correct outcome, not a failure: silence costs nothing in
+# stories, and a one-class card advertises smallness.
+
+on:
+  schedule:
+    # 09:00 UTC = 7pm Melbourne during AEST. Melbourne shifts to AEDT (UTC+11) in
+    # October, when this lands at 8pm — change to "0 8 * * *" then, or accept the
+    # hour drift. The fixed posting time is functional, not ceremonial: frames must
+    # go up ~24h apart so the previous day's expire as these appear.
+    - cron: "0 9 * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "tomorrow (full next day) or today (only what is still ahead)"
+        type: choice
+        options: [tomorrow, today]
+        default: tomorrow
+      date:
+        description: "YYYY-MM-DD, blank for the default"
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  cards:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Playwright + Chromium
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Build the cards
+        id: build
+        run: |
+          MODE="${{ inputs.mode || 'tomorrow' }}"
+          ARGS="--mode $MODE"
+          if [ -n "${{ inputs.date }}" ]; then ARGS="$ARGS --date ${{ inputs.date }}"; fi
+          # A thin day exits non-zero by design — capture it rather than failing.
+          if python build_story_cards.py $ARGS > build.log 2>&1; then
+            echo "built=1" >> "$GITHUB_OUTPUT"
+          else
+            echo "built=0" >> "$GITHUB_OUTPUT"
+          fi
+          cat build.log
+          DIR=$(ls -d story/*/ 2>/dev/null | tail -1 || true)
+          echo "dir=$DIR" >> "$GITHUB_OUTPUT"
+
+      - name: Commit the cards
+        if: steps.build.outputs.built == '1'
+        run: |
+          git config user.name  "yim-timetable-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add story/
+          if git diff --cached --quiet; then
+            echo "Nothing new."
+            exit 0
+          fi
+          git commit -m "Story cards for ${{ steps.build.outputs.dir }}"
+          BR="${GITHUB_REF_NAME:-main}"
+          for attempt in 1 2 3; do
+            git pull --rebase --autostash origin "$BR" || true
+            if git push origin "HEAD:$BR"; then exit 0; fi
+            sleep 3
+          done
+          exit 1
+
+      - name: File the captions
+        if: steps.build.outputs.built == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          DIR="${{ steps.build.outputs.dir }}"
+          CAP="${DIR}captions.md"
+          [ -s "$CAP" ] || exit 0
+          {
+            echo "Cards are committed under \`$DIR\` — open that folder in the GitHub"
+            echo "app to save the PNGs."
+            echo
+            cat "$CAP"
+          } > issue.md
+          gh issue create --title "📸 $(basename "$DIR")" --body-file issue.md
