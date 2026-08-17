@@ -109,6 +109,30 @@
         "min_rows": 12,
         "note": "Plain-HTML Squarespace weekly grid; bookings only via the Inndriya app (book-direct card links the timetable page)"
       }
+    },
+    "good-vibes-collingwood": {
+      "name": "Good Vibes",
+      "location": "Collingwood",
+      "url": "https://goodvibesyoga.com.au/collingwood-yoga-studio",
+      "book": "https://goodvibesyoga.com.au/schedules",
+      "platform": "momence",
+      "feed": {
+        "type": "momence",
+        "host": 33014,
+        "location": "Collingwood"
+      }
+    },
+    "good-vibes-northcote": {
+      "name": "Good Vibes",
+      "location": "Northcote",
+      "url": "https://goodvibesyoga.com.au/northcote-yoga-studio",
+      "book": "https://goodvibesyoga.com.au/schedules",
+      "platform": "momence",
+      "feed": {
+        "type": "momence",
+        "host": 33014,
+        "location": "Northcote"
+      }
     }
   },
   "suppressed": [],
@@ -312,6 +336,61 @@
           "day": "Sun",
           "time": "3:45–5:00 PM",
           "class": "Yin + Yoga Nidra"
+        }
+      ]
+    },
+    "Ryan Mannix": {
+      "name": {
+        "given": "Ryan",
+        "family": "Mannix"
+      },
+      "aliases": [
+        "Ryan Mannix",
+        "Ryan .",
+        "Ryan"
+      ],
+      "classes": [
+        {
+          "studio": "good-vibes-northcote",
+          "day": "Wed",
+          "time": "10:00–11:00 AM",
+          "class": "Vinyasa Flow"
+        },
+        {
+          "studio": "good-vibes-collingwood",
+          "day": "Wed",
+          "time": "12:30–1:30 PM",
+          "class": "Vinyasa Flow"
+        },
+        {
+          "studio": "good-vibes-northcote",
+          "day": "Wed",
+          "time": "4:45–5:45 PM",
+          "class": "Keep It Mellow"
+        },
+        {
+          "studio": "good-vibes-northcote",
+          "day": "Wed",
+          "time": "6:00–7:00 PM",
+          "class": "Vinyasa Flow"
+        },
+        {
+          "studio": "good-vibes-collingwood",
+          "day": "Sun",
+          "time": "2:00–3:00 PM",
+          "class": "Vinyasa Flow"
+        },
+        {
+          "studio": "good-vibes-collingwood",
+          "day": "Sun",
+          "time": "3:30–4:30 PM",
+          "class": "Keep It Mellow"
+        },
+        {
+          "studio": "good-vibes-collingwood",
+          "day": "Sun",
+          "time": "5:00–6:00 PM",
+          "class": "Yin"
         }
       ]
     },
