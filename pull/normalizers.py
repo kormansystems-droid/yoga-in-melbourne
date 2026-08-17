@@ -30,8 +30,13 @@ def _time_range(start, end):
     return f"{s}\u2013{e}".strip("\u2013")
 
 
-def _row(studio_id, teacher, start, end, cls, sub):
-    return {
+def _row(studio_id, teacher, start, end, cls, sub, url=None):
+    """`url` is optional and deep-links to that specific session's booking page.
+    Where a feed exposes one, the profile links the class row straight at it;
+    where it does not, the row falls back to the studio's booking page. Adding it
+    to a normalizer is the whole change — merge and the templates already carry
+    it through."""
+    row = {
         "studio": studio_id, "teacher": (teacher or "").strip(),
         "day": DAY_ABBR.get(start.strftime("%A"), start.strftime("%a")),
         "start": start.strftime("%H:%M"),
@@ -39,6 +44,9 @@ def _row(studio_id, teacher, start, end, cls, sub):
         "class": (cls or "").strip(),
         "sub": bool(sub),
     }
+    if url:
+        row["url"] = str(url).strip()
+    return row
 
 
 # ---- Momence ---------------------------------------------------------------

@@ -287,6 +287,18 @@
   .cls-name{
     grid-area:name;font-family:'Hanken Grotesk',sans-serif;font-size:14px;color:var(--ink-soft);margin-top:1px;
   }
+  /* A class row that books. The arrow sits at low opacity rather than appearing on
+     hover: most of this traffic arrives from Instagram on a phone, where there is
+     no hover state to discover the row is tappable at all. */
+  a.cls{text-decoration:none;color:inherit;transition:background .2s}
+  a.cls .cls-name::after{
+    content:" ↗";font-family:'Spline Sans Mono',monospace;font-size:11px;
+    color:var(--henna);opacity:.4;transition:opacity .2s;
+  }
+  a.cls:hover{background:rgba(42,32,26,.04)}
+  a.cls:hover .cls-name{color:var(--henna)}
+  a.cls:hover .cls-name::after{opacity:1}
+  a.cls:focus-visible{outline:2px solid var(--henna);outline-offset:-2px}
   .event-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
   .event{padding:4px 0 18px;border-bottom:1px solid rgba(42,32,26,.12);margin-bottom:18px}
   .event:last-of-type{border-bottom:none;margin-bottom:22px}
@@ -510,7 +522,7 @@
 <div class="wrap">
   <section class="schedule">
     <h3 class="sched-title">Where Alessia teaches</h3>
-    <p class="sched-note">Alessia's current weekly classes across four studios. Tap a studio to book.</p>
+    <p class="sched-note">Alessia's current weekly classes across four studios. Tap any class to book.</p>
 
     <div class="studio-grid" data-teacher="Alessia Frisina">
       <!-- SCHEDULE:START -->
@@ -522,11 +534,11 @@
           </div>
           <a class="book-link" href="https://www.withinretreat.com.au/timetable" target="_blank" rel="noopener">Book ↗</a>
         </div>
-        <div class="cls"><span class="cls-day">Wed</span><span class="cls-time">5:00–6:00 PM</span><span class="cls-name">Slow Flow Yoga</span></div>
-        <div class="cls"><span class="cls-day">Wed</span><span class="cls-time">6:15–7:15 PM</span><span class="cls-name">Strong Flow Yoga</span></div>
-        <div class="cls"><span class="cls-day">Wed</span><span class="cls-time">7:30–8:30 PM</span><span class="cls-name">Yin Yoga</span></div>
-        <div class="cls"><span class="cls-day">Sun</span><span class="cls-time">8:00–9:00 AM</span><span class="cls-name">Strong Flow Yoga</span></div>
-        <div class="cls"><span class="cls-day">Sun</span><span class="cls-time">9:30–10:30 AM</span><span class="cls-name">Yin Yoga</span></div>
+        <a class="cls" href="https://www.withinretreat.com.au/timetable" target="_blank" rel="noopener"><span class="cls-day">Wed</span><span class="cls-time">5:00–6:00 PM</span><span class="cls-name">Slow Flow Yoga</span></a>
+        <a class="cls" href="https://www.withinretreat.com.au/timetable" target="_blank" rel="noopener"><span class="cls-day">Wed</span><span class="cls-time">6:15–7:15 PM</span><span class="cls-name">Strong Flow Yoga</span></a>
+        <a class="cls" href="https://www.withinretreat.com.au/timetable" target="_blank" rel="noopener"><span class="cls-day">Wed</span><span class="cls-time">7:30–8:30 PM</span><span class="cls-name">Yin Yoga</span></a>
+        <a class="cls" href="https://www.withinretreat.com.au/timetable" target="_blank" rel="noopener"><span class="cls-day">Sun</span><span class="cls-time">8:00–9:00 AM</span><span class="cls-name">Strong Flow Yoga</span></a>
+        <a class="cls" href="https://www.withinretreat.com.au/timetable" target="_blank" rel="noopener"><span class="cls-day">Sun</span><span class="cls-time">9:30–10:30 AM</span><span class="cls-name">Yin Yoga</span></a>
       </div>
 
       <div class="studio">
@@ -537,11 +549,11 @@
           </div>
           <a class="book-link" href="https://warrioroneyoga.com.au/brighton/" target="_blank" rel="noopener">Book ↗</a>
         </div>
-        <div class="cls"><span class="cls-day">Tue</span><span class="cls-time">6:00–7:00 AM</span><span class="cls-name">Vinyasa Flow</span></div>
-        <div class="cls"><span class="cls-day">Tue</span><span class="cls-time">7:30–8:30 AM</span><span class="cls-name">Vinyasa Flow</span></div>
-        <div class="cls"><span class="cls-day">Wed</span><span class="cls-time">9:30–10:30 AM</span><span class="cls-name">Vinyasa Flow</span></div>
-        <div class="cls"><span class="cls-day">Wed</span><span class="cls-time">10:45–11:45 AM</span><span class="cls-name">Yin &amp; Myofascial Release</span></div>
-        <div class="cls"><span class="cls-day">Wed</span><span class="cls-time">12:15–1:15 PM</span><span class="cls-name">Slow Flow &amp; Yoga Nidra</span></div>
+        <a class="cls" href="https://warrioroneyoga.com.au/brighton/" target="_blank" rel="noopener"><span class="cls-day">Tue</span><span class="cls-time">6:00–7:00 AM</span><span class="cls-name">Vinyasa Flow</span></a>
+        <a class="cls" href="https://warrioroneyoga.com.au/brighton/" target="_blank" rel="noopener"><span class="cls-day">Tue</span><span class="cls-time">7:30–8:30 AM</span><span class="cls-name">Vinyasa Flow</span></a>
+        <a class="cls" href="https://warrioroneyoga.com.au/brighton/" target="_blank" rel="noopener"><span class="cls-day">Wed</span><span class="cls-time">9:30–10:30 AM</span><span class="cls-name">Vinyasa Flow</span></a>
+        <a class="cls" href="https://warrioroneyoga.com.au/brighton/" target="_blank" rel="noopener"><span class="cls-day">Wed</span><span class="cls-time">10:45–11:45 AM</span><span class="cls-name">Yin &amp; Myofascial Release</span></a>
+        <a class="cls" href="https://warrioroneyoga.com.au/brighton/" target="_blank" rel="noopener"><span class="cls-day">Wed</span><span class="cls-time">12:15–1:15 PM</span><span class="cls-name">Slow Flow &amp; Yoga Nidra</span></a>
       </div>
 
       <div class="studio">
@@ -552,8 +564,8 @@
           </div>
           <a class="book-link" href="https://warrioroneyoga.com.au/mordialloc/" target="_blank" rel="noopener">Book ↗</a>
         </div>
-        <div class="cls"><span class="cls-day">Mon</span><span class="cls-time">6:00–7:00 AM</span><span class="cls-name">Vinyasa Flow</span></div>
-        <div class="cls"><span class="cls-day">Mon</span><span class="cls-time">9:30–10:30 AM</span><span class="cls-name">Slow Flow</span></div>
+        <a class="cls" href="https://warrioroneyoga.com.au/mordialloc/" target="_blank" rel="noopener"><span class="cls-day">Mon</span><span class="cls-time">6:00–7:00 AM</span><span class="cls-name">Vinyasa Flow</span></a>
+        <a class="cls" href="https://warrioroneyoga.com.au/mordialloc/" target="_blank" rel="noopener"><span class="cls-day">Mon</span><span class="cls-time">9:30–10:30 AM</span><span class="cls-name">Slow Flow</span></a>
       </div>
 
       <div class="studio">
@@ -564,7 +576,7 @@
           </div>
           <a class="book-link" href="https://www.grassrootsyoga.com/booknow" target="_blank" rel="noopener">Book ↗</a>
         </div>
-        <div class="cls"><span class="cls-day">Sat</span><span class="cls-time">5:15–6:15 PM</span><span class="cls-name">Yin <span class="cls-sub" style="opacity:.55;font-style:italic;font-weight:400">substitute</span></span></div>
+        <a class="cls" href="https://www.grassrootsyoga.com/booknow" target="_blank" rel="noopener"><span class="cls-day">Sat</span><span class="cls-time">5:15–6:15 PM</span><span class="cls-name">Yin <span class="cls-sub" style="opacity:.55;font-style:italic;font-weight:400">substitute</span></span></a>
       </div>
       <!-- SCHEDULE:END -->
     </div>

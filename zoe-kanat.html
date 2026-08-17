@@ -284,6 +284,18 @@
   .cls-name{
     grid-area:name;font-family:'Hanken Grotesk',sans-serif;font-size:14px;color:var(--ink-soft);margin-top:1px;
   }
+  /* A class row that books. The arrow sits at low opacity rather than appearing on
+     hover: most of this traffic arrives from Instagram on a phone, where there is
+     no hover state to discover the row is tappable at all. */
+  a.cls{text-decoration:none;color:inherit;transition:background .2s}
+  a.cls .cls-name::after{
+    content:" ↗";font-family:'Spline Sans Mono',monospace;font-size:11px;
+    color:var(--henna);opacity:.4;transition:opacity .2s;
+  }
+  a.cls:hover{background:rgba(42,32,26,.04)}
+  a.cls:hover .cls-name{color:var(--henna)}
+  a.cls:hover .cls-name::after{opacity:1}
+  a.cls:focus-visible{outline:2px solid var(--henna);outline-offset:-2px}
   .event-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
   .event{padding:4px 0 18px;border-bottom:1px solid rgba(42,32,26,.12);margin-bottom:18px}
   .event:last-of-type{border-bottom:none;margin-bottom:22px}

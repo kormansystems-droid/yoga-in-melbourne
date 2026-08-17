@@ -121,21 +121,25 @@ def merge(schedule, rows, covered):
         if canonical is None:
             report["unmatched_names"][r["teacher"]] = report["unmatched_names"].get(r["teacher"], 0) + 1
             continue
-        new_by_teacher[canonical].add((sid, r["day"], r["start"], r["time"], r["class"], bool(r.get("sub"))))
+        new_by_teacher[canonical].add((sid, r["day"], r["start"], r["time"], r["class"],
+                                       bool(r.get("sub")), r.get("url") or ""))
         report["matched"] += 1
 
     # rebuild each teacher's class list: keep uncovered-studio classes, replace covered ones
     for name, rec in teachers.items():
         kept = [c for c in rec.get("classes", []) if c["studio"] not in covered]
-        fresh = [
-            ({"studio": sid, "day": day, "time": time, "class": cls, "sub": True}
-             if sub else {"studio": sid, "day": day, "time": time, "class": cls})
-            for (sid, day, start, time, cls, sub) in new_by_teacher[name]
-        ]
+        fresh = []
+        for (sid, day, start, time, cls, sub, url) in new_by_teacher[name]:
+            row = {"studio": sid, "day": day, "time": time, "class": cls}
+            if sub:
+                row["sub"] = True
+            if url:
+                row["url"] = url
+            fresh.append(row)
         # stable sort: studio registry order, then weekday, then start time
         sid_order = {sid: i for i, sid in enumerate(studios)}
         start_of = {(c["studio"], c["day"], c["time"], c["class"]): "00:00" for c in kept}
-        for (sid, day, start, time, cls, sub) in new_by_teacher[name]:
+        for (sid, day, start, time, cls, sub, url) in new_by_teacher[name]:
             start_of[(sid, day, time, cls)] = start
         combined = kept + fresh
         combined.sort(key=lambda c: (

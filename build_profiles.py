@@ -38,6 +38,10 @@ COMMUNITY_SCRIPTS = (
 )
 
 def esc(s): return html.escape(s, quote=False)
+# For anything landing inside a quoted attribute. Studio urls are hand-maintained
+# in schedule.json, but per-class urls arrive from the studio feeds, so a stray
+# quote must not be able to escape the href.
+def esc_attr(s): return html.escape(str(s), quote=True)
 
 def start_minutes(t):
     start = re.split(r"[–-]", t)[0].strip()
@@ -46,6 +50,29 @@ def start_minutes(t):
     if mer=="PM" and h!=12: h+=12
     if mer=="AM" and h==12: h=0
     return h*60+m
+
+SUB_TAG = ('<span class="cls-sub" style="opacity:.55;font-style:italic;font-weight:400">'
+           'substitute</span>')
+
+def render_row(r, book_url):
+    """One class row, as a link through to booking.
+
+    Every row is clickable. Where the feed gives a per-class url we deep-link to
+    that session; otherwise we fall back to the studio's booking page, which is
+    still a booking intent we can count. Until this shipped the only outbound link
+    on a profile was the studio-level 'Book ↗', so the tracked click event had
+    almost no volume to measure and no way to say which class earned it.
+
+    Attribution comes from GA4 enhanced measurement, which records link_text — the
+    row's text is 'Wed 5:00-6:00 PM Slow Flow Yoga', so the class is identified
+    without appending query parameters to a studio's booking URL (which we do not
+    control and can break)."""
+    sub = f" {SUB_TAG}" if r.get("sub") else ""
+    href = r.get("url") or book_url
+    return (f'        <a class="cls" href="{esc_attr(href)}" target="_blank" rel="noopener">'
+            f'<span class="cls-day">{esc(r["day"])}</span>'
+            f'<span class="cls-time">{esc(r["time"])}</span>'
+            f'<span class="cls-name">{esc(r["class"])}{sub}</span></a>')
 
 def render_cards(classes, studios):
     by = {}
@@ -58,18 +85,13 @@ def render_cards(classes, studios):
     for sid in order_sids:
         meta = studios[sid]
         rows = sorted(by[sid], key=lambda c:(DAY_ORDER.get(c["day"],99), start_minutes(c["time"])))
-        rh = "\n".join(
-            f'        <div class="cls"><span class="cls-day">{esc(r["day"])}</span>'
-            f'<span class="cls-time">{esc(r["time"])}</span>'
-            f'<span class="cls-name">{esc(r["class"])}'
-            f'{" <span class=\"cls-sub\" style=\"opacity:.55;font-style:italic;font-weight:400\">substitute</span>" if r.get("sub") else ""}'
-            f'</span></div>' for r in rows)
+        rh = "\n".join(render_row(r, meta["book"]) for r in rows)
         cards.append(
             '      <div class="studio">\n        <div class="studio-head">\n          <div>\n'
-            f'            <a class="studio-name" href="{esc(meta["url"])}" target="_blank" rel="noopener">{esc(meta["name"])}</a>\n'
+            f'            <a class="studio-name" href="{esc_attr(meta["url"])}" target="_blank" rel="noopener">{esc(meta["name"])}</a>\n'
             f'            <span class="studio-loc">{esc(meta["location"])}</span>\n'
             '          </div>\n'
-            f'          <a class="book-link" href="{esc(meta["book"])}" target="_blank" rel="noopener">Book ↗</a>\n'
+            f'          <a class="book-link" href="{esc_attr(meta["book"])}" target="_blank" rel="noopener">Book ↗</a>\n'
             f'        </div>\n{rh}\n      </div>')
     return "\n\n".join(cards), len(cards)
 
@@ -84,7 +106,7 @@ def render_handoff_cards(slug, classes):
         prefixes = tuple(b.get("match", []))
         if prefixes and any(str(c.get("studio","")).startswith(prefixes) for c in classes):
             continue  # real timed classes exist here -> show those instead of a book-direct card
-        url, nm = esc(b.get("book_url", "#")), esc(b.get("name", bid))
+        url, nm = esc_attr(b.get("book_url", "#")), esc(b.get("name", bid))
         out.append(
             '      <div class="studio studio-handoff">\n        <div class="studio-head">\n          <div>\n'
             f'            <a class="studio-name" href="{url}" target="_blank" rel="noopener">{nm}</a>\n'
@@ -186,7 +208,7 @@ def build_one(tpl, data):
         cards = (cards + "\n\n" + joined) if cards.strip() else joined
     if count:
         cw = WORDS[count] if count < len(WORDS) else str(count)
-        note = f"{given}'s current weekly classes across {cw} studios. Tap a studio to book."
+        note = f"{given}'s current weekly classes across {cw} studios. Tap any class to book."
     elif handoff_cards:
         note = f"Book with {given} directly at their studio."
     else:

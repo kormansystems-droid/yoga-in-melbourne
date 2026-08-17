@@ -284,6 +284,18 @@
   .cls-name{
     grid-area:name;font-family:'Hanken Grotesk',sans-serif;font-size:14px;color:var(--ink-soft);margin-top:1px;
   }
+  /* A class row that books. The arrow sits at low opacity rather than appearing on
+     hover: most of this traffic arrives from Instagram on a phone, where there is
+     no hover state to discover the row is tappable at all. */
+  a.cls{text-decoration:none;color:inherit;transition:background .2s}
+  a.cls .cls-name::after{
+    content:" ↗";font-family:'Spline Sans Mono',monospace;font-size:11px;
+    color:var(--henna);opacity:.4;transition:opacity .2s;
+  }
+  a.cls:hover{background:rgba(42,32,26,.04)}
+  a.cls:hover .cls-name{color:var(--henna)}
+  a.cls:hover .cls-name::after{opacity:1}
+  a.cls:focus-visible{outline:2px solid var(--henna);outline-offset:-2px}
   .event-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
   .event{padding:4px 0 18px;border-bottom:1px solid rgba(42,32,26,.12);margin-bottom:18px}
   .event:last-of-type{border-bottom:none;margin-bottom:22px}
@@ -417,7 +429,7 @@
 <div class="wrap"><article class="story"><div class="chapter"><h2>Yoga Nidra</h2><p>For Rayne, the practice of Yoga Nidra holds a special place. With Sarah Machado, she created The Space Between Yoga Nidra. Each year the pair offer a weekend immersion in Melbourne, covering the technique, the state, and a history that reaches back thousands of years, along with the neuroscience: the deep delta-brainwave states Yoga Nidra invites, the territory of the body's deepest rest and repair. "I've had the privilege of working with some of the best transmitters of the practice in the world," she says.</p><p>Together they also lead Sankalpa retreats, built around the heart's desire, "which is a bit different from what most people are offering." And there are bigger horizons forming. "We're actually cheekily thinking about going to Morocco next year. So watch this space."</p><p>So the athlete who could always master the hardest thing found the harder thing was stillness, and then found her life's work in helping others succeed without striving too. "Something happened when I wasn't trying," she says of the moment Yin finally opened. Her classes hold that door ajar for everyone who walks in.</p></div></article></div>
 
 <div class="wrap"><section class="schedule"><h3 class="sched-title">Where Rayne teaches</h3>
-<p class="sched-note">Rayne's current weekly classes across three studios. Tap a studio to book.</p>
+<p class="sched-note">Rayne's current weekly classes across three studios. Tap any class to book.</p>
 <div class="studio-grid" data-teacher="Rayne Watkin"><!-- SCHEDULE:START -->
       <div class="studio">
         <div class="studio-head">
@@ -427,9 +439,9 @@
           </div>
           <a class="book-link" href="https://warrioroneyoga.com.au/brighton/" target="_blank" rel="noopener">Book ↗</a>
         </div>
-        <div class="cls"><span class="cls-day">Thu</span><span class="cls-time">7:30–8:30 PM</span><span class="cls-name">Yin &amp; Yoga Nidra</span></div>
-        <div class="cls"><span class="cls-day">Fri</span><span class="cls-time">10:45–11:45 AM</span><span class="cls-name">Yin &amp; Yoga Nidra</span></div>
-        <div class="cls"><span class="cls-day">Fri</span><span class="cls-time">12:15–1:15 PM</span><span class="cls-name">Slow Flow</span></div>
+        <a class="cls" href="https://warrioroneyoga.com.au/brighton/" target="_blank" rel="noopener"><span class="cls-day">Thu</span><span class="cls-time">7:30–8:30 PM</span><span class="cls-name">Yin &amp; Yoga Nidra</span></a>
+        <a class="cls" href="https://warrioroneyoga.com.au/brighton/" target="_blank" rel="noopener"><span class="cls-day">Fri</span><span class="cls-time">10:45–11:45 AM</span><span class="cls-name">Yin &amp; Yoga Nidra</span></a>
+        <a class="cls" href="https://warrioroneyoga.com.au/brighton/" target="_blank" rel="noopener"><span class="cls-day">Fri</span><span class="cls-time">12:15–1:15 PM</span><span class="cls-name">Slow Flow</span></a>
       </div>
 
       <div class="studio">
@@ -440,8 +452,8 @@
           </div>
           <a class="book-link" href="https://warrioroneyoga.com.au/mordialloc/" target="_blank" rel="noopener">Book ↗</a>
         </div>
-        <div class="cls"><span class="cls-day">Tue</span><span class="cls-time">6:00–7:00 AM</span><span class="cls-name">Slow Flow</span></div>
-        <div class="cls"><span class="cls-day">Tue</span><span class="cls-time">10:45–11:45 AM</span><span class="cls-name">Yin &amp; Yoga Nidra</span></div>
+        <a class="cls" href="https://warrioroneyoga.com.au/mordialloc/" target="_blank" rel="noopener"><span class="cls-day">Tue</span><span class="cls-time">6:00–7:00 AM</span><span class="cls-name">Slow Flow</span></a>
+        <a class="cls" href="https://warrioroneyoga.com.au/mordialloc/" target="_blank" rel="noopener"><span class="cls-day">Tue</span><span class="cls-time">10:45–11:45 AM</span><span class="cls-name">Yin &amp; Yoga Nidra</span></a>
       </div>
 
       <div class="studio">
@@ -452,8 +464,8 @@
           </div>
           <a class="book-link" href="https://inndriya.com/timetable" target="_blank" rel="noopener">Book ↗</a>
         </div>
-        <div class="cls"><span class="cls-day">Tue</span><span class="cls-time">7:30–8:30 PM</span><span class="cls-name">Embodied Yin</span></div>
-        <div class="cls"><span class="cls-day">Sun</span><span class="cls-time">3:45–5:00 PM</span><span class="cls-name">Yin + Yoga Nidra</span></div>
+        <a class="cls" href="https://inndriya.com/timetable" target="_blank" rel="noopener"><span class="cls-day">Tue</span><span class="cls-time">7:30–8:30 PM</span><span class="cls-name">Embodied Yin</span></a>
+        <a class="cls" href="https://inndriya.com/timetable" target="_blank" rel="noopener"><span class="cls-day">Sun</span><span class="cls-time">3:45–5:00 PM</span><span class="cls-name">Yin + Yoga Nidra</span></a>
       </div>
       <!-- SCHEDULE:END --></div></section></div>
 

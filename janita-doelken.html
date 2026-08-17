@@ -284,6 +284,18 @@
   .cls-name{
     grid-area:name;font-family:'Hanken Grotesk',sans-serif;font-size:14px;color:var(--ink-soft);margin-top:1px;
   }
+  /* A class row that books. The arrow sits at low opacity rather than appearing on
+     hover: most of this traffic arrives from Instagram on a phone, where there is
+     no hover state to discover the row is tappable at all. */
+  a.cls{text-decoration:none;color:inherit;transition:background .2s}
+  a.cls .cls-name::after{
+    content:" ↗";font-family:'Spline Sans Mono',monospace;font-size:11px;
+    color:var(--henna);opacity:.4;transition:opacity .2s;
+  }
+  a.cls:hover{background:rgba(42,32,26,.04)}
+  a.cls:hover .cls-name{color:var(--henna)}
+  a.cls:hover .cls-name::after{opacity:1}
+  a.cls:focus-visible{outline:2px solid var(--henna);outline-offset:-2px}
   .event-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
   .event{padding:4px 0 18px;border-bottom:1px solid rgba(42,32,26,.12);margin-bottom:18px}
   .event:last-of-type{border-bottom:none;margin-bottom:22px}
@@ -417,7 +429,7 @@
 <div class="wrap"><article class="story"><div class="chapter"><h2>Coming home</h2><p>Ask Jani what grounds her and the answer is immediate: nature.</p><p>"Probably my number one value in life is to be out in nature, and just breathe the fresh air."</p><p>She's wary of how the city pulls us under.</p><p>"We get lost in the busyness, nature is really what grounds us."</p><p>When meditating, she often looks for that connection first, a glance out the window towards the trees or sky before closing her eyes.</p><p>"We look for it. We need it, a beautiful, simple way to connect with what's within us."</p><p>Yoga itself has become a kind of home. Not originally from Australia and a born traveller, Janita found something deeply portable in the practice:</p><p>"You roll out the mat and practise wherever you are, that constant companion that helps you come home to yourself."</p><p>She reflects on how yoga has shaped her beyond the studio.</p><p>"I am a much calmer and more compassionate version of myself. A more patient and, more importantly, present mother."</p><p>She sees that same transformation in the students who keep returning.</p><p>"We all say these things, patience, presence, compassion. But there's really something to this practice that reveals magic, and I can feel it."</p><p>It's the same instinct, in the end, that transformed an injury and a period of forced stillness into a lifelong calling: a belief that the body already knows the way back, and that attentive hands, compassionate presence and moments of stillness can help it remember.</p></div></article></div>
 
 <div class="wrap"><section class="schedule"><h3 class="sched-title">Where Janita teaches</h3>
-<p class="sched-note">Janita's current weekly classes across one studios. Tap a studio to book.</p>
+<p class="sched-note">Janita's current weekly classes across one studios. Tap any class to book.</p>
 <div class="studio-grid" data-teacher="Janita Doelken"><!-- SCHEDULE:START -->
       <div class="studio">
         <div class="studio-head">
@@ -427,12 +439,12 @@
           </div>
           <a class="book-link" href="https://www.grassrootsyoga.com/booknow" target="_blank" rel="noopener">Book ↗</a>
         </div>
-        <div class="cls"><span class="cls-day">Mon</span><span class="cls-time">6:15–7:15 AM</span><span class="cls-name">Hot Flow</span></div>
-        <div class="cls"><span class="cls-day">Mon</span><span class="cls-time">9:30–10:30 AM</span><span class="cls-name">Vinyasa flow</span></div>
-        <div class="cls"><span class="cls-day">Mon</span><span class="cls-time">5:00–6:00 PM</span><span class="cls-name">Vinyasa flow</span></div>
-        <div class="cls"><span class="cls-day">Mon</span><span class="cls-time">6:15–7:30 PM</span><span class="cls-name">Slow Flow + Restorative (75mins)</span></div>
-        <div class="cls"><span class="cls-day">Sun</span><span class="cls-time">4:00–5:00 PM</span><span class="cls-name">Vinyasa flow</span></div>
-        <div class="cls"><span class="cls-day">Sun</span><span class="cls-time">5:15–6:15 PM</span><span class="cls-name">Yin</span></div>
+        <a class="cls" href="https://www.grassrootsyoga.com/booknow" target="_blank" rel="noopener"><span class="cls-day">Mon</span><span class="cls-time">6:15–7:15 AM</span><span class="cls-name">Hot Flow</span></a>
+        <a class="cls" href="https://www.grassrootsyoga.com/booknow" target="_blank" rel="noopener"><span class="cls-day">Mon</span><span class="cls-time">9:30–10:30 AM</span><span class="cls-name">Vinyasa flow</span></a>
+        <a class="cls" href="https://www.grassrootsyoga.com/booknow" target="_blank" rel="noopener"><span class="cls-day">Mon</span><span class="cls-time">5:00–6:00 PM</span><span class="cls-name">Vinyasa flow</span></a>
+        <a class="cls" href="https://www.grassrootsyoga.com/booknow" target="_blank" rel="noopener"><span class="cls-day">Mon</span><span class="cls-time">6:15–7:30 PM</span><span class="cls-name">Slow Flow + Restorative (75mins)</span></a>
+        <a class="cls" href="https://www.grassrootsyoga.com/booknow" target="_blank" rel="noopener"><span class="cls-day">Sun</span><span class="cls-time">4:00–5:00 PM</span><span class="cls-name">Vinyasa flow</span></a>
+        <a class="cls" href="https://www.grassrootsyoga.com/booknow" target="_blank" rel="noopener"><span class="cls-day">Sun</span><span class="cls-time">5:15–6:15 PM</span><span class="cls-name">Yin</span></a>
       </div>
 
       <div class="studio studio-handoff">
