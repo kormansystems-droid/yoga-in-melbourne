@@ -243,7 +243,13 @@ def build_frames(schedule, day, date, items, mode):
     frames = []
 
     # 1 — opener. Names every teacher, because this frame has to be taggable.
-    lead = "Still to come today" if mode == "today" else "Tomorrow"
+    # The headline is the weekday, not the date: "Tuesday Yoga" is the thing being
+    # announced. The date is a fact about it, so it leads the fact line instead.
+    # In tomorrow mode there is no lead phrase — the kicker already says
+    # "Yoga Tomorrow", and repeating it under the headline said nothing twice.
+    facts = [date_str] + (["still to come"] if mode == "today" else []) + [
+        plural(len(uniq), "class"), plural(len(teachers), "teacher"),
+        plural(len(studios), "studio"), plural(len(suburbs), "suburb")]
     frames.append({
         "name": "opener",
         "link": story_link("/", campaign),
@@ -251,10 +257,8 @@ def build_frames(schedule, day, date, items, mode):
         "note": "Tag EVERY teacher on this frame. On 15 Aug this was the best card "
                 "and took the fewest views (37) because nobody was mentioned on it.",
         "html": f'<div class="card"><div class="kicker">{esc(kicker)}</div>'
-                f'<div class="date">{esc(day_full)}<br><em>{esc(date_str)}</em></div>'
-                f'<div class="count">{esc(lead)} · '
-                f'{plural(len(uniq), "class")} · {plural(len(teachers), "teacher")} · '
-                f'{plural(len(studios), "studio")} · {plural(len(suburbs), "suburb")}</div>'
+                f'<div class="date">{esc(day_full)} <em>Yoga</em></div>'
+                f'<div class="count">{esc(" · ".join(facts))}</div>'
                 f'<div class="names"><div class="names-lbl">Our teachers</div><ul>'
                 + "".join(f"<li>{esc(t)}</li>" for t in teachers)
                 + f'</ul></div>{_foot()}</div>',
