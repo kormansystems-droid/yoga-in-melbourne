@@ -17,12 +17,21 @@ Frames
 ------
     1  opener    the date, the count, every teacher named
     2  line-up   every class, chronological
-    3+ teacher   one frame per teacher, her classes only
+    3+ teacher   one frame per teacher, that teacher's classes only
+    last closer  who was on the mat, and the route to the full timetable
 
-One frame per teacher at any roster size: a reshare audience enters at *her* frame
-regardless of where it sits in the sequence, which is why frame position does not
-decay tagged frames. There is no closer — on 15 Aug the closer took 30 views, the
-fewest of any frame, because nobody could be tagged on it.
+One frame per teacher at any roster size: a reshare audience enters at *that*
+frame regardless of where it sits in the sequence, which is why frame position
+does not decay tagged frames. The 18 Aug run is the clearest case yet — the
+opener took 36 views and Steph Philip's frame took **183**, because her audience
+entered at her frame and never saw the rest of the sequence.
+
+The closer is the weakest frame every time it runs — 30 views on 15 Aug, 30 on
+17 Aug, 16 on 18 Aug — and it stays, because at a small roster **volume is the
+job, not views**: a four-frame story rolls past before anyone settles into it.
+It is generated rather than hand-made so that keeping it costs nothing at 7pm,
+and it now gets a captions.md row with the full mention list like every other
+frame.
 
 Every frame must carry a link sticker, and every frame that can name someone must
 name them. The 15 Aug measurement: tagged frames averaged 123 views, untagged 36 —
@@ -124,6 +133,20 @@ body{background:#3a3a3a;font-family:'Hanken Grotesk',system-ui,sans-serif}
 .teacher-name{font-family:'Fraunces',serif;font-size:104px;line-height:1.02;margin-bottom:14px}
 .teacher-sub{font-family:'Hanken Grotesk',sans-serif;font-size:32px;color:var(--ink-soft);
              padding-bottom:30px;border-bottom:2px solid var(--ochre)}
+
+.closer-lead{
+  font-family:'Fraunces',serif;font-size:64px;line-height:1.10;margin-bottom:40px;
+}
+.closer-lead em{font-style:italic;color:var(--henna)}
+.closer-names{list-style:none;margin-bottom:auto}
+.closer-names li{
+  font-family:'Fraunces',serif;font-size:calc(52px * var(--k));line-height:1.34;
+}
+.closer-cta{
+  margin-top:56px;padding-top:26px;border-top:2px solid var(--ochre);
+  font-family:'Hanken Grotesk',sans-serif;font-size:31px;line-height:1.42;color:var(--ink-soft);
+}
+.closer-cta b{color:var(--ink);font-weight:600}
 
 .foot{position:absolute;left:92px;right:92px;bottom:150px;
       display:flex;justify-content:space-between;align-items:flex-end;
@@ -291,6 +314,39 @@ def build_frames(schedule, day, date, items, mode):
                     f'<div class="teacher-sub">{esc(where)}</div>'
                     f'<div class="rows">{_rows_html(rows, show_teacher=False)}</div>{_foot()}</div>',
         })
+
+    # last — the closer.
+    #
+    # It is the weakest frame every time it runs (30 views on 15 Aug, 30 on 17 Aug,
+    # 16 on 18 Aug) and it stays anyway, because at this roster size the job is
+    # VOLUME, not views: a four-frame story rolls past before anyone settles into
+    # it. Generating it removes the only real argument against keeping it — a frame
+    # that has to be tagged by hand at 7pm every night is exactly the friction that
+    # kills a daily ritual.
+    #
+    # RETIRE IT ON ROSTER SIZE, NOT ON PERFORMANCE — around six teachers on a normal
+    # day, when the per-teacher frames already give the story enough length on their
+    # own. Its view count will never justify it and is not the test.
+    #
+    # Before retiring it, move the "full timetable" call to action onto the line-up
+    # frame. The closer is currently the only frame that carries it, so dropping
+    # this card without moving that line first would silently remove the story's
+    # one route to the whole schedule.
+    lead = "Today" if mode == "today" else "Tomorrow"
+    frames.append({
+        "name": "closer",
+        "link": story_link("/", campaign),
+        "mentions": list(teachers),
+        "note": "Tag every teacher again here. This frame is the story's only route to "
+                "the full timetable, and it is the last thing anyone sees.",
+        "html": f'<div class="card closer"><div class="kicker">{esc(kicker)}</div>'
+                f'<div class="closer-lead">{esc(lead)} <em>on the mat</em> with</div>'
+                f'<ul class="closer-names">'
+                + "".join(f"<li>{esc(t)}</li>" for t in teachers)
+                + '</ul>'
+                f'<div class="closer-cta">Every class, every studio, all in one place — '
+                f'<b>yogainmelbourne.com.au</b></div>{_foot()}</div>',
+    })
     return frames
 
 

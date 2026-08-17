@@ -379,19 +379,73 @@ first — NOT by current page traffic. Page views are a lagging echo of Mark's o
 (learned twice on 15 Aug: Alessia 35→1 and Janita 9→26 both track promotion windows, not
 ambient interest). Most-recently-pushed teacher goes last.
 
-### Rotation ledger — seeded 15 Aug 2026, ? = Mark to fill
+### Rotation ledger — seeded 15 Aug 2026, updated 18 Aug. ? = Mark to fill
 
-| Teacher | Individual pushes (dates) | Group appearances | Proposed solo slot |
-|---|---|---|---|
-| Alessia Frisina | ? (page had 35 views Aug 4–9 — likely pushed early Aug) | Real Teachers reel ~Aug 11 | ? |
-| Emma Strembickyj | ? | Real Teachers reel ~Aug 11 | early slot if unexposed |
-| Zoe Kanat | ? | Real Teachers reel ~Aug 11 | early slot if unexposed |
-| Janita Doelken | Yin TT piece (~Aug 5–6), day-retreats piece (~Aug 13) | Real Teachers reel ~Aug 11 | **last — Aug 27–28** |
-| Rayne Watkin | ? | Real Teachers reel ~Aug 11 | early slot if unexposed |
+Two columns added 18 Aug: **IG followers** and **audience type**. The second is the one that
+matters and it is not a number — it is a judgement about whether her account is a *teaching*
+account (class times, studio tags, workshops) or a *life* account.
+
+**Why it earns a column, and why it must be *checked* rather than felt.** On 17 Aug Zoe's
+account was assumed personal and Alessia's professional. Mark opened her profile: **@zoekanat,
+1,729 followers, 497 posts**, bio "Yoga Nidra Guide & Mentor", highlights for Collaborations,
+Events and Insight Timer, a grid of teaching video — and a YiM card already posted. Emphatically
+professional. The assumption was wrong, it took ten seconds to disprove, and it would have
+mis-set the expectation for her reel. **Look at the account. Do not infer the type from the
+teacher, or from her follower count.**
+
+Note also the shape: 497 posts against 1,729 followers is content-heavy and reach-light. She
+publishes constantly and the audience has not compounded — which is the profile of someone whose
+distribution is *elsewhere* (Insight Timer), with Instagram as a shopfront. Useful to recognise,
+because it means her Instagram number understates her standing and overstates nothing.
+
+Alessia's first solo collab returned **383 views and 8 followers on day one** off 6,200
+followers — about 6% of follower count as views. Zoe at 1,729 professional followers should be
+expected somewhere near **110–250**, the spread reflecting that a professional audience engages
+harder than the raw ratio implies.
+
+Selection rule that follows: **rank collaborators by professional reach — followers × how much
+of the account is about teaching — not by prominence.** The roster's biggest name is not
+necessarily its best collaborator.
+
+**Geography is the separate axis, and for Zoe it is the live one.** She teaches almost entirely
+online, worldwide, and her ~33,000 Insight Timer following is on another platform that does not
+seed an Instagram reel. YiM's thesis is that a *citywide* following buys publication relevance —
+a follower in Portland does not book in Brighton or make a studio take the call. So track where
+new followers land, not just how many. Two columns may eventually be needed: audience type and
+audience place.
+
+| Teacher | IG followers | Audience | Individual pushes (dates) | Group appearances | Proposed solo slot |
+|---|---:|---|---|---|---|
+| Alessia Frisina | **6,200** | professional | Solo collab reel — **383 views, 8 followers day 1** | Real Teachers reel ~Aug 11 | anchor the next five-way |
+| Emma Strembickyj | ? | ? | ? | Real Teachers reel ~Aug 11 | early slot if unexposed |
+| Zoe Kanat | **1,729** | professional, but global — checked 18 Aug, having been wrongly assumed personal. 497 posts, a Collaborations highlight, and YiM already in her grid. ~33k on Insight Timer, another platform | Collab reel for hero + podcast, **18 Aug** | Real Teachers reel ~Aug 11 | — |
+| Janita Doelken | ? | ? | Yin TT piece (~Aug 5–6), day-retreats piece (~Aug 13) | Real Teachers reel ~Aug 11 | **last — Aug 27–28** |
+| Rayne Watkin | ? | ? | ? | Real Teachers reel ~Aug 11 | early slot if unexposed |
+| Steph Philip | ? | ? | Listed 17 Aug — story frame **183 views**, 5× the opener | On the Mat from 18 Aug | candidate for next five-way |
+| Ryan Mannix | ? | ? | Listed 17 Aug | On the Mat from 19 Aug | — |
+| *(two onboarded 17 Aug)* | ? | ? | ? | ? | — |
+
+Fill followers and audience type at onboarding — both are visible on her profile in ten seconds,
+and neither can be reconstructed later once a reel has already been chosen badly.
 
 Slots for the current season: Aug 17–18, Aug 20–21, Aug 24–25, Aug 27–28 (Janita).
 Four of the five collab teachers get solos this season (which four: Mark to confirm).
 First topical voice-note collab (music-in-class or equivalent) targets ~Sep 1 as season 2's opener.
+
+### Group reels beat sequential solos — measured 18 Aug
+
+| | Collaborators | Views | Followers | Per collaborator |
+|---|---:|---:|---:|---|
+| Alessia, solo collab | 1 | 383 | 8 | 383 views · 8 followers |
+| Real Teachers | 5 | 3,200 | 50 | **640 views · 10 followers** |
+
+The five-way did **8.4×** a single collab, not 5× — **1.7× more efficient per collaborator**.
+Likely because a Collab post seeds into every collaborator's feed at once, and the concentrated
+early engagement is what the algorithm amplifies. Five solo reels run sequentially would return
+roughly 1,900 views; one five-way returned 3,200.
+
+**Sequencing rule: bank teachers, then fire them as a five.** Do not promote each new teacher as
+she lands — the reach is worth ~70% more spent together.
 
 **End-of-season readout (per solo, from GA):** sessions on that teacher's page, pages/session,
 outbound booking clicks. Compare against the collab's homepage numbers (1.42 pages/session,
