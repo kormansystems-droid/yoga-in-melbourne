@@ -314,6 +314,86 @@
           "class": "Yin + Yoga Nidra"
         }
       ]
+    },
+    "Steph Phillip": {
+      "name": {
+        "given": "Steph",
+        "family": "Phillip"
+      },
+      "aliases": [
+        "Steph Phillip",
+        "Steph Philip",
+        "Stephanie Phillip",
+        "Stephanie Philip"
+      ],
+      "classes": [
+        {
+          "studio": "here-yoga-malvern",
+          "day": "Tue",
+          "time": "7:30–8:30 AM",
+          "class": "Slow Flow"
+        },
+        {
+          "studio": "here-yoga-malvern",
+          "day": "Tue",
+          "time": "9:30–10:30 AM",
+          "class": "Dynamic Flow"
+        },
+        {
+          "studio": "here-yoga-malvern",
+          "day": "Thu",
+          "time": "5:00–6:00 PM",
+          "class": "Dynamic Flow"
+        },
+        {
+          "studio": "here-yoga-malvern",
+          "day": "Thu",
+          "time": "6:15–7:15 PM",
+          "class": "Candlelit Slow Flow"
+        },
+        {
+          "studio": "here-yoga-malvern",
+          "day": "Thu",
+          "time": "7:30–8:30 PM",
+          "class": "Candlelit Yin"
+        },
+        {
+          "studio": "here-yoga-malvern",
+          "day": "Sun",
+          "time": "8:30–9:30 AM",
+          "class": "Dynamic Flow"
+        },
+        {
+          "studio": "here-yoga-malvern",
+          "day": "Sun",
+          "time": "10:00–11:00 AM",
+          "class": "Slow Flow"
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Mon",
+          "time": "10:45–11:45 AM",
+          "class": "Yin & Sound Bowls"
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Mon",
+          "time": "12:15–1:15 PM",
+          "class": "Slow Flow"
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Fri",
+          "time": "5:00–6:00 PM",
+          "class": "Slow Flow"
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Fri",
+          "time": "6:15–7:15 PM",
+          "class": "Yin & Sound Bowls"
+        }
+      ]
     }
   }
 }
