@@ -74,6 +74,10 @@ MIN_CLASSES = 3
 # noon makes the format look inattentive.
 TODAY_CUTOFF = "14:00"
 
+# Above this many classes the line-up splits across two frames. Set from what a
+# 1080x1920 card actually holds at the smallest legible type, not from taste.
+LINEUP_MAX = 8
+
 # Only the @font-face blocks — the real typefaces, none of the site's layout.
 FONT_FACES = "\n".join(re.findall(r"@font-face\{[^}]*\}", BASE_CSS))
 
@@ -287,16 +291,48 @@ def build_frames(schedule, day, date, items, mode):
                 + f'</ul></div>{_foot()}</div>',
     })
 
-    # 2 — the full line-up
-    frames.append({
-        "name": "lineup",
-        "link": story_link("/", campaign),
-        "mentions": list(teachers),
-        "note": "Tag every teacher and every studio shown.",
-        "html": f'<div class="card"><div class="kicker">{esc(kicker)} · the line-up</div>'
-                f'<div class="date">{esc(day_full)}</div>'
-                f'<div class="rows">{_rows_html(uniq, show_teacher=True)}</div>{_foot()}</div>',
-    })
+    # 2 — the line-up, split above LINEUP_MAX.
+    #
+    # Wed 19 Aug was the first day the roster broke a single card: 14 classes
+    # overflow even at the 0.62 scale floor, and the type is already at its
+    # legible limit, so shrinking further is not available. The build correctly
+    # refused to ship a card with a class cut off the bottom — which meant the
+    # nightly workflow published nothing at all.
+    #
+    # Split by TIME OF DAY rather than an arbitrary midpoint, because that is how
+    # a reader uses it: she already knows whether she wants a 6am class or a 6pm
+    # one. A day that falls entirely into one half splits in halves instead, so
+    # the rule degrades sensibly rather than producing one empty frame.
+    #
+    # Each part mentions only the teachers ON that part. Tagging the whole roster
+    # on both would put a teacher's name against a card her classes are not on,
+    # and the reshare is supposed to be about her day.
+    def _lineup_frame(rows, label, slug):
+        head = f"{esc(kicker)} · the line-up" + (f" · {esc(label)}" if label else "")
+        return {
+            "name": f"lineup-{slug}" if slug else "lineup",
+            "link": story_link("/", campaign),
+            "mentions": sorted({r["teacher"] for r in rows}),
+            "note": "Tag every teacher and every studio shown on this frame — and only "
+                    "the ones shown on it.",
+            "html": f'<div class="card"><div class="kicker">{head}</div>'
+                    f'<div class="date">{esc(day_full)}</div>'
+                    f'<div class="rows">{_rows_html(rows, show_teacher=True)}</div>{_foot()}</div>',
+        }
+
+    if len(uniq) <= LINEUP_MAX:
+        frames.append(_lineup_frame(uniq, None, None))
+    else:
+        morning = [r for r in uniq if r["mins"] < 720]
+        later = [r for r in uniq if r["mins"] >= 720]
+        if morning and later:
+            parts = [(morning, "the morning", "morning"),
+                     (later, "the afternoon & evening", "afternoon-evening")]
+        else:                                   # all one half of the day
+            half = (len(uniq) + 1) // 2
+            parts = [(uniq[:half], "1 of 2", "1-of-2"), (uniq[half:], "2 of 2", "2-of-2")]
+        for rows, label, slug in parts:
+            frames.append(_lineup_frame(rows, label, slug))
 
     # 3+ — one per teacher
     for t in teachers:
