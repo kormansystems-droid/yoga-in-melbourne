@@ -603,14 +603,10 @@
         {
           "studio": "grass-roots-st-kilda",
           "day": "Tue",
+          "start": "06:15",
           "time": "6:15–7:15 AM",
-          "class": "Hot Flow"
-        },
-        {
-          "studio": "grass-roots-st-kilda",
-          "day": "Wed",
-          "time": "6:15–7:30 PM",
-          "class": "Vinyasa flow"
+          "class": "Hot Flow",
+          "sub": true
         }
       ]
     },
