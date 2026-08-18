@@ -164,31 +164,46 @@
           "studio": "within-south-yarra",
           "day": "Wed",
           "time": "5:00–6:00 PM",
-          "class": "Slow Flow Yoga"
+          "class": "Slow Flow Yoga",
+          "dates": [
+            "2026-08-19"
+          ]
         },
         {
           "studio": "within-south-yarra",
           "day": "Wed",
           "time": "6:15–7:15 PM",
-          "class": "Strong Flow Yoga"
+          "class": "Strong Flow Yoga",
+          "dates": [
+            "2026-08-19"
+          ]
         },
         {
           "studio": "within-south-yarra",
           "day": "Wed",
           "time": "7:30–8:30 PM",
-          "class": "Yin Yoga"
+          "class": "Yin Yoga",
+          "dates": [
+            "2026-08-19"
+          ]
         },
         {
           "studio": "within-south-yarra",
           "day": "Sun",
           "time": "8:00–9:00 AM",
-          "class": "Strong Flow Yoga"
+          "class": "Strong Flow Yoga",
+          "dates": [
+            "2026-08-23"
+          ]
         },
         {
           "studio": "within-south-yarra",
           "day": "Sun",
           "time": "9:30–10:30 AM",
-          "class": "Yin Yoga"
+          "class": "Yin Yoga",
+          "dates": [
+            "2026-08-23"
+          ]
         },
         {
           "studio": "warrior-one-brighton",
@@ -237,7 +252,9 @@
           "day": "Sat",
           "time": "5:15–6:15 PM",
           "class": "Yin",
-          "sub": true
+          "dates": [
+            "2026-08-22"
+          ]
         }
       ]
     },
@@ -254,91 +271,128 @@
           "studio": "within-south-yarra",
           "day": "Mon",
           "time": "5:00–6:00 PM",
-          "class": "Slow Flow Yoga"
+          "class": "Slow Flow Yoga",
+          "dates": [
+            "2026-08-24"
+          ]
         },
         {
           "studio": "within-south-yarra",
           "day": "Mon",
           "time": "6:15–7:15 PM",
-          "class": "Strong Flow Yoga"
+          "class": "Strong Flow Yoga",
+          "dates": [
+            "2026-08-24"
+          ]
         },
         {
           "studio": "within-south-yarra",
           "day": "Mon",
           "time": "7:30–8:30 PM",
-          "class": "Yin Yoga"
+          "class": "Yin Yoga",
+          "dates": [
+            "2026-08-24"
+          ]
         },
         {
           "studio": "grass-roots-st-kilda",
           "day": "Tue",
           "time": "5:00–6:00 PM",
           "class": "Hot Flow",
-          "sub": true
+          "dates": [
+            "2026-08-25"
+          ]
         },
         {
           "studio": "grass-roots-st-kilda",
           "day": "Tue",
           "time": "6:15–7:15 PM",
           "class": "Vinyasa flow",
-          "sub": true
+          "dates": [
+            "2026-08-25"
+          ]
         },
         {
           "studio": "grass-roots-st-kilda",
           "day": "Tue",
           "time": "7:30–8:30 PM",
           "class": "Yin",
-          "sub": true
+          "dates": [
+            "2026-08-25"
+          ]
         },
         {
           "studio": "grass-roots-st-kilda",
           "day": "Wed",
           "time": "6:15–7:15 AM",
           "class": "Vinyasa flow",
-          "sub": true
+          "dates": [
+            "2026-08-26"
+          ]
         },
         {
           "studio": "grass-roots-st-kilda",
           "day": "Thu",
           "time": "6:15–7:15 PM",
-          "class": "Yoga Fundamentals"
+          "class": "Yoga Fundamentals",
+          "dates": [
+            "2026-08-27"
+          ]
         },
         {
           "studio": "grass-roots-st-kilda",
           "day": "Thu",
           "time": "7:30–8:30 PM",
-          "class": "Yin"
+          "class": "Yin",
+          "dates": [
+            "2026-08-27"
+          ]
         },
         {
           "studio": "here-yoga-port-melbourne",
           "day": "Tue",
           "time": "9:30–10:30 AM",
-          "class": "Dynamic Flow"
+          "class": "Dynamic Flow",
+          "dates": [
+            "2026-08-25",
+            "2026-09-01"
+          ]
         },
         {
           "studio": "here-yoga-port-melbourne",
           "day": "Sun",
           "time": "8:30–9:30 AM",
           "class": "Dynamic Flow",
-          "sub": true
+          "dates": [
+            "2026-08-30"
+          ]
         },
         {
           "studio": "here-yoga-port-melbourne",
           "day": "Sun",
           "time": "10:00–11:00 AM",
           "class": "Slow Flow",
-          "sub": true
+          "dates": [
+            "2026-08-30"
+          ]
         },
         {
           "studio": "kozen-yoga-hawthorn",
           "day": "Wed",
           "time": "6:15–7:15 PM",
-          "class": "Flow Class"
+          "class": "Flow Class",
+          "dates": [
+            "2026-08-26"
+          ]
         },
         {
           "studio": "kozen-yoga-hawthorn",
           "day": "Wed",
           "time": "7:30–8:30 PM",
-          "class": "Yin Class"
+          "class": "Yin Class",
+          "dates": [
+            "2026-08-26"
+          ]
         }
       ]
     },
@@ -355,37 +409,59 @@
           "studio": "grass-roots-st-kilda",
           "day": "Mon",
           "time": "6:15–7:15 AM",
-          "class": "Hot Flow"
+          "class": "Hot Flow",
+          "dates": [
+            "2026-08-24",
+            "2026-08-31"
+          ]
         },
         {
           "studio": "grass-roots-st-kilda",
           "day": "Mon",
           "time": "9:30–10:30 AM",
-          "class": "Vinyasa flow"
+          "class": "Vinyasa flow",
+          "dates": [
+            "2026-08-24",
+            "2026-08-31"
+          ]
         },
         {
           "studio": "grass-roots-st-kilda",
           "day": "Mon",
           "time": "5:00–6:00 PM",
-          "class": "Vinyasa flow"
+          "class": "Vinyasa flow",
+          "dates": [
+            "2026-08-31"
+          ]
         },
         {
           "studio": "grass-roots-st-kilda",
           "day": "Mon",
           "time": "6:15–7:30 PM",
-          "class": "Slow Flow + Restorative (75mins)"
+          "class": "Slow Flow + Restorative (75mins)",
+          "dates": [
+            "2026-08-31"
+          ]
         },
         {
           "studio": "grass-roots-st-kilda",
           "day": "Sun",
           "time": "4:00–5:00 PM",
-          "class": "Vinyasa flow"
+          "class": "Vinyasa flow",
+          "dates": [
+            "2026-08-23",
+            "2026-08-30"
+          ]
         },
         {
           "studio": "grass-roots-st-kilda",
           "day": "Sun",
           "time": "5:15–6:15 PM",
-          "class": "Yin"
+          "class": "Yin",
+          "dates": [
+            "2026-08-23",
+            "2026-08-30"
+          ]
         }
       ]
     },
@@ -459,61 +535,98 @@
           "studio": "good-vibes-collingwood",
           "day": "Tue",
           "time": "12:30–1:30 PM",
-          "class": "Vinyasa Flow"
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-08-25",
+            "2026-09-01"
+          ]
         },
         {
           "studio": "good-vibes-collingwood",
           "day": "Tue",
           "time": "4:30–5:30 PM",
-          "class": "Vinyasa Flow"
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-08-25",
+            "2026-09-01"
+          ]
         },
         {
           "studio": "good-vibes-collingwood",
           "day": "Tue",
           "time": "6:00–7:00 PM",
-          "class": "Vinyasa Flow"
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-08-25",
+            "2026-09-01"
+          ]
         },
         {
           "studio": "good-vibes-collingwood",
           "day": "Wed",
           "time": "12:30–1:30 PM",
-          "class": "Vinyasa Flow"
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-08-19",
+            "2026-08-26"
+          ]
         },
         {
           "studio": "good-vibes-collingwood",
           "day": "Sun",
           "time": "2:00–3:00 PM",
-          "class": "Vinyasa Flow"
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-08-23"
+          ]
         },
         {
           "studio": "good-vibes-collingwood",
           "day": "Sun",
           "time": "3:30–4:30 PM",
-          "class": "Keep It Mellow"
+          "class": "Keep It Mellow",
+          "dates": [
+            "2026-08-23"
+          ]
         },
         {
           "studio": "good-vibes-collingwood",
           "day": "Sun",
           "time": "5:00–6:00 PM",
-          "class": "Yin"
+          "class": "Yin",
+          "dates": [
+            "2026-08-23"
+          ]
         },
         {
           "studio": "good-vibes-northcote",
           "day": "Wed",
           "time": "10:00–11:00 AM",
-          "class": "Vinyasa Flow"
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-08-19",
+            "2026-08-26"
+          ]
         },
         {
           "studio": "good-vibes-northcote",
           "day": "Wed",
           "time": "4:45–5:45 PM",
-          "class": "Keep It Mellow"
+          "class": "Keep It Mellow",
+          "dates": [
+            "2026-08-19",
+            "2026-08-26"
+          ]
         },
         {
           "studio": "good-vibes-northcote",
           "day": "Wed",
           "time": "6:00–7:00 PM",
-          "class": "Vinyasa Flow"
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-08-19",
+            "2026-08-26"
+          ]
         }
       ]
     },
@@ -527,48 +640,6 @@
         "Sara Metzger"
       ],
       "classes": [
-        {
-          "studio": "here-yoga-malvern",
-          "day": "Mon",
-          "time": "5:00–6:00 PM",
-          "class": "Dynamic Flow"
-        },
-        {
-          "studio": "here-yoga-malvern",
-          "day": "Mon",
-          "time": "6:15–7:15 PM",
-          "class": "Candlelit Dynamic Flow"
-        },
-        {
-          "studio": "here-yoga-malvern",
-          "day": "Wed",
-          "time": "7:15–8:15 AM",
-          "class": "Dynamic Flow"
-        },
-        {
-          "studio": "here-yoga-port-melbourne",
-          "day": "Wed",
-          "time": "6:15–7:15 PM",
-          "class": "Candlelit Slow Flow"
-        },
-        {
-          "studio": "here-yoga-port-melbourne",
-          "day": "Wed",
-          "time": "7:30–8:30 PM",
-          "class": "Candlelit Yin"
-        },
-        {
-          "studio": "here-yoga-malvern",
-          "day": "Fri",
-          "time": "7:15–8:15 AM",
-          "class": "Slow Flow"
-        },
-        {
-          "studio": "here-yoga-malvern",
-          "day": "Fri",
-          "time": "9:30–10:30 AM",
-          "class": "Dynamic Flow"
-        },
         {
           "studio": "warrior-one-brighton",
           "day": "Tue",
@@ -586,6 +657,95 @@
           "day": "Tue",
           "time": "12:15–1:15 PM",
           "class": "Slow Flow"
+        },
+        {
+          "studio": "here-yoga-port-melbourne",
+          "day": "Wed",
+          "time": "5:00–6:00 PM",
+          "class": "Dynamic Flow",
+          "dates": [
+            "2026-08-19",
+            "2026-08-26"
+          ]
+        },
+        {
+          "studio": "here-yoga-port-melbourne",
+          "day": "Wed",
+          "time": "6:15–7:15 PM",
+          "class": "Candlelit Slow Flow",
+          "dates": [
+            "2026-08-19",
+            "2026-08-26"
+          ]
+        },
+        {
+          "studio": "here-yoga-port-melbourne",
+          "day": "Wed",
+          "time": "7:30–8:30 PM",
+          "class": "Candlelit Yin",
+          "dates": [
+            "2026-08-19",
+            "2026-08-26"
+          ]
+        },
+        {
+          "studio": "here-yoga-port-melbourne",
+          "day": "Sun",
+          "time": "11:15–11:45 AM",
+          "class": "200hr Yoga Training Info Session",
+          "dates": [
+            "2026-08-23"
+          ]
+        },
+        {
+          "studio": "here-yoga-malvern",
+          "day": "Mon",
+          "time": "5:00–6:00 PM",
+          "class": "Dynamic Flow",
+          "dates": [
+            "2026-08-24",
+            "2026-08-31"
+          ]
+        },
+        {
+          "studio": "here-yoga-malvern",
+          "day": "Mon",
+          "time": "6:15–7:15 PM",
+          "class": "Candlelit Dynamic Flow",
+          "dates": [
+            "2026-08-24",
+            "2026-08-31"
+          ]
+        },
+        {
+          "studio": "here-yoga-malvern",
+          "day": "Wed",
+          "time": "7:15–8:15 AM",
+          "class": "Dynamic Flow",
+          "dates": [
+            "2026-08-19",
+            "2026-08-26"
+          ]
+        },
+        {
+          "studio": "here-yoga-malvern",
+          "day": "Fri",
+          "time": "7:15–8:15 AM",
+          "class": "Slow Flow",
+          "dates": [
+            "2026-08-21",
+            "2026-08-28"
+          ]
+        },
+        {
+          "studio": "here-yoga-malvern",
+          "day": "Fri",
+          "time": "9:30–10:30 AM",
+          "class": "Dynamic Flow",
+          "dates": [
+            "2026-08-21",
+            "2026-08-28"
+          ]
         }
       ]
     },
@@ -603,10 +763,12 @@
         {
           "studio": "grass-roots-st-kilda",
           "day": "Tue",
-          "start": "06:15",
           "time": "6:15–7:15 AM",
           "class": "Hot Flow",
-          "sub": true
+          "dates": [
+            "2026-08-25",
+            "2026-09-01"
+          ]
         }
       ]
     },
@@ -650,43 +812,71 @@
           "studio": "here-yoga-malvern",
           "day": "Tue",
           "time": "7:30–8:30 AM",
-          "class": "Slow Flow"
+          "class": "Slow Flow",
+          "dates": [
+            "2026-08-25",
+            "2026-09-01"
+          ]
         },
         {
           "studio": "here-yoga-malvern",
           "day": "Tue",
           "time": "9:30–10:30 AM",
-          "class": "Dynamic Flow"
+          "class": "Dynamic Flow",
+          "dates": [
+            "2026-08-25",
+            "2026-09-01"
+          ]
         },
         {
           "studio": "here-yoga-malvern",
           "day": "Thu",
           "time": "5:00–6:00 PM",
-          "class": "Dynamic Flow"
+          "class": "Dynamic Flow",
+          "dates": [
+            "2026-08-20",
+            "2026-08-27"
+          ]
         },
         {
           "studio": "here-yoga-malvern",
           "day": "Thu",
           "time": "6:15–7:15 PM",
-          "class": "Candlelit Slow Flow"
+          "class": "Candlelit Slow Flow",
+          "dates": [
+            "2026-08-20",
+            "2026-08-27"
+          ]
         },
         {
           "studio": "here-yoga-malvern",
           "day": "Thu",
           "time": "7:30–8:30 PM",
-          "class": "Candlelit Yin"
+          "class": "Candlelit Yin",
+          "dates": [
+            "2026-08-20",
+            "2026-08-27"
+          ]
         },
         {
           "studio": "here-yoga-malvern",
           "day": "Sun",
           "time": "8:30–9:30 AM",
-          "class": "Dynamic Flow"
+          "class": "Dynamic Flow",
+          "dates": [
+            "2026-08-23",
+            "2026-08-30"
+          ]
         },
         {
           "studio": "here-yoga-malvern",
           "day": "Sun",
           "time": "10:00–11:00 AM",
-          "class": "Slow Flow"
+          "class": "Slow Flow",
+          "dates": [
+            "2026-08-23",
+            "2026-08-30"
+          ]
         }
       ]
     }
