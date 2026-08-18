@@ -517,6 +517,31 @@
         }
       ]
     },
+    "Shelley Armstrong": {
+      "name": {
+        "given": "Shelley",
+        "family": "Armstrong"
+      },
+      "aliases": [
+        "Shelley Armstrong",
+        "Shelly Armstrong",
+        "Shell Armstrong"
+      ],
+      "classes": [
+        {
+          "studio": "grass-roots-st-kilda",
+          "day": "Tue",
+          "time": "6:15–7:15 AM",
+          "class": "Hot Flow"
+        },
+        {
+          "studio": "grass-roots-st-kilda",
+          "day": "Wed",
+          "time": "6:15–7:30 PM",
+          "class": "Vinyasa flow"
+        }
+      ]
+    },
     "Steph Philip": {
       "name": {
         "given": "Steph",
