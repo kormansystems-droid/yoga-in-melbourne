@@ -101,6 +101,19 @@ date alone.
 
 Aggregated schedule data is factual and public — no approval needed. A teacher **page** is
 editorial and never publishes without her yes. Coverage is never for sale. A listing (rung 0)
-carries no editorial content at all: no essence line, no pull quote, no portrait, no player.
+carries no editorial *writing* at all: no essence line, no pull quote, no story, no player.
 If a sentence about who she is wants writing, it belongs in a profile, and the profile needs
 her approval first.
+
+**A listing may carry a portrait she supplied. Amended 18 Aug 2026.**
+*This reverses the earlier wording, which listed "no portrait" alongside the editorial bans.*
+
+A photograph she hands over is hers to publish; a story about her is not. The two are not the
+same permission, and bundling them cost the listing its warmth for no editorial gain. Teachers
+arriving through On the Mat often supply a photograph and just as often do not, so
+`_listing.template.html` now ships **with** the portrait head and comments telling you how to
+strip it: remove `has-portrait` from `.listing-head`, delete the `.lh-portrait` block, unwrap
+`.lh-text`. An empty frame reads as an omission; the plain typographic head reads as a decision.
+
+The line that still holds: a portrait does not make a listing a profile. A profile needs an
+interview and her approval of the words.
