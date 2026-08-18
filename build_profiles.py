@@ -253,8 +253,47 @@ def build_one(tpl, data):
     if leftover: raise SystemExit(f"{tpl.name}: unfilled tokens {leftover}")
     return out
 
+def build_index(data):
+    """Fill the homepage router's teacher row from schedule.json.
+
+    Hand-maintained lists rot the moment onboarding gets easy: Steph Philip and
+    Ryan Mannix both went live with working pages and no route to them from the
+    homepage, because someone had to remember to add a line and didn't.
+
+    Only the router row is generated. The Teachers grid stays hand-curated — it
+    carries portraits and standfirsts for teachers whose profile has been written
+    and approved, which is an editorial decision, not a list of rows in a table.
+    A listing belongs in the router because a reader looking for her timetable
+    should find it; it does not belong in the showcase until she has said yes to
+    a profile."""
+    idx = ROOT / "index.html"
+    src = idx.read_text()
+    # Ordered by class count, descending. On mobile this row is a horizontal
+    # scroll strip (flex-wrap:nowrap; overflow-x:auto), so POSITION IS VISIBILITY —
+    # roughly two and a half chips are on screen and the rest need a swipe.
+    # Alphabetical would have buried Steph Philip and Ryan Mannix at R and S, which
+    # is precisely the pair that prompted this. Class count answers the question the
+    # label asks — "find a teacher, her full timetable" — and it self-corrects: a
+    # teacher who picks up classes rises without anyone maintaining a list.
+    order = sorted(data["teachers"],
+                   key=lambda n: (-len(data["teachers"][n].get("classes", [])), n.split()[0].lower()))
+    links = "".join(f'\n      <a href="{slug_of(n)}.html">{esc(n)}</a>' for n in order)
+    out = re.sub(r"(<!-- ROUTER_PEOPLE:START -->).*?(<!-- ROUTER_PEOPLE:END -->)",
+                 lambda m: m.group(1) + links + "\n    " + m.group(2), src, flags=re.S)
+    if out == src and "ROUTER_PEOPLE:START" not in src:
+        raise SystemExit("index.html: ROUTER_PEOPLE markers missing")
+    if out != src:
+        idx.write_text(out)
+        print(f"built index.html router          <- {len(data['teachers'])} teachers")
+
+
+def slug_of(name):
+    return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+
+
 def main():
     data = json.loads(DATA.read_text())
+    build_index(data)
     tpls = sorted(t for t in TEMPLATES.glob("*.template.html") if not t.name.startswith("_"))
     if not tpls: raise SystemExit("no templates")
     for t in tpls:
