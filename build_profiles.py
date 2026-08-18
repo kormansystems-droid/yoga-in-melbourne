@@ -44,9 +44,19 @@ def esc(s): return html.escape(s, quote=False)
 def esc_attr(s): return html.escape(str(s), quote=True)
 
 def start_minutes(t):
+    """Minutes past midnight for the START of a '10:45–11:45 AM' style range.
+
+    A class that crosses noon carries its own meridiem on the start time —
+    '10:45 AM–12:00 PM' — because the range's single trailing AM/PM cannot
+    describe it. Read the start's own meridiem where it has one, and only fall
+    back to the range's when it does not. Without this, every AM class ending
+    after noon parses as PM and sorts to the evening: Rayne's 75-minute Yin &
+    Yoga Nidra at Mordialloc was the first such class on the roster, and it
+    would have sorted silently, not crashed."""
     start = re.split(r"[–-]", t)[0].strip()
-    mer = "PM" if "PM" in t.upper() else "AM"
-    h,m = (int(x) for x in start.split(":"))
+    own = re.search(r"(AM|PM)", start, re.I)
+    mer = (own.group(1) if own else ("PM" if "PM" in t.upper() else "AM")).upper()
+    h, m = (int(x) for x in re.sub(r"\s*(AM|PM)\s*", "", start, flags=re.I).split(":"))
     if mer=="PM" and h!=12: h+=12
     if mer=="AM" and h==12: h=0
     return h*60+m

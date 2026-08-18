@@ -23,7 +23,8 @@
         "slug": "751447bfa",
         "min_rows": 15,
         "note": "Interim widget scrape (min_rows guards partial renders). Swap to {type: mindbody, site_id: 211566, location: <Location.Name>} when activation approved."
-      }
+      },
+      "verified": "2026-08-18"
     },
     "warrior-one-mordialloc": {
       "name": "Warrior One",
@@ -36,7 +37,8 @@
         "slug": "751457bfa",
         "min_rows": 10,
         "note": "Interim widget scrape (min_rows guards partial renders). Swap to {type: mindbody, site_id: 211566, location: <Location.Name>} when activation approved."
-      }
+      },
+      "verified": "2026-08-18"
     },
     "grass-roots-st-kilda": {
       "name": "Grass Roots",
@@ -132,6 +134,18 @@
         "type": "momence",
         "host": 33014,
         "location": "Northcote"
+      }
+    },
+    "warrior-one-mornington": {
+      "name": "Warrior One",
+      "location": "Mornington",
+      "url": "https://warrioroneyoga.com.au/mornington/",
+      "book": "https://warrioroneyoga.com.au/mornington/",
+      "platform": "mindbody",
+      "verified": "2026-08-18",
+      "feed": {
+        "type": "manual",
+        "note": "No YiM teacher here yet and no widget slug captured, so nothing to pull. Swap to {type: mindbody, site_id: 211566, location: <Location.Name>} at activation — the same site serves Brighton, Mordialloc and Mornington."
       }
     }
   },
@@ -412,7 +426,7 @@
         },
         {
           "day": "Tue",
-          "time": "10:45–11:45 AM",
+          "time": "10:45 AM–12:00 PM",
           "class": "Yin & Yoga Nidra",
           "studio": "warrior-one-mordialloc"
         },
