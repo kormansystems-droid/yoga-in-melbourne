@@ -2,10 +2,21 @@
 """
 normalizers.py — turn each platform's raw feed into platform-agnostic rows.
 
-A row is exactly what merge.py expects, plus a sub flag:
+A row is exactly what merge.py expects:
     {"studio": <studio_id>, "teacher": <raw name as the feed spells it>,
-     "day": "Mon", "start": "06:00", "time": "6:00–7:00 AM",
-     "class": "Vinyasa Flow", "sub": False}
+     "date": "2026-08-19", "day": "Mon", "start": "06:00",
+     "time": "6:00–7:00 AM", "class": "Vinyasa Flow"}
+
+`date` is the single fact that matters: on this date, at this studio, at this
+time, this is the teacher. Rosters churn constantly — teachers travel, cover for
+each other, hand slots over — so nobody "owns" a slot and no feed field says who
+does. Momence's `originalTeacher` only records that an assignment was edited; it
+is bookkeeping, not a fact about the world, and it is deliberately not read.
+
+A row carries no `date` only when its feed genuinely has none: Inndriya publishes
+a weekly grid with no dates in it at all. Undated rows still render on a profile
+as a weekly timetable, but nothing downstream may use them to claim a class runs
+on a given day — see build_story_cards.classes_for.
 
 Two platforms are solved and validated against real captured data:
   - Momence  (Grass Roots host 34431, Here Yoga host 40780): clean JSON API.
@@ -30,8 +41,12 @@ def _time_range(start, end):
     return f"{s}\u2013{e}".strip("\u2013")
 
 
-def _row(studio_id, teacher, start, end, cls, sub, url=None):
-    """`url` is optional and deep-links to that specific session's booking page.
+def _row(studio_id, teacher, start, end, cls, url=None, dated=True):
+    """`dated=False` for a feed that publishes a weekly grid rather than sessions
+    (Inndriya): `start` is then a synthetic next-occurrence stamp used only to
+    format day/time, so emitting it as a date would be inventing a fact.
+
+    `url` is optional and deep-links to that specific session's booking page.
     Where a feed exposes one, the profile links the class row straight at it;
     where it does not, the row falls back to the studio's booking page. Adding it
     to a normalizer is the whole change — merge and the templates already carry
@@ -42,8 +57,9 @@ def _row(studio_id, teacher, start, end, cls, sub, url=None):
         "start": start.strftime("%H:%M"),
         "time": _time_range(start, end),
         "class": (cls or "").strip(),
-        "sub": bool(sub),
     }
+    if dated:
+        row["date"] = start.date().isoformat()
     if url:
         row["url"] = str(url).strip()
     return row
@@ -62,13 +78,11 @@ def momence_rows(payload, studio_id, location=None):
             continue
         st = datetime.datetime.fromisoformat(s["startsAt"].replace("Z", "+00:00")).astimezone(MELB)
         en = datetime.datetime.fromisoformat(s["endsAt"].replace("Z", "+00:00")).astimezone(MELB)
-        orig = s.get("originalTeacher")
-        sub = bool(orig and orig != s.get("teacher"))
         teachers = [s.get("teacher")] + [
             (t.get("name") if isinstance(t, dict) else t) for t in (s.get("additionalTeachers") or [])
         ]
         for tname in [t for t in teachers if t]:
-            rows.append(_row(studio_id, tname, st, en, s.get("sessionName", ""), sub))
+            rows.append(_row(studio_id, tname, st, en, s.get("sessionName", "")))
     return rows
 
 
@@ -93,7 +107,7 @@ def mindbody_rows(payload, studio_id, location=None):
         st = datetime.datetime.fromisoformat(c["StartDateTime"]).replace(tzinfo=MELB)
         en = datetime.datetime.fromisoformat(c["EndDateTime"]).replace(tzinfo=MELB)
         cname = (c.get("ClassDescription") or {}).get("Name", "")
-        rows.append(_row(studio_id, tname, st, en, cname, bool(c.get("Substitute"))))
+        rows.append(_row(studio_id, tname, st, en, cname))
     return rows
 
 
@@ -117,13 +131,12 @@ def healcode_rows(html, studio_id):
             n = re.sub(r'<span class="bw-session__type"[^>]*>.*?</span>', "", nm.group(1), flags=re.S)
             name = H.unescape(re.sub(r"<[^>]+>", "", n)).strip()
         staff_raw = sf.group(1)
-        sub = "bw-session__sub" in staff_raw or "substitute" in staff_raw.lower()
         staff = H.unescape(re.sub(r"<[^>]+>", "", re.sub(r'<span class="bw-session__sub".*?</span>', "", staff_raw, flags=re.S))).strip()
         key = (staff, start.isoformat(), name)
         if key in seen:
             continue
         seen.add(key)
-        rows.append(_row(studio_id, staff, start, end, name, sub))
+        rows.append(_row(studio_id, staff, start, end, name))
     return rows
 
 
@@ -164,7 +177,6 @@ def gomindbody_rows(days, studio_id):
                 continue
             dur_s = next((l for l in leaves if re.match(r"^\d+\s*min$", l, re.I)), None)
             loc_s = next((l for l in leaves if re.search(r"warrior one|studio", l, re.I)), "")
-            sub = any("sub" in l.lower() for l in leaves)
             # meaningful content leaves, in order: [class, teacher]
             core = [l for l in leaves
                     if l not in (time_s, dur_s, loc_s)
@@ -184,7 +196,7 @@ def gomindbody_rows(days, studio_id):
             if key in seen:
                 continue
             seen.add(key)
-            rows.append(_row(studio_id, teacher, start, end, cls, sub))
+            rows.append(_row(studio_id, teacher, start, end, cls))
     return rows
 
 
@@ -248,5 +260,5 @@ def squarespace_rows(page_html, studio_id):
         if key in seen:
             continue
         seen.add(key)
-        rows.append(_row(studio_id, teacher, start, end, _sqs_title(cls), False))
+        rows.append(_row(studio_id, teacher, start, end, _sqs_title(cls), dated=False))
     return rows

@@ -21,7 +21,22 @@ merge.py does four jobs and nothing platform-specific:
      wipe Warrior One off every profile.
   4. Dedup + write — collapses the pulled window to unique (studio, day, start,
      class) rows per teacher and writes schedule.json, preserving the studios
-     registry and each teacher's aliases/pronoun untouched.
+     registry and each teacher's aliases/pronoun untouched. Every date the row
+     was seen on is kept, in `dates`.
+
+Why `dates` exists
+------------------
+A row is a weekly pattern, but the window it was collapsed from is a fortnight.
+Without the dates, "Wed 6:15 PM" cannot be told apart from "Wed 6:15 PM, but
+only on the 26th" — and On the Mat announced teachers into classes they were
+not teaching that day because it had nothing else to go on. `dates` is the union
+of the actual dates the feed showed this teacher taking this class, so anything
+making a claim about a specific day can check it.
+
+A row from a feed with no dates (Inndriya's weekly grid) has no `dates` key, and
+a row from a studio that was not covered this run keeps whatever dates it had —
+which will fall into the past and stop matching, which is the correct behaviour
+for data nobody can currently verify.
 
 The opt-out list
 ----------------
@@ -104,7 +119,7 @@ def merge(schedule, rows, covered):
     report = {"unmatched_names": {}, "unknown_studios": {}, "matched": 0, "suppressed": 0}
 
     # collect new classes per teacher, only for covered studios
-    new_by_teacher = {name: set() for name in teachers}
+    new_by_teacher = {name: {} for name in teachers}
     for r in rows:
         sid = r["studio"]
         if sid not in studios:
@@ -121,25 +136,27 @@ def merge(schedule, rows, covered):
         if canonical is None:
             report["unmatched_names"][r["teacher"]] = report["unmatched_names"].get(r["teacher"], 0) + 1
             continue
-        new_by_teacher[canonical].add((sid, r["day"], r["start"], r["time"], r["class"],
-                                       bool(r.get("sub")), r.get("url") or ""))
+        key = (sid, r["day"], r["start"], r["time"], r["class"], r.get("url") or "")
+        new_by_teacher[canonical].setdefault(key, set())
+        if r.get("date"):
+            new_by_teacher[canonical][key].add(r["date"])
         report["matched"] += 1
 
     # rebuild each teacher's class list: keep uncovered-studio classes, replace covered ones
     for name, rec in teachers.items():
         kept = [c for c in rec.get("classes", []) if c["studio"] not in covered]
         fresh = []
-        for (sid, day, start, time, cls, sub, url) in new_by_teacher[name]:
+        for (sid, day, start, time, cls, url), dates in new_by_teacher[name].items():
             row = {"studio": sid, "day": day, "time": time, "class": cls}
-            if sub:
-                row["sub"] = True
+            if dates:
+                row["dates"] = sorted(dates)
             if url:
                 row["url"] = url
             fresh.append(row)
         # stable sort: studio registry order, then weekday, then start time
         sid_order = {sid: i for i, sid in enumerate(studios)}
         start_of = {(c["studio"], c["day"], c["time"], c["class"]): "00:00" for c in kept}
-        for (sid, day, start, time, cls, sub, url) in new_by_teacher[name]:
+        for (sid, day, start, time, cls, url) in new_by_teacher[name]:
             start_of[(sid, day, time, cls)] = start
         combined = kept + fresh
         combined.sort(key=lambda c: (
