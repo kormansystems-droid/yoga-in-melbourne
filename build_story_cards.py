@@ -191,16 +191,34 @@ def story_link(path, campaign):
     return f"{SITE}{path}?utm_source=instagram&utm_medium=story&utm_campaign={campaign}"
 
 
-def classes_for(schedule, day, cutoff=None):
-    """Every class on `day`, one entry per teacher, earliest first.
+def classes_for(schedule, day, date, cutoff=None):
+    """Every class actually running on `date`, one entry per teacher, earliest first.
 
-    A class co-taught or covered appears once per teacher because each teacher's
-    own frame has to show it. The line-up frame dedups on (time, class, studio)."""
+    A class co-taught appears once per teacher because each teacher's own frame
+    has to show it. The line-up frame dedups on (time, class, studio).
+
+    THE DATE TEST IS THE POINT OF THIS FUNCTION. schedule.json holds a weekly
+    pattern collapsed from a rolling fortnight, so matching on weekday alone says
+    "someone teaches Wednesdays", not "she teaches this Wednesday". On 18 Aug 2026
+    that shipped: Emma Strembickyj was announced into three classes on a day she
+    was overseas — her Kozen slots were being taught by Fai Mos, and the pattern
+    row came from the following Wednesday. She saw it. Do not weaken this back to
+    a weekday match.
+
+    A row with no `dates` is one nothing can currently verify: Inndriya publishes
+    an undated weekly grid, and a studio whose feed is dark keeps rows whose dates
+    have fallen into the past. Those rows stay on profile pages as a weekly
+    timetable and are excluded here, because a daily story is a claim about a
+    specific day. Silence beats announcing a teacher into a class she is not
+    teaching."""
     studios = schedule["studios"]
+    iso = date.isoformat()
     out = []
     for teacher, rec in schedule.get("teachers", {}).items():
         for c in rec.get("classes", []):
             if c.get("day") != day:
+                continue
+            if iso not in (c.get("dates") or []):
                 continue
             mins = start_minutes(c["time"])
             if cutoff is not None and mins < cutoff:
@@ -209,7 +227,6 @@ def classes_for(schedule, day, cutoff=None):
             out.append({
                 "teacher": teacher, "mins": mins, "time": c["time"], "class": c["class"],
                 "studio": meta.get("name", c["studio"]), "suburb": meta.get("location", ""),
-                "sub": bool(c.get("sub")),
             })
     return sorted(out, key=lambda r: (r["mins"], r["teacher"]))
 
@@ -227,10 +244,9 @@ def _rows_html(items, show_teacher):
             bits.append(esc(r["suburb"]))
         if show_teacher:
             bits.insert(0, f'<b>{esc(r["teacher"])}</b>')
-        sub = ' <span class="sub">· covering</span>' if r["sub"] else ""
         out.append(
             f'<div class="row"><div class="t">{esc(r["time"])}</div>'
-            f'<div><div class="c">{esc(r["class"])}{sub}</div>'
+            f'<div><div class="c">{esc(r["class"])}</div>'
             f'<div class="w">{" · ".join(bits)}</div></div></div>')
     return "\n".join(out)
 
@@ -442,7 +458,7 @@ def main():
     day = DAYS[date.weekday()]
     cutoff = hhmm_to_mins(a.cutoff) if a.mode == "today" else None
 
-    items = classes_for(schedule, day, cutoff)
+    items = classes_for(schedule, day, date, cutoff)
     n_teachers = len({r["teacher"] for r in items})
     if len(items) < MIN_CLASSES and not a.force:
         raise SystemExit(

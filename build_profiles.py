@@ -61,9 +61,6 @@ def start_minutes(t):
     if mer=="AM" and h==12: h=0
     return h*60+m
 
-SUB_TAG = ('<span class="cls-sub" style="opacity:.55;font-style:italic;font-weight:400">'
-           'substitute</span>')
-
 def render_row(r, book_url):
     """One class row, as a link through to booking.
 
@@ -77,21 +74,20 @@ def render_row(r, book_url):
     row's text is 'Wed 5:00-6:00 PM Slow Flow Yoga', so the class is identified
     without appending query parameters to a studio's booking URL (which we do not
     control and can break)."""
-    sub = f" {SUB_TAG}" if r.get("sub") else ""
     href = r.get("url") or book_url
     return (f'        <a class="cls" href="{esc_attr(href)}" target="_blank" rel="noopener">'
             f'<span class="cls-day">{esc(r["day"])}</span>'
             f'<span class="cls-time">{esc(r["time"])}</span>'
-            f'<span class="cls-name">{esc(r["class"])}{sub}</span></a>')
+            f'<span class="cls-name">{esc(r["class"])}</span></a>')
 
 def render_cards(classes, studios):
     by = {}
     for c in classes: by.setdefault(c["studio"], []).append(c)
     cards=[]
     reg = list(studios.keys())
-    # own-class studios first, sub-only studios last, registry order within each tier
-    order_sids = sorted(by.keys(),
-        key=lambda s:(1 if all(c.get("sub") for c in by[s]) else 0, reg.index(s) if s in reg else 99))
+    # registry order. There is no "her studio" versus "a studio she covers at":
+    # rosters churn, nobody owns a slot, and the teacher named is the teacher.
+    order_sids = sorted(by.keys(), key=lambda s: reg.index(s) if s in reg else 99)
     for sid in order_sids:
         meta = studios[sid]
         rows = sorted(by[sid], key=lambda c:(DAY_ORDER.get(c["day"],99), start_minutes(c["time"])))
