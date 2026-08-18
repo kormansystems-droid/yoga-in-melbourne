@@ -1,0 +1,52 @@
+name: Propose events
+
+# Manual only, and it PROPOSES — it never publishes.
+#
+# Mark's instruction, 18 Aug 2026: updates to events are cross-checked with him
+# before publication. So this workflow writes only pull/_events_proposed.md and
+# pull/_events_proposed.json and opens an issue with the diff. data/events.json
+# and every page on the site are untouched. Publishing is a separate, deliberate
+# act after he has read the proposal.
+#
+# Do not add a `schedule:` trigger and do not add --publish here. The gate is the
+# point.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  propose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build the proposal
+        run: python pull/pull_events.py
+
+      - name: Commit the proposal only
+        run: |
+          git config user.name  "yim-timetable-bot"
+          git config user.email "actions@users.noreply.github.com"
+          # Proposal files only. data/events.json is deliberately not staged.
+          git add pull/_events_proposed.md pull/_events_proposed.json pull/_event_anomalies.md || true
+          if git diff --cached --quiet; then echo "No change to propose."; exit 0; fi
+          git commit -m "Events proposal (not published)"
+          git pull --rebase --autostash origin main || true
+          git push origin HEAD:main
+
+      - name: Raise an issue with the diff
+        if: always()
+        run: |
+          if [ -f pull/_events_proposed.md ]; then
+            gh issue create \
+              --title "Events proposal — $(date -u +%Y-%m-%d)" \
+              --body-file pull/_events_proposed.md
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
