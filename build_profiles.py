@@ -153,9 +153,30 @@ def _join_suburbs(subs):
     if len(subs) == 1: return subs[0]
     return ", ".join(subs[:-1]) + " & " + subs[-1]
 
+MISSING_OG = []          # teachers built without a share image, reported at the end
+
+
 def seo_head(teacher, rec, studios, slug):
+    """A teacher with no photograph gets a profile with no photograph — never a
+    profile pointing at one that isn't there.
+
+    Until 19 Aug 2026 this emitted og:image, twitter:image and a schema.org
+    Person.image for every teacher, whether or not img/<slug>.jpg existed. Three
+    teachers had no file, so every time one of their pages was shared the preview
+    resolved a 404. Ryan Mannix took 354 story views and 21 page views in a night
+    with a broken preview the whole time.
+
+    So the image tags are written only when the file is actually on disk at build
+    time, and twitter:card falls back from summary_large_image to summary — a
+    large-image card with no image renders as an empty box, a summary card reads
+    as a clean text preview. Missing files are named on stdout at the end of the
+    build; they are a gap to fill, not a state to hide."""
     given = rec["name"]["given"]; family = rec["name"]["family"]; full = (given + " " + family).strip()
-    url = SITE + "/" + slug + ".html"; img = SITE + "/img/" + slug + ".jpg"
+    url = SITE + "/" + slug + ".html"
+    has_img = (ROOT / "img" / (slug + ".jpg")).exists()
+    img = SITE + "/img/" + slug + ".jpg" if has_img else ""
+    if not has_img:
+        MISSING_OG.append(slug)
     teaching = _teacher_suburbs(rec, studios)
     for s in _handoff_suburbs(teacher, studios):
         if s not in teaching: teaching.append(s)
@@ -171,11 +192,12 @@ def seo_head(teacher, rec, studios, slug):
     else:
         title = full + ", Yoga Nidra & Meditation | Yoga in Melbourne"
         desc = given + " guides Yoga Nidra and meditation, in Melbourne and online. Explore " + given + "'s story and practices on Yoga in Melbourne."
-    person = {"@context":"https://schema.org","@type":"Person","name":full,"jobTitle":"Yoga Teacher","url":url,"image":img,"description":desc,"worksFor":{"@type":"Organization","name":"Yoga in Melbourne","url":SITE+"/"}}
+    person = {"@context":"https://schema.org","@type":"Person","name":full,"jobTitle":"Yoga Teacher","url":url,"description":desc,"worksFor":{"@type":"Organization","name":"Yoga in Melbourne","url":SITE+"/"}}
+    if has_img: person["image"] = img
     if area: person["areaServed"] = [{"@type":"Place","name":s} for s in area]
     crumb = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Yoga in Melbourne","item":SITE+"/"},{"@type":"ListItem","position":2,"name":"Teachers","item":SITE+"/#teachers"},{"@type":"ListItem","position":3,"name":full}]}
     def a(x): return html.escape(x, quote=True)
-    return "\n".join([
+    tags = [
         "<title>"+a(title)+"</title>",
         '<meta name="description" content="'+a(desc)+'">',
         '<link rel="canonical" href="'+url+'">',
@@ -183,15 +205,17 @@ def seo_head(teacher, rec, studios, slug):
         '<meta property="og:title" content="'+a(title)+'">',
         '<meta property="og:description" content="'+a(desc)+'">',
         '<meta property="og:url" content="'+url+'">',
-        '<meta property="og:image" content="'+img+'">',
         '<meta property="og:site_name" content="Yoga in Melbourne">',
-        '<meta name="twitter:card" content="summary_large_image">',
         '<meta name="twitter:title" content="'+a(title)+'">',
         '<meta name="twitter:description" content="'+a(desc)+'">',
-        '<meta name="twitter:image" content="'+img+'">',
-        '<script type="application/ld+json">'+json.dumps(person, ensure_ascii=False)+'</script>',
-        '<script type="application/ld+json">'+json.dumps(crumb, ensure_ascii=False)+'</script>',
-    ])
+        '<meta name="twitter:card" content="'+("summary_large_image" if has_img else "summary")+'">',
+    ]
+    if has_img:
+        tags += ['<meta property="og:image" content="'+img+'">',
+                 '<meta name="twitter:image" content="'+img+'">']
+    tags += ['<script type="application/ld+json">'+json.dumps(person, ensure_ascii=False)+'</script>',
+             '<script type="application/ld+json">'+json.dumps(crumb, ensure_ascii=False)+'</script>']
+    return "\n".join(tags)
 # ---- end SEO ----
 
 def build_one(tpl, data):
@@ -296,6 +320,14 @@ def main():
         name = t.name.replace(".template.html",".html")
         (OUT/name).write_text(build_one(t, data))
         print(f"built {name:32s} <- {t.name}")
+    if MISSING_OG:
+        # Not an error — the page is correct without one. But a teacher whose page
+        # gets shared is better off with a photo, so the gap is named every build
+        # rather than discovered when a link preview looks bare.
+        print("\nno share image (img/<slug>.jpg) — link previews render as text only:")
+        for slug in sorted(set(MISSING_OG)):
+            print(f"  {slug}")
+        print("  fix: python3 crop-portrait.py <photo> <slug>")
 
 if __name__ == "__main__":
     main()
