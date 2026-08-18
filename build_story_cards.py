@@ -205,12 +205,20 @@ def classes_for(schedule, day, date, cutoff=None):
     row came from the following Wednesday. She saw it. Do not weaken this back to
     a weekday match.
 
-    A row with no `dates` is one nothing can currently verify: Inndriya publishes
-    an undated weekly grid, and a studio whose feed is dark keeps rows whose dates
-    have fallen into the past. Those rows stay on profile pages as a weekly
-    timetable and are excluded here, because a daily story is a claim about a
-    specific day. Silence beats announcing a teacher into a class she is not
-    teaching."""
+    A row with NO `dates` is included. Undated does not mean unknown: Inndriya
+    publishes a live weekly grid, and Warrior One's timetable is verified by hand
+    from the studio's own screenshots and carries a `verified` date on the studio
+    record. A weekly timetable nobody has contradicted is the best evidence those
+    studios can give, and dropping it silently deletes people — Rayne Watkin
+    teaches only at Warrior One and Inndriya, so excluding undated rows removed
+    her from On the Mat entirely. That is a worse failure than the one above, not
+    a safer one.
+
+    The rule is asymmetric and deliberately so. A DATED row must match the date,
+    because a dated feed actively told us who is teaching and ignoring it is what
+    caught Emma. An UNDATED row rides on the weekly timetable, because nothing
+    told us otherwise. `confirmed` marks which is which so captions.md can say
+    what still needs a human eye before posting."""
     studios = schedule["studios"]
     iso = date.isoformat()
     out = []
@@ -218,7 +226,8 @@ def classes_for(schedule, day, date, cutoff=None):
         for c in rec.get("classes", []):
             if c.get("day") != day:
                 continue
-            if iso not in (c.get("dates") or []):
+            dates = c.get("dates")
+            if dates and iso not in dates:
                 continue
             mins = start_minutes(c["time"])
             if cutoff is not None and mins < cutoff:
@@ -227,6 +236,7 @@ def classes_for(schedule, day, date, cutoff=None):
             out.append({
                 "teacher": teacher, "mins": mins, "time": c["time"], "class": c["class"],
                 "studio": meta.get("name", c["studio"]), "suburb": meta.get("location", ""),
+                "confirmed": bool(c.get("dates")), "verified": meta.get("verified"),
             })
     return sorted(out, key=lambda r: (r["mins"], r["teacher"]))
 
@@ -412,7 +422,20 @@ def write_captions(path, frames, day, date, mode, items):
          "",
          "**Before posting:** check these against the studios' own timetables. The pull "
          "window cannot see a cancellation or a cover booked since the last run.",
-         "",
+         ""]
+    # Rows a live feed confirmed for this date need no second look. Rows riding on a
+    # weekly timetable do — that is the whole gap Warrior One's dark feed leaves, and
+    # naming it here is what stops it becoming another teacher's phone call.
+    unconfirmed = [r for r in items if not r.get("confirmed")]
+    if unconfirmed:
+        L += ["**These rows are not date-confirmed** — they come from a weekly timetable, "
+              "not a live feed, so a cover or an absence this week would not show. Worth a "
+              "glance before you post:", ""]
+        for r in sorted(unconfirmed, key=lambda r: r["mins"]):
+            v = f" · timetable verified {r['verified']}" if r.get("verified") else ""
+            L.append(f"- {r['time']} — **{r['teacher']}**, {r['class']}, {r['studio']}{v}")
+        L.append("")
+    L += [
          "**Every frame takes a link sticker. Every frame that can name someone names them.**",
          "",
          "| # | Frame | Mention | Link sticker |",
