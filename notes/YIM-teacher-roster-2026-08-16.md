@@ -57,7 +57,7 @@ immediately, with no new feeds required.
 | Dhini Pararajasingham | Grass Roots · Warrior One Brighton | Vinyasa, Slow, Yin |
 | Liz Wells | Grass Roots · Here Yoga Port Melbourne | Vinyasa / Dynamic Flow |
 | Nickie Hanley | Grass Roots · Here Yoga Port Melbourne | Slow Flow + Restorative |
-| Rachael Mellican | Here Yoga Malvern · Warrior One Brighton | ⚠ spelled **"Rach Mellican"** at Warrior One |
+| **Rach Mellican** | Here Yoga Malvern · Warrior One Brighton | She is called **Rach** (Mark, 18 Aug). (Here) Yoga's "Rachael" is the alias, not the other way round |
 | Sarah Metzger | Here Yoga (both) · Warrior One Brighton | Dynamic, Slow, Candlelit Yin |
 | Steph Phillip | Here Yoga Malvern · Warrior One Brighton | ⚠ spelled **"Steph Philip"** at Warrior One |
 | *Alessia Frisina* | Grass Roots · Warrior One (both) · Within | already registered — **3 studios** |
@@ -105,8 +105,10 @@ zero classes in `schedule.json`. The feeds show her teaching at **Within on Mon 
 rotates fortnightly will silently show an empty schedule. Worth extending the pull window, or
 flagging registered teachers who return zero rows.
 
-**2. Two teachers are spelled differently across feeds.** "Steph Philip" (Warrior One) vs "Steph
-Phillip" (Here Yoga); "Rach Mellican" (Warrior One) vs "Rachael Mellican" (Here Yoga). Both need
+**2. Two teachers are spelled differently across feeds — and in both cases the feed that looked
+canonical was wrong.** Steph is **Philip**, one L (confirmed 17 Aug); (Here) Yoga's "Phillip" is the
+alias. Rach is **Rach** (confirmed 18 Aug); (Here) Yoga's "Rachael" is the alias. Two for two: the
+person, not the feed, decides. Ask at onboarding, before a URL is minted. Both need
 `aliases` entries or they'll appear as two people and their cross-studio schedule — the whole
 point — won't merge. Expect more of this at scale; it is the main hidden cost of onboarding.
 
@@ -133,3 +135,79 @@ the gomindbody feeds have been dark since 27 July).
 Momence and healcode feeds return a rolling window, so this is a snapshot of teachers scheduled
 in mid-to-late August. Teachers on leave, or rostered further out, will be missing. Re-run
 `pull/roster.py` for a current list once the pipeline harvests it automatically.
+
+---
+
+## Warrior One, verified in full — 18 August 2026
+
+All three studios read off the studio app for a complete week. **Warrior One has three
+locations, not two:** Brighton, Mordialloc and **Mornington**, the last of which had never been
+registered. Sixteen YiM rows checked; fifteen correct after three weeks of a dark feed, one
+wrong only on duration.
+
+**Brighton and Mordialloc are different catchments and their timetables are independent.**
+Do not infer one studio's slot structure from another's — an earlier attempt to do exactly that
+called a correct Mordialloc row suspicious because 10:45 AM is not a Brighton-style Mordialloc
+slot on other days. It is: Tuesdays differ. (Mark, 18 Aug.)
+
+**Class counts on the app overstate a teacher's regular load, because they include
+substitutions.** Franks Martin appeared with ten Brighton classes in the week to 23 Aug and
+reads as the studio's busiest teacher; most of that is covering. Do not rank recruitment targets
+by observed class count without checking. (Mark, 18 Aug.)
+
+### Warrior One teachers not yet on YiM
+
+| Studio | Teachers |
+|---|---|
+| Brighton | Franks Martin · Kristian Crowe · Dhini Pararajasingham · Sarah Metzger · Nat Commons · Brenton Alexander · Alyssa Lynikas · Rachel Goldenberg · Sary Davis · Rach Mellican · Heidi Mellican |
+| Mordialloc | Jori Sandler · Melody Yeung · Natasha Tropeano · Divyani Nag · Sarah Hammond · Nat Commons · Jenni Morrison-Jack · Fiona Rigg |
+| Mornington | Shell Douglas · Katie Mellican · Jess Harrison · Rachel Turnbull · Sarah Hammond · Jess Goozee · Kaela Raku · Elinor Hagelin · Natasha Tropeano · Heidi Mellican |
+
+**Cross-studio within Warrior One:** Sarah Hammond and Natasha Tropeano (Mordialloc +
+Mornington), Heidi Mellican (Brighton + Mornington), Nat Commons (Brighton + Mordialloc).
+
+**Three different Mellicans — Katie, Heidi and Rach.** Distinct people. Never alias them together.
+
+---
+
+## The substitution bias runs both ways — 18 August 2026
+
+Adding Shelley Armstrong (Grass Roots) exposed the other half of the substitution
+problem Mark named about Franks Martin.
+
+`normalizers.momence_rows` attributes a class to `teacher` and flags it `sub` when
+`originalTeacher` differs. So a covering teacher gains rows and **the teacher whose
+class it actually is loses them entirely.**
+
+Shelley in the 14-day window to 1 Sep:
+
+| Melbourne | Class | Feed attributes it to |
+|---|---|---|
+| Tue 6:15–7:15 AM | Hot Flow | **Shelley** |
+| Wed 6:15–7:30 PM | Vinyasa flow | **Shelley** |
+| Wed 5:00–6:00 PM | Vinyasa flow | Tailem Tynan (covering) |
+| Wed 6:15–7:30 PM | Slow Flow + Restorative | Tania Perry (covering) |
+| Fri 7:30–8:30 AM | Slow Flow | Brenton Alexander (covering) |
+| Fri 9:30–10:30 AM | Vinyasa flow | Brenton Alexander (covering) |
+
+**Her page shows two classes. She teaches about five.** Four are covered because she
+is away the week of 26 August — a temporary absence, not a schedule change, and the
+pipeline cannot tell the difference.
+
+Two consequences:
+
+1. **Observed counts overstate the coverer and understate the covered.** Ranking
+   recruitment targets by class count is wrong in both directions. Franks Martin
+   looks bigger than she is; Shelley looks smaller.
+2. **A new teacher's first impression of her own page may be that YiM has half her
+   week.** That is the trust failure the aggregation is supposed to prevent, and it
+   lands hardest on exactly the teachers being onboarded.
+
+**Proposed fix, needs Mark's call.** `momence_rows` already knows `originalTeacher`.
+Emit a second row for her, flagged `covered`, and render it with a tag beside the
+class — *"covered this week"* — the same mechanism as the existing `substitute` tag.
+Her page then shows her real week and tells the truth about who is on the mat. The
+alternative, showing nothing, is what happens today.
+
+Until then, seed a covered teacher's missing rows by hand and expect the 05:00 pull
+to strip them back on any studio with a live feed.
