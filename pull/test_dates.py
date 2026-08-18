@@ -76,11 +76,20 @@ check("Fai Mos is announced on the 19th",
 check("Emma is announced on the 26th",
       sorted({i["teacher"] for i in items26}) == ["Emma Strembickyj"])
 
-# A row with no dates — Inndriya's weekly grid, or a dark feed gone stale.
+# An undated row — Inndriya's live weekly grid, or Warrior One's hand-verified
+# timetable. These ARE announced: undated is not the same as unknown, and dropping
+# them deleted Rayne Watkin from On the Mat entirely. The asymmetry is the point —
+# a dated row must match, an undated row rides on the weekly timetable.
 merged["teachers"]["Fai Mos"]["classes"].append(
     {"studio": "kozen-yoga-hawthorn", "day": "Wed", "time": "9:00–10:00 AM", "class": "Undated Grid"})
-check("undated rows are never announced",
-      not any(i["class"] == "Undated Grid" for i in story.classes_for(merged, "Wed", wed19)))
+u19 = story.classes_for(merged, "Wed", wed19)
+check("undated rows ARE announced", any(i["class"] == "Undated Grid" for i in u19))
+check("undated rows are flagged unconfirmed",
+      all(not i["confirmed"] for i in u19 if i["class"] == "Undated Grid"))
+check("dated rows are flagged confirmed",
+      all(i["confirmed"] for i in u19 if i["class"] != "Undated Grid"))
+check("an undated row does not resurrect Emma on the 19th",
+      not any(i["teacher"] == "Emma Strembickyj" for i in u19))
 
 print("\n" + ("ALL PASS" if not FAILS else f"{len(FAILS)} FAILED: {FAILS}"))
 sys.exit(1 if FAILS else 0)
