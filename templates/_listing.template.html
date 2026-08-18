@@ -16,8 +16,9 @@
 
      These rules live here rather than in partials/base.css deliberately: base.css
      is injected verbatim into every profile, so editing it would rewrite all five
-     existing pages. A listing needs one thing base.css has no rule for — a header
-     with no portrait beside it, because a listing carries no approved photo. */
+     existing pages. A listing needs a header base.css has no rule for: one that
+     works with a portrait and without, because teachers arriving through On the Mat
+     often supply a photograph and just as often do not. */
   .listing-head{padding:64px 0 26px;position:relative}
   .listing-head h1{
     font-family:'Fraunces',serif;font-weight:500;
@@ -28,6 +29,21 @@
   .listing-sub{
     font-family:'Hanken Grotesk',sans-serif;font-size:18px;line-height:1.5;
     color:var(--ink-soft);max-width:44ch;margin-top:18px;
+  }
+  /* PORTRAIT — use it whenever she has supplied a photograph.
+     Keep `has-portrait` on .listing-head and the .lh-portrait block below. Where
+     there is no photo, drop both and unwrap .lh-text: an empty frame reads as an
+     omission, the plain typographic head reads as a decision.
+     A photograph she has given us is hers to publish. That does NOT make the page
+     a profile — a profile needs an interview and her approval of the words. */
+  .listing-head.has-portrait{display:grid;grid-template-columns:1.25fr .75fr;gap:44px;align-items:center}
+  .lh-text{min-width:0}
+  .lh-portrait{position:relative;z-index:1}
+  .lh-portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;
+    border:1px solid rgba(42,32,26,.18)}
+  @media(max-width:760px){
+    .listing-head.has-portrait{grid-template-columns:1fr;gap:26px}
+    .lh-portrait{order:-1;max-width:300px}
   }
   .coverage{
     max-width:980px;margin:14px auto 0;padding:22px 24px;
@@ -60,11 +76,16 @@
 </div>
 
 <div class="wrap">
-  <section class="listing-head">
+  <!-- WITH a photograph: keep `has-portrait` and .lh-portrait, paste the base64.
+       WITHOUT one: remove `has-portrait`, delete .lh-portrait, unwrap .lh-text. -->
+  <section class="listing-head has-portrait">
     <div class="omega" aria-hidden="true">ॐ</div>
-    <div class="eyebrow">Teacher</div>
-    <h1><span class="given">{{NAME_GIVEN}}</span><span class="family">{{NAME_FAMILY}}</span></h1>
-    <p class="listing-sub">Every class {{NAME_GIVEN}} teaches, across every studio we cover — in one place.</p>
+    <div class="lh-text">
+      <div class="eyebrow">Teacher</div>
+      <h1><span class="given">{{NAME_GIVEN}}</span><span class="family">{{NAME_FAMILY}}</span></h1>
+      <p class="listing-sub">Every class {{NAME_GIVEN}} teaches, across every studio we cover — in one place.</p>
+    </div>
+    <div class="lh-portrait"><img src="data:image/jpeg;base64,PASTE_880x1100_JPEG_BASE64_HERE" alt="{{NAME_FULL}}"></div>
   </section>
 </div>
 
