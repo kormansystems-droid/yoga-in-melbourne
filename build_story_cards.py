@@ -49,12 +49,12 @@ Cards are a draft, not a publication. Check them against the studios' own
 timetables before posting — the pull window cannot see cancellations or covers
 booked after the last run.
 """
-import json, re, html, os, argparse, datetime, sys
+import json, re, html, os, argparse, datetime, sys, base64
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
 sys.path.insert(0, str(Path(__file__).parent))
-from build_profiles import start_minutes, esc, esc_attr   # one time parser, not two
+from build_profiles import start_minutes, esc, esc_attr, TEMPLATES  # one time parser, not two
 
 ROOT = Path(__file__).parent
 DATA = ROOT / "data" / "schedule.json"
@@ -135,6 +135,11 @@ body{background:#3a3a3a;font-family:'Hanken Grotesk',system-ui,sans-serif}
 .names li{font-size:calc(58px * var(--k))}
 
 .teacher-name{font-family:'Fraunces',serif;font-size:104px;line-height:1.02;margin-bottom:14px}
+.t-head{display:flex;align-items:center;gap:34px;margin-bottom:14px}
+.t-head .teacher-name{margin-bottom:0}
+.t-portrait{flex:0 0 170px;width:170px;height:170px;border-radius:50%;overflow:hidden;
+  border:1px solid rgba(42,32,26,.18)}
+.t-portrait img{width:100%;height:100%;object-fit:cover;display:block}
 .teacher-sub{font-family:'Hanken Grotesk',sans-serif;font-size:32px;color:var(--ink-soft);
              padding-bottom:30px;border-bottom:2px solid var(--ochre)}
 
@@ -189,6 +194,48 @@ def story_link(path, campaign):
     carry utm_medium and a campaign slug, so this traffic separates cleanly from
     the bio link in GA."""
     return f"{SITE}{path}?utm_source=instagram&utm_medium=story&utm_campaign={campaign}"
+
+
+# ---- teacher portraits -----------------------------------------------------
+_PORTRAIT_CACHE = {}
+
+
+def teacher_portrait(slug, px=340):
+    """A small square portrait for a teacher's own story frame, as a data URI.
+
+    Source of truth is the portrait already embedded in templates/<slug>.template.html
+    — the photograph the teacher supplied, at 880x1100. Reusing it means the card and
+    the page can never drift, and no new asset has to be kept in step.
+
+    Returns None where there is no photograph. Sarah Metzger and Steph Philip have
+    none today, and their cards render exactly as they did before: a name, a suburb
+    and a timetable. A missing photo is a card without a photo, never a broken one.
+    """
+    if slug in _PORTRAIT_CACHE:
+        return _PORTRAIT_CACHE[slug]
+    out = None
+    tpl = TEMPLATES / f"{slug}.template.html"
+    if tpl.exists():
+        m = re.search(r'data:image/jpeg;base64,([A-Za-z0-9+/=]{500,})', tpl.read_text(encoding="utf-8"))
+        if m:
+            try:
+                from PIL import Image
+                import io as _io
+                im = Image.open(_io.BytesIO(base64.b64decode(m.group(1)))).convert("RGB")
+                w, h = im.size
+                side = min(w, h)
+                # Anchor high: a head sits in the top third of a portrait crop, so a
+                # centre square would cut the face off at the chin.
+                top = min(max(int(h * 0.06), 0), h - side)
+                im = im.crop(((w - side) // 2, top, (w - side) // 2 + side, top + side))
+                im = im.resize((px, px), Image.LANCZOS)
+                buf = _io.BytesIO()
+                im.save(buf, "JPEG", quality=86, optimize=True)
+                out = "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode()
+            except Exception:                                     # noqa: BLE001
+                out = None
+    _PORTRAIT_CACHE[slug] = out
+    return out
 
 
 def classes_for(schedule, day, date, cutoff=None):
@@ -264,6 +311,11 @@ def _rows_html(items, show_teacher):
 def _foot():
     return ('<div class="foot"><div class="mark">Yoga <em>in</em> Melbourne</div>'
             '<div class="url">yogainmelbourne.com.au</div></div>')
+
+
+def _portrait_html(slug):
+    src = teacher_portrait(slug)
+    return f'<div class="t-portrait"><img src="{src}" alt=""></div>' if src else ""
 
 
 def build_frames(schedule, day, date, items, mode):
@@ -372,8 +424,9 @@ def build_frames(schedule, day, date, items, mode):
             "note": f"Mention {t} on this frame only — the frame she reshares is then "
                     f"entirely about her. Link sticker goes to her page, not the homepage.",
             "html": f'<div class="card"><div class="kicker">{esc(kicker)} · {esc(day_full)}</div>'
-                    f'<div class="teacher-name">{esc(t)}</div>'
-                    f'<div class="teacher-sub">{esc(where)}</div>'
+                    f'<div class="t-head">{_portrait_html(slug)}'
+                    f'<div><div class="teacher-name">{esc(t)}</div>'
+                    f'<div class="teacher-sub">{esc(where)}</div></div></div>'
                     f'<div class="rows">{_rows_html(rows, show_teacher=False)}</div>{_foot()}</div>',
         })
 
