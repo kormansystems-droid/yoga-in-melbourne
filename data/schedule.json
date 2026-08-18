@@ -10,7 +10,24 @@
         "type": "healcode",
         "page": "https://www.withinretreat.com.au/timetable",
         "min_rows": 10
-      }
+      },
+      "event_pages": [
+        {
+          "url": "https://www.withinretreat.com.au/flight",
+          "title": "Flight School — a workshop series with Eliza & Gisele",
+          "kind": "workshop"
+        },
+        {
+          "url": "https://www.withinretreat.com.au/asana",
+          "title": "Strong Asana — community workshop with Masha",
+          "kind": "workshop"
+        },
+        {
+          "url": "https://www.withinretreat.com.au/gowithintowin",
+          "title": "Go WITH/N to WIN — September Challenge",
+          "kind": "workshop"
+        }
+      ]
     },
     "warrior-one-brighton": {
       "name": "Warrior One",
