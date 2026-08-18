@@ -136,7 +136,8 @@
   @media (max-width:620px){.feature-band-img{margin-top:18px}}
   .feature-band .hero-read{display:inline-block}
 .hero-feature h1.hero-h1-lg{font-size:clamp(34px,4.3vw,55px)}
-.hero-read-lg{font-size:24px;letter-spacing:.05em;display:inline-block;margin-bottom:20px;padding-bottom:5px}
+/* Title case, not the uppercase .hero-read inherits — at 24px the caps shouted. */
+ .hero-read-lg{font-size:24px;letter-spacing:.05em;display:inline-block;margin-bottom:20px;padding-bottom:5px;text-transform:none}
 .hero-player{background:var(--paper-deep);border:1px solid rgba(42,32,26,.16);
   padding:14px 16px 15px;max-width:430px;margin-bottom:14px}
 .hero-player .hp-meta{margin-bottom:9px}
@@ -267,16 +268,14 @@
     <div class="hero-feature">
       <h1 class="hero-h1-lg">Zoe <em>Kanat</em>, and the case for deep rest</h1>
       <p>Yoga Nidra, meditation, and the conviction that rest is medicine for the modern world. Zoe tells her story, on Conversations.</p>
-      <a class="hero-read hero-read-lg" href="zoe-kanat.html">Read the profile →</a>
-      <!-- PODCAST: when Zoe's episode is live, uncomment this block and set the mp3 src + duration.
+      <a class="hero-read hero-read-lg" href="zoe-kanat.html">Read the Profile →</a>
+      <!-- Episode 4, published 18 Aug 2026. mp3 + duration come from the live RSS
+           (feeds.transistor.fm/yoga-in-melbourne), not from the dashboard UI. The player
+           replaces the old Apple/Spotify buttons: the point of the hero is that you can
+           hear her without leaving the page. Subscribe links live on conversations.html. -->
       <div class="hero-player">
-        <div class="hp-meta"><strong>Zoe Kanat, in conversation</strong><span>Conversations</span></div>
-        <audio controls preload="metadata" src="PASTE_TRANSISTOR_MP3_URL_HERE"></audio>
-      </div>
-      -->
-      <div class="hero-listen">
-        <a class="listen-btn" href="https://podcasts.apple.com/podcast/yoga-in-melbourne/id6797782602" target="_blank" rel="noopener">Apple Podcasts</a>
-        <a class="listen-btn" href="https://open.spotify.com/show/0341cVDWzNcGnts7DmAs78" target="_blank" rel="noopener">Spotify</a>
+        <div class="hp-meta"><strong>Zoe Kanat... Journey into Rest</strong><span>Conversations · Episode 4 · 24 min</span></div>
+        <audio controls preload="metadata" src="https://media.transistor.fm/fdd980b5/18c8da1b.mp3"></audio>
       </div>
     </div>
   </div>
