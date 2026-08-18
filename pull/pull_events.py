@@ -8,8 +8,15 @@ brittle part. Keeping them apart means an events failure can never take the
 timetable down with it. Wire it into pull.py only once it has run clean for a
 few days.
 
-    python3 pull/pull_events.py            # refresh everything
-    python3 pull/pull_events.py --dry-run  # show what would change, write nothing
+    python3 pull/pull_events.py             # PROPOSE only — writes no published data
+    python3 pull/pull_events.py --publish    # write data/events.json (needs a human yes)
+
+**Events are never published without Mark seeing them first** (his instruction,
+18 Aug 2026). A pull cannot change what is on the site: by default it writes only
+`_events_proposed.json` and a readable `_events_proposed.md` summarising what is
+new, what changed and what is about to expire. Publishing is a separate, explicit
+act. This is not a lint rule — the flag is the gate, so a scheduled run or a
+mistyped command cannot put an unreviewed event in front of a reader.
 
 Sources, in the order of how much they can be trusted:
 
@@ -36,6 +43,8 @@ ROOT = Path(__file__).resolve().parent.parent
 SCHED = ROOT / "data" / "schedule.json"
 EVENTS = ROOT / "data" / "events.json"
 ANOM = Path(__file__).resolve().parent / "_event_anomalies.md"
+PROPOSED_JSON = Path(__file__).resolve().parent / "_events_proposed.json"
+PROPOSED_MD = Path(__file__).resolve().parent / "_events_proposed.md"
 
 UA = {"User-Agent": "Mozilla/5.0 (compatible; YIM-events/1.0)"}
 FORWARD_DAYS = 180          # events are booked months out; classes are not
@@ -79,9 +88,52 @@ def page_text(url):
     return re.sub(r"\n\s*\n+", "\n", txt).strip()
 
 
+def _fmt(e):
+    when = (e.get("starts") or "")[:10] or "date unknown"
+    price = e.get("price")
+    price = "free" if price == 0 else (f"${price:g}" if price is not None else "price n/a")
+    who = f" · {e['teacher']}" if e.get("teacher") else ""
+    return f"**{e.get('title','(untitled)')}** — {when} · {e.get('studio') or 'studio n/a'}{who} · {price}"
+
+
+def write_proposal(before, after, problems):
+    """A diff a human can read on a phone. Everything a pull wants to change to
+    the public events list, and nothing applied."""
+    old = {e["id"]: e for e in before}
+    new = {e["id"]: e for e in after}
+    added = [new[i] for i in new if i not in old]
+    removed = [old[i] for i in old if i not in new]
+    changed = [(old[i], new[i]) for i in new
+               if i in old and {k: old[i].get(k) for k in ("title", "starts", "price", "url")}
+               != {k: new[i].get(k) for k in ("title", "starts", "price", "url")}]
+
+    L = ["# Events — proposed changes", "",
+         f"{len(added)} new · {len(changed)} changed · {len(removed)} dropped · "
+         f"{len(after)} live after this.", "",
+         "Nothing here is on the site. Reply with what to keep and I will publish it.", ""]
+    if added:
+        L += ["## New", ""] + [f"- {_fmt(e)}  \n  {e.get('url','')}" for e in added] + [""]
+    if changed:
+        L += ["## Changed", ""]
+        for o, n in changed:
+            bits = [f"{k}: {o.get(k)!r} → {n.get(k)!r}" for k in ("title", "starts", "price", "url")
+                    if o.get(k) != n.get(k)]
+            L.append(f"- **{n.get('title')}** — " + "; ".join(bits))
+        L.append("")
+    if removed:
+        L += ["## Dropped (past, or no longer in the feed)", ""] + \
+             [f"- {_fmt(e)}" for e in removed] + [""]
+    if problems:
+        L += ["## Needs a human", ""] + [f"- {p}" for p in problems] + [""]
+    PROPOSED_MD.write_text("\n".join(L), encoding="utf-8")
+    PROPOSED_JSON.write_text(json.dumps({"events": after}, indent=2, ensure_ascii=False) + "\n",
+                             encoding="utf-8")
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--publish", action="store_true",
+                    help="write data/events.json. Only after Mark has reviewed the proposal.")
     a = ap.parse_args()
 
     schedule = json.loads(SCHED.read_text(encoding="utf-8"))
@@ -149,11 +201,14 @@ def main():
                         + "\n".join(f"- {p}" for p in problems) + "\n")
         print("\n⚠ " + "\n⚠ ".join(problems))
 
-    if a.dry_run:
-        print("\n--dry-run: nothing written.")
+    if a.publish:
+        EV.save(EVENTS, merged)
+        print(f"published {EVENTS.relative_to(ROOT)}")
         return
-    EV.save(EVENTS, merged)
-    print(f"wrote {EVENTS.relative_to(ROOT)}")
+
+    write_proposal(existing, merged, problems)
+    print(f"\nproposal written to {PROPOSED_MD.name} and {PROPOSED_JSON.name}. "
+          f"Nothing published — run with --publish once Mark has said yes.")
 
 
 if __name__ == "__main__":
