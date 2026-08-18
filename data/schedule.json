@@ -517,6 +517,78 @@
         }
       ]
     },
+    "Sarah Metzger": {
+      "name": {
+        "given": "Sarah",
+        "family": "Metzger"
+      },
+      "aliases": [
+        "Sarah Metzger",
+        "Sara Metzger"
+      ],
+      "classes": [
+        {
+          "studio": "here-yoga-malvern",
+          "day": "Mon",
+          "time": "5:00–6:00 PM",
+          "class": "Dynamic Flow"
+        },
+        {
+          "studio": "here-yoga-malvern",
+          "day": "Mon",
+          "time": "6:15–7:15 PM",
+          "class": "Candlelit Dynamic Flow"
+        },
+        {
+          "studio": "here-yoga-malvern",
+          "day": "Wed",
+          "time": "7:15–8:15 AM",
+          "class": "Dynamic Flow"
+        },
+        {
+          "studio": "here-yoga-port-melbourne",
+          "day": "Wed",
+          "time": "6:15–7:15 PM",
+          "class": "Candlelit Slow Flow"
+        },
+        {
+          "studio": "here-yoga-port-melbourne",
+          "day": "Wed",
+          "time": "7:30–8:30 PM",
+          "class": "Candlelit Yin"
+        },
+        {
+          "studio": "here-yoga-malvern",
+          "day": "Fri",
+          "time": "7:15–8:15 AM",
+          "class": "Slow Flow"
+        },
+        {
+          "studio": "here-yoga-malvern",
+          "day": "Fri",
+          "time": "9:30–10:30 AM",
+          "class": "Dynamic Flow"
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Tue",
+          "time": "9:30–10:30 AM",
+          "class": "Vinyasa Flow"
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Tue",
+          "time": "10:45–11:45 AM",
+          "class": "Yin Yoga & Meditation"
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Tue",
+          "time": "12:15–1:15 PM",
+          "class": "Slow Flow"
+        }
+      ]
+    },
     "Shelley Armstrong": {
       "name": {
         "given": "Shelley",

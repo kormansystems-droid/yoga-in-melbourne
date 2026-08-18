@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N102DPQM2Q"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-N102DPQM2Q');</script>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light">
+<!-- SEO_HEAD -->
+<style>/* BASE_CSS:INJECT */</style>
+<style>
+  /* Listing-page layout only.
+
+     These rules live here rather than in partials/base.css deliberately: base.css
+     is injected verbatim into every profile, so editing it would rewrite all five
+     existing pages. A listing needs one thing base.css has no rule for — a header
+     with no portrait beside it, because a listing carries no approved photo. */
+  .listing-head{padding:64px 0 26px;position:relative}
+  .listing-head h1{
+    font-family:'Fraunces',serif;font-weight:500;
+    font-size:clamp(40px,8vw,72px);line-height:1.02;color:var(--ink);
+    letter-spacing:-.012em;margin:0;
+  }
+  .listing-head h1 .family{display:block;font-style:italic;color:var(--henna)}
+  .listing-sub{
+    font-family:'Hanken Grotesk',sans-serif;font-size:18px;line-height:1.5;
+    color:var(--ink-soft);max-width:44ch;margin-top:18px;
+  }
+  .coverage{
+    max-width:980px;margin:14px auto 0;padding:22px 24px;
+    background:var(--paper-deep);border:1px solid rgba(42,32,26,.16);
+  }
+  .coverage p{
+    font-family:'Hanken Grotesk',sans-serif;font-size:15.5px;line-height:1.6;
+    color:var(--ink-soft);margin:0;max-width:66ch;
+  }
+  .coverage a{color:var(--henna)}
+  @media(max-width:760px){
+    .listing-head{padding:44px 0 20px}
+    .coverage{padding:18px 18px}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="masthead">
+    <a class="pub" href="/">Yoga <em>in</em> Melbourne</a>
+    <nav class="nav">
+      <a href="/#teachers">Teachers</a>
+      <a href="/#studios">Studios</a>
+      <a href="/#events">What's On</a>
+      <a href="/#journal">Journal</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+  </header>
+</div>
+
+<div class="wrap">
+  <section class="listing-head">
+    <div class="omega" aria-hidden="true">ॐ</div>
+    <div class="eyebrow">Teacher</div>
+    <h1><span class="given">{{NAME_GIVEN}}</span><span class="family">{{NAME_FAMILY}}</span></h1>
+    <p class="listing-sub">Every class {{NAME_GIVEN}} teaches, across every studio we cover — in one place.</p>
+  </section>
+</div>
+
+<div class="wrap">
+  <section class="schedule">
+    <h3 class="sched-title">Where {{NAME_GIVEN}} teaches</h3>
+    <p class="sched-note">{{SCHED_NOTE}}</p>
+
+    <div class="studio-grid" data-teacher="Sarah Metzger">
+      <!-- SCHEDULE:START -->
+      <!-- SCHEDULE:END -->
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
+  <!-- States the page's coverage rather than implying completeness. A teacher's
+       page can only show the studios YiM ingests; if she teaches at others, this
+       is the line that invites her to say so. -->
+  <section class="coverage">
+    <p>These are {{NAME_GIVEN}}'s classes at the studios Yoga in Melbourne currently lists.
+    If there's a studio we don't cover yet, or anything here is out of date,
+    <a href="/contact.html">tell us</a> and we'll put it right.</p>
+  </section>
+</div>
+
+<section class="follow" id="follow">
+  <div class="wrap">
+    <!-- Deliberately pronoun-free. Ryan Mannix is the first man on the roster and
+         the hardcoded "she" here would have shipped wrong. A listing is factual and
+         needs no pronoun at all, so rather than add a gender field to schedule.json
+         — which every future teacher would then have to be classified into — the
+         copy simply doesn't use one. Profiles are hand-written per teacher and can
+         say whatever she or he actually uses. -->
+    <h3>Follow {{NAME_GIVEN}} for <em>classes, subs and time away</em>.</h3>
+    <div class="right">
+      <div class="follow-cta">
+        <button class="btn light yim-follow-btn" type="button" data-teacher="{{NAME_FULL}}" data-given="{{NAME_GIVEN}}">＋ Follow {{NAME_GIVEN}}</button>
+        <p class="ff-note">Following saves {{NAME_GIVEN}} to your account. Not a member yet? We'll set you up in one step.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="pub" href="/">Yoga <em>in</em> Melbourne</a>
+    <p class="foot-nav"><a href="/#teachers">Teachers</a> · <a href="/#studios">Studios</a> · <a href="/#journal">Journal</a> · <a href="/#events">Events &amp; Workshops</a> · <a href="/contact.html">Contact</a> · <a href="/privacy.html">Privacy</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
