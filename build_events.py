@@ -55,7 +55,12 @@ BANDS = [("events", "workshop"), ("retreats", "retreat"), ("training", "training
 
 
 def esc(s):
-    return html.escape(str(s or ""), quote=True)
+    # Collapse runs of whitespace before escaping. Studio feeds hand back names
+    # like "Janita Doelken &  Alessia Frisina" and "Sarah  Metzger" — someone
+    # typed two spaces into a booking system months ago. Rendering that verbatim
+    # makes the site look like it scraped something, which is the opposite of the
+    # impression a person's name on this page should give.
+    return html.escape(re.sub(r"\s+", " ", str(s or "")).strip(), quote=True)
 
 
 def studios():
