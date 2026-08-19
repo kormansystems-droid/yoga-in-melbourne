@@ -383,8 +383,9 @@ def build_frames(schedule, day, date, items, mode):
         "name": "opener",
         "link": story_link("/", campaign),
         "mentions": list(teachers),
-        "note": "Tag EVERY teacher on this frame. On 15 Aug this was the best card "
-                "and took the fewest views (37) because nobody was mentioned on it.",
+        "note": "Mention EVERY teacher here. Each mention is its own notification and "
+                "its own chance to reshare. On 15 Aug this was the best card and took "
+                "the fewest views (37) because nobody was mentioned on it.",
         "html": f'<div class="card"><div class="kicker">{esc(kicker)}</div>'
                 f'<div class="date">{esc(day_full)} <em>Yoga</em></div>'
                 f'<div class="count">{esc(" · ".join(facts))}</div>'
@@ -416,7 +417,7 @@ def build_frames(schedule, day, date, items, mode):
             "name": f"lineup-{slug}" if slug else "lineup",
             "link": story_link("/", campaign),
             "mentions": sorted({r["teacher"] for r in rows}),
-            "note": "Tag every teacher and every studio shown on this frame — and only "
+            "note": "Mention every teacher and every studio shown on this frame — and only "
                     "the ones shown on it.",
             "html": f'<div class="card"><div class="kicker">{head}</div>'
                     f'<div class="date">{esc(day_full)}</div>'
@@ -446,8 +447,10 @@ def build_frames(schedule, day, date, items, mode):
             "name": slug,
             "link": story_link(f"/{slug}.html", campaign),
             "mentions": [t],
-            "note": f"Mention {t} on this frame only — the frame she reshares is then "
-                    f"entirely about her. Link sticker goes to her page, not the homepage.",
+            "note": f"This frame carries {t}'s name and NO ONE else's, so the frame she "
+                    f"reshares is entirely about her. She is still mentioned on the opener "
+                    f"and the closer — that is three notifications, not one. Link sticker "
+                    f"goes to her page, not the homepage.",
             "html": f'<div class="card"><div class="kicker">{esc(kicker)} · {esc(day_full)}</div>'
                     f'<div class="t-head">{_portrait_html(slug)}'
                     f'<div><div class="teacher-name">{esc(t)}</div>'
@@ -477,7 +480,7 @@ def build_frames(schedule, day, date, items, mode):
         "name": "closer",
         "link": story_link("/", campaign),
         "mentions": list(teachers),
-        "note": "Tag every teacher again here. This frame is the story's only route to "
+        "note": "Mention every teacher again here. This frame is the story's only route to "
                 "the full timetable, and it is the last thing anyone sees.",
         "html": f'<div class="card closer"><div class="kicker">{esc(kicker)}</div>'
                 f'<div class="closer-lead">{esc(lead)} <em>on the mat</em> with</div>'
@@ -514,7 +517,9 @@ def write_captions(path, frames, day, date, mode, items):
             L.append(f"- {r['time']} — **{r['teacher']}**, {r['class']}, {r['studio']}{v}")
         L.append("")
     L += [
-         "**Every frame takes a link sticker. Every frame that can name someone names them.**",
+         "**Every frame takes a link sticker, and a MENTION sticker for everyone named on it.** "
+         "A story has mentions, not tags — the mention is what notifies her and gives her "
+         "the one-tap reshare.",
          "",
          "| # | Frame | Mention | Link sticker |",
          "|---|---|---|---|"]
