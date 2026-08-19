@@ -288,15 +288,21 @@ def build_index(data):
     a profile."""
     idx = ROOT / "index.html"
     src = idx.read_text()
-    # Ordered by class count, descending. On mobile this row is a horizontal
-    # scroll strip (flex-wrap:nowrap; overflow-x:auto), so POSITION IS VISIBILITY —
-    # roughly two and a half chips are on screen and the rest need a swipe.
-    # Alphabetical would have buried Steph Philip and Ryan Mannix at R and S, which
-    # is precisely the pair that prompted this. Class count answers the question the
-    # label asks — "find a teacher, her full timetable" — and it self-corrects: a
-    # teacher who picks up classes rises without anyone maintaining a list.
-    order = sorted(data["teachers"],
-                   key=lambda n: (-len(data["teachers"][n].get("classes", [])), n.split()[0].lower()))
+    # Alphabetical, by the name a reader actually reads first. Mark's call,
+    # 20 Aug 2026, overruling the class-count sort this used to have: "no one
+    # cares about the number, only the name."
+    #
+    # He is right, and the old reasoning was worse than wrong — it was ranking
+    # teachers by how much work they happen to have. A row that reorders itself
+    # when someone loses a class is a row that quietly publishes a league table,
+    # which is the one thing this publication has said it will never do.
+    #
+    # The real cost, recorded so it is a known trade and not a surprise: on mobile
+    # this row is a horizontal scroll strip (flex-wrap:nowrap; overflow-x:auto),
+    # so position is visibility — about two and a half chips are on screen. Names
+    # late in the alphabet need a swipe. Fix that with the row's design if it
+    # matters, not by reordering people.
+    order = sorted(data["teachers"], key=lambda n: (n.split()[0].lower(), n.lower()))
     links = "".join(f'\n      <a href="{slug_of(n)}.html">{esc(n)}</a>' for n in order)
     out = re.sub(r"(<!-- ROUTER_PEOPLE:START -->).*?(<!-- ROUTER_PEOPLE:END -->)",
                  lambda m: m.group(1) + links + "\n    " + m.group(2), src, flags=re.S)

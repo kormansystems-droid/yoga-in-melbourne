@@ -167,8 +167,17 @@ def main(check=False):
     out = src
     empty = []
     for sid, kind in BANDS:
+        # Retreats render twice — as a row of photographs and as a row of text
+        # cards beneath — and a reader pairs them by position. Sorting purely by
+        # date breaks that pairing the moment an entry has no photograph: the
+        # Yintention day retreat (12 Sep) sorted second and pushed every text card
+        # out of step with the picture above it. So photographs first, in date
+        # order, then the imageless ones. Mark has raised this more than once;
+        # it is the ordering, not the copy.
         mine = sorted((e for e in live if e.get("kind") == kind),
-                      key=lambda e: (e.get("starts") or e.get("until") or "9999", e.get("title", "")))
+                      key=lambda e: (0 if e.get("image") else 1,
+                                     e.get("starts") or e.get("until") or "9999",
+                                     e.get("title", "")))
         if not mine:
             # A band that renders empty is the failure this pipeline exists to
             # prevent. Leave the existing markup alone and shout about it.
