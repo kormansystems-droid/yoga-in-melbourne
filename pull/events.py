@@ -168,6 +168,157 @@ def page_event(text, studio_id, url, title=None, year=None, kind="workshop"):
     }
 
 
+# ---- Index pages that list many events (Warrior One) -----------------------
+# page_event() above reads ONE event from a page, which is Within's model: a
+# separate URL per workshop. Warrior One publishes the opposite shape — a single
+# /workshops/ page listing every event, each as
+#
+#     SLOW FLOW TO YIN WITH LUCY
+#     WED 2 SEPTEMBER 2026 | 10:45 AM – 12:00 PM @ MORNINGTON
+#     INVESTMENT: $75
+#     <prose>
+#
+# Pointing page_event() at that would have returned the first event, reported
+# success, and silently dropped the other four — which is worse than failing,
+# because the anomaly check only fires when a page yields NOTHING. Mark spotted
+# the gap on 19 Aug 2026 by finding an event on their site that was not on ours.
+# Hence a plural reader, and hence `expect` below.
+
+_LIST_DATE = re.compile(
+    r"^(?:mon|tue|wed|thu|fri|sat|sun)[a-z]*\.?\s+"
+    r"(\d{1,2})\s+([a-z]+)\s*(\d{4})?"                       # 23 August [2026]
+    r"(?:\s*[-–—]\s*(?:(?:mon|tue|wed|thu|fri|sat|sun)[a-z]*\.?\s+)?"
+    r"(\d{1,2})\s+([a-z]+)\s*(\d{4})?)?"                     # – 18 September 2026
+    r"(?:\s*\|\s*(\d{1,2})(?::(\d{2}))?\s*(am|pm)"          # | 10:45 AM
+    r"(?:\s*[-–—]\s*(\d{1,2})(?::(\d{2}))?\s*(am|pm))?)?"    # – 12:00 PM
+    r"(?:\s*@\s*(.+?))?\s*$", re.I)                           # @ MORNINGTON
+_INVEST = re.compile(r"(?:investment|price|cost)\s*:?(.*)", re.I)
+
+# Warrior One sets its headings in caps as a design choice. "YIN, POETRY & CELLO
+# WITH FRANKS" is styling, not how the words are written, and shouting it back on
+# our page would be reproducing their CSS rather than their information.
+_SMALL = {"a", "an", "and", "as", "at", "but", "by", "for", "from", "in", "into",
+          "nor", "of", "on", "or", "the", "to", "with", "via"}
+ACRONYMS = {"IKSRE", "YTT", "YIM"}          # extend by hand; guessing gets it wrong
+
+
+def title_case(s):
+    """Caps heading -> sentence-shaped title. Left alone if it is not all caps,
+    because a studio that already writes its titles properly knows better."""
+    if not s or s != s.upper():
+        return s
+    out, words = [], s.split()
+    for i, w in enumerate(words):
+        if w.strip(",.:;!?—-") in ACRONYMS:
+            out.append(w)
+        elif (w.lower().strip(",.:;!?—-") in _SMALL and 0 < i < len(words) - 1
+              # A small word is only small mid-clause. After a dash or colon it
+              # opens a subtitle: "Spring Resonance — A Spring Sound Journey".
+              and not (words[i - 1][-1:] in "—–-:" or words[i - 1] in "—–")):
+            out.append(w.lower())
+        else:
+            # "21-DAY" -> "21-Day", "SOUND" -> "Sound"
+            out.append("-".join(p[:1].upper() + p[1:].lower() for p in w.split("-")))
+    return " ".join(out)
+
+
+def page_events(text, studio_id, url, year=None, kind="workshop",
+                locations=None, expect=None):
+    """Every event on a studio's index page.
+
+    `locations` maps the "@ SUBURB" suffix to a studio id, because one Warrior
+    One page covers Brighton, Mordialloc and Mornington. Without it every event
+    would be filed under whichever studio happened to hold the config.
+
+    `expect` is how many events this page yielded last time. Returning fewer is
+    reported by the caller as an anomaly — a studio quietly restyling its page is
+    the failure mode that loses events without anyone noticing."""
+    year = year or datetime.datetime.now(MELB).year
+    lines = [l.strip() for l in text.splitlines() if l.strip()]
+    out, problems = [], []
+
+    for i, line in enumerate(lines):
+        m = _LIST_DATE.match(line)
+        if not m or i == 0:
+            continue
+        (d1, mon1, y1, d2, mon2, y2, sh, sm, sap, eh, em, eap, where_raw) = m.groups()
+        m1, m2 = MONTHS.get((mon1 or "").lower()), MONTHS.get((mon2 or "").lower())
+        if not m1:
+            continue
+        # "SAT 29 AUGUST – FRI 18 SEPTEMBER 2026": only the end carries the year.
+        yr = int(y1 or y2 or year)
+        try:
+            d_start = datetime.date(yr, m1, int(d1))
+        except ValueError:
+            problems.append(f"{url}: unreadable date {line!r}")
+            continue
+        d_end = None
+        if d2 and m2:
+            try:
+                d_end = datetime.date(int(y2 or yr), m2, int(d2))
+            except ValueError:
+                d_end = None
+
+        def hm(h, mi, ap):
+            if not h:
+                return None
+            return (int(h) % 12 + (12 if (ap or "").lower() == "pm" else 0), int(mi or 0))
+
+        st_hm, en_hm = hm(sh, sm, sap), hm(eh, em, eap)
+        st = datetime.datetime.combine(d_start, datetime.time(*(st_hm or (0, 0))), tzinfo=MELB)
+        en = datetime.datetime.combine(d_end or d_start,
+                                       datetime.time(*(en_hm or (23, 59))), tzinfo=MELB)
+
+        title = lines[i - 1].strip()
+        # An all-caps heading is theirs; sentence case means we grabbed prose.
+        if len(title) > 90 or title.endswith("."):
+            problems.append(f"{url}: no heading above {line!r}")
+            continue
+
+        price, where = None, (where_raw or "").strip()
+        for nxt in lines[i + 1:i + 3]:
+            if _LIST_DATE.match(nxt):
+                break
+            inv = _INVEST.match(nxt)
+            if inv:
+                body = inv.group(1)
+                if _FREE.search(body) or re.search(r"complimentary", body, re.I):
+                    pm = _PRICE.search(body)
+                    # "COMPLIMENTARY FOR TRIBE MEMBERS | $225 FOR NON-MEMBERS" —
+                    # the number a non-member actually pays is the honest one.
+                    price = float(pm.group(1).replace(",", "")) if pm else 0
+                else:
+                    pm = _PRICE.search(body)
+                    if pm:
+                        price = float(pm.group(1).replace(",", ""))
+                if price is not None and price == int(price):
+                    price = int(price)
+                break
+
+        sid = studio_id
+        if locations and where:
+            sid = locations.get(where.upper(), studio_id)
+
+        out.append({
+            "id": f"page:{url}#{re.sub(r'[^a-z0-9]+', '-', title.lower())[:44]}",
+            "studio": sid,
+            "kind": kind,
+            "title": title_case(title),
+            "teacher": "",
+            "starts": _iso(st),
+            "ends": _iso(en),
+            "price": price,
+            "url": url,
+            "source": "page",
+        })
+
+    if expect and len(out) < expect:
+        problems.append(
+            f"{url}: found {len(out)} event(s), expected at least {expect} — "
+            f"the studio has probably restyled the page. Events may be missing.")
+    return out, problems
+
+
 # ---- Registry --------------------------------------------------------------
 def merge_events(existing, fresh, covered_sources, today=None):
     """Fold freshly-pulled events into the registry.
@@ -186,13 +337,31 @@ def merge_events(existing, fresh, covered_sources, today=None):
     kept = [e for e in existing
             if e.get("source") == "manual" or e.get("source") not in covered_sources]
     by_id = {e["id"]: e for e in kept}
+
+    # A hand-written card may name the scraped ids it stands in for. Warrior One's
+    # "Yin, Poetry & Cello" card has a caption and blurb someone wrote; the same
+    # event scraped off their index page is thinner. Without this the two would sit
+    # side by side, which is exactly the duplication that got Mark's attention on
+    # 19 Aug (the same Sri Lanka retreat via two different URLs).
+    superseded = {sid for e in kept for sid in (e.get("supersedes") or [])}
+
     for e in fresh:
+        if e["id"] in superseded:
+            continue
         prior = by_id.get(e["id"])
         if prior and prior.get("source") == "manual":
             continue                       # a human overrode this one; leave it
         by_id[e["id"]] = e
 
-    out = [e for e in by_id.values() if (e.get("ends") or e.get("starts", "")) >= cutoff]
+    # Expiry precedence must match build_events.expiry() exactly: `until` first,
+    # because that is the only date a hand-written card carries. Reading `ends` or
+    # `starts` alone made every manual card look undated and therefore expired —
+    # a single --publish would have deleted all fifteen of them. Found 19 Aug 2026
+    # by an assertion, not by anything going wrong in production, which is luck.
+    # An entry with no date at all is evergreen (Warrior One's 200-hour training)
+    # and is never dropped.
+    out = [e for e in by_id.values()
+           if (e.get("until") or e.get("ends") or e.get("starts") or "9999") >= cutoff]
     out.sort(key=lambda e: (e.get("starts", ""), e.get("studio", ""), e.get("title", "")))
     return out
 

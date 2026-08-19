@@ -188,6 +188,21 @@ def main():
             problems.append(f"event page {url} unreachable: {e}")
             page_ok = False
             continue
+        if cfg.get("list"):
+            # An index page listing many events (Warrior One's /workshops/).
+            got, probs = EV.page_events(
+                txt, sid, url, kind=cfg.get("kind", "workshop"),
+                locations=cfg.get("locations"), expect=cfg.get("expect"))
+            fresh += got
+            problems += probs
+            for e in got:
+                print(f"  list    {e['studio']:28} {e['title'][:40]} — {e['starts'][:10]}")
+            if not got:
+                problems.append(f"index page {url} loaded but no events could be read "
+                                f"— the studio has changed its layout")
+                print(f"  list    {sid:28} NO EVENTS PARSED — {url}")
+            continue
+
         ev = EV.page_event(txt, sid, url, title=cfg.get("title"),
                            kind=cfg.get("kind", "workshop"))
         if ev:
