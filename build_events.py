@@ -89,8 +89,12 @@ def compose_cat(e, sts):
             bits.append(f"{DAYS[d.weekday()]} {d.day} {MONS[d.month - 1]}")
         except ValueError:
             pass
+    # Suburb here, not the studio name. The studio goes in the blurb line
+    # underneath, which is how every hand-written card on this page is built:
+    # "Sun 23 Aug · Brighton · $90" above, "Warrior One" below. Naming the studio
+    # in both places reads like a template that was never looked at.
     meta = sts.get(e.get("studio") or "", {})
-    where = ", ".join(x for x in (meta.get("name"), meta.get("location")) if x)
+    where = meta.get("location") or meta.get("name")
     if where:
         bits.append(where)
     if e.get("teacher"):
@@ -98,6 +102,8 @@ def compose_cat(e, sts):
     p = e.get("price")
     if p == 0:
         bits.append("Free")
+    elif isinstance(p, str) and p.strip():
+        bits.append(p.strip())        # "By donation" — some prices are not numbers
     elif p:
         bits.append(f"${p:g}")
     return " · ".join(bits)
