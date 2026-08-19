@@ -55,6 +55,11 @@ html_out = be.strip_card(amp, STS)
 check("an ampersand is escaped exactly once",
       "&amp;amp;" not in html_out and "&amp;" in html_out, html_out)
 
+check("a double space typed into a booking system is collapsed",
+      "Sarah Metzger" in be.strip_card(
+          {"kind": "workshop", "title": "Info Session", "url": "https://x",
+           "cat": "Sun 23 Aug · Sarah  Metzger", "blurb": "b", "source": "momence"}, STS))
+
 # --- expiry -----------------------------------------------------------------
 check("expiry prefers `until`, then `ends`, then `starts`",
       be.expiry({"until": "2026-01-01", "ends": "2026-02-02"}) == "2026-01-01"
