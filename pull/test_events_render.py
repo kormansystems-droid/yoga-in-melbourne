@@ -91,6 +91,26 @@ check("a feed retreat with no photo degrades to a strip card, it is not dropped"
       "Feed Retreat" in out)
 check("an image URL's query separators are escaped for HTML",
       'a.jpg?q=80&amp;w=1000' in out, out[out.find("<img"):out.find("<img") + 90])
+# The regression Mark has reported more than once: the photographs and the text
+# cards beneath them are read as pairs, and a plain date sort breaks the pairing
+# as soon as one entry has no photograph.
+band2 = dict(band, title="B", url="https://x/b", starts="2026-12-01T09:00:00+10:00",
+             until="2026-12-01", image="https://img/b.jpg", band_title="B")
+noimg = {"kind": "retreat", "title": "No Photo", "url": "https://x/n",
+         "until": "2026-09-01", "cat": "c", "blurb": "b", "source": "manual"}
+ordered = sorted([band2, noimg, band],
+                 key=lambda e: (0 if e.get("image") else 1,
+                                e.get("starts") or e.get("until") or "9999", e.get("title", "")))
+out2 = be.render("retreat", ordered, STS)
+import re as _re
+_band = _re.findall(r'class="jb-card"[\s\S]*?<h3>([^<]*)</h3>', out2)
+_strip = _re.findall(r'class="strip-card"[\s\S]*?<h3>([^<]*)</h3>', out2)
+check("every photograph pairs with the text card in the same position",
+      _strip[:len(_band)] == [e["title"] for e in ordered if e.get("image")],
+      f"band={_band} strip={_strip}")
+check("a retreat with no photograph sorts BELOW all the photographed ones",
+      _strip[-1] == "No Photo", str(_strip))
+
 check("workshops and trainings render no band",
       'jb-card' not in be.render("workshop", [manual], STS))
 
