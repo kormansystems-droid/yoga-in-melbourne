@@ -44,7 +44,21 @@
         "min_rows": 15,
         "note": "Interim widget scrape (min_rows guards partial renders). Swap to {type: mindbody, site_id: 211566, location: <Location.Name>} when activation approved."
       },
-      "verified": "2026-08-18"
+      "verified": "2026-08-18",
+      "event_pages": [
+        {
+          "url": "https://warrioroneyoga.com.au/workshops/",
+          "list": true,
+          "kind": "workshop",
+          "expect": 5,
+          "note": "One page covers all three Warrior One studios; `locations` routes each event to the right one. `expect` is a floor — if the page yields fewer, say so rather than quietly shrinking the section.",
+          "locations": {
+            "BRIGHTON": "warrior-one-brighton",
+            "MORDIALLOC": "warrior-one-mordialloc",
+            "MORNINGTON": "warrior-one-mornington"
+          }
+        }
+      ]
     },
     "warrior-one-mordialloc": {
       "name": "Warrior One",

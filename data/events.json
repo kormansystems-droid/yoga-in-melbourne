@@ -100,7 +100,10 @@
       "url": "https://warrioroneyoga.com.au/workshops/",
       "external": true,
       "source": "manual",
-      "until": "2026-08-23"
+      "until": "2026-08-23",
+      "supersedes": [
+        "page:https://warrioroneyoga.com.au/workshops/#yin-poetry-cello-with-franks"
+      ]
     },
     {
       "id": "momence:40780:200hr yoga training info session",
@@ -129,6 +132,20 @@
       "approved": "2026-08-19"
     },
     {
+      "id": "page:https://warrioroneyoga.com.au/workshops/#21-day-brighton-august-challenge",
+      "studio": "warrior-one-brighton",
+      "kind": "workshop",
+      "title": "21-Day Brighton August Challenge",
+      "teacher": "",
+      "starts": "2026-08-29T00:00:00+10:00",
+      "ends": "2026-09-18T23:59:00+10:00",
+      "price": 225,
+      "url": "https://warrioroneyoga.com.au/workshops/",
+      "source": "page",
+      "blurb": "Four classes a week for three weeks. Complimentary for Tribe members, $225 for everyone else.",
+      "approved": "2026-08-19"
+    },
+    {
       "id": "page:https://www.withinretreat.com.au/asana",
       "studio": "within-south-yarra",
       "kind": "workshop",
@@ -150,7 +167,23 @@
       "url": "https://warrioroneyoga.com.au/workshops/",
       "external": true,
       "source": "manual",
-      "until": "2026-08-30"
+      "until": "2026-08-30",
+      "supersedes": [
+        "page:https://warrioroneyoga.com.au/workshops/#sound-bath-with-iksre"
+      ]
+    },
+    {
+      "id": "page:https://warrioroneyoga.com.au/workshops/#slow-flow-to-yin-with-lucy",
+      "studio": "warrior-one-mornington",
+      "kind": "workshop",
+      "title": "Slow Flow to Yin with Lucy",
+      "teacher": "",
+      "starts": "2026-09-02T10:45:00+10:00",
+      "ends": "2026-09-02T12:00:00+10:00",
+      "price": null,
+      "url": "https://warrioroneyoga.com.au/workshops/",
+      "source": "page",
+      "approved": "2026-08-19"
     },
     {
       "id": "manual:retreat:warrior-one-thailand",
@@ -305,6 +338,20 @@
       "external": true,
       "source": "manual",
       "until": "2026-10-18"
+    },
+    {
+      "id": "page:https://warrioroneyoga.com.au/workshops/#spring-resonance-a-spring-sound-slow-flow-jo",
+      "studio": "warrior-one-mordialloc",
+      "kind": "workshop",
+      "title": "Spring Resonance",
+      "teacher": "",
+      "starts": "2026-10-18T19:15:00+11:00",
+      "ends": "2026-10-18T21:00:00+11:00",
+      "price": 75,
+      "url": "https://warrioroneyoga.com.au/workshops/",
+      "source": "page",
+      "blurb": "A spring sound and slow flow journey with Nat and Dan Byrne of Cymatic Harmony.",
+      "approved": "2026-08-19"
     },
     {
       "id": "manual:retreat:within-sri-lanka",
