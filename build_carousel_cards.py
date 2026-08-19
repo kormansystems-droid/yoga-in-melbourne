@@ -191,6 +191,9 @@ body{background:#3a3a3a;font-family:'Hanken Grotesk',system-ui,sans-serif}
 .card.paper .lead{color:var(--ink);font-size:60px;line-height:1.16}
 .card.paper .lead em{color:var(--henna)}
 .card.paper .rule{background:rgba(42,32,26,.22);margin:auto 0 30px}
+.tag{font-family:'Fraunces',serif;font-size:46px;line-height:1.2;color:var(--ink);
+     margin-top:26px}
+.tag em{font-style:italic;color:var(--henna)}
 .card.paper .mark{color:var(--ink)}
 .card.paper .mark em{color:var(--henna)}
 .card.paper .pip{color:var(--sage)}
@@ -232,7 +235,7 @@ def card(n, total, img, pos, top_kicker, body, topset=False):
 </div>"""
 
 
-def build(teacher, where, sched_line):
+def build(teacher, where, sched_line, lead):
     c1 = card(1, 3, "01-oak.jpg", "36% 40%", "A new profile",
               f"<div class='name'>{teacher}</div>"
               f"<div class='sub'><b>{where}</b></div>")
@@ -251,16 +254,18 @@ def build(teacher, where, sched_line):
     c2 = card(2, 3, "02-teaching.jpg", "52% 18%", "Where to find her",
               f"<div class='lead'>{sched_line}</div>"
               f"<div class='sub'>{where}</div>", topset=True)
+    # No kicker and no second wordmark here: the line already says "coming soon"
+    # and already names the publication, so repeating either underneath is the
+    # card arguing with itself.
     c3 = f"""
 <div class="card paper">
   <div class="photo"><img src="03-practice.jpg" alt=""></div>
   <div class="inner">
-    <div class="kicker">Coming soon</div>
-    <div class="lead">Her story, and every class she teaches
-      &mdash; <em>in one place</em>.</div>
+    <div class="lead">{lead}</div>
+    <div class="tag">Coming soon to Yoga <em>in</em> Melbourne</div>
     <div class="url">yogainmelbourne.com.au</div>
     <div class="rule"></div>
-    <div class="foot">{WORDMARK}<div class="pip">3 / 3</div></div>
+    <div class="foot"><div class="pip">3 / 3</div></div>
   </div>
 </div>"""
     return [("01-announce", c1), ("02-in-the-room", c2), ("03-coming-soon", c3)]
@@ -273,6 +278,9 @@ def main():
                     help="exactly as she appears in data/schedule.json")
     ap.add_argument("--where", help="override the studio line (rarely needed)")
     ap.add_argument("--schedule", help="override the schedule line (rarely needed)")
+    ap.add_argument("--lead", default="Her story\u2026",
+                    help="the closing headline. 'His story…' for a man — the script "
+                         "will not guess a pronoun from a name.")
     ap.add_argument("--no-png", action="store_true")
     a = ap.parse_args()
 
@@ -288,7 +296,7 @@ def main():
                if not (out / f).exists()]
     if missing:
         raise SystemExit(f"{out.relative_to(ROOT)}/ is missing {', '.join(missing)}")
-    frames = build(a.teacher, where, sched_line)
+    frames = build(a.teacher, where, sched_line, a.lead)
     doc = (f"<!doctype html><html lang='en-AU'><head><meta charset='utf-8'>"
            f"<title>{a.teacher} carousel</title>"
            f"<style>{FONT_FACES}{CSS}</style></head><body>"
