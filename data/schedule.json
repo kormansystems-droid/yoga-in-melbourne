@@ -21,11 +21,14 @@
           "url": "https://www.withinretreat.com.au/asana",
           "title": "Strong Asana — community workshop with Masha",
           "kind": "workshop"
-        },
+        }
+      ],
+      "event_pages_retired": [
         {
           "url": "https://www.withinretreat.com.au/gowithintowin",
           "title": "Go WITH/N to WIN — September Challenge",
-          "kind": "workshop"
+          "removed": "2026-08-19",
+          "reason": "Page loads but its date line no longer parses — Within reworded it. Mark's call, 19 Aug 2026: ignore it. Removed from event_pages so the weekly proposal stops raising an anomaly nobody intends to act on. Do not re-add without asking him."
         }
       ]
     },
