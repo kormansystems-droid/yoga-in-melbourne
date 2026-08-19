@@ -36,6 +36,16 @@ jobs:
           MINDBODY_API_KEY: ${{ secrets.MINDBODY_API_KEY }}
         run: python pull/pull.py
 
+      # Separate step, and allowed to fail. Events are the newer, more brittle
+      # half of the pipeline; an events problem must never take the timetable
+      # down with it. This renders whatever data/events.json already holds — it
+      # cannot add an event, so it never bypasses Mark's approval. Running it
+      # daily is what retires expired cards server-side instead of leaving them
+      # in the HTML for a client-side script to hide.
+      - name: Re-render the events bands
+        continue-on-error: true
+        run: python build_events.py
+
       - name: Publish clean schedule changes
         run: |
           git config user.name  "yim-timetable-bot"

@@ -1,6 +1,6 @@
 name: Propose events
 
-# Manual only, and it PROPOSES — it never publishes.
+# Weekly + manual, and it PROPOSES — it never publishes.
 #
 # Mark's instruction, 18 Aug 2026: updates to events are cross-checked with him
 # before publication. So this workflow writes only pull/_events_proposed.md and
@@ -8,9 +8,16 @@ name: Propose events
 # and every page on the site are untouched. Publishing is a separate, deliberate
 # act after he has read the proposal.
 #
-# Do not add a `schedule:` trigger and do not add --publish here. The gate is the
-# point.
+# The schedule added 19 Aug 2026 does NOT weaken that gate — it strengthens it.
+# The gate was never the problem: nothing was prompting him to walk through it, so
+# 15 discovered events sat unproposed while the homepage decayed from 7 cards to 3
+# by expiry alone. A weekly nudge removes the "nobody remembered to run it"
+# failure and leaves the decision exactly where he put it.
+#
+# Do not add --publish here. The gate is the point.
 on:
+  schedule:
+    - cron: "0 22 * * 0"   # Sun 22:00 UTC = Mon 8:00 AM Melbourne (AEST)
   workflow_dispatch:
 
 permissions:
@@ -34,19 +41,34 @@ jobs:
           git config user.name  "yim-timetable-bot"
           git config user.email "actions@users.noreply.github.com"
           # Proposal files only. data/events.json is deliberately not staged.
-          git add pull/_events_proposed.md pull/_events_proposed.json pull/_event_anomalies.md || true
+          git add pull/_events_proposed.md pull/_events_proposed.json \
+                  pull/_event_anomalies.md pull/_events_actionable || true
           if git diff --cached --quiet; then echo "No change to propose."; exit 0; fi
           git commit -m "Events proposal (not published)"
           git pull --rebase --autostash origin main || true
           git push origin HEAD:main
 
-      - name: Raise an issue with the diff
+      - name: Raise an issue, but only when there is something to decide
         if: always()
-        run: |
-          if [ -f pull/_events_proposed.md ]; then
-            gh issue create \
-              --title "Events proposal — $(date -u +%Y-%m-%d)" \
-              --body-file pull/_events_proposed.md
-          fi
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # pull_events.py writes _events_actionable only when something is new,
+          # changed, or broken. A weekly issue that fires regardless would train
+          # him to ignore it, and then the week that matters gets ignored too.
+          if [ ! -s pull/_events_actionable ]; then
+            echo "Nothing new to propose — no issue raised."
+            exit 0
+          fi
+          TITLE="Events proposal — awaiting your yes"
+          NUM=$(gh issue list --state open --search "$TITLE in:title" \
+                --json number --jq '.[0].number' 2>/dev/null || true)
+          if [ -n "$NUM" ]; then
+            # One running thread until he closes it, rather than a new issue each
+            # week stacking up unread.
+            gh issue comment "$NUM" --body-file pull/_events_proposed.md
+            echo "Appended to existing issue #$NUM."
+          else
+            gh issue create --title "$TITLE" --body-file pull/_events_proposed.md
+            echo "Opened a new issue."
+          fi
