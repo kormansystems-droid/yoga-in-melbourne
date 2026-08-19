@@ -30,7 +30,7 @@ feed = {"kind": "workshop", "title": "Flight School", "studio": "within-south-ya
         "starts": "2026-08-22T13:00:00+10:00", "price": 50, "url": "https://x/flight",
         "source": "page"}
 check("a feed event composes when · where · how much",
-      be.compose_cat(feed, STS) == "Sat 22 Aug · Within, South Yarra · $50",
+      be.compose_cat(feed, STS) == "Sat 22 Aug · South Yarra · $50",
       be.compose_cat(feed, STS))
 
 free = dict(feed, price=0, teacher="Masha")
@@ -46,6 +46,10 @@ check("a missing price is omitted, not guessed",
 manual = {"kind": "workshop", "title": "Yin, Poetry & Cello",
           "cat": "Sun 23 Aug · Brighton · $90", "blurb": "Warrior One",
           "url": "https://x", "until": "2026-08-23", "source": "manual"}
+check("the studio is not named in both the caption and the blurb",
+      be.compose_cat(feed, STS).count("Within") == 0
+      and "<p>Within</p>" in be.strip_card(feed, STS), be.strip_card(feed, STS))
+
 check("a hand-written caption is never recomposed",
       'Sun 23 Aug · Brighton · $90' in be.strip_card(manual, STS))
 
@@ -59,6 +63,11 @@ check("a double space typed into a booking system is collapsed",
       "Sarah Metzger" in be.strip_card(
           {"kind": "workshop", "title": "Info Session", "url": "https://x",
            "cat": "Sun 23 Aug · Sarah  Metzger", "blurb": "b", "source": "momence"}, STS))
+
+donation = dict(feed, price="By donation")
+check("a non-numeric price is passed through, not formatted as currency",
+      "By donation" in be.compose_cat(donation, STS) and "$" not in be.compose_cat(donation, STS),
+      be.compose_cat(donation, STS))
 
 # --- expiry -----------------------------------------------------------------
 check("expiry prefers `until`, then `ends`, then `starts`",
