@@ -45,6 +45,7 @@ EVENTS = ROOT / "data" / "events.json"
 ANOM = Path(__file__).resolve().parent / "_event_anomalies.md"
 PROPOSED_JSON = Path(__file__).resolve().parent / "_events_proposed.json"
 PROPOSED_MD = Path(__file__).resolve().parent / "_events_proposed.md"
+ACTIONABLE = Path(__file__).resolve().parent / "_events_actionable"
 
 UA = {"User-Agent": "Mozilla/5.0 (compatible; YIM-events/1.0)"}
 FORWARD_DAYS = 180          # events are booked months out; classes are not
@@ -126,6 +127,17 @@ def write_proposal(before, after, problems):
     if problems:
         L += ["## Needs a human", ""] + [f"- {p}" for p in problems] + [""]
     PROPOSED_MD.write_text("\n".join(L), encoding="utf-8")
+
+    # A weekly run that found nothing new must not raise an issue — a
+    # notification that fires every week regardless stops being read, and then
+    # the one that matters is missed too. Dropped-only diffs are expiry doing its
+    # job and need no decision.
+    if added or changed or problems:
+        ACTIONABLE.write_text(
+            f"{len(added)} new, {len(changed)} changed, {len(problems)} needing a human\n",
+            encoding="utf-8")
+    elif ACTIONABLE.exists():
+        ACTIONABLE.unlink()
     PROPOSED_JSON.write_text(json.dumps({"events": after}, indent=2, ensure_ascii=False) + "\n",
                              encoding="utf-8")
 
