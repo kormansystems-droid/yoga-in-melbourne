@@ -115,7 +115,23 @@ body{background:#3a3a3a;font-family:'Hanken Grotesk',system-ui,sans-serif}
   font-family:'Spline Sans Mono',monospace;font-size:23px;letter-spacing:.14em;
   text-transform:uppercase;color:var(--sage);margin-bottom:22px;
 }
-.names li{font-family:'Fraunces',serif;line-height:1.30;list-style:none}
+.names li{font-family:'Fraunces',serif;line-height:1.30;list-style:none;
+  display:flex;align-items:center;gap:calc(26px * var(--k));
+  margin-bottom:calc(16px * var(--k))}
+.names li:last-child{margin-bottom:0}
+/* A vignette, not an avatar: the crop fades into the paper rather than sitting
+   on it as a hard disc. Small, because the name is the thing being read — the
+   face is there to make the roster feel like people. A teacher with no
+   photograph gets the name alone and no empty circle. */
+.n-vig{flex:0 0 calc(96px * var(--k));width:calc(96px * var(--k));height:calc(96px * var(--k));
+  border-radius:50%;overflow:hidden;
+  -webkit-mask-image:radial-gradient(circle at 50% 46%,#000 58%,rgba(0,0,0,.55) 80%,transparent 100%);
+  mask-image:radial-gradient(circle at 50% 46%,#000 58%,rgba(0,0,0,.55) 80%,transparent 100%)}
+.n-vig img{width:100%;height:100%;object-fit:cover;display:block}
+/* No photograph: hold the column so the names stay on one left edge, but draw
+   nothing. An empty circle reads as a missing image; empty space reads as a
+   name. */
+.n-gap{flex:0 0 calc(96px * var(--k))}
 
 /* Row metrics scale off --k, which fit() lowers until the frame fits. The roster
    is meant to grow, so a fixed set of density breakpoints would quietly start
@@ -313,6 +329,14 @@ def _foot():
             '<div class="url">yogainmelbourne.com.au</div></div>')
 
 
+def _vignette_html(slug):
+    """The small soft-edged portrait beside a name on the opener and closer."""
+    src = teacher_portrait(slug, px=200)
+    if not src:
+        return '<div class="n-gap"></div>'
+    return f'<div class="n-vig"><img src="{src}" alt=""></div>' 
+
+
 def _portrait_html(slug):
     src = teacher_portrait(slug)
     return f'<div class="t-portrait"><img src="{src}" alt=""></div>' if src else ""
@@ -365,7 +389,8 @@ def build_frames(schedule, day, date, items, mode):
                 f'<div class="date">{esc(day_full)} <em>Yoga</em></div>'
                 f'<div class="count">{esc(" · ".join(facts))}</div>'
                 f'<div class="names"><div class="names-lbl">Our teachers</div><ul>'
-                + "".join(f"<li>{esc(t)}</li>" for t in teachers)
+                + "".join(f'<li>{_vignette_html(slug_of(t))}<span>{esc(t)}</span></li>'
+                          for t in teachers)
                 + f'</ul></div>{_foot()}</div>',
     })
 
