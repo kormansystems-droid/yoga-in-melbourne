@@ -191,8 +191,8 @@ body{background:#3a3a3a;font-family:'Hanken Grotesk',system-ui,sans-serif}
 .card.paper .lead{color:var(--ink);font-size:60px;line-height:1.16}
 .card.paper .lead em{color:var(--henna)}
 .card.paper .rule{background:rgba(42,32,26,.22);margin:auto 0 30px}
-.tag{font-family:'Fraunces',serif;font-size:46px;line-height:1.2;color:var(--ink);
-     margin-top:26px}
+.tag{font-family:'Spline Sans Mono',monospace;font-size:30px;letter-spacing:.04em;
+     line-height:1.3;color:var(--henna);margin-top:28px}
 .tag em{font-style:italic;color:var(--henna)}
 .card.paper .mark{color:var(--ink)}
 .card.paper .mark em{color:var(--henna)}
@@ -204,9 +204,13 @@ body{background:#3a3a3a;font-family:'Hanken Grotesk',system-ui,sans-serif}
 .foot{display:flex;align-items:flex-end;justify-content:space-between}
 .pip{font-family:'Spline Sans Mono',monospace;font-size:22px;letter-spacing:.18em;
      color:rgba(231,217,192,.55)}
+.bio{font-family:'Spline Sans Mono',monospace;font-size:23px;letter-spacing:.14em;
+     text-transform:uppercase;color:#E8A88A}
+.card.paper .bio{color:var(--henna)}
 """
 
 WORDMARK = "<div class='mark'>Yoga <em>in</em> Melbourne</div>"
+BIO = "<div class='bio'>Link in bio</div>"
 
 
 def card(n, total, img, pos, top_kicker, body, topset=False):
@@ -220,7 +224,7 @@ def card(n, total, img, pos, top_kicker, body, topset=False):
     {body}
     <div class="rule"></div>
   </div>
-  <div class="foot">{WORDMARK}<div class="pip">{n} / {total}</div></div>
+  <div class="foot">{WORDMARK}{BIO}</div>
 </div>"""
     return f"""
 <div class="card">
@@ -230,13 +234,13 @@ def card(n, total, img, pos, top_kicker, body, topset=False):
   <div class="inner">
     {body}
     <div class="rule"></div>
-    <div class="foot">{WORDMARK}<div class="pip">{n} / {total}</div></div>
+    <div class="foot">{WORDMARK}{BIO}</div>
   </div>
 </div>"""
 
 
 def build(teacher, where, sched_line, lead):
-    c1 = card(1, 3, "01-oak.jpg", "36% 40%", "A new profile",
+    c1 = card(1, 3, "01-oak.jpg", "36% 40%", "Her story \u2014 coming soon",
               f"<div class='name'>{teacher}</div>"
               f"<div class='sub'><b>{where}</b></div>")
     # Schedule data is factual and public and needs nobody's approval to state.
@@ -262,10 +266,9 @@ def build(teacher, where, sched_line, lead):
   <div class="photo"><img src="03-practice.jpg" alt=""></div>
   <div class="inner">
     <div class="lead">{lead}</div>
-    <div class="tag">Coming soon to Yoga <em>in</em> Melbourne</div>
-    <div class="url">yogainmelbourne.com.au</div>
+    <div class="tag">www.yogainmelbourne.com.au</div>
     <div class="rule"></div>
-    <div class="foot"><div class="pip">3 / 3</div></div>
+    <div class="foot">{WORDMARK}{BIO}</div>
   </div>
 </div>"""
     return [("01-announce", c1), ("02-in-the-room", c2), ("03-coming-soon", c3)]
@@ -278,8 +281,8 @@ def main():
                     help="exactly as she appears in data/schedule.json")
     ap.add_argument("--where", help="override the studio line (rarely needed)")
     ap.add_argument("--schedule", help="override the schedule line (rarely needed)")
-    ap.add_argument("--lead", default="Her story\u2026",
-                    help="the closing headline. 'His story…' for a man — the script "
+    ap.add_argument("--lead", default="Her story, and where she is teaching.",
+                    help="the closing headline. 'His story...' for a man — the script "
                          "will not guess a pronoun from a name.")
     ap.add_argument("--no-png", action="store_true")
     a = ap.parse_args()
