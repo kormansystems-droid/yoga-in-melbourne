@@ -371,7 +371,8 @@
           "time": "6:15–7:15 PM",
           "class": "Yoga Fundamentals",
           "dates": [
-            "2026-08-27"
+            "2026-08-27",
+            "2026-09-03"
           ]
         },
         {
@@ -380,7 +381,8 @@
           "time": "7:30–8:30 PM",
           "class": "Yin",
           "dates": [
-            "2026-08-27"
+            "2026-08-27",
+            "2026-09-03"
           ]
         },
         {
@@ -447,18 +449,6 @@
       "classes": [
         {
           "studio": "warrior-one-brighton",
-          "day": "Fri",
-          "time": "7:30–8:30 AM",
-          "class": "Vinyasa Flow"
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Fri",
-          "time": "9:30–10:30 AM",
-          "class": "Vinyasa Flow"
-        },
-        {
-          "studio": "warrior-one-brighton",
           "day": "Tue",
           "time": "5:00–6:00 PM",
           "class": "Vinyasa Flow"
@@ -474,6 +464,18 @@
           "day": "Tue",
           "time": "7:30–8:30 PM",
           "class": "Yin Yoga & Meditation"
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Fri",
+          "time": "7:30–8:30 AM",
+          "class": "Vinyasa Flow"
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Fri",
+          "time": "9:30–10:30 AM",
+          "class": "Vinyasa Flow"
         },
         {
           "studio": "warrior-one-brighton",
@@ -587,49 +589,73 @@
           "studio": "within-south-yarra",
           "day": "Wed",
           "time": "6:00–7:00 AM",
-          "class": "Strong Flow Yoga"
+          "class": "Strong Flow Yoga",
+          "dates": [
+            "2026-08-26"
+          ]
         },
         {
           "studio": "within-south-yarra",
           "day": "Wed",
           "time": "7:30–8:30 AM",
-          "class": "Slow Flow Yoga"
+          "class": "Slow Flow Yoga",
+          "dates": [
+            "2026-08-26"
+          ]
         },
         {
           "studio": "within-south-yarra",
           "day": "Wed",
           "time": "9:30–10:30 AM",
-          "class": "Strong Flow Yoga"
+          "class": "Strong Flow Yoga",
+          "dates": [
+            "2026-08-26"
+          ]
         },
         {
           "studio": "within-south-yarra",
           "day": "Fri",
           "time": "6:00–7:00 AM",
-          "class": "Strong Flow Yoga"
+          "class": "Strong Flow Yoga",
+          "dates": [
+            "2026-08-21"
+          ]
         },
         {
           "studio": "within-south-yarra",
           "day": "Fri",
           "time": "7:30–8:30 AM",
-          "class": "Slow Flow Yoga"
+          "class": "Slow Flow Yoga",
+          "dates": [
+            "2026-08-21"
+          ]
         },
         {
           "studio": "within-south-yarra",
           "day": "Fri",
           "time": "9:30–10:30 AM",
-          "class": "Strong Flow Yoga"
+          "class": "Strong Flow Yoga",
+          "dates": [
+            "2026-08-21"
+          ]
         },
         {
           "studio": "within-south-yarra",
           "day": "Sat",
           "time": "7:30–9:00 AM",
-          "class": "Strong Flow 90 Mins"
+          "class": "Strong Flow 90 Mins",
+          "dates": [
+            "2026-08-22"
+          ]
         },
         {
           "studio": "within-south-yarra",
           "day": "Sat",
           "time": "9:30–10:30 AM",
-          "class": "Strong Flow Yoga"
+          "class": "Strong Flow Yoga",
+          "dates": [
+            "2026-08-22"
+          ]
         }
       ]
     },
@@ -991,7 +1017,8 @@
           "time": "7:15–8:15 AM",
           "class": "Slow Flow",
           "dates": [
-            "2026-08-21"
+            "2026-08-21",
+            "2026-08-28"
           ]
         },
         {
@@ -1038,8 +1065,8 @@
           "time": "5:00–6:00 PM",
           "class": "Dynamic Flow",
           "dates": [
-            "2026-08-20",
-            "2026-08-27"
+            "2026-08-27",
+            "2026-09-03"
           ]
         },
         {
@@ -1048,8 +1075,8 @@
           "time": "6:15–7:15 PM",
           "class": "Candlelit Slow Flow",
           "dates": [
-            "2026-08-20",
-            "2026-08-27"
+            "2026-08-27",
+            "2026-09-03"
           ]
         },
         {
@@ -1058,8 +1085,8 @@
           "time": "7:30–8:30 PM",
           "class": "Candlelit Yin",
           "dates": [
-            "2026-08-20",
-            "2026-08-27"
+            "2026-08-27",
+            "2026-09-03"
           ]
         },
         {
