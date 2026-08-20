@@ -573,6 +573,66 @@
         }
       ]
     },
+    "Masha Gorodilova": {
+      "name": {
+        "given": "Masha",
+        "family": "Gorodilova"
+      },
+      "aliases": [
+        "Masha Gorodilova",
+        "Masha"
+      ],
+      "classes": [
+        {
+          "studio": "within-south-yarra",
+          "day": "Wed",
+          "time": "6:00–7:00 AM",
+          "class": "Strong Flow Yoga"
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Wed",
+          "time": "7:30–8:30 AM",
+          "class": "Slow Flow Yoga"
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Wed",
+          "time": "9:30–10:30 AM",
+          "class": "Strong Flow Yoga"
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Fri",
+          "time": "6:00–7:00 AM",
+          "class": "Strong Flow Yoga"
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Fri",
+          "time": "7:30–8:30 AM",
+          "class": "Slow Flow Yoga"
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Fri",
+          "time": "9:30–10:30 AM",
+          "class": "Strong Flow Yoga"
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Sat",
+          "time": "7:30–9:00 AM",
+          "class": "Strong Flow 90 Mins"
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Sat",
+          "time": "9:30–10:30 AM",
+          "class": "Strong Flow Yoga"
+        }
+      ]
+    },
     "Rayne Watkin": {
       "name": {
         "given": "Rayne",
