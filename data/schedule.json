@@ -433,6 +433,77 @@
         }
       ]
     },
+    "Franks Martin": {
+      "name": {
+        "given": "Franks",
+        "family": "Martin"
+      },
+      "aliases": [
+        "Franks Martin",
+        "Franks",
+        "Franks  Martin",
+        "Frank Martin"
+      ],
+      "classes": [
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Fri",
+          "time": "7:30–8:30 AM",
+          "class": "Vinyasa Flow"
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Fri",
+          "time": "9:30–10:30 AM",
+          "class": "Vinyasa Flow"
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Tue",
+          "time": "5:00–6:00 PM",
+          "class": "Vinyasa Flow"
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Tue",
+          "time": "6:15–7:15 PM",
+          "class": "Vinyasa Flow"
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Tue",
+          "time": "7:30–8:30 PM",
+          "class": "Yin Yoga & Meditation"
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Sun",
+          "time": "8:00–9:00 AM",
+          "class": "Slow Flow",
+          "dates": [
+            "2026-08-23"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Sun",
+          "time": "9:30–10:45 AM",
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-08-23"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Sun",
+          "time": "11:00–12:00 PM",
+          "class": "Yin Yoga",
+          "dates": [
+            "2026-08-23"
+          ]
+        }
+      ]
+    },
     "Janita Doelken": {
       "name": {
         "given": "Janita",
