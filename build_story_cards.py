@@ -398,10 +398,15 @@ def build_frames(schedule, day, date, items, mode):
     frames.append({
         "name": "opener",
         "link": story_link("/", campaign, "opener"),
-        "mentions": list(teachers),
-        "note": "Mention EVERY teacher here. Each mention is its own notification and "
-                "its own chance to reshare. On 15 Aug this was the best card and took "
-                "the fewest views (37) because nobody was mentioned on it.",
+        "mentions": [],
+        "note": "NO mentions on this frame. The standing rule (YIM-growth-model-2026-08-15, "
+                "\u00a711) is: mention each teacher on her own frame only, so the frame she "
+                "reshares is entirely about her. A mention here hands her the option to "
+                "reshare a card naming four other people, and she will only reshare once. "
+                "A build between 16 and 20 Aug 2026 overrode this, arguing from the 15 Aug "
+                "tagged-vs-untagged view gap (123 vs 36). That gap measures reshare traffic "
+                "entering at a tagged frame; it does not measure whether mentioning five "
+                "people on one frame helps. Restored 20 Aug 2026 when Mark caught it.",
         "html": f'<div class="card"><div class="kicker">{esc(kicker)}</div>'
                 f'<div class="date">{esc(day_full)} <em>Yoga</em></div>'
                 f'<div class="count">{esc(" · ".join(facts))}</div>'
@@ -432,9 +437,9 @@ def build_frames(schedule, day, date, items, mode):
         return {
             "name": f"lineup-{slug}" if slug else "lineup",
             "link": story_link("/", campaign, f"lineup-{slug}" if slug else "lineup"),
-            "mentions": sorted({r["teacher"] for r in rows}),
-            "note": "Mention every teacher and every studio shown on this frame — and only "
-                    "the ones shown on it.",
+            "mentions": [],
+            "note": "NO mentions on this frame. Same rule as the opener \u2014 a line-up names "
+                    "everyone, so it is nobody's frame to reshare.",
             "html": f'<div class="card"><div class="kicker">{head}</div>'
                     f'<div class="date">{esc(day_full)}</div>'
                     f'<div class="rows">{_rows_html(rows, show_teacher=True)}</div>{_foot()}</div>',
@@ -464,8 +469,8 @@ def build_frames(schedule, day, date, items, mode):
             "link": story_link(f"/{slug}.html", campaign, slug),
             "mentions": [t],
             "note": f"This frame carries {t}'s name and NO ONE else's, so the frame she "
-                    f"reshares is entirely about her. She is still mentioned on the opener "
-                    f"and the closer — that is three notifications, not one. Link sticker "
+                    f"reshares is entirely about her, and it is the ONLY frame she is "
+                    f"mentioned on — one notification, one reshare, undiluted. Link sticker "
                     f"goes to her page, not the homepage.",
             "html": f'<div class="card"><div class="kicker">{esc(kicker)} · {esc(day_full)}</div>'
                     f'<div class="t-head">{_portrait_html(slug)}'
@@ -495,9 +500,11 @@ def build_frames(schedule, day, date, items, mode):
     frames.append({
         "name": "closer",
         "link": story_link("/", campaign, "closer"),
-        "mentions": list(teachers),
-        "note": "Mention every teacher again here. This frame is the story's only route to "
-                "the full timetable, and it is the last thing anyone sees.",
+        "mentions": [],
+        "note": "NO mentions on this frame. It is the story's route to the full timetable and "
+                "the last thing anyone sees \u2014 but it names everyone, so it is nobody's "
+                "frame to reshare, and a second notification for a card she will not reshare "
+                "spends goodwill for nothing. Link sticker still goes on it.",
         "html": f'<div class="card closer"><div class="kicker">{esc(kicker)}</div>'
                 f'<div class="closer-lead">{esc(lead)} <em>on the mat</em> with</div>'
                 f'<ul class="closer-names">'
@@ -527,7 +534,7 @@ def write_links_page(path, frames, day, date, mode):
             f'<span class="fname">{esc(f["name"])}</span></div>'
             f'<div class="mentions"><span class="lbl">Mention</span> {esc(mentions)}</div>'
             f'<div class="linkrow">'
-            f'<code id="u{i}">{esc(f["link"])}</code>'
+            f'<input id="u{i}" class="u" readonly value="{esc_attr(f["link"])}">'
             f'<button class="copy" data-t="u{i}">Copy</button>'
             f'</div></li>')
     css = """
@@ -555,9 +562,11 @@ ol{list-style:none;margin:0;padding:0}
 .mentions .lbl{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:10.5px;
      letter-spacing:.12em;text-transform:uppercase;color:var(--clay);margin-right:6px}
 .linkrow{display:flex;gap:10px;align-items:stretch}
-code{flex:1;min-width:0;font-family:'Spline Sans Mono',ui-monospace,monospace;
+input.u{flex:1;min-width:0;width:100%;font-family:'Spline Sans Mono',ui-monospace,monospace;
      font-size:11px;line-height:1.4;color:var(--ink-soft);background:rgba(42,32,26,.05);
-     border:1px solid rgba(42,32,26,.12);padding:8px 9px;word-break:break-all}
+     border:1px solid rgba(42,32,26,.12);padding:9px;border-radius:0;
+     -webkit-appearance:none;text-overflow:ellipsis}
+input.u:focus{outline:2px solid var(--clay);outline-offset:-2px;color:var(--ink)}
 .copy{flex:0 0 auto;align-self:stretch;min-width:82px;cursor:pointer;
       font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:11.5px;
       letter-spacing:.1em;text-transform:uppercase;color:var(--paper);
@@ -570,25 +579,35 @@ code{flex:1;min-width:0;font-family:'Spline Sans Mono',ui-monospace,monospace;
 .foot b{font-family:'Fraunces',Georgia,serif;font-weight:500;color:var(--ink)}
 """
     js = """
+/* Three ways to copy, in order of preference. An artifact renders inside a
+   sandboxed iframe, where navigator.clipboard is usually blocked by permissions
+   policy and execCommand can fail too — which is exactly how the first version of
+   this page shipped with buttons that did nothing (20 Aug 2026). So the URL lives
+   in a readonly <input>: even if BOTH copy paths fail, one tap selects the whole
+   string and the OS copy menu takes it. The button reports what actually happened
+   rather than always claiming success. */
+document.querySelectorAll('input.u').forEach(function(i){
+  function all(){ i.setSelectionRange(0, i.value.length); }
+  i.addEventListener('focus', all);
+  i.addEventListener('click', all);
+});
 document.querySelectorAll('.copy').forEach(function(b){
   b.addEventListener('click', function(){
-    var el = document.getElementById(b.dataset.t);
-    var txt = el.textContent.trim();
-    var done = function(){ b.textContent='Copied'; b.classList.add('done');
-      setTimeout(function(){ b.textContent='Copy'; b.classList.remove('done'); }, 1400); };
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(txt).then(done, fallback);
-    } else { fallback(); }
-    function fallback(){
-      var ta=document.createElement('textarea'); ta.value=txt;
-      ta.style.position='fixed'; ta.style.opacity='0';
-      document.body.appendChild(ta); ta.select();
-      try{ document.execCommand('copy'); done(); }catch(e){
-        var r=document.createRange(); r.selectNodeContents(el);
-        var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
-        b.textContent='Select';
-      }
-      document.body.removeChild(ta);
+    var el = document.getElementById(b.dataset.t), txt = el.value;
+    function flash(word){
+      b.textContent = word; b.classList.add('done');
+      setTimeout(function(){ b.textContent = 'Copy'; b.classList.remove('done'); }, 2200);
+    }
+    function selectIt(){
+      el.focus(); el.setSelectionRange(0, txt.length);
+      try { return document.execCommand('copy'); } catch(e){ return false; }
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(
+        function(){ flash('Copied'); },
+        function(){ flash(selectIt() ? 'Copied' : 'Selected'); });
+    } else {
+      flash(selectIt() ? 'Copied' : 'Selected');
     }
   });
 });
@@ -605,7 +624,9 @@ document.querySelectorAll('.copy').forEach(function(b){
            f"<div class='kicker'>{esc(kicker)} · link stickers</div>"
            f"<h1>{DAY_FULL[day]} <em>{date.strftime('%-d %B')}</em></h1>"
            f"<p class='sub'>One link sticker per frame, in post order. Tap Copy, then paste "
-           f"straight into the sticker — the tags are what make this show up as story "
+           f"straight into the sticker. If a button says <b>Selected</b> rather than Copied, "
+           f"the browser blocked the clipboard — the text is highlighted, use your own "
+           f"copy. The tags are what make this show up as story "
            f"traffic in GA, and utm_content is what names the frame.</p>"
            f"<ol>{''.join(rows)}</ol>"
            f"<div class='foot'><b>Every frame takes a link sticker</b>, and a "
