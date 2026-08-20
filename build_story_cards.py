@@ -509,6 +509,111 @@ def build_frames(schedule, day, date, items, mode):
     return frames
 
 
+def write_links_page(path, frames, day, date, mode):
+    """A phone-sized page of link stickers, one per frame, each with a copy button.
+
+    captions.md is the reference document; this is the thing you hold in one hand
+    at 7pm while Instagram is open in the other. Selecting a 130-character URL out
+    of a markdown table on a phone is the step where a link sticker silently ends
+    up with the wrong utm_content — or with a trailing space that breaks it. One
+    tap removes that. Written every run so it is never stale."""
+    kicker = "Yoga Today" if mode == "today" else "Yoga Tomorrow"
+    rows = []
+    for i, f in enumerate(frames, 1):
+        mentions = ", ".join(f.get("mentions") or []) or "—"
+        rows.append(
+            f'<li class="row">'
+            f'<div class="head"><span class="n">{i:02d}</span>'
+            f'<span class="fname">{esc(f["name"])}</span></div>'
+            f'<div class="mentions"><span class="lbl">Mention</span> {esc(mentions)}</div>'
+            f'<div class="linkrow">'
+            f'<code id="u{i}">{esc(f["link"])}</code>'
+            f'<button class="copy" data-t="u{i}">Copy</button>'
+            f'</div></li>')
+    css = """
+:root{--paper:#E7D9C0;--paper-deep:#DECDAE;--ink:#2A201A;--ink-soft:#5A4B3E;
+      --henna:#9E3B26;--clay:#BC6B3C;--sage:#6F7155;--ochre:#C2974F}
+*{box-sizing:border-box}
+body{margin:0;padding:22px 16px 60px;background:var(--paper);color:var(--ink);
+     font-family:'Hanken Grotesk',system-ui,-apple-system,sans-serif;
+     -webkit-font-smoothing:antialiased}
+.wrap{max-width:620px;margin:0 auto}
+.kicker{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:11.5px;
+        letter-spacing:.16em;text-transform:uppercase;color:var(--henna)}
+h1{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:34px;
+   line-height:1.05;margin:8px 0 4px;letter-spacing:-.01em}
+h1 em{font-style:italic;color:var(--henna)}
+.sub{font-size:14.5px;color:var(--ink-soft);margin:0 0 22px;max-width:46ch}
+ol{list-style:none;margin:0;padding:0}
+.row{background:var(--paper-deep);border:1px solid rgba(42,32,26,.16);
+     padding:14px 14px 12px;margin-bottom:12px}
+.head{display:flex;align-items:baseline;gap:10px}
+.n{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:12px;
+   color:var(--sage);letter-spacing:.08em}
+.fname{font-family:'Fraunces',Georgia,serif;font-size:19px;font-weight:500}
+.mentions{font-size:13px;color:var(--ink-soft);margin:5px 0 10px;line-height:1.45}
+.mentions .lbl{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:10.5px;
+     letter-spacing:.12em;text-transform:uppercase;color:var(--clay);margin-right:6px}
+.linkrow{display:flex;gap:10px;align-items:stretch}
+code{flex:1;min-width:0;font-family:'Spline Sans Mono',ui-monospace,monospace;
+     font-size:11px;line-height:1.4;color:var(--ink-soft);background:rgba(42,32,26,.05);
+     border:1px solid rgba(42,32,26,.12);padding:8px 9px;word-break:break-all}
+.copy{flex:0 0 auto;align-self:stretch;min-width:82px;cursor:pointer;
+      font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:11.5px;
+      letter-spacing:.1em;text-transform:uppercase;color:var(--paper);
+      background:var(--henna);border:1px solid var(--henna);border-radius:0;
+      transition:background .15s,border-color .15s}
+.copy:hover{background:var(--clay);border-color:var(--clay)}
+.copy.done{background:var(--sage);border-color:var(--sage)}
+.foot{margin-top:26px;padding-top:16px;border-top:1px solid rgba(42,32,26,.18);
+      font-size:13px;color:var(--ink-soft);line-height:1.55}
+.foot b{font-family:'Fraunces',Georgia,serif;font-weight:500;color:var(--ink)}
+"""
+    js = """
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click', function(){
+    var el = document.getElementById(b.dataset.t);
+    var txt = el.textContent.trim();
+    var done = function(){ b.textContent='Copied'; b.classList.add('done');
+      setTimeout(function(){ b.textContent='Copy'; b.classList.remove('done'); }, 1400); };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(txt).then(done, fallback);
+    } else { fallback(); }
+    function fallback(){
+      var ta=document.createElement('textarea'); ta.value=txt;
+      ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); done(); }catch(e){
+        var r=document.createRange(); r.selectNodeContents(el);
+        var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        b.textContent='Select';
+      }
+      document.body.removeChild(ta);
+    }
+  });
+});
+"""
+    doc = (f"<!doctype html><html lang='en-AU'><head><meta charset='utf-8'>"
+           f"<meta name='viewport' content='width=device-width,initial-scale=1'>"
+           f"<title>{esc(kicker)} — link stickers</title>"
+           f"<link rel='preconnect' href='https://fonts.googleapis.com'>"
+           f"<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>"
+           f"<link href='https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400"
+           f"&family=Hanken+Grotesk:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap'"
+           f" rel='stylesheet'>"
+           f"<style>{css}</style></head><body><div class='wrap'>"
+           f"<div class='kicker'>{esc(kicker)} · link stickers</div>"
+           f"<h1>{DAY_FULL[day]} <em>{date.strftime('%-d %B')}</em></h1>"
+           f"<p class='sub'>One link sticker per frame, in post order. Tap Copy, then paste "
+           f"straight into the sticker — the tags are what make this show up as story "
+           f"traffic in GA, and utm_content is what names the frame.</p>"
+           f"<ol>{''.join(rows)}</ol>"
+           f"<div class='foot'><b>Every frame takes a link sticker</b>, and a "
+           f"<b>mention</b> sticker for everyone named on it. A mention notifies her and "
+           f"gives the one-tap reshare; a tag does not.</div>"
+           f"</div><script>{js}</script></body></html>")
+    path.write_text(doc, encoding="utf-8")
+
 def write_captions(path, frames, day, date, mode, items):
     kicker = "Yoga Today" if mode == "today" else "Yoga Tomorrow"
     when = "around midday" if mode == "today" else "in the evening, around 7pm"
@@ -614,6 +719,7 @@ def main():
            + f"<script>{FIT_JS}</script></body></html>")
     (out / "cards.html").write_text(doc)
     write_captions(out / "captions.md", frames, day, date, a.mode, items)
+    write_links_page(out / "links.html", frames, day, date, a.mode)
 
     print(f"{DAY_FULL[day]} {date} — {len(items)} classes, {n_teachers} teachers, "
           f"{len(frames)} frames -> {out.relative_to(ROOT)}/")
