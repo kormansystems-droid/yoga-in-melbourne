@@ -354,10 +354,16 @@ def build_frames(schedule, day, date, items, mode):
         by_teacher.setdefault(r["teacher"], []).append(r)
     teachers = sorted(by_teacher, key=lambda t: min(r["mins"] for r in by_teacher[t]))
 
-    # the line-up frame shows each class once, however many teachers are on it
+    # The line-up frame shows each class once, however many teachers are on it.
+    # The suburb is part of the key, not decoration. r["studio"] holds the display
+    # NAME, and a brand can run more than one venue: (Here) Yoga teaches Slow Flow
+    # at 7:15 on Friday in BOTH Port Melbourne and Malvern, with different teachers.
+    # Keying on name alone collapsed those into one row, dropped Steph Philip's
+    # class from the line-up entirely, and printed Sarah Metzger's suburb over it —
+    # a class that runs, with a teacher who is never named. Found 20 Aug 2026.
     seen, uniq = set(), []
     for r in items:
-        key = (r["time"], r["class"], r["studio"])
+        key = (r["time"], r["class"], r["studio"], r["suburb"])
         if key not in seen:
             seen.add(key)
             uniq.append(r)
