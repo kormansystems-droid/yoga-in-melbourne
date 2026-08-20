@@ -10,7 +10,7 @@ Build teacher profile pages from templates + shared partials + schedule data.
   <name>.html                    self-contained static page (Netlify publishes)
 
 Templates starting with "_" are skeletons and are skipped.
-Tokens filled per teacher: {{NAME_FULL}} {{NAME_GIVEN}} {{NAME_FAMILY}} {{SCHED_NOTE}}
+Tokens filled per teacher: {{NAME_FULL}} {{NAME_GIVEN}} {{NAME_FAMILY}} {{NAME_POSS}} {{SCHED_NOTE}}
 Plus /* BASE_CSS:INJECT */ (shared css) and the SCHEDULE:START/END schedule slot.
 """
 import json, re, html
@@ -75,12 +75,33 @@ def render_row(r, book_url):
     without appending query parameters to a studio's booking URL (which we do not
     control and can break)."""
     href = r.get("url") or book_url
+    # A row carrying `dates` happens on those days and no others — cover, a
+    # one-off, a class that has not been on the roster long. Rendering it in the
+    # weekly grid unqualified tells a reader she teaches it every week, which is
+    # the same false statement that put Emma into three classes on 19 August;
+    # this file simply had not been taught the lesson the story cards were.
+    day = esc(r["day"])
+    dates = r.get("dates") or []
+    if dates:
+        import datetime as _dt
+        try:
+            ds = [_dt.date.fromisoformat(x) for x in sorted(dates)]
+            when = ", ".join(f"{d.day} {d.strftime('%b')}" for d in ds[:2])
+            day = f'{esc(r["day"])} <span class="cls-once">{esc(when)}</span>'
+        except ValueError:
+            day = esc(r["day"])
     return (f'        <a class="cls" href="{esc_attr(href)}" target="_blank" rel="noopener">'
-            f'<span class="cls-day">{esc(r["day"])}</span>'
+            f'<span class="cls-day">{day}</span>'
             f'<span class="cls-time">{esc(r["time"])}</span>'
             f'<span class="cls-name">{esc(r["class"])}</span></a>')
 
 def render_cards(classes, studios):
+    import datetime as _dt
+    today = _dt.date.today().isoformat()
+    # A one-off whose date has gone is not a class, it is history. Weekly rows
+    # (no `dates`) are untouched.
+    classes = [c for c in classes
+               if not c.get("dates") or max(c["dates"]) >= today]
     by = {}
     for c in classes: by.setdefault(c["studio"], []).append(c)
     cards=[]
@@ -113,12 +134,19 @@ def render_handoff_cards(slug, classes):
         if prefixes and any(str(c.get("studio","")).startswith(prefixes) for c in classes):
             continue  # real timed classes exist here -> show those instead of a book-direct card
         url, nm = esc_attr(b.get("book_url", "#")), esc(b.get("name", bid))
+        # Most handoffs are studios anyone can book. Some are not: Saint Haven is
+        # a private members' club, and telling a reader to "book directly" at a
+        # place that requires an application is worse than saying nothing — she
+        # turns up to a door that will not open. `note` and `cta` let a brand say
+        # what it actually is.
+        note = esc(b.get("note", "Book directly at their studio"))
+        cta = esc(b.get("cta", f"Go to {b.get('name', bid)} ↗"))
         out.append(
             '      <div class="studio studio-handoff">\n        <div class="studio-head">\n          <div>\n'
             f'            <a class="studio-name" href="{url}" target="_blank" rel="noopener">{nm}</a>\n'
-            '            <span class="studio-loc">Book directly at their studio</span>\n'
+            f'            <span class="studio-loc">{note}</span>\n'
             '          </div>\n'
-            f'          <a class="book-link" href="{url}" target="_blank" rel="noopener">Go to {nm} ↗</a>\n'
+            f'          <a class="book-link" href="{url}" target="_blank" rel="noopener">{cta}</a>\n'
             '        </div>\n      </div>')
     return out
 
@@ -238,7 +266,8 @@ def build_one(tpl, data):
         cards = (cards + "\n\n" + joined) if cards.strip() else joined
     if count:
         cw = WORDS[count] if count < len(WORDS) else str(count)
-        note = f"{given}'s current weekly classes across {cw} studios. Tap any class to book."
+        note = (f"{poss(given)} current weekly classes across {cw} "
+                f"{'studio' if count == 1 else 'studios'}. Tap any class to book.")
     elif handoff_cards:
         note = f"Book with {given} directly at their studio."
     else:
@@ -267,6 +296,7 @@ def build_one(tpl, data):
     out = (out.replace("{{NAME_FULL}}", esc(full))
               .replace("{{NAME_GIVEN}}", esc(given))
               .replace("{{NAME_FAMILY}}", esc(family))
+              .replace("{{NAME_POSS}}", esc(poss(given)))
               .replace("{{SCHED_NOTE}}", esc(note)))
     out = out.replace("</body>", COMMUNITY_SCRIPTS + "</body>", 1)
     leftover = re.findall(r"\{\{[A-Z_]+\}\}", out)
@@ -311,6 +341,14 @@ def build_index(data):
     if out != src:
         idx.write_text(out)
         print(f"built index.html router          <- {len(data['teachers'])} teachers")
+
+
+def poss(name):
+    """Possessive of a given name. A name already ending in s takes the bare
+    apostrophe — Franks', not Franks's. Mark's call, 20 Aug 2026, and correct.
+    Written as a rule rather than a fix to one page because the roster will keep
+    producing them: Franks, and any Jess, Tess or James after her."""
+    return name + ("'" if name.rstrip().endswith(("s", "S")) else "'s")
 
 
 def slug_of(name):

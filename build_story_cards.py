@@ -580,6 +580,15 @@ def main():
 
     out = OUTDIR / f"{date.isoformat()}-{a.mode}"
     out.mkdir(parents=True, exist_ok=True)
+    # Clear old frames first. A rebuild that produces FEWER frames than the last
+    # run leaves the surplus behind, and the leftovers are indistinguishable from
+    # real output in the folder — which is how the wrong Rayne frame and a second
+    # closer ended up in a set that had already been corrected once.
+    stale = sorted(out.glob("frame-*.png"))
+    for f in stale:
+        f.unlink()
+    if stale:
+        print(f"  cleared {len(stale)} frame(s) from a previous build")
     frames = build_frames(schedule, day, date, items, a.mode)
 
     doc = (f"<!doctype html><html lang=\"en-AU\"><head><meta charset=\"utf-8\">"
