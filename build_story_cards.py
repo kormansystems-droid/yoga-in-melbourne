@@ -205,11 +205,21 @@ def slug_of(name):
     return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
 
 
-def story_link(path, campaign):
+def story_link(path, campaign, content=None):
     """Link-sticker target. Convention from the 15 Aug audit: reel/story links
     carry utm_medium and a campaign slug, so this traffic separates cleanly from
-    the bio link in GA."""
-    return f"{SITE}{path}?utm_source=instagram&utm_medium=story&utm_campaign={campaign}"
+    the bio link in GA.
+
+    utm_content names the FRAME, and it is not optional decoration. Four frames
+    point at "/" — opener, both line-ups and the closer. Without utm_content those
+    four are one indistinguishable row in GA: you can see that story traffic
+    arrived and never which card earned it. The teacher frames were always
+    separable by landing page; these four were not. Added 20 Aug 2026 after Mark
+    pointed out he reads the attribution report regularly — so ambiguity in it
+    costs him something real."""
+    tail = f"&utm_content={content}" if content else ""
+    return (f"{SITE}{path}?utm_source=instagram&utm_medium=story"
+            f"&utm_campaign={campaign}{tail}")
 
 
 # ---- teacher portraits -----------------------------------------------------
@@ -387,7 +397,7 @@ def build_frames(schedule, day, date, items, mode):
         plural(len(studios), "studio"), plural(len(suburbs), "suburb")]
     frames.append({
         "name": "opener",
-        "link": story_link("/", campaign),
+        "link": story_link("/", campaign, "opener"),
         "mentions": list(teachers),
         "note": "Mention EVERY teacher here. Each mention is its own notification and "
                 "its own chance to reshare. On 15 Aug this was the best card and took "
@@ -421,7 +431,7 @@ def build_frames(schedule, day, date, items, mode):
         head = f"{esc(kicker)} · the line-up" + (f" · {esc(label)}" if label else "")
         return {
             "name": f"lineup-{slug}" if slug else "lineup",
-            "link": story_link("/", campaign),
+            "link": story_link("/", campaign, f"lineup-{slug}" if slug else "lineup"),
             "mentions": sorted({r["teacher"] for r in rows}),
             "note": "Mention every teacher and every studio shown on this frame — and only "
                     "the ones shown on it.",
@@ -451,7 +461,7 @@ def build_frames(schedule, day, date, items, mode):
         where = ", ".join(sorted({r["suburb"] for r in rows if r["suburb"]}))
         frames.append({
             "name": slug,
-            "link": story_link(f"/{slug}.html", campaign),
+            "link": story_link(f"/{slug}.html", campaign, slug),
             "mentions": [t],
             "note": f"This frame carries {t}'s name and NO ONE else's, so the frame she "
                     f"reshares is entirely about her. She is still mentioned on the opener "
@@ -484,7 +494,7 @@ def build_frames(schedule, day, date, items, mode):
     lead = "Today" if mode == "today" else "Tomorrow"
     frames.append({
         "name": "closer",
-        "link": story_link("/", campaign),
+        "link": story_link("/", campaign, "closer"),
         "mentions": list(teachers),
         "note": "Mention every teacher again here. This frame is the story's only route to "
                 "the full timetable, and it is the last thing anyone sees.",
