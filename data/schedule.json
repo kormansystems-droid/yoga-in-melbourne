@@ -283,6 +283,15 @@
         },
         {
           "studio": "grass-roots-st-kilda",
+          "day": "Fri",
+          "time": "12:15–1:15 PM",
+          "class": "Yin",
+          "dates": [
+            "2026-09-04"
+          ]
+        },
+        {
+          "studio": "grass-roots-st-kilda",
           "day": "Sat",
           "time": "5:15–6:15 PM",
           "class": "Yin",
@@ -431,6 +440,15 @@
           "dates": [
             "2026-08-26",
             "2026-09-02"
+          ]
+        },
+        {
+          "studio": "here-yoga-malvern",
+          "day": "Thu",
+          "time": "9:30–10:30 AM",
+          "class": "Slow Flow",
+          "dates": [
+            "2026-09-03"
           ]
         }
       ]
@@ -618,7 +636,7 @@
           "time": "6:00–7:00 AM",
           "class": "Strong Flow Yoga",
           "dates": [
-            "2026-08-21"
+            "2026-08-28"
           ]
         },
         {
@@ -627,7 +645,7 @@
           "time": "7:30–8:30 AM",
           "class": "Slow Flow Yoga",
           "dates": [
-            "2026-08-21"
+            "2026-08-28"
           ]
         },
         {
@@ -636,7 +654,7 @@
           "time": "9:30–10:30 AM",
           "class": "Strong Flow Yoga",
           "dates": [
-            "2026-08-21"
+            "2026-08-28"
           ]
         },
         {
@@ -858,8 +876,7 @@
           "time": "5:00–6:00 PM",
           "class": "Dynamic Flow",
           "dates": [
-            "2026-08-26",
-            "2026-09-02"
+            "2026-08-26"
           ]
         },
         {
@@ -868,8 +885,7 @@
           "time": "6:15–7:15 PM",
           "class": "Candlelit Slow Flow",
           "dates": [
-            "2026-08-26",
-            "2026-09-02"
+            "2026-08-26"
           ]
         },
         {
@@ -878,8 +894,7 @@
           "time": "7:30–8:30 PM",
           "class": "Candlelit Yin",
           "dates": [
-            "2026-08-26",
-            "2026-09-02"
+            "2026-08-26"
           ]
         },
         {
@@ -897,8 +912,7 @@
           "time": "5:00–6:00 PM",
           "class": "Dynamic Flow",
           "dates": [
-            "2026-08-24",
-            "2026-08-31"
+            "2026-08-24"
           ]
         },
         {
@@ -907,8 +921,7 @@
           "time": "6:15–7:15 PM",
           "class": "Candlelit Dynamic Flow",
           "dates": [
-            "2026-08-24",
-            "2026-08-31"
+            "2026-08-24"
           ]
         },
         {
@@ -917,8 +930,7 @@
           "time": "7:15–8:15 AM",
           "class": "Dynamic Flow",
           "dates": [
-            "2026-08-26",
-            "2026-09-02"
+            "2026-08-26"
           ]
         },
         {
@@ -927,7 +939,6 @@
           "time": "7:15–8:15 AM",
           "class": "Slow Flow",
           "dates": [
-            "2026-08-21",
             "2026-08-28"
           ]
         },
@@ -937,7 +948,6 @@
           "time": "9:30–10:30 AM",
           "class": "Dynamic Flow",
           "dates": [
-            "2026-08-21",
             "2026-08-28"
           ]
         }
@@ -971,6 +981,24 @@
           "class": "Slow Flow + Restorative (75mins)",
           "dates": [
             "2026-09-02"
+          ]
+        },
+        {
+          "studio": "grass-roots-st-kilda",
+          "day": "Fri",
+          "time": "7:30–8:30 AM",
+          "class": "Slow Flow",
+          "dates": [
+            "2026-09-04"
+          ]
+        },
+        {
+          "studio": "grass-roots-st-kilda",
+          "day": "Fri",
+          "time": "9:30–10:30 AM",
+          "class": "Vinyasa flow",
+          "dates": [
+            "2026-09-04"
           ]
         }
       ]
@@ -1017,8 +1045,8 @@
           "time": "7:15–8:15 AM",
           "class": "Slow Flow",
           "dates": [
-            "2026-08-21",
-            "2026-08-28"
+            "2026-08-28",
+            "2026-09-04"
           ]
         },
         {
