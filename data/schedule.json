@@ -293,10 +293,10 @@
         {
           "studio": "grass-roots-st-kilda",
           "day": "Sat",
-          "time": "5:15–6:15 PM",
-          "class": "Yin",
+          "time": "11:30–1:30 PM",
+          "class": "The Cyclical Practice - How menstrual cycle awareness can evolve the way you practice and teach yoga",
           "dates": [
-            "2026-08-22"
+            "2026-09-05"
           ]
         }
       ]
@@ -372,26 +372,6 @@
           "dates": [
             "2026-08-26",
             "2026-09-02"
-          ]
-        },
-        {
-          "studio": "grass-roots-st-kilda",
-          "day": "Thu",
-          "time": "6:15–7:15 PM",
-          "class": "Yoga Fundamentals",
-          "dates": [
-            "2026-08-27",
-            "2026-09-03"
-          ]
-        },
-        {
-          "studio": "grass-roots-st-kilda",
-          "day": "Thu",
-          "time": "7:30–8:30 PM",
-          "class": "Yin",
-          "dates": [
-            "2026-08-27",
-            "2026-09-03"
           ]
         },
         {
@@ -663,7 +643,7 @@
           "time": "7:30–9:00 AM",
           "class": "Strong Flow 90 Mins",
           "dates": [
-            "2026-08-22"
+            "2026-08-29"
           ]
         },
         {
@@ -672,7 +652,7 @@
           "time": "9:30–10:30 AM",
           "class": "Strong Flow Yoga",
           "dates": [
-            "2026-08-22"
+            "2026-08-29"
           ]
         }
       ]
@@ -743,6 +723,15 @@
         "Ryan"
       ],
       "classes": [
+        {
+          "studio": "kozen-yoga-hawthorn",
+          "day": "Sat",
+          "time": "2:00–5:00 PM",
+          "class": "Understanding Alignment",
+          "dates": [
+            "2026-09-05"
+          ]
+        },
         {
           "studio": "good-vibes-collingwood",
           "day": "Tue",
@@ -1047,24 +1036,6 @@
           "dates": [
             "2026-08-28",
             "2026-09-04"
-          ]
-        },
-        {
-          "studio": "here-yoga-port-melbourne",
-          "day": "Sat",
-          "time": "8:00–9:00 AM",
-          "class": "Dynamic Flow",
-          "dates": [
-            "2026-08-22"
-          ]
-        },
-        {
-          "studio": "here-yoga-port-melbourne",
-          "day": "Sat",
-          "time": "10:00–11:00 AM",
-          "class": "Slow Flow",
-          "dates": [
-            "2026-08-22"
           ]
         },
         {
