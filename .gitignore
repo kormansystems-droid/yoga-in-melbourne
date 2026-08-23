@@ -4,3 +4,7 @@ __pycache__/
 # Generated story cards. The nightly workflow commits the dated folders it builds;
 # local runs should not add noise to the diff.
 story/_*/
+# Rendered Instagram cards, reels and the teachers' source portraits. Large
+# binaries with no business in a public repo; the scripts that build them are
+# versioned instead.
+carousel/

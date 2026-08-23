@@ -245,8 +245,19 @@
 @media(max-width:760px){
   .router-inner{padding:20px 18px 22px}
   /* One horizontal swipe beats a wrapped block that pushes the page down. */
+  /* The bare bleed-edge scroller reads as a stray strip of content sliced off
+     above the nav: no scrollbar, no fade, so the cut looks like a rendering
+     fault rather than "there is more this way". The mask fades the trailing
+     edge, and snap keeps a chip from coming to rest half-cut. */
   .router-row{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;
-              margin-left:-18px;margin-right:-18px;padding:0 18px 2px}
+              margin-left:-18px;margin-right:-18px;padding:0 18px 2px;
+              scroll-snap-type:x proximity;overscroll-behavior-x:contain;
+              --fade-l:0px;--fade-r:38px;
+              -webkit-mask-image:linear-gradient(to right,transparent 0,#000 var(--fade-l),
+                #000 calc(100% - var(--fade-r)),transparent 100%);
+              mask-image:linear-gradient(to right,transparent 0,#000 var(--fade-l),
+                #000 calc(100% - var(--fade-r)),transparent 100%)}
+  .router-row a{scroll-snap-align:start}
   .router-row::-webkit-scrollbar{display:none}
 }
 </style>
