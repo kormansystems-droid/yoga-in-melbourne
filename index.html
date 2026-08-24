@@ -51,8 +51,9 @@
   div[id]{scroll-margin-top:calc(var(--nav-h) - 4px)}
   a.strip-card[id]{scroll-margin-top:calc(var(--nav-h) - 4px)}
   main{padding-bottom:22vh}
+  html{overflow-x:clip}
   body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;
-    font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden}
+    font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;position:relative}
   body::before{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;mix-blend-mode:multiply;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
   .wrap{max-width:var(--max);margin:0 auto;padding:0 32px}
@@ -180,6 +181,16 @@
     .topbar-inner{justify-content:space-between}
     .topbar-inner span:not(.wordmark){display:none}
     .topbar-inner .wordmark{position:static;transform:none;left:auto;top:auto;font-size:17px}
+    /* The wordmark ribbon used to scroll away and hand the top of the screen to
+       the 118px sticky nav, which on iOS repainted as a transparent band with the
+       page visibly running underneath. Pin the 28px ribbon instead and let the nav
+       scroll: the masthead never disappears and the one sticky element left is
+       small and opaque. The 5%-opacity grain overlay is position:fixed with
+       mix-blend-mode, which is the compositing layer iOS loses sync with, so it
+       does not run on phones. Desktop keeps it. */
+    body::before{display:none}
+    .topbar{position:sticky;top:0;z-index:60}
+    .nav{position:static}
     .hero{height:auto;min-height:0;display:flex;flex-direction:column}
     /* 27vh was a 228px letterbox on a 390px phone - a portrait sliced to 1.7:1.
        42vh is roughly square; max-height stops it swallowing the masthead. */
@@ -216,6 +227,34 @@
 .sub-note a{color:rgba(231,217,192,.75)}
 .sub-done{font-family:'Fraunces',serif;font-style:italic;font-size:19px;color:var(--clay);margin:0}
 .sub-err{font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;color:#E8A48C;margin:0}
+@media(max-width:760px){.subscribe{padding:48px 0}.subscribe .wrap{gap:26px}}
+
+/* ---- Router -------------------------------------------------------------
+   The homepage is not the front door. Reel and story traffic arrives at a
+   teacher page, or lands here and stops: 61% of views on 10-15 Aug were the
+   homepage, at 1.42 pages/session against a 1.9 baseline. Arrivals were not
+   reaching schedules at all.
+
+   So the first screen after the masthead is a set of exits, not more editorial.
+   Named teachers are the important row: a visitor who came from a reel is
+   looking for a person, and every name here is one tap from her timetable. */
+.router{background:var(--paper-deep);border-bottom:1px solid rgba(42,32,26,.14)}
+.router-inner{max-width:var(--max);margin:0 auto;padding:26px 24px 28px}
+.router-lbl{
+  font-family:'Spline Sans Mono',monospace;font-size:11.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--sage);margin-bottom:12px;
+}
+.router-row{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:20px}
+.router-row:last-child{margin-bottom:0}
+.router-row a{
+  font-family:'Hanken Grotesk',sans-serif;font-size:14.5px;text-decoration:none;
+  color:var(--ink);background:var(--paper);border:1px solid rgba(42,32,26,.20);
+  padding:8px 15px;border-radius:999px;transition:background .18s,color .18s,border-color .18s;
+  white-space:nowrap;
+}
+.router-row a:hover{background:var(--henna);color:var(--paper);border-color:var(--henna)}
+.router-row a:focus-visible{outline:2px solid var(--henna);outline-offset:2px}
+.router-row.people a{font-family:'Fraunces',serif;font-size:16px}
 @media(max-width:760px){
   .router-inner{padding:20px 18px 22px}
   /* This row used to scroll sideways, bleeding to both screen edges: a chip cut
