@@ -166,12 +166,26 @@ def _teacher_suburbs(rec, studios):
         if loc: c[loc] += 1
     return [loc for loc, _ in c.most_common()]
 
-def _handoff_suburbs(teacher, studios):
+def _handoff_suburbs(teacher, rec, studios):
+    """Suburbs a teacher reaches through a feed-less studio, for the SEO head.
+
+    Mirrors render_handoff_cards(): a brand contributes nothing once she has real
+    timed classes there, because those classes already name her suburbs and the
+    brand's OTHER locations are not places she teaches. Without that rule,
+    registering Warrior One Mornington put "Mornington" into Alessia's and Rayne's
+    titles, descriptions and schema areaServed — neither teaches there. It stayed
+    invisible for months because every Warrior One suburb had happened to be one
+    they did teach in, so the extra entries deduplicated away."""
+    own = {c.get("studio") for c in rec.get("classes", [])}
     out = []
     for bid in HANDOFF.get("teachers", {}).get(teacher, []):
         prefixes = tuple(HANDOFF.get("brands", {}).get(bid, {}).get("match", []))
+        if not prefixes:
+            continue
+        if any(str(sid).startswith(prefixes) for sid in own):
+            continue          # real classes at this brand — they speak for themselves
         for sid, meta in studios.items():
-            if prefixes and sid.startswith(prefixes):
+            if sid.startswith(prefixes):
                 loc = meta.get("location")
                 if loc and loc not in out: out.append(loc)
     return out
@@ -206,7 +220,7 @@ def seo_head(teacher, rec, studios, slug):
     if not has_img:
         MISSING_OG.append(slug)
     teaching = _teacher_suburbs(rec, studios)
-    for s in _handoff_suburbs(teacher, studios):
+    for s in _handoff_suburbs(teacher, rec, studios):
         if s not in teaching: teaching.append(s)
     # capped catchment: nearest 3 per teaching suburb, deduped, excluding teaching suburbs
     catch = []
