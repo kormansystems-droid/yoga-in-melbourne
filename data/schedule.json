@@ -200,7 +200,7 @@
           "time": "5:00–6:00 PM",
           "class": "Slow Flow Yoga",
           "dates": [
-            "2026-08-26"
+            "2026-09-02"
           ]
         },
         {
@@ -209,7 +209,7 @@
           "time": "6:15–7:15 PM",
           "class": "Strong Flow Yoga",
           "dates": [
-            "2026-08-26"
+            "2026-09-02"
           ]
         },
         {
@@ -218,7 +218,7 @@
           "time": "7:30–8:30 PM",
           "class": "Yin Yoga",
           "dates": [
-            "2026-08-26"
+            "2026-09-02"
           ]
         },
         {
@@ -343,7 +343,6 @@
           "time": "6:15–7:15 AM",
           "class": "Vinyasa flow",
           "dates": [
-            "2026-08-26",
             "2026-09-02"
           ]
         },
@@ -381,8 +380,8 @@
           "time": "6:15–7:15 PM",
           "class": "Flow Class",
           "dates": [
-            "2026-08-26",
-            "2026-09-02"
+            "2026-09-02",
+            "2026-09-09"
           ]
         },
         {
@@ -391,8 +390,8 @@
           "time": "7:30–8:30 PM",
           "class": "Yin Class",
           "dates": [
-            "2026-08-26",
-            "2026-09-02"
+            "2026-09-02",
+            "2026-09-09"
           ]
         },
         {
@@ -564,7 +563,7 @@
           "time": "6:00–7:00 AM",
           "class": "Strong Flow Yoga",
           "dates": [
-            "2026-08-26"
+            "2026-09-02"
           ]
         },
         {
@@ -573,7 +572,7 @@
           "time": "7:30–8:30 AM",
           "class": "Slow Flow Yoga",
           "dates": [
-            "2026-08-26"
+            "2026-09-02"
           ]
         },
         {
@@ -582,7 +581,7 @@
           "time": "9:30–10:30 AM",
           "class": "Strong Flow Yoga",
           "dates": [
-            "2026-08-26"
+            "2026-09-02"
           ]
         },
         {
@@ -743,8 +742,8 @@
           "time": "12:30–1:30 PM",
           "class": "Vinyasa Flow",
           "dates": [
-            "2026-08-26",
-            "2026-09-02"
+            "2026-09-02",
+            "2026-09-09"
           ]
         },
         {
@@ -780,8 +779,8 @@
           "time": "10:00–11:00 AM",
           "class": "Vinyasa Flow",
           "dates": [
-            "2026-08-26",
-            "2026-09-02"
+            "2026-09-02",
+            "2026-09-09"
           ]
         },
         {
@@ -790,8 +789,8 @@
           "time": "4:45–5:45 PM",
           "class": "Keep It Mellow",
           "dates": [
-            "2026-08-26",
-            "2026-09-02"
+            "2026-09-02",
+            "2026-09-09"
           ]
         },
         {
@@ -800,8 +799,8 @@
           "time": "6:00–7:00 PM",
           "class": "Vinyasa Flow",
           "dates": [
-            "2026-08-26",
-            "2026-09-02"
+            "2026-09-02",
+            "2026-09-09"
           ]
         }
       ]
@@ -833,42 +832,6 @@
           "day": "Tue",
           "time": "12:15–1:15 PM",
           "class": "Slow Flow"
-        },
-        {
-          "studio": "here-yoga-port-melbourne",
-          "day": "Wed",
-          "time": "5:00–6:00 PM",
-          "class": "Dynamic Flow",
-          "dates": [
-            "2026-08-26"
-          ]
-        },
-        {
-          "studio": "here-yoga-port-melbourne",
-          "day": "Wed",
-          "time": "6:15–7:15 PM",
-          "class": "Candlelit Slow Flow",
-          "dates": [
-            "2026-08-26"
-          ]
-        },
-        {
-          "studio": "here-yoga-port-melbourne",
-          "day": "Wed",
-          "time": "7:30–8:30 PM",
-          "class": "Candlelit Yin",
-          "dates": [
-            "2026-08-26"
-          ]
-        },
-        {
-          "studio": "here-yoga-malvern",
-          "day": "Wed",
-          "time": "7:15–8:15 AM",
-          "class": "Dynamic Flow",
-          "dates": [
-            "2026-08-26"
-          ]
         }
       ]
     },
@@ -889,7 +852,8 @@
           "time": "6:15–7:30 PM",
           "class": "Slow Flow + Restorative (75mins)",
           "dates": [
-            "2026-09-02"
+            "2026-09-02",
+            "2026-09-09"
           ]
         },
         {
