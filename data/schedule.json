@@ -287,7 +287,8 @@
           "time": "12:15–1:15 PM",
           "class": "Yin",
           "dates": [
-            "2026-09-04"
+            "2026-09-04",
+            "2026-09-11"
           ]
         },
         {
@@ -586,33 +587,6 @@
         },
         {
           "studio": "within-south-yarra",
-          "day": "Fri",
-          "time": "6:00–7:00 AM",
-          "class": "Strong Flow Yoga",
-          "dates": [
-            "2026-08-28"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Fri",
-          "time": "7:30–8:30 AM",
-          "class": "Slow Flow Yoga",
-          "dates": [
-            "2026-08-28"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Fri",
-          "time": "9:30–10:30 AM",
-          "class": "Strong Flow Yoga",
-          "dates": [
-            "2026-08-28"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
           "day": "Sat",
           "time": "7:30–9:00 AM",
           "class": "Strong Flow 90 Mins",
@@ -862,7 +836,8 @@
           "time": "7:30–8:30 AM",
           "class": "Slow Flow",
           "dates": [
-            "2026-09-04"
+            "2026-09-04",
+            "2026-09-11"
           ]
         },
         {
@@ -871,7 +846,8 @@
           "time": "9:30–10:30 AM",
           "class": "Vinyasa flow",
           "dates": [
-            "2026-09-04"
+            "2026-09-04",
+            "2026-09-11"
           ]
         }
       ]
@@ -913,15 +889,6 @@
           "class": "Yin & Sound Bowls"
         },
         {
-          "studio": "here-yoga-port-melbourne",
-          "day": "Fri",
-          "time": "7:15–8:15 AM",
-          "class": "Slow Flow",
-          "dates": [
-            "2026-08-28"
-          ]
-        },
-        {
           "studio": "here-yoga-malvern",
           "day": "Tue",
           "time": "7:30–8:30 AM",
@@ -937,33 +904,6 @@
           "class": "Dynamic Flow",
           "dates": [
             "2026-09-01"
-          ]
-        },
-        {
-          "studio": "here-yoga-malvern",
-          "day": "Thu",
-          "time": "5:00–6:00 PM",
-          "class": "Dynamic Flow",
-          "dates": [
-            "2026-08-27"
-          ]
-        },
-        {
-          "studio": "here-yoga-malvern",
-          "day": "Thu",
-          "time": "6:15–7:15 PM",
-          "class": "Candlelit Slow Flow",
-          "dates": [
-            "2026-08-27"
-          ]
-        },
-        {
-          "studio": "here-yoga-malvern",
-          "day": "Thu",
-          "time": "7:30–8:30 PM",
-          "class": "Candlelit Yin",
-          "dates": [
-            "2026-08-27"
           ]
         },
         {
