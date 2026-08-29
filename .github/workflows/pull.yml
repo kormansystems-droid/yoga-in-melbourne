@@ -71,6 +71,82 @@ jobs:
           echo "Could not push after 3 attempts."
           exit 1
 
+      # ------------------------------------------------------------------
+      # Keep the Supabase project awake.
+      #
+      # The free tier pauses a project after 7 days with no activity. The site
+      # is static, so the ONLY thing that touches the database is a human
+      # pressing Follow or signing up — which means a quiet week pauses it, and
+      # a paused project takes the follow buttons on all 13 teacher and studio
+      # pages down with it. That is exactly what happened on 28 Aug 2026, and
+      # the first Mark heard of it was an email from Supabase.
+      #
+      # `if: always()` is load-bearing. Without it this step is SKIPPED whenever
+      # an earlier step fails — so the ping stops on precisely the days the
+      # pipeline is already unhealthy, which is when the project is most likely
+      # to drift into a pause unnoticed.
+      #
+      # continue-on-error, for the same reason the events step has it: a
+      # database hiccup must never fail the timetable refresh. The status code
+      # is captured to a file and judged in the step below instead, so a failure
+      # is loud in the issue rather than silent in a green run.
+      # ------------------------------------------------------------------
+      - name: Keep Supabase awake
+        if: always()
+        continue-on-error: true
+        env:
+          SB_URL: ${{ secrets.SUPABASE_URL }}
+          SB_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: |
+          set +e
+          if [ -z "$SB_URL" ] || [ -z "$SB_KEY" ]; then
+            echo "000 secrets-missing" > /tmp/sb_status
+            echo "SUPABASE_URL / SUPABASE_SERVICE_KEY are not set as Actions secrets."
+            exit 0
+          fi
+          # A real table read, not a root ping: an API request against actual data
+          # is what Supabase counts as activity, and a 404 here would tell us the
+          # followers table has gone missing, which is worth knowing on its own.
+          CODE=$(curl -sS -o /tmp/sb_body -w "%{http_code}" --max-time 30 \
+            -H "apikey: $SB_KEY" \
+            -H "Authorization: Bearer $SB_KEY" \
+            "$SB_URL/rest/v1/followers?select=email&limit=1")
+          echo "$CODE" > /tmp/sb_status
+          echo "supabase followers read -> HTTP $CODE"
+          # Never echo the body on success: it contains a real subscriber email.
+          if [ "$CODE" != "200" ]; then
+            head -c 300 /tmp/sb_body || true
+          fi
+
+      # Fold any Supabase problem into the SAME anomaly report the timetable pull
+      # already uses, so it arrives as one issue rather than a second channel
+      # Mark has to remember to watch.
+      - name: Record a Supabase problem as an anomaly
+        if: always()
+        run: |
+          CODE=$(cat /tmp/sb_status 2>/dev/null || echo "000 no-status")
+          [ "$CODE" = "200" ] && { echo "Supabase healthy."; exit 0; }
+          {
+            echo ""
+            echo "---"
+            echo ""
+            echo "**🔴 Supabase did not answer (HTTP \`$CODE\`).**"
+            echo ""
+            echo "While this is failing, the Follow buttons on every teacher and studio"
+            echo "page return 502, and \"Join the Community\" sign-up is dead. The contact"
+            echo "form still works — it emails via Brevo and only its logging leg fails."
+            echo ""
+            case "$CODE" in
+              "000 secrets-missing") echo "- The keep-alive never ran: \`SUPABASE_URL\` and/or \`SUPABASE_SERVICE_KEY\` are not set as **GitHub Actions secrets**. They exist as Netlify env vars, which Actions cannot read — they must be added separately under Settings → Secrets and variables → Actions. Until then the project is NOT being kept awake." ;;
+              000*) echo "- \`000\` means the host did not resolve or the request timed out. A **paused project** looks exactly like this: Supabase tears down the subdomain. Unpause it from the dashboard — free-tier projects are restorable for 90 days, after which they are not." ;;
+              401|403) echo "- Auth was rejected. The service key has been rotated or revoked — update the \`SUPABASE_SERVICE_KEY\` secret in **both** GitHub Actions and Netlify." ;;
+              404) echo "- The project answered but \`public.followers\` is missing. Check the table still exists; re-create it from \`followers-table.sql\` if not." ;;
+              5*)  echo "- Supabase returned a server error. Usually transient — if it repeats tomorrow, check status.supabase.com." ;;
+            esac
+            echo ""
+            echo "*Raised by the daily keep-alive in \`.github/workflows/pull.yml\`.*"
+          } >> pull/_anomalies.md
+
       - name: Raise issue on anomalies
         if: always()
         env:
