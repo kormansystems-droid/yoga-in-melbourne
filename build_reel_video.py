@@ -45,6 +45,12 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--opener", type=float, default=1.3)
     ap.add_argument("--hold", type=float, default=3.4)
+    # The last frame is the one the viewer acts on — it carries the route to the
+    # site. It needs longer than a teacher hold, and it is the only frame with no
+    # following crossfade to bleed into, so its full time is on screen. Defaults
+    # to --hold so existing runs are unchanged.
+    ap.add_argument("--final", type=float, default=None,
+                    help="hold for the LAST frame (default: same as --hold)")
     a = ap.parse_args()
 
     ffmpeg = os.environ.get("FFMPEG", "ffmpeg")
@@ -58,8 +64,17 @@ def main():
     segs, holds = [], []
     for i, f in enumerate(frames):
         is_opener = "opener" in f.name
-        secs = a.opener if is_opener else a.hold
-        zoom = 1.06 if is_opener else 1.13
+        is_final = (i == len(frames) - 1)
+        if is_opener:
+            secs = a.opener
+        elif is_final and a.final is not None:
+            secs = a.final
+        else:
+            secs = a.hold
+        # A type-only card gets the gentler push. 1.13 on a page of set text
+        # reads as drift rather than emphasis, and pulls the lower rows toward
+        # the frame edge where the Ken Burns crop eats them.
+        zoom = 1.06 if (is_opener or (is_final and a.final is not None)) else 1.13
         s = tmp / f"seg-{i:02d}.mp4"
         segment(f, secs, zoom, s, ffmpeg)
         segs.append(s); holds.append(secs)
