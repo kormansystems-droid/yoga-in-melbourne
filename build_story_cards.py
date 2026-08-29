@@ -510,8 +510,13 @@ def build_frames(schedule, day, date, items, mode):
                 f'<ul class="closer-names">'
                 + "".join(f"<li>{esc(t)}</li>" for t in teachers)
                 + '</ul>'
-                f'<div class="closer-cta">Every class, every studio, all in one place — '
-                f'<b>yogainmelbourne.com.au</b></div>{_foot()}</div>',
+                # "Every class, every studio" claimed the whole city. The site covers
+                # twelve studios, so the sentence was false in the one place a reader
+                # could most easily check it. The scope that IS true is the teacher:
+                # for anyone we cover, it really is every class she teaches. Phrasing
+                # matches the listing pages, which already hedge this correctly.
+                f'<div class="closer-cta">Every class our teachers teach, across the '
+                f'studios we cover — <b>yogainmelbourne.com.au</b></div>{_foot()}</div>',
     })
     return frames
 
