@@ -227,7 +227,7 @@
           "time": "8:00–9:00 AM",
           "class": "Strong Flow Yoga",
           "dates": [
-            "2026-08-30"
+            "2026-09-06"
           ]
         },
         {
@@ -236,7 +236,7 @@
           "time": "9:30–10:30 AM",
           "class": "Yin Yoga",
           "dates": [
-            "2026-08-30"
+            "2026-09-06"
           ]
         },
         {
@@ -357,24 +357,6 @@
           ]
         },
         {
-          "studio": "here-yoga-port-melbourne",
-          "day": "Sun",
-          "time": "8:30–9:30 AM",
-          "class": "Dynamic Flow",
-          "dates": [
-            "2026-08-30"
-          ]
-        },
-        {
-          "studio": "here-yoga-port-melbourne",
-          "day": "Sun",
-          "time": "10:00–11:00 AM",
-          "class": "Slow Flow",
-          "dates": [
-            "2026-08-30"
-          ]
-        },
-        {
           "studio": "kozen-yoga-hawthorn",
           "day": "Wed",
           "time": "6:15–7:15 PM",
@@ -392,15 +374,6 @@
           "dates": [
             "2026-09-02",
             "2026-09-09"
-          ]
-        },
-        {
-          "studio": "here-yoga-malvern",
-          "day": "Thu",
-          "time": "9:30–10:30 AM",
-          "class": "Slow Flow",
-          "dates": [
-            "2026-09-03"
           ]
         }
       ]
@@ -491,8 +464,8 @@
           "time": "6:15–7:15 AM",
           "class": "Hot Flow",
           "dates": [
-            "2026-08-31",
-            "2026-09-07"
+            "2026-09-07",
+            "2026-09-14"
           ]
         },
         {
@@ -531,8 +504,8 @@
           "time": "4:00–5:00 PM",
           "class": "Vinyasa flow",
           "dates": [
-            "2026-08-30",
-            "2026-09-06"
+            "2026-09-06",
+            "2026-09-13"
           ]
         },
         {
@@ -541,8 +514,8 @@
           "time": "5:15–6:15 PM",
           "class": "Yin",
           "dates": [
-            "2026-08-30",
-            "2026-09-06"
+            "2026-09-06",
+            "2026-09-13"
           ]
         }
       ]
@@ -734,7 +707,8 @@
           "time": "2:00–3:00 PM",
           "class": "Vinyasa Flow",
           "dates": [
-            "2026-09-06"
+            "2026-09-06",
+            "2026-09-13"
           ]
         },
         {
@@ -743,7 +717,8 @@
           "time": "3:30–4:30 PM",
           "class": "Keep It Mellow",
           "dates": [
-            "2026-09-06"
+            "2026-09-06",
+            "2026-09-13"
           ]
         },
         {
@@ -752,7 +727,8 @@
           "time": "5:00–6:00 PM",
           "class": "Yin",
           "dates": [
-            "2026-09-06"
+            "2026-09-06",
+            "2026-09-13"
           ]
         },
         {
@@ -912,24 +888,6 @@
           "class": "Dynamic Flow",
           "dates": [
             "2026-09-01"
-          ]
-        },
-        {
-          "studio": "here-yoga-malvern",
-          "day": "Sun",
-          "time": "8:30–9:30 AM",
-          "class": "Dynamic Flow",
-          "dates": [
-            "2026-08-30"
-          ]
-        },
-        {
-          "studio": "here-yoga-malvern",
-          "day": "Sun",
-          "time": "10:00–11:00 AM",
-          "class": "Slow Flow",
-          "dates": [
-            "2026-08-30"
           ]
         }
       ]
