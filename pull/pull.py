@@ -220,7 +220,39 @@ def gomindbody_fetch(feed, sid):
         "const timeEls=[...document.querySelectorAll('*')].filter(e=>{const own=[...e.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent.trim()).join('');return timeRe.test(own);});"
         "const seen=new Set(),cards=[];"
         "for(const te of timeEls){let c=te;for(let i=0;i<6&&c;i++){if(/BOOK MY MAT|Waitlist|(^|\\s)Book(\\s|$)/i.test(c.textContent||''))break;c=c.parentElement;}"
-        "if(!c)continue;const lv=leavesOf(c);if(lv.join(' ').length>200)continue;"
+        # The .filter(s=>s.length<=90) below is the fix for a silent three-studio
+        # outage. Diagnosed 31 Aug 2026 by running this extractor against the live
+        # widget in a real browser.
+        #
+        # Every nightly run had been logging `[gomindbody:751447bfa] days=7
+        # sample=[]` — seven day tabs found and clicked, zero cards returned — and
+        # the workflow correctly concluded "the adapter is broken, not the studios".
+        # Brighton, Mordialloc and Happy Melon were all dark and Warrior One's rows
+        # had gone 13 days without a refresh.
+        #
+        # The cause was not the selectors. The time-element test still matched and
+        # the card container was still found two levels up. Mindbody started
+        # rendering each class's full description into the DOM behind "Show Details"
+        # instead of fetching it on click, so a card's leaves grew from ~95
+        # characters to 375-567 — and every card was discarded by the 200-char guard
+        # below. One number, three studios, no error raised anywhere.
+        #
+        # So drop the prose, not the card. Every field this pipeline wants is short:
+        # a time, a duration, a class name, a teacher, a studio. Nothing legitimate
+        # comes near 90 characters. Descriptions all exceed it except their closing
+        # line ("Leave feeling grounded nourished and connected."), which survives
+        # harmlessly — gomindbody_rows takes core[0] and core[1] for class and
+        # teacher, so a trailing leaf lands at core[2] and is ignored.
+        #
+        # The 200-char cap stays. Its job is rejecting a container that swallowed
+        # more than one card, and it still does that: measured against live Brighton
+        # markup the longest filtered card is 146 characters, so a two-card sweep is
+        # still well over the line.
+        #
+        # If this returns zero again, do NOT start by tuning selectors. Open the
+        # widget in a browser, run this extractor by hand, and print leaf lengths.
+        "if(!c)continue;const lv=leavesOf(c).filter(s=>s.length<=90);"
+        "if(lv.join(' ').length>200)continue;"
         "const sig=lv.join('|');if(seen.has(sig))continue;seen.add(sig);cards.push(lv);}"
         "return {date:dh,cards};}"
     )
