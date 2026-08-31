@@ -40,17 +40,6 @@
       ]
     },
     {
-      "id": "manual:training:the-yin-path",
-      "kind": "training",
-      "title": "The Yin Path",
-      "cat": "15–16 & 22–23 Aug 2026 · Grass Roots, St Kilda",
-      "blurb": "A 30-hour Yin Yoga teacher training, co-led by Alessia Frisina and Janita Doelken. Last year's intake graduated fifteen.",
-      "url": "https://www.grassrootsyoga.com/30hour-yinytt",
-      "external": true,
-      "source": "manual",
-      "until": "2026-08-23"
-    },
-    {
       "id": "manual:retreat:warrior-one-thailand",
       "kind": "retreat",
       "title": "Warrior One, Thailand",
@@ -92,20 +81,6 @@
       "until": "2026-10-18"
     },
     {
-      "id": "manual:workshop:yin-poetry-cello-with-franks",
-      "kind": "workshop",
-      "title": "Yin, Poetry & Cello with Franks",
-      "cat": "Sun 23 Aug · Brighton · $90",
-      "blurb": "Warrior One",
-      "url": "https://warrioroneyoga.com.au/workshops/",
-      "external": true,
-      "source": "manual",
-      "until": "2026-08-23",
-      "supersedes": [
-        "page:https://warrioroneyoga.com.au/workshops/#yin-poetry-cello-with-franks"
-      ]
-    },
-    {
       "id": "manual:workshop:yintention-day-retreat",
       "kind": "workshop",
       "title": "Yintention Day Retreat",
@@ -143,18 +118,6 @@
       "band_title": "Sri Lanka"
     },
     {
-      "id": "page:https://warrioroneyoga.com.au/workshops/#yin-poetry-cello-with-franks-sold-out-",
-      "studio": "warrior-one-brighton",
-      "kind": "workshop",
-      "title": "Yin, Poetry & Cello with Franks (SOLD OUT)",
-      "teacher": "",
-      "starts": "2026-08-23T19:00:00+10:00",
-      "ends": "2026-08-23T21:00:00+10:00",
-      "price": 90,
-      "url": "https://warrioroneyoga.com.au/workshops/",
-      "source": "page"
-    },
-    {
       "id": "page:https://warrioroneyoga.com.au/workshops/#21-day-brighton-august-challenge",
       "studio": "warrior-one-brighton",
       "kind": "workshop",
@@ -164,18 +127,6 @@
       "ends": "2026-09-18T23:59:00+10:00",
       "price": 225,
       "url": "https://warrioroneyoga.com.au/workshops/",
-      "source": "page"
-    },
-    {
-      "id": "page:https://www.withinretreat.com.au/asana",
-      "studio": "within-south-yarra",
-      "kind": "workshop",
-      "title": "Strong Asana — community workshop with Masha",
-      "teacher": "",
-      "starts": "2026-08-29T12:00:00+10:00",
-      "ends": "2026-08-29T14:00:00+10:00",
-      "price": 0,
-      "url": "https://www.withinretreat.com.au/asana",
       "source": "page"
     },
     {
@@ -260,6 +211,30 @@
       "ends": "2026-09-18T20:00:00+10:00",
       "price": null,
       "url": "https://momence.com/s/140239910",
+      "source": "momence"
+    },
+    {
+      "id": "page:https://www.withinretreat.com.au/flight",
+      "studio": "within-south-yarra",
+      "kind": "workshop",
+      "title": "Flight School — a workshop series with Eliza & Gisele",
+      "teacher": "",
+      "starts": "2026-09-26T13:00:00+10:00",
+      "ends": "2026-09-26T15:00:00+10:00",
+      "price": 50,
+      "url": "https://www.withinretreat.com.au/flight",
+      "source": "page"
+    },
+    {
+      "id": "momence:34431:spring reset retreat",
+      "studio": "grass-roots-st-kilda",
+      "kind": "workshop",
+      "title": "Spring Reset Retreat",
+      "teacher": "Ilana Kosakiewicz",
+      "starts": "2026-10-03T13:00:00+10:00",
+      "ends": "2026-10-03T15:30:00+10:00",
+      "price": 85,
+      "url": "https://momence.com/s/142612718",
       "source": "momence"
     },
     {
