@@ -5,7 +5,7 @@
 //
 // Does two things, in order of importance:
 //   1. Emails the submission to CONTACT_TO via Brevo transactional (BREVO_API_KEY reused).
-//   2. Logs a row to Supabase table `inbound` (status 'new') — the pipeline record.
+//   2. Logs a row to Supabase table `inbound` (status 'new'), the pipeline record.
 // Either leg failing alone does not fail the submission; both failing does.
 //
 // Netlify env vars required:
@@ -13,7 +13,7 @@
 //   CONTACT_TO           e.g. hello@yogainmelbourne.com.au
 //   CONTACT_FROM         a Brevo-validated sender, e.g. hello@yogainmelbourne.com.au
 //   SUPABASE_URL         https://<project-ref>.supabase.co
-//   SUPABASE_SERVICE_KEY service-role key (server-side only — never in client code)
+//   SUPABASE_SERVICE_KEY service-role key (server-side only, never in client code)
 
 export async function handler(event) {
   if (event.httpMethod !== "POST") return { statusCode: 405, body: "Method not allowed" };
@@ -22,7 +22,7 @@ export async function handler(event) {
   try { d = JSON.parse(event.body || "{}"); }
   catch { return { statusCode: 400, body: "Bad request" }; }
 
-  if ((d.website || "").trim() !== "") {           // honeypot tripped — pretend success
+  if ((d.website || "").trim() !== "") {           // honeypot tripped, pretend success
     return { statusCode: 200, body: JSON.stringify({ ok: true }) };
   }
 
@@ -57,7 +57,7 @@ export async function handler(event) {
           sender: { email: FROM, name: "Yoga in Melbourne" },
           to: [{ email: TO }],
           replyTo: { email, name: name || email },
-          subject: `[YIM ${label}] ${name || email}${org ? " — " + org : ""}`,
+          subject: `[YIM ${label}] ${name || email}${org ? ", " + org : ""}`,
           textContent: lines,
         }),
       });

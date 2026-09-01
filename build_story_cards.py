@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-build_story_cards.py — render the daily line-up as Instagram story cards.
+build_story_cards.py: render the daily line-up as Instagram story cards.
 
   data/schedule.json  ──►  story/<date>/frame-NN-*.png   1080x1920, ready to post
                            story/<date>/cards.html       all frames, to eyeball first
@@ -10,7 +10,7 @@ Why this exists
 ---------------
 "Yoga Tomorrow" runs every evening and "Yoga Today" every midday. Twice daily is
 fourteen manual card builds a week, and a ritual that depends on a founder's daily
-fiddling decays — usually just as it starts working. The schedule data already
+fiddling decays: usually just as it starts working. The schedule data already
 exists; this is one more template over it.
 
 Frames
@@ -22,19 +22,19 @@ Frames
 
 One frame per teacher at any roster size: a reshare audience enters at *that*
 frame regardless of where it sits in the sequence, which is why frame position
-does not decay tagged frames. The 18 Aug run is the clearest case yet — the
+does not decay tagged frames. The 18 Aug run is the clearest case yet: the
 opener took 36 views and Steph Philip's frame took **183**, because her audience
 entered at her frame and never saw the rest of the sequence.
 
-The closer is the weakest frame every time it runs — 30 views on 15 Aug, 30 on
-17 Aug, 16 on 18 Aug — and it stays, because at a small roster **volume is the
+The closer is the weakest frame every time it runs: 30 views on 15 Aug, 30 on
+17 Aug, 16 on 18 Aug: and it stays, because at a small roster **volume is the
 job, not views**: a four-frame story rolls past before anyone settles into it.
 It is generated rather than hand-made so that keeping it costs nothing at 7pm,
 and it now gets a captions.md row with the full mention list like every other
 frame.
 
 Every frame must carry a link sticker, and every frame that can name someone must
-name them. The 15 Aug measurement: tagged frames averaged 123 views, untagged 36 —
+name them. The 15 Aug measurement: tagged frames averaged 123 views, untagged 36 -
 3.4x. The opener was the best card and took the fewest views purely because nobody
 was mentioned on it. captions.md exists so that never happens again.
 
@@ -46,7 +46,7 @@ Usage
     python3 build_story_cards.py --force              # override the thin-day guard
 
 Cards are a draft, not a publication. Check them against the studios' own
-timetables before posting — the pull window cannot see cancellations or covers
+timetables before posting: the pull window cannot see cancellations or covers
 booked after the last run.
 """
 import json, re, html, os, argparse, datetime, sys, base64
@@ -78,7 +78,7 @@ TODAY_CUTOFF = "14:00"
 # 1080x1920 card actually holds at the smallest legible type, not from taste.
 LINEUP_MAX = 8
 
-# Only the @font-face blocks — the real typefaces, none of the site's layout.
+# Only the @font-face blocks: the real typefaces, none of the site's layout.
 FONT_FACES = "\n".join(re.findall(r"@font-face\{[^}]*\}", BASE_CSS))
 
 CARD_CSS = """
@@ -120,7 +120,7 @@ body{background:#3a3a3a;font-family:'Hanken Grotesk',system-ui,sans-serif}
   margin-bottom:calc(16px * var(--k))}
 .names li:last-child{margin-bottom:0}
 /* A vignette, not an avatar: the crop fades into the paper rather than sitting
-   on it as a hard disc. Small, because the name is the thing being read — the
+   on it as a hard disc. Small, because the name is the thing being read: the
    face is there to make the roster feel like people. A teacher with no
    photograph gets the name alone and no empty circle. */
 .n-vig{flex:0 0 calc(96px * var(--k));width:calc(96px * var(--k));height:calc(96px * var(--k));
@@ -211,11 +211,11 @@ def story_link(path, campaign, content=None):
     the bio link in GA.
 
     utm_content names the FRAME, and it is not optional decoration. Four frames
-    point at "/" — opener, both line-ups and the closer. Without utm_content those
+    point at "/": opener, both line-ups and the closer. Without utm_content those
     four are one indistinguishable row in GA: you can see that story traffic
     arrived and never which card earned it. The teacher frames were always
     separable by landing page; these four were not. Added 20 Aug 2026 after Mark
-    pointed out he reads the attribution report regularly — so ambiguity in it
+    pointed out he reads the attribution report regularly: so ambiguity in it
     costs him something real."""
     tail = f"&utm_content={content}" if content else ""
     return (f"{SITE}{path}?utm_source=instagram&utm_medium=story"
@@ -230,7 +230,7 @@ def teacher_portrait(slug, px=340):
     """A small square portrait for a teacher's own story frame, as a data URI.
 
     Source of truth is the portrait already embedded in templates/<slug>.template.html
-    — the photograph the teacher supplied, at 880x1100. Reusing it means the card and
+   : the photograph the teacher supplied, at 880x1100. Reusing it means the card and
     the page can never drift, and no new asset has to be kept in step.
 
     Returns None where there is no photograph. Sarah Metzger and Steph Philip have
@@ -274,7 +274,7 @@ def classes_for(schedule, day, date, cutoff=None):
     pattern collapsed from a rolling fortnight, so matching on weekday alone says
     "someone teaches Wednesdays", not "she teaches this Wednesday". On 18 Aug 2026
     that shipped: Emma Strembickyj was announced into three classes on a day she
-    was overseas — her Kozen slots were being taught by Fai Mos, and the pattern
+    was overseas: her Kozen slots were being taught by Fai Mos, and the pattern
     row came from the following Wednesday. She saw it. Do not weaken this back to
     a weekday match.
 
@@ -282,7 +282,7 @@ def classes_for(schedule, day, date, cutoff=None):
     publishes a live weekly grid, and Warrior One's timetable is verified by hand
     from the studio's own screenshots and carries a `verified` date on the studio
     record. A weekly timetable nobody has contradicted is the best evidence those
-    studios can give, and dropping it silently deletes people — Rayne Watkin
+    studios can give, and dropping it silently deletes people: Rayne Watkin
     teaches only at Warrior One and Inndriya, so excluding undated rows removed
     her from On the Mat entirely. That is a worse failure than the one above, not
     a safer one.
@@ -369,7 +369,7 @@ def build_frames(schedule, day, date, items, mode):
     # NAME, and a brand can run more than one venue: (Here) Yoga teaches Slow Flow
     # at 7:15 on Friday in BOTH Port Melbourne and Malvern, with different teachers.
     # Keying on name alone collapsed those into one row, dropped Steph Philip's
-    # class from the line-up entirely, and printed Sarah Metzger's suburb over it —
+    # class from the line-up entirely, and printed Sarah Metzger's suburb over it -
     # a class that runs, with a teacher who is never named. Found 20 Aug 2026.
     seen, uniq = set(), []
     for r in items:
@@ -387,10 +387,10 @@ def build_frames(schedule, day, date, items, mode):
 
     frames = []
 
-    # 1 — opener. Names every teacher, because this frame has to be taggable.
+    # 1: opener. Names every teacher, because this frame has to be taggable.
     # The headline is the weekday, not the date: "Tuesday Yoga" is the thing being
     # announced. The date is a fact about it, so it leads the fact line instead.
-    # In tomorrow mode there is no lead phrase — the kicker already says
+    # In tomorrow mode there is no lead phrase: the kicker already says
     # "Yoga Tomorrow", and repeating it under the headline said nothing twice.
     facts = [date_str] + (["still to come"] if mode == "today" else []) + [
         plural(len(uniq), "class"), plural(len(teachers), "teacher"),
@@ -416,12 +416,12 @@ def build_frames(schedule, day, date, items, mode):
                 + f'</ul></div>{_foot()}</div>',
     })
 
-    # 2 — the line-up, split above LINEUP_MAX.
+    # 2: the line-up, split above LINEUP_MAX.
     #
     # Wed 19 Aug was the first day the roster broke a single card: 14 classes
     # overflow even at the 0.62 scale floor, and the type is already at its
     # legible limit, so shrinking further is not available. The build correctly
-    # refused to ship a card with a class cut off the bottom — which meant the
+    # refused to ship a card with a class cut off the bottom: which meant the
     # nightly workflow published nothing at all.
     #
     # Split by TIME OF DAY rather than an arbitrary midpoint, because that is how
@@ -459,7 +459,7 @@ def build_frames(schedule, day, date, items, mode):
         for rows, label, slug in parts:
             frames.append(_lineup_frame(rows, label, slug))
 
-    # 3+ — one per teacher
+    # 3+: one per teacher
     for t in teachers:
         rows = by_teacher[t]
         slug = slug_of(t)
@@ -470,7 +470,7 @@ def build_frames(schedule, day, date, items, mode):
             "mentions": [t],
             "note": f"This frame carries {t}'s name and NO ONE else's, so the frame she "
                     f"reshares is entirely about her, and it is the ONLY frame she is "
-                    f"mentioned on — one notification, one reshare, undiluted. Link sticker "
+                    f"mentioned on: one notification, one reshare, undiluted. Link sticker "
                     f"goes to her page, not the homepage.",
             "html": f'<div class="card"><div class="kicker">{esc(kicker)} · {esc(day_full)}</div>'
                     f'<div class="t-head">{_portrait_html(slug)}'
@@ -479,16 +479,16 @@ def build_frames(schedule, day, date, items, mode):
                     f'<div class="rows">{_rows_html(rows, show_teacher=False)}</div>{_foot()}</div>',
         })
 
-    # last — the closer.
+    # last: the closer.
     #
     # It is the weakest frame every time it runs (30 views on 15 Aug, 30 on 17 Aug,
     # 16 on 18 Aug) and it stays anyway, because at this roster size the job is
     # VOLUME, not views: a four-frame story rolls past before anyone settles into
-    # it. Generating it removes the only real argument against keeping it — a frame
+    # it. Generating it removes the only real argument against keeping it: a frame
     # that has to be tagged by hand at 7pm every night is exactly the friction that
     # kills a daily ritual.
     #
-    # RETIRE IT ON ROSTER SIZE, NOT ON PERFORMANCE — around six teachers on a normal
+    # RETIRE IT ON ROSTER SIZE, NOT ON PERFORMANCE: around six teachers on a normal
     # day, when the per-teacher frames already give the story enough length on their
     # own. Its view count will never justify it and is not the test.
     #
@@ -510,13 +510,30 @@ def build_frames(schedule, day, date, items, mode):
                 f'<ul class="closer-names">'
                 + "".join(f"<li>{esc(t)}</li>" for t in teachers)
                 + '</ul>'
-                # "Every class, every studio" claimed the whole city. The site covers
-                # twelve studios, so the sentence was false in the one place a reader
-                # could most easily check it. The scope that IS true is the teacher:
-                # for anyone we cover, it really is every class she teaches. Phrasing
-                # matches the listing pages, which already hedge this correctly.
-                f'<div class="closer-cta">Every class our teachers teach, across the '
-                f'studios we cover — <b>yogainmelbourne.com.au</b></div>{_foot()}</div>',
+                # Two corrections live in this one sentence, in order.
+                #
+                # 1. "Every class, every studio" claimed the whole city. The site covers
+                #    twelve studios, so the sentence was false in the one place a reader
+                #    could most easily check it. The scope that IS true is the teacher:
+                #    for anyone we cover, it really is every class she teaches.
+                #
+                # 2. The fix for (1) was "across the studios we cover", which is accurate
+                #    but unreadable: "the studios we cover" is an editorial-desk concept
+                #    the reader has never been told and cannot evaluate. It answers an
+                #    objection nobody raised and costs the sentence its confidence.
+                #    Mark, 31 Aug 2026: it should not appear anywhere reader-facing.
+                #
+                # So the claim is scoped to the teacher and left unqualified. It stays
+                # true as long as every studio a ROSTER teacher works at is one we pull.
+                # That is a checkable invariant, not a hope: the Warrior One audit of
+                # 30 Aug confirmed it for Alessia and Rayne across three studios. Add a
+                # roster teacher who also teaches somewhere we do not pull and this
+                # sentence becomes false, silently. Check before you add.
+                #
+                # "studios we cover" is still correct in privacy.html, where explaining
+                # the site's scope IS the point. This rule is about marketing copy.
+                f'<div class="closer-cta">Every class our teachers teach, in one '
+                f'place: <b>yogainmelbourne.com.au</b></div>{_foot()}</div>',
     })
     return frames
 
@@ -527,12 +544,12 @@ def write_links_page(path, frames, day, date, mode):
     captions.md is the reference document; this is the thing you hold in one hand
     at 7pm while Instagram is open in the other. Selecting a 130-character URL out
     of a markdown table on a phone is the step where a link sticker silently ends
-    up with the wrong utm_content — or with a trailing space that breaks it. One
+    up with the wrong utm_content: or with a trailing space that breaks it. One
     tap removes that. Written every run so it is never stale."""
     kicker = "Yoga Today" if mode == "today" else "Yoga Tomorrow"
     rows = []
     for i, f in enumerate(frames, 1):
-        mentions = ", ".join(f.get("mentions") or []) or "—"
+        mentions = ", ".join(f.get("mentions") or []) or "-"
         rows.append(
             f'<li class="row">'
             f'<div class="head"><span class="n">{i:02d}</span>'
@@ -586,7 +603,7 @@ input.u:focus{outline:2px solid var(--clay);outline-offset:-2px;color:var(--ink)
     js = """
 /* Three ways to copy, in order of preference. An artifact renders inside a
    sandboxed iframe, where navigator.clipboard is usually blocked by permissions
-   policy and execCommand can fail too — which is exactly how the first version of
+   policy and execCommand can fail too: which is exactly how the first version of
    this page shipped with buttons that did nothing (20 Aug 2026). So the URL lives
    in a readonly <input>: even if BOTH copy paths fail, one tap selects the whole
    string and the OS copy menu takes it. The button reports what actually happened
@@ -619,7 +636,7 @@ document.querySelectorAll('.copy').forEach(function(b){
 """
     doc = (f"<!doctype html><html lang='en-AU'><head><meta charset='utf-8'>"
            f"<meta name='viewport' content='width=device-width,initial-scale=1'>"
-           f"<title>{esc(kicker)} — link stickers</title>"
+           f"<title>{esc(kicker)}: link stickers</title>"
            f"<link rel='preconnect' href='https://fonts.googleapis.com'>"
            f"<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>"
            f"<link href='https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400"
@@ -630,7 +647,7 @@ document.querySelectorAll('.copy').forEach(function(b){
            f"<h1>{DAY_FULL[day]} <em>{date.strftime('%-d %B')}</em></h1>"
            f"<p class='sub'>One link sticker per frame, in post order. Tap Copy, then paste "
            f"straight into the sticker. If a button says <b>Selected</b> rather than Copied, "
-           f"the browser blocked the clipboard — the text is highlighted, use your own "
+           f"the browser blocked the clipboard: the text is highlighted, use your own "
            f"copy. The tags are what make this show up as story "
            f"traffic in GA, and utm_content is what names the frame.</p>"
            f"<ol>{''.join(rows)}</ol>"
@@ -643,47 +660,47 @@ document.querySelectorAll('.copy').forEach(function(b){
 def write_captions(path, frames, day, date, mode, items):
     kicker = "Yoga Today" if mode == "today" else "Yoga Tomorrow"
     when = "around midday" if mode == "today" else "in the evening, around 7pm"
-    L = [f"# {kicker} — {DAY_FULL[day]} {date.strftime('%-d %B %Y')}",
+    L = [f"# {kicker}: {DAY_FULL[day]} {date.strftime('%-d %B %Y')}",
          "",
-         f"{len(frames)} frames. Post them as one run, {when} — and at the *same* hour "
+         f"{len(frames)} frames. Post them as one run, {when}: and at the *same* hour "
          "every day, so yesterday's frames expire as these go up.",
          "",
          "**Before posting:** check these against the studios' own timetables. The pull "
          "window cannot see a cancellation or a cover booked since the last run.",
          ""]
     # Rows a live feed confirmed for this date need no second look. Rows riding on a
-    # weekly timetable do — that is the whole gap Warrior One's dark feed leaves, and
+    # weekly timetable do: that is the whole gap Warrior One's dark feed leaves, and
     # naming it here is what stops it becoming another teacher's phone call.
     unconfirmed = [r for r in items if not r.get("confirmed")]
     if unconfirmed:
-        L += ["**These rows are not date-confirmed** — they come from a weekly timetable, "
+        L += ["**These rows are not date-confirmed**: they come from a weekly timetable, "
               "not a live feed, so a cover or an absence this week would not show. Worth a "
               "glance before you post:", ""]
         for r in sorted(unconfirmed, key=lambda r: r["mins"]):
             v = f" · timetable verified {r['verified']}" if r.get("verified") else ""
-            L.append(f"- {r['time']} — **{r['teacher']}**, {r['class']}, {r['studio']}{v}")
+            L.append(f"- {r['time']}: **{r['teacher']}**, {r['class']}, {r['studio']}{v}")
         L.append("")
     L += [
          "**Every frame takes a link sticker, and a MENTION sticker for everyone named on it.** "
-         "A story has mentions, not tags — the mention is what notifies her and gives her "
+         "A story has mentions, not tags: the mention is what notifies her and gives her "
          "the one-tap reshare.",
          "",
          "| # | Frame | Mention | Link sticker |",
          "|---|---|---|---|"]
     for i, f in enumerate(frames, 1):
-        m = ", ".join(f["mentions"]) or "—"
+        m = ", ".join(f["mentions"]) or "-"
         L.append(f'| {i} | `{f["name"]}` | {m} | `{f["link"]}` |')
     L += ["", "## Frame notes", ""]
     for i, f in enumerate(frames, 1):
-        L.append(f'**{i}. {f["name"]}** — {f["note"]}')
+        L.append(f'**{i}. {f["name"]}**: {f["note"]}')
         L.append("")
     L += ["## After posting", "",
           "- Stories are one rolling 24h sequence, so post ~24h apart and let yesterday's "
-          "frames expire on their own. **Never delete frames to make room** — deleting "
+          "frames expire on their own. **Never delete frames to make room**: deleting "
           "destroys their insights permanently.",
           "- Screenshot Insights at ~20h, before expiry, and log views per frame in the "
           "rotation ledger. Tagged vs untagged is the number worth watching.",
-          "- Judge this on taps, exits, link taps and reshares. Not likes — story likes "
+          "- Judge this on taps, exits, link taps and reshares. Not likes: story likes "
           "are ~0 and always will be.",
           "- When a teacher reshares: react warmly, one line, and do not re-reshare an "
           "echo. The point is that replying opens a DM thread.",
@@ -716,20 +733,20 @@ def main():
     if len(items) < MIN_CLASSES and not a.force:
         raise SystemExit(
             f"{DAY_FULL[day]} {date}: {len(items)} class(es), below the {MIN_CLASSES}-class "
-            f"threshold — not building.\nSilence costs nothing in stories; a one-class card "
+            f"threshold: not building.\nSilence costs nothing in stories; a one-class card "
             f"advertises smallness. Use --force to override.")
     if not items:
         raise SystemExit(f"{DAY_FULL[day]} {date}: no classes at all.")
     if a.mode == "today" and n_teachers < 5:
         print(f"⚠ Yoga Today is a five-teacher format and the roster shows {n_teachers}. "
-              "It is the commercially valuable one — availability, not aspiration — but it "
+              "It is the commercially valuable one: availability, not aspiration: but it "
               "needs the density to never look thin.")
 
     out = OUTDIR / f"{date.isoformat()}-{a.mode}"
     out.mkdir(parents=True, exist_ok=True)
     # Clear old frames first. A rebuild that produces FEWER frames than the last
     # run leaves the surplus behind, and the leftovers are indistinguishable from
-    # real output in the folder — which is how the wrong Rayne frame and a second
+    # real output in the folder: which is how the wrong Rayne frame and a second
     # closer ended up in a set that had already been corrected once.
     stale = sorted(out.glob("frame-*.png"))
     for f in stale:
@@ -747,7 +764,7 @@ def main():
     write_captions(out / "captions.md", frames, day, date, a.mode, items)
     write_links_page(out / "links.html", frames, day, date, a.mode)
 
-    print(f"{DAY_FULL[day]} {date} — {len(items)} classes, {n_teachers} teachers, "
+    print(f"{DAY_FULL[day]} {date}: {len(items)} classes, {n_teachers} teachers, "
           f"{len(frames)} frames -> {out.relative_to(ROOT)}/")
 
     if a.no_png:
@@ -781,7 +798,7 @@ def main():
     if over:
         raise SystemExit(
             f"\n⚠ {', '.join(over)} still overflow at the smallest size. The PNGs are "
-            "written but a class is cut off the bottom — split the line-up across two "
+            "written but a class is cut off the bottom: split the line-up across two "
             "frames rather than posting these.")
 
 

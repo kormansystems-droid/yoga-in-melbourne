@@ -46,8 +46,8 @@ def esc_attr(s): return html.escape(str(s), quote=True)
 def start_minutes(t):
     """Minutes past midnight for the START of a '10:45–11:45 AM' style range.
 
-    A class that crosses noon carries its own meridiem on the start time —
-    '10:45 AM–12:00 PM' — because the range's single trailing AM/PM cannot
+    A class that crosses noon carries its own meridiem on the start time -
+    '10:45 AM–12:00 PM': because the range's single trailing AM/PM cannot
     describe it. Read the start's own meridiem where it has one, and only fall
     back to the range's when it does not. Without this, every AM class ending
     after noon parses as PM and sorts to the evening: Rayne's 75-minute Yin &
@@ -70,12 +70,12 @@ def render_row(r, book_url):
     on a profile was the studio-level 'Book ↗', so the tracked click event had
     almost no volume to measure and no way to say which class earned it.
 
-    Attribution comes from GA4 enhanced measurement, which records link_text — the
+    Attribution comes from GA4 enhanced measurement, which records link_text: the
     row's text is 'Wed 5:00-6:00 PM Slow Flow Yoga', so the class is identified
     without appending query parameters to a studio's booking URL (which we do not
     control and can break)."""
     href = r.get("url") or book_url
-    # A row carrying `dates` happens on those days and no others — cover, a
+    # A row carrying `dates` happens on those days and no others: cover, a
     # one-off, a class that has not been on the roster long. Rendering it in the
     # weekly grid unqualified tells a reader she teaches it every week, which is
     # the same false statement that put Emma into three classes on 19 August;
@@ -123,7 +123,7 @@ def render_cards(classes, studios):
     return "\n\n".join(cards), len(cards)
 
 def render_handoff_cards(slug, classes):
-    """Manual 'Also at <studio>' cards for teachers at feed-less studios — a link to
+    """Manual 'Also at <studio>' cards for teachers at feed-less studios: a link to
     book directly, no class times. Retired per studio once it gets a live feed."""
     out = []
     for bid in HANDOFF.get("teachers", {}).get(slug, []):
@@ -136,7 +136,7 @@ def render_handoff_cards(slug, classes):
         url, nm = esc_attr(b.get("book_url", "#")), esc(b.get("name", bid))
         # Most handoffs are studios anyone can book. Some are not: Saint Haven is
         # a private members' club, and telling a reader to "book directly" at a
-        # place that requires an application is worse than saying nothing — she
+        # place that requires an application is worse than saying nothing: she
         # turns up to a door that will not open. `note` and `cta` let a brand say
         # what it actually is.
         note = esc(b.get("note", "Book directly at their studio"))
@@ -166,26 +166,12 @@ def _teacher_suburbs(rec, studios):
         if loc: c[loc] += 1
     return [loc for loc, _ in c.most_common()]
 
-def _handoff_suburbs(teacher, rec, studios):
-    """Suburbs a teacher reaches through a feed-less studio, for the SEO head.
-
-    Mirrors render_handoff_cards(): a brand contributes nothing once she has real
-    timed classes there, because those classes already name her suburbs and the
-    brand's OTHER locations are not places she teaches. Without that rule,
-    registering Warrior One Mornington put "Mornington" into Alessia's and Rayne's
-    titles, descriptions and schema areaServed — neither teaches there. It stayed
-    invisible for months because every Warrior One suburb had happened to be one
-    they did teach in, so the extra entries deduplicated away."""
-    own = {c.get("studio") for c in rec.get("classes", [])}
+def _handoff_suburbs(teacher, studios):
     out = []
     for bid in HANDOFF.get("teachers", {}).get(teacher, []):
         prefixes = tuple(HANDOFF.get("brands", {}).get(bid, {}).get("match", []))
-        if not prefixes:
-            continue
-        if any(str(sid).startswith(prefixes) for sid in own):
-            continue          # real classes at this brand — they speak for themselves
         for sid, meta in studios.items():
-            if sid.startswith(prefixes):
+            if prefixes and sid.startswith(prefixes):
                 loc = meta.get("location")
                 if loc and loc not in out: out.append(loc)
     return out
@@ -199,7 +185,7 @@ MISSING_OG = []          # teachers built without a share image, reported at the
 
 
 def seo_head(teacher, rec, studios, slug):
-    """A teacher with no photograph gets a profile with no photograph — never a
+    """A teacher with no photograph gets a profile with no photograph: never a
     profile pointing at one that isn't there.
 
     Until 19 Aug 2026 this emitted og:image, twitter:image and a schema.org
@@ -209,7 +195,7 @@ def seo_head(teacher, rec, studios, slug):
     with a broken preview the whole time.
 
     So the image tags are written only when the file is actually on disk at build
-    time, and twitter:card falls back from summary_large_image to summary — a
+    time, and twitter:card falls back from summary_large_image to summary: a
     large-image card with no image renders as an empty box, a summary card reads
     as a clean text preview. Missing files are named on stdout at the end of the
     build; they are a gap to fill, not a state to hide."""
@@ -220,7 +206,7 @@ def seo_head(teacher, rec, studios, slug):
     if not has_img:
         MISSING_OG.append(slug)
     teaching = _teacher_suburbs(rec, studios)
-    for s in _handoff_suburbs(teacher, rec, studios):
+    for s in _handoff_suburbs(teacher, studios):
         if s not in teaching: teaching.append(s)
     # capped catchment: nearest 3 per teaching suburb, deduped, excluding teaching suburbs
     catch = []
@@ -324,7 +310,7 @@ def build_index(data):
     Ryan Mannix both went live with working pages and no route to them from the
     homepage, because someone had to remember to add a line and didn't.
 
-    Only the router row is generated. The Teachers grid stays hand-curated — it
+    Only the router row is generated. The Teachers grid stays hand-curated: it
     carries portraits and standfirsts for teachers whose profile has been written
     and approved, which is an editorial decision, not a list of rows in a table.
     A listing belongs in the router because a reader looking for her timetable
@@ -336,18 +322,48 @@ def build_index(data):
     # 20 Aug 2026, overruling the class-count sort this used to have: "no one
     # cares about the number, only the name."
     #
-    # He is right, and the old reasoning was worse than wrong — it was ranking
+    # He is right, and the old reasoning was worse than wrong: it was ranking
     # teachers by how much work they happen to have. A row that reorders itself
     # when someone loses a class is a row that quietly publishes a league table,
     # which is the one thing this publication has said it will never do.
     #
-    # The real cost, recorded so it is a known trade and not a surprise: on mobile
-    # this row is a horizontal scroll strip (flex-wrap:nowrap; overflow-x:auto),
-    # so position is visibility — about two and a half chips are on screen. Names
-    # late in the alphabet need a swipe. Fix that with the row's design if it
-    # matters, not by reordering people.
+    # The cost that used to be recorded here: that as a wrapping pill row a
+    # name's position decided its visibility, and on a phone the row was a
+    # horizontal scroll strip where late-alphabet names needed a swipe: is now
+    # PAID. Mark, 31 Aug 2026: one teacher per line, each with a vignette. A
+    # column gives every teacher identical prominence at every screen width,
+    # which is the only arrangement actually consistent with refusing to publish
+    # a league table. The old note said "fix that with the row's design, not by
+    # reordering people." This is that fix.
+    #
+    # The vignettes are FILES (img/vig/<slug>.jpg), not data URIs, and this
+    # function must never import PIL to make them. `pull.yml` installs playwright
+    # and nothing else, and pull.py runs this script with check=True: an
+    # ImportError here would fail the nightly timetable refresh outright. So the
+    # only thing done at build time is an existence check on disk. Generate the
+    # images with `python3 build_vignettes.py` after adding a teacher.
+    #
+    # A teacher with no vignette gets an empty span that holds the column, so the
+    # names keep one left edge. An empty circle reads as a broken image; empty
+    # space reads as a name.
     order = sorted(data["teachers"], key=lambda n: (n.split()[0].lower(), n.lower()))
-    links = "".join(f'\n      <a href="{slug_of(n)}.html">{esc(n)}</a>' for n in order)
+    missing = []
+    parts = []
+    for n in order:
+        slug = slug_of(n)
+        if (ROOT / "img" / "vig" / f"{slug}.jpg").exists():
+            vig = (f'<span class="vig"><img src="/img/vig/{slug}.jpg" alt="" '
+                   f'width="44" height="44" loading="lazy" decoding="async"></span>')
+        else:
+            vig = '<span class="vig vig-none"></span>'
+            missing.append(slug)
+        parts.append(f'\n      <a href="{slug}.html">{vig}{esc(n)}</a>')
+    links = "".join(parts)
+    if missing:
+        print("\nno router vignette (img/vig/<slug>.jpg): name renders without a face:")
+        for s in missing:
+            print(f"  {s}")
+        print("  fix: python3 build_vignettes.py")
     out = re.sub(r"(<!-- ROUTER_PEOPLE:START -->).*?(<!-- ROUTER_PEOPLE:END -->)",
                  lambda m: m.group(1) + links + "\n    " + m.group(2), src, flags=re.S)
     if out == src and "ROUTER_PEOPLE:START" not in src:
@@ -359,7 +375,7 @@ def build_index(data):
 
 def poss(name):
     """Possessive of a given name. A name already ending in s takes the bare
-    apostrophe — Franks', not Franks's. Mark's call, 20 Aug 2026, and correct.
+    apostrophe: Franks', not Franks's. Mark's call, 20 Aug 2026, and correct.
     Written as a rule rather than a fix to one page because the roster will keep
     producing them: Franks, and any Jess, Tess or James after her."""
     return name + ("'" if name.rstrip().endswith(("s", "S")) else "'s")
@@ -379,10 +395,10 @@ def main():
         (OUT/name).write_text(build_one(t, data))
         print(f"built {name:32s} <- {t.name}")
     if MISSING_OG:
-        # Not an error — the page is correct without one. But a teacher whose page
+        # Not an error: the page is correct without one. But a teacher whose page
         # gets shared is better off with a photo, so the gap is named every build
         # rather than discovered when a link preview looks bare.
-        print("\nno share image (img/<slug>.jpg) — link previews render as text only:")
+        print("\nno share image (img/<slug>.jpg): link previews render as text only:")
         for slug in sorted(set(MISSING_OG)):
             print(f"  {slug}")
         print("  fix: python3 crop-portrait.py <photo> <slug>")

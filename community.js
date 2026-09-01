@@ -1,4 +1,4 @@
-/* Yoga in Melbourne — Join the Community
+/* Yoga in Melbourne: Join the Community
  * One self-contained script. Load it (after the Supabase CDN) on any page and it will:
  *   - inject a "Join the Community" button top-right into the masthead
  *   - render a passwordless sign-up popup (email + explicit consent checkbox)
@@ -7,7 +7,7 @@
  * Setup (once):
  *   1. Create a Supabase project, run supabase-schema.sql in its SQL editor.
  *   2. Fill CONFIG below with your project URL + anon (public) key.
- *      The anon key is safe to expose in the page — it is protected by Row-Level Security.
+ *      The anon key is safe to expose in the page; it is protected by Row-Level Security.
  *   3. In Supabase → Authentication → URL Configuration, add your site URL(s) to
  *      "Redirect URLs" (e.g. https://yogainmelbourne.com.au/* ).
  *
@@ -25,7 +25,7 @@
 
   // Guard: don't ship a broken button before the project is configured.
   if (!window.supabase || CONFIG.SUPABASE_URL.indexOf("REPLACE_") === 0) {
-    console.warn("[community] Supabase not configured yet — button not rendered.");
+    console.warn("[community] Supabase not configured yet, button not rendered.");
     return;
   }
 
@@ -131,8 +131,8 @@
     var _e = function (s) { return String(s || "").replace(/</g, "&lt;"); };
     var _h = followGiven ? ("Follow " + _e(followGiven)) : "Join the Community";
     var _s = followGiven
-      ? ("Create your free account to follow " + _e(followGiven) + " and save them to your dashboard. No password — we\u2019ll email you a link.")
-      : "Follow your favourite teachers and studios, and keep up with Melbourne yoga. No password — we\u2019ll email you a link.";
+      ? ("Create your free account to follow " + _e(followGiven) + " and save them to your dashboard. No password, we\u2019ll email you a link.")
+      : "Follow your favourite teachers and studios, and keep up with Melbourne yoga. No password, we\u2019ll email you a link.";
     body.innerHTML =
       '<h2>' + _h + '</h2>' +
       '<p class="sub">' + _s + '</p>' +

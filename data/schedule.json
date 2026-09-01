@@ -28,7 +28,7 @@
           "url": "https://www.withinretreat.com.au/gowithintowin",
           "title": "Go WITH/N to WIN — September Challenge",
           "removed": "2026-08-19",
-          "reason": "Page loads but its date line no longer parses — Within reworded it. Mark's call, 19 Aug 2026: ignore it. Removed from event_pages so the weekly proposal stops raising an anomaly nobody intends to act on. Do not re-add without asking him."
+          "reason": "Page loads but its date line no longer parses; Within reworded it. Mark's call, 19 Aug 2026: ignore it. Removed from event_pages so the weekly proposal stops raising an anomaly nobody intends to act on. Do not re-add without asking him."
         }
       ]
     },
@@ -51,7 +51,7 @@
           "list": true,
           "kind": "workshop",
           "expect": 5,
-          "note": "One page covers all three Warrior One studios; `locations` routes each event to the right one. `expect` is a floor — if the page yields fewer, say so rather than quietly shrinking the section.",
+          "note": "One page covers all three Warrior One studios; `locations` routes each event to the right one. `expect` is a floor: if the page yields fewer, say so rather than quietly shrinking the section.",
           "locations": {
             "BRIGHTON": "warrior-one-brighton",
             "MORDIALLOC": "warrior-one-mordialloc",
@@ -179,7 +179,7 @@
       "verified": "2026-08-18",
       "feed": {
         "type": "manual",
-        "note": "No YiM teacher here yet and no widget slug captured, so nothing to pull. Swap to {type: mindbody, site_id: 211566, location: <Location.Name>} at activation — the same site serves Brighton, Mordialloc and Mornington."
+        "note": "No YiM teacher here yet and no widget slug captured, so nothing to pull. Swap to {type: mindbody, site_id: 211566, location: <Location.Name>} at activation; the same site serves Brighton, Mordialloc and Mornington."
       }
     }
   },

@@ -8,10 +8,10 @@
     --paper-deep:#DECDAE;   /* slightly deeper sand for panels */
     --ink:#2A201A;          /* warm dark brown, near-black */
     --ink-soft:#5A4B3E;     /* muted brown for secondary text */
-    --henna:#9E3B26;        /* deep madder red — primary accent, restraint */
-    --clay:#BC6B3C;         /* warm clay — secondary accent */
-    --sage:#6F7155;         /* muted olive — quiet labels */
-    --ochre:#C2974F;        /* warm gold — hairlines */
+    --henna:#9E3B26;        /* deep madder red, primary accent, restraint */
+    --clay:#BC6B3C;         /* warm clay, secondary accent */
+    --sage:#6F7155;         /* muted olive, quiet labels */
+    --ochre:#C2974F;        /* warm gold, hairlines */
     --max:1180px;
   }
 

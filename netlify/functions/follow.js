@@ -1,10 +1,10 @@
 // netlify/functions/follow.js
-// Teacher-agnostic follow handler. Stores followers in Supabase — the list
+// Teacher-agnostic follow handler. Stores followers in Supabase; the list
 // stays with YIM (per the privacy policy), one datastore alongside members
 // and inbound. Receives { name, email, teacher }.
 //
 // Table: public.followers (see followers-table.sql). One row per
-// (email, teacher) pair — following a second teacher adds a second row;
+// (email, teacher) pair; following a second teacher adds a second row;
 // re-following the same teacher is a no-op, never an error.
 //
 // Netlify env vars (already set): SUPABASE_URL, SUPABASE_SERVICE_KEY.
