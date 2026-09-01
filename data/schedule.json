@@ -241,6 +241,24 @@
         },
         {
           "studio": "warrior-one-brighton",
+          "day": "Tue",
+          "time": "6:00–7:00 AM",
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-09-08"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Tue",
+          "time": "7:30–8:30 AM",
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-09-08"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
           "day": "Wed",
           "time": "9:30–10:30 AM",
           "class": "Vinyasa Flow",
@@ -360,30 +378,12 @@
           ]
         },
         {
-          "studio": "grass-roots-st-kilda",
-          "day": "Wed",
-          "time": "6:15–7:15 AM",
-          "class": "Vinyasa flow",
-          "dates": [
-            "2026-09-02"
-          ]
-        },
-        {
           "studio": "happy-melon-armadale",
           "day": "Wed",
           "time": "9:30–10:30 AM",
           "class": "Yoga Flow",
           "dates": [
             "2026-09-02"
-          ]
-        },
-        {
-          "studio": "here-yoga-port-melbourne",
-          "day": "Tue",
-          "time": "9:30–10:30 AM",
-          "class": "Dynamic Flow",
-          "dates": [
-            "2026-09-01"
           ]
         },
         {
@@ -426,7 +426,7 @@
           "time": "5:00–6:00 PM",
           "class": "Vinyasa Flow",
           "dates": [
-            "2026-09-01"
+            "2026-09-08"
           ]
         },
         {
@@ -435,7 +435,7 @@
           "time": "6:15–7:15 PM",
           "class": "Vinyasa Flow",
           "dates": [
-            "2026-09-01"
+            "2026-09-08"
           ]
         },
         {
@@ -444,7 +444,7 @@
           "time": "7:30–8:30 PM",
           "class": "Yin Yoga & Meditation",
           "dates": [
-            "2026-09-01"
+            "2026-09-08"
           ]
         },
         {
@@ -587,24 +587,6 @@
         {
           "studio": "within-south-yarra",
           "day": "Wed",
-          "time": "6:00–7:00 AM",
-          "class": "Strong Flow Yoga",
-          "dates": [
-            "2026-09-02"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Wed",
-          "time": "7:30–8:30 AM",
-          "class": "Slow Flow Yoga",
-          "dates": [
-            "2026-09-02"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Wed",
           "time": "9:30–10:30 AM",
           "class": "Strong Flow Yoga",
           "dates": [
@@ -636,6 +618,24 @@
           "class": "Strong Flow Yoga",
           "dates": [
             "2026-09-04"
+          ]
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Sat",
+          "time": "7:30–9:00 AM",
+          "class": "Strong Flow 90 Mins",
+          "dates": [
+            "2026-09-05"
+          ]
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Sat",
+          "time": "9:30–10:30 AM",
+          "class": "Strong Flow Yoga",
+          "dates": [
+            "2026-09-05"
           ]
         }
       ]
@@ -681,10 +681,19 @@
         {
           "studio": "warrior-one-mordialloc",
           "day": "Tue",
+          "time": "6:00–7:00 AM",
+          "class": "Slow Flow",
+          "dates": [
+            "2026-09-08"
+          ]
+        },
+        {
+          "studio": "warrior-one-mordialloc",
+          "day": "Tue",
           "time": "10:45–12:00 PM",
           "class": "Yin & Yoga Nidra",
           "dates": [
-            "2026-09-01"
+            "2026-09-08"
           ]
         },
         {
@@ -727,8 +736,8 @@
           "time": "12:30–1:30 PM",
           "class": "Vinyasa Flow",
           "dates": [
-            "2026-09-01",
-            "2026-09-08"
+            "2026-09-08",
+            "2026-09-15"
           ]
         },
         {
@@ -737,8 +746,8 @@
           "time": "4:30–5:30 PM",
           "class": "Vinyasa Flow",
           "dates": [
-            "2026-09-01",
-            "2026-09-08"
+            "2026-09-08",
+            "2026-09-15"
           ]
         },
         {
@@ -747,8 +756,8 @@
           "time": "6:00–7:00 PM",
           "class": "Vinyasa Flow",
           "dates": [
-            "2026-09-01",
-            "2026-09-08"
+            "2026-09-08",
+            "2026-09-15"
           ]
         },
         {
@@ -850,6 +859,15 @@
           "dates": [
             "2026-09-14"
           ]
+        },
+        {
+          "studio": "here-yoga-malvern",
+          "day": "Wed",
+          "time": "7:15–8:15 AM",
+          "class": "Dynamic Flow",
+          "dates": [
+            "2026-09-16"
+          ]
         }
       ]
     },
@@ -923,7 +941,7 @@
           "time": "9:30–10:30 AM",
           "class": "Dynamic Flow",
           "dates": [
-            "2026-09-01"
+            "2026-09-15"
           ]
         }
       ]
