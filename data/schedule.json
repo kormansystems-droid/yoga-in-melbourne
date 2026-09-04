@@ -258,33 +258,6 @@
           ]
         },
         {
-          "studio": "warrior-one-brighton",
-          "day": "Wed",
-          "time": "9:30–10:30 AM",
-          "class": "Vinyasa Flow",
-          "dates": [
-            "2026-09-09"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Wed",
-          "time": "10:45–11:45 AM",
-          "class": "Yin & Myofascial Release",
-          "dates": [
-            "2026-09-09"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Wed",
-          "time": "12:15–1:15 PM",
-          "class": "Slow Flow & Yoga Nidra",
-          "dates": [
-            "2026-09-09"
-          ]
-        },
-        {
           "studio": "warrior-one-mordialloc",
           "day": "Mon",
           "time": "6:00–7:00 AM",
@@ -308,8 +281,8 @@
           "time": "12:15–1:15 PM",
           "class": "Yin",
           "dates": [
-            "2026-09-04",
-            "2026-09-11"
+            "2026-09-11",
+            "2026-09-18"
           ]
         },
         {
@@ -387,24 +360,6 @@
           ]
         },
         {
-          "studio": "warrior-one-brighton",
-          "day": "Mon",
-          "time": "10:45–11:45 AM",
-          "class": "Yin Yoga & Meditation",
-          "dates": [
-            "2026-09-07"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Mon",
-          "time": "12:15–1:15 PM",
-          "class": "Slow Flow",
-          "dates": [
-            "2026-09-07"
-          ]
-        },
-        {
           "studio": "happy-melon-armadale",
           "day": "Wed",
           "time": "9:30–10:30 AM",
@@ -475,10 +430,28 @@
         {
           "studio": "warrior-one-brighton",
           "day": "Fri",
+          "time": "6:00–7:00 AM",
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-09-11"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Fri",
+          "time": "7:30–8:30 AM",
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-09-11"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Fri",
           "time": "9:30–10:30 AM",
           "class": "Vinyasa Flow",
           "dates": [
-            "2026-09-04"
+            "2026-09-11"
           ]
         },
         {
@@ -619,10 +592,28 @@
         {
           "studio": "within-south-yarra",
           "day": "Fri",
+          "time": "6:00–7:00 AM",
+          "class": "Strong Flow Yoga",
+          "dates": [
+            "2026-09-11"
+          ]
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Fri",
+          "time": "7:30–8:30 AM",
+          "class": "Slow Flow Yoga",
+          "dates": [
+            "2026-09-11"
+          ]
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Fri",
           "time": "9:30–10:30 AM",
           "class": "Strong Flow Yoga",
           "dates": [
-            "2026-09-04"
+            "2026-09-11"
           ]
         },
         {
@@ -671,7 +662,7 @@
           "time": "10:45–11:45 AM",
           "class": "Yin & Yoga Nidra",
           "dates": [
-            "2026-09-04"
+            "2026-09-11"
           ]
         },
         {
@@ -680,7 +671,7 @@
           "time": "12:15–1:15 PM",
           "class": "Slow Flow",
           "dates": [
-            "2026-09-04"
+            "2026-09-11"
           ]
         },
         {
@@ -909,6 +900,15 @@
           "dates": [
             "2026-09-18"
           ]
+        },
+        {
+          "studio": "here-yoga-malvern",
+          "day": "Fri",
+          "time": "9:30–10:30 AM",
+          "class": "Dynamic Flow",
+          "dates": [
+            "2026-09-18"
+          ]
         }
       ]
     },
@@ -966,7 +966,6 @@
           "time": "9:30–10:30 AM",
           "class": "Vinyasa flow",
           "dates": [
-            "2026-09-04",
             "2026-09-11"
           ]
         }
