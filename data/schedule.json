@@ -258,6 +258,33 @@
           ]
         },
         {
+          "studio": "warrior-one-brighton",
+          "day": "Wed",
+          "time": "9:30–10:30 AM",
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-09-09"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Wed",
+          "time": "10:45–11:45 AM",
+          "class": "Yin & Myofascial Release",
+          "dates": [
+            "2026-09-09"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Wed",
+          "time": "12:15–1:15 PM",
+          "class": "Slow Flow & Yoga Nidra",
+          "dates": [
+            "2026-09-09"
+          ]
+        },
+        {
           "studio": "warrior-one-mordialloc",
           "day": "Mon",
           "time": "6:00–7:00 AM",
@@ -283,15 +310,6 @@
           "dates": [
             "2026-09-11",
             "2026-09-18"
-          ]
-        },
-        {
-          "studio": "grass-roots-st-kilda",
-          "day": "Sat",
-          "time": "11:30–1:30 PM",
-          "class": "The Cyclical Practice - How menstrual cycle awareness can evolve the way you practice and teach yoga",
-          "dates": [
-            "2026-09-05"
           ]
         }
       ]
@@ -366,6 +384,24 @@
           "class": "Yoga Flow",
           "dates": [
             "2026-09-09"
+          ]
+        },
+        {
+          "studio": "happy-melon-armadale",
+          "day": "Sat",
+          "time": "8:00–9:15 AM",
+          "class": "Yoga Flow Extended - 75min",
+          "dates": [
+            "2026-09-12"
+          ]
+        },
+        {
+          "studio": "happy-melon-armadale",
+          "day": "Sat",
+          "time": "9:30–10:30 AM",
+          "class": "Yoga Flow",
+          "dates": [
+            "2026-09-12"
           ]
         },
         {
@@ -622,7 +658,7 @@
           "time": "7:30–9:00 AM",
           "class": "Strong Flow 90 Mins",
           "dates": [
-            "2026-09-05"
+            "2026-09-12"
           ]
         },
         {
@@ -631,7 +667,7 @@
           "time": "9:30–10:30 AM",
           "class": "Strong Flow Yoga",
           "dates": [
-            "2026-09-05"
+            "2026-09-12"
           ]
         }
       ]
@@ -717,15 +753,6 @@
         "Ryan"
       ],
       "classes": [
-        {
-          "studio": "kozen-yoga-hawthorn",
-          "day": "Sat",
-          "time": "2:00–5:00 PM",
-          "class": "Understanding Alignment",
-          "dates": [
-            "2026-09-05"
-          ]
-        },
         {
           "studio": "good-vibes-collingwood",
           "day": "Tue",
@@ -838,6 +865,24 @@
         "Sara Metzger"
       ],
       "classes": [
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Sat",
+          "time": "9:45–10:45 AM",
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-09-12"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Sat",
+          "time": "11:00–12:00 PM",
+          "class": "Yin Yoga",
+          "dates": [
+            "2026-09-12"
+          ]
+        },
         {
           "studio": "here-yoga-port-melbourne",
           "day": "Wed",
@@ -957,7 +1002,8 @@
           "time": "7:30–8:30 AM",
           "class": "Slow Flow",
           "dates": [
-            "2026-09-11"
+            "2026-09-11",
+            "2026-09-18"
           ]
         },
         {
@@ -966,7 +1012,8 @@
           "time": "9:30–10:30 AM",
           "class": "Vinyasa flow",
           "dates": [
-            "2026-09-11"
+            "2026-09-11",
+            "2026-09-18"
           ]
         }
       ]
