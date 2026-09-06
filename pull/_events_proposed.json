@@ -26,35 +26,6 @@
       "band_title": "Magnetic Island"
     },
     {
-      "id": "manual:workshop:sound-bath-with-iksre",
-      "kind": "workshop",
-      "title": "Sound Bath with IKSRE",
-      "cat": "Sun 30 Aug · Mornington · $45",
-      "blurb": "Warrior One",
-      "url": "https://warrioroneyoga.com.au/workshops/",
-      "external": true,
-      "source": "manual",
-      "until": "2026-08-30",
-      "supersedes": [
-        "page:https://warrioroneyoga.com.au/workshops/#sound-bath-with-iksre"
-      ]
-    },
-    {
-      "id": "manual:retreat:warrior-one-thailand",
-      "kind": "retreat",
-      "title": "Warrior One, Thailand",
-      "cat": "30 Aug–5 Sep 2026 · Thailand",
-      "blurb": "Warrior One's annual retreat in Thailand, a week of practice, food and community away from the Melbourne winter.",
-      "url": "https://warrioroneyoga.com.au/thailand/",
-      "external": true,
-      "source": "manual",
-      "until": "2026-09-05",
-      "image": "https://images.unsplash.com/photo-1530948990335-1eb93cbe6430?q=80&w=1000&h=1250&fit=crop&auto=format",
-      "alt": "A green island bay in the Gulf of Thailand",
-      "region": "Koh Samui",
-      "band_title": "Thailand"
-    },
-    {
       "id": "manual:retreat:within-sri-lanka",
       "kind": "retreat",
       "title": "Within, Sri Lanka",
@@ -128,42 +99,6 @@
       "price": 225,
       "url": "https://warrioroneyoga.com.au/workshops/",
       "source": "page"
-    },
-    {
-      "id": "page:https://warrioroneyoga.com.au/workshops/#slow-flow-to-yin-with-lucy",
-      "studio": "warrior-one-mornington",
-      "kind": "workshop",
-      "title": "Slow Flow to Yin with Lucy",
-      "teacher": "",
-      "starts": "2026-09-02T10:45:00+10:00",
-      "ends": "2026-09-02T12:00:00+10:00",
-      "price": null,
-      "url": "https://warrioroneyoga.com.au/workshops/",
-      "source": "page"
-    },
-    {
-      "id": "momence:34431:the cyclical practice - how menstrual cy",
-      "studio": "grass-roots-st-kilda",
-      "kind": "workshop",
-      "title": "The Cyclical Practice - How menstrual cycle awareness can evolve the way you practice and teach yoga",
-      "teacher": "Alessia Frisina",
-      "starts": "2026-09-05T11:30:00+10:00",
-      "ends": "2026-09-05T13:30:00+10:00",
-      "price": null,
-      "url": "https://momence.com/s/140363449",
-      "source": "momence"
-    },
-    {
-      "id": "momence:44752:understanding alignment",
-      "studio": "kozen-yoga-hawthorn",
-      "kind": "workshop",
-      "title": "Understanding Alignment",
-      "teacher": "Ryan Mannix",
-      "starts": "2026-09-05T14:00:00+10:00",
-      "ends": "2026-09-05T17:00:00+10:00",
-      "price": 100,
-      "url": "https://momence.com/s/139052274",
-      "source": "momence"
     },
     {
       "id": "momence:34431:75min energy balancing sound bath with p",
@@ -283,6 +218,42 @@
       "ends": "2026-11-07T11:00:00+11:00",
       "price": 750,
       "url": "https://momence.com/s/138407665",
+      "source": "momence"
+    },
+    {
+      "id": "momence:34431:the second spring- peri to post menopaus",
+      "studio": "grass-roots-st-kilda",
+      "kind": "workshop",
+      "title": "The Second Spring- Peri to Post Menopause Half Day Retreat",
+      "teacher": "Rachel Goldenberg",
+      "starts": "2026-11-15T11:30:00+11:00",
+      "ends": "2026-11-15T15:30:00+11:00",
+      "price": 160,
+      "url": "https://momence.com/s/143057373",
+      "source": "momence"
+    },
+    {
+      "id": "page:https://warrioroneyoga.com.au/workshops/#iksre-in-all-her-forms-a-live-sound-bath",
+      "studio": "warrior-one-mornington",
+      "kind": "workshop",
+      "title": "IKSRE: In All Her Forms — A Live Sound Bath",
+      "teacher": "",
+      "starts": "2026-11-15T19:15:00+11:00",
+      "ends": "2026-11-15T20:30:00+11:00",
+      "price": 45,
+      "url": "https://warrioroneyoga.com.au/workshops/",
+      "source": "page"
+    },
+    {
+      "id": "momence:34431:yin path 30 hr teacher training",
+      "studio": "grass-roots-st-kilda",
+      "kind": "training",
+      "title": "Yin Path 30 Hr Teacher Training",
+      "teacher": "Janita Doelken &  Alessia Frisina",
+      "starts": "2027-03-06T10:15:00+11:00",
+      "ends": "2027-03-14T18:15:00+11:00",
+      "price": 1150,
+      "url": "https://momence.com/s/143278376",
       "source": "momence"
     }
   ]

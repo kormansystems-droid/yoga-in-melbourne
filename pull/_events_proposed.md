@@ -1,6 +1,6 @@
 # Events — proposed changes
 
-2 new · 5 changed · 10 dropped · 23 live after this.
+5 new · 4 changed · 15 dropped · 21 live after this.
 
 Nothing here is on the site. Reply with what to keep and I will publish it.
 
@@ -10,10 +10,15 @@ Nothing here is on the site. Reply with what to keep and I will publish it.
   https://momence.com/s/142612718
 - **Sri Lanka Yoga & Surf Retreat** — 2026-11-02 · grass-roots-st-kilda · Polly  & Kellee · $750  
   https://momence.com/s/138407665
+- **The Second Spring- Peri to Post Menopause Half Day Retreat** — 2026-11-15 · grass-roots-st-kilda · Rachel Goldenberg · $160  
+  https://momence.com/s/143057373
+- **IKSRE: In All Her Forms — A Live Sound Bath** — 2026-11-15 · warrior-one-mornington · $45  
+  https://warrioroneyoga.com.au/workshops/
+- **Yin Path 30 Hr Teacher Training** — 2027-03-06 · grass-roots-st-kilda · Janita Doelken &  Alessia Frisina · $1150  
+  https://momence.com/s/143278376
 
 ## Changed
 
-- **The Cyclical Practice - How menstrual cycle awareness can evolve the way you practice and teach yoga** — title: 'The Cyclical Practice' → 'The Cyclical Practice - How menstrual cycle awareness can evolve the way you practice and teach yoga'
 - **75min Energy Balancing Sound Bath with Phoebe Dubar (IKSRE)** — title: 'Energy Balancing Sound Bath' → '75min Energy Balancing Sound Bath with Phoebe Dubar (IKSRE)'
 - **Community Kirtan - By Donation** — title: 'Community Kirtan' → 'Community Kirtan - By Donation'; price: 'By donation' → None
 - **Flight School — a workshop series with Eliza & Gisele** — starts: '2026-08-22T13:00:00+10:00' → '2026-09-26T13:00:00+10:00'
@@ -31,3 +36,8 @@ Nothing here is on the site. Reply with what to keep and I will publish it.
 - **200hr Yoga Training Info Session** — 2026-08-23 · here-yoga-port-melbourne · Sarah  Metzger · price n/a
 - **Practise with Purpose: 6 Weeks. 6 Causes.** — 2026-08-24 · grass-roots-st-kilda · Various Teachers · price n/a
 - **Strong Asana — community workshop with Masha** — 2026-08-29 · within-south-yarra · free
+- **Sound Bath with IKSRE** — date unknown · studio n/a · price n/a
+- **Slow Flow to Yin with Lucy** — 2026-09-02 · warrior-one-mornington · price n/a
+- **Warrior One, Thailand** — date unknown · studio n/a · price n/a
+- **The Cyclical Practice** — 2026-09-05 · grass-roots-st-kilda · Alessia Frisina · price n/a
+- **Understanding Alignment** — 2026-09-05 · kozen-yoga-hawthorn · Ryan Mannix · $100
