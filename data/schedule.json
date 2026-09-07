@@ -241,24 +241,6 @@
         },
         {
           "studio": "warrior-one-brighton",
-          "day": "Tue",
-          "time": "6:00–7:00 AM",
-          "class": "Vinyasa Flow",
-          "dates": [
-            "2026-09-08"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Tue",
-          "time": "7:30–8:30 AM",
-          "class": "Vinyasa Flow",
-          "dates": [
-            "2026-09-08"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
           "day": "Wed",
           "time": "9:30–10:30 AM",
           "class": "Vinyasa Flow",
@@ -287,10 +269,19 @@
         {
           "studio": "warrior-one-mordialloc",
           "day": "Mon",
+          "time": "6:00–7:00 AM",
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-09-14"
+          ]
+        },
+        {
+          "studio": "warrior-one-mordialloc",
+          "day": "Mon",
           "time": "9:30–10:30 AM",
           "class": "Slow Flow",
           "dates": [
-            "2026-09-07"
+            "2026-09-14"
           ]
         },
         {
@@ -320,7 +311,7 @@
           "time": "5:00–6:00 PM",
           "class": "Slow Flow Yoga",
           "dates": [
-            "2026-09-07"
+            "2026-09-14"
           ]
         },
         {
@@ -329,7 +320,7 @@
           "time": "6:15–7:15 PM",
           "class": "Strong Flow Yoga",
           "dates": [
-            "2026-09-07"
+            "2026-09-14"
           ]
         },
         {
@@ -338,7 +329,7 @@
           "time": "7:30–8:30 PM",
           "class": "Yin Yoga",
           "dates": [
-            "2026-09-07"
+            "2026-09-14"
           ]
         },
         {
@@ -553,8 +544,8 @@
           "time": "9:30–10:30 AM",
           "class": "Vinyasa flow",
           "dates": [
-            "2026-09-07",
-            "2026-09-14"
+            "2026-09-14",
+            "2026-09-21"
           ]
         },
         {
@@ -563,7 +554,8 @@
           "time": "5:00–6:00 PM",
           "class": "Vinyasa flow",
           "dates": [
-            "2026-09-14"
+            "2026-09-14",
+            "2026-09-21"
           ]
         },
         {
@@ -572,7 +564,8 @@
           "time": "6:15–7:30 PM",
           "class": "Slow Flow + Restorative (75mins)",
           "dates": [
-            "2026-09-14"
+            "2026-09-14",
+            "2026-09-21"
           ]
         },
         {
@@ -694,6 +687,15 @@
       "classes": [
         {
           "studio": "warrior-one-brighton",
+          "day": "Thu",
+          "time": "7:30–8:30 PM",
+          "class": "Yin & Yoga Nidra",
+          "dates": [
+            "2026-09-10"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
           "day": "Fri",
           "time": "10:45–11:45 AM",
           "class": "Yin & Yoga Nidra",
@@ -708,15 +710,6 @@
           "class": "Slow Flow",
           "dates": [
             "2026-09-11"
-          ]
-        },
-        {
-          "studio": "warrior-one-mordialloc",
-          "day": "Tue",
-          "time": "6:00–7:00 AM",
-          "class": "Slow Flow",
-          "dates": [
-            "2026-09-08"
           ]
         },
         {
@@ -867,6 +860,24 @@
       "classes": [
         {
           "studio": "warrior-one-brighton",
+          "day": "Mon",
+          "time": "10:45–11:45 AM",
+          "class": "Yin & Sound Bowls",
+          "dates": [
+            "2026-09-14"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Mon",
+          "time": "12:15–1:15 PM",
+          "class": "Slow Flow",
+          "dates": [
+            "2026-09-14"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
           "day": "Sat",
           "time": "9:45–10:45 AM",
           "class": "Vinyasa Flow",
@@ -970,15 +981,6 @@
       "classes": [
         {
           "studio": "grass-roots-st-kilda",
-          "day": "Mon",
-          "time": "6:15–7:30 PM",
-          "class": "Slow Flow + Restorative (75mins)",
-          "dates": [
-            "2026-09-07"
-          ]
-        },
-        {
-          "studio": "grass-roots-st-kilda",
           "day": "Wed",
           "time": "9:30–10:30 AM",
           "class": "Vinyasa flow",
@@ -1045,7 +1047,8 @@
           "time": "7:30–8:30 AM",
           "class": "Slow Flow",
           "dates": [
-            "2026-09-15"
+            "2026-09-15",
+            "2026-09-22"
           ]
         },
         {
