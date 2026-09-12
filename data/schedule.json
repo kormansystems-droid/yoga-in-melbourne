@@ -379,6 +379,24 @@
         },
         {
           "studio": "within-south-yarra",
+          "day": "Sat",
+          "time": "7:30–9:00 AM",
+          "class": "Strong Flow 90 Mins",
+          "dates": [
+            "2026-09-19"
+          ]
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Sat",
+          "time": "9:30–10:30 AM",
+          "class": "Strong Flow Yoga",
+          "dates": [
+            "2026-09-19"
+          ]
+        },
+        {
+          "studio": "within-south-yarra",
           "day": "Sun",
           "time": "4:00–5:00 PM",
           "class": "Slow Flow Yoga",
@@ -402,24 +420,6 @@
           "class": "Yoga Flow",
           "dates": [
             "2026-09-16"
-          ]
-        },
-        {
-          "studio": "happy-melon-armadale",
-          "day": "Sat",
-          "time": "8:00–9:15 AM",
-          "class": "Yoga Flow Extended - 75min",
-          "dates": [
-            "2026-09-12"
-          ]
-        },
-        {
-          "studio": "happy-melon-armadale",
-          "day": "Sat",
-          "time": "9:30–10:30 AM",
-          "class": "Yoga Flow",
-          "dates": [
-            "2026-09-12"
           ]
         },
         {
@@ -671,15 +671,6 @@
           "dates": [
             "2026-09-18"
           ]
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Sat",
-          "time": "9:30–10:30 AM",
-          "class": "Strong Flow Yoga",
-          "dates": [
-            "2026-09-12"
-          ]
         }
       ]
     },
@@ -919,24 +910,6 @@
           "class": "Slow Flow",
           "dates": [
             "2026-09-15"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Sat",
-          "time": "9:45–10:45 AM",
-          "class": "Vinyasa Flow",
-          "dates": [
-            "2026-09-12"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Sat",
-          "time": "11:00–12:00 PM",
-          "class": "Yin Yoga",
-          "dates": [
-            "2026-09-12"
           ]
         },
         {
