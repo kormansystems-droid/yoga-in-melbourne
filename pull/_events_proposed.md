@@ -1,6 +1,6 @@
 # Events — proposed changes
 
-5 new · 4 changed · 15 dropped · 21 live after this.
+7 new · 3 changed · 19 dropped · 19 live after this.
 
 Nothing here is on the site. Reply with what to keep and I will publish it.
 
@@ -8,6 +8,10 @@ Nothing here is on the site. Reply with what to keep and I will publish it.
 
 - **Spring Reset Retreat** — 2026-10-03 · grass-roots-st-kilda · Ilana Kosakiewicz · $85  
   https://momence.com/s/142612718
+- **Inversion Masterclass** — 2026-10-24 · good-vibes-collingwood · Jodie  . · $40  
+  https://momence.com/s/143495476
+- **IKSRE "in all her forms (sound meditations vol. 2)" Sound Bath (75min)** — 2026-10-25 · grass-roots-st-kilda · Phoebe Dubar · $45  
+  https://momence.com/s/143329954
 - **Sri Lanka Yoga & Surf Retreat** — 2026-11-02 · grass-roots-st-kilda · Polly  & Kellee · $750  
   https://momence.com/s/138407665
 - **The Second Spring- Peri to Post Menopause Half Day Retreat** — 2026-11-15 · grass-roots-st-kilda · Rachel Goldenberg · $160  
@@ -19,7 +23,6 @@ Nothing here is on the site. Reply with what to keep and I will publish it.
 
 ## Changed
 
-- **75min Energy Balancing Sound Bath with Phoebe Dubar (IKSRE)** — title: 'Energy Balancing Sound Bath' → '75min Energy Balancing Sound Bath with Phoebe Dubar (IKSRE)'
 - **Community Kirtan - By Donation** — title: 'Community Kirtan' → 'Community Kirtan - By Donation'; price: 'By donation' → None
 - **Flight School — a workshop series with Eliza & Gisele** — starts: '2026-08-22T13:00:00+10:00' → '2026-09-26T13:00:00+10:00'
 - **Spring Resonance — A Spring Sound & Slow Flow Journey** — title: 'Spring Resonance' → 'Spring Resonance — A Spring Sound & Slow Flow Journey'
@@ -41,3 +44,7 @@ Nothing here is on the site. Reply with what to keep and I will publish it.
 - **Warrior One, Thailand** — date unknown · studio n/a · price n/a
 - **The Cyclical Practice** — 2026-09-05 · grass-roots-st-kilda · Alessia Frisina · price n/a
 - **Understanding Alignment** — 2026-09-05 · kozen-yoga-hawthorn · Ryan Mannix · $100
+- **Energy Balancing Sound Bath** — 2026-09-11 · grass-roots-st-kilda · Phoebe Dubar · $45
+- **Yintention Day Retreat** — date unknown · studio n/a · price n/a
+- **Yintention Day Retreat** — date unknown · studio n/a · price n/a
+- **Ceremonial Breathwork Journey: Manifestation** — 2026-09-12 · grass-roots-st-kilda · Duaa Dahho · $80

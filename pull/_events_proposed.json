@@ -52,28 +52,6 @@
       "until": "2026-10-18"
     },
     {
-      "id": "manual:workshop:yintention-day-retreat",
-      "kind": "workshop",
-      "title": "Yintention Day Retreat",
-      "cat": "Sat 12 Sep, 10am–6pm · Private location, Caulfield · $310",
-      "blurb": "A day of Yin, intentional touch and stillness. Read our piece on the rise of the day retreat. With Alessia Frisina and Janita Doelken.",
-      "url": "/journal/day-retreats.html",
-      "external": false,
-      "source": "manual",
-      "until": "2026-09-12"
-    },
-    {
-      "id": "manual:retreat:yintention-day-retreat",
-      "kind": "retreat",
-      "title": "Yintention Day Retreat",
-      "cat": "12 Sep 2026 · Private location, Caulfield",
-      "blurb": "Yin, intentional touch, a gentle walk and a reflection circle, from ten in the morning until six. With Alessia Frisina and Janita Doelken.",
-      "url": "/journal/day-retreats.html",
-      "external": false,
-      "source": "manual",
-      "until": "2026-09-12"
-    },
-    {
       "id": "manual:retreat:yoga-surf-sri-lanka",
       "kind": "retreat",
       "title": "Yoga + Surf, Sri Lanka",
@@ -99,30 +77,6 @@
       "price": 225,
       "url": "https://warrioroneyoga.com.au/workshops/",
       "source": "page"
-    },
-    {
-      "id": "momence:34431:75min energy balancing sound bath with p",
-      "studio": "grass-roots-st-kilda",
-      "kind": "workshop",
-      "title": "75min Energy Balancing Sound Bath with Phoebe Dubar (IKSRE)",
-      "teacher": "Phoebe Dubar",
-      "starts": "2026-09-11T19:00:00+10:00",
-      "ends": "2026-09-11T20:15:00+10:00",
-      "price": 45,
-      "url": "https://momence.com/s/141128067",
-      "source": "momence"
-    },
-    {
-      "id": "momence:34431:ceremonial breathwork journey: manifesta",
-      "studio": "grass-roots-st-kilda",
-      "kind": "workshop",
-      "title": "Ceremonial Breathwork Journey: Manifestation",
-      "teacher": "Duaa Dahho",
-      "starts": "2026-09-12T18:30:00+10:00",
-      "ends": "2026-09-12T20:30:00+10:00",
-      "price": 80,
-      "url": "https://momence.com/s/141616421",
-      "source": "momence"
     },
     {
       "id": "momence:33014:sound bath, candlelit yin and cacao cere",
@@ -207,6 +161,30 @@
       "price": 75,
       "url": "https://warrioroneyoga.com.au/workshops/",
       "source": "page"
+    },
+    {
+      "id": "momence:33014:inversion masterclass",
+      "studio": "good-vibes-collingwood",
+      "kind": "workshop",
+      "title": "Inversion Masterclass",
+      "teacher": "Jodie  .",
+      "starts": "2026-10-24T14:30:00+11:00",
+      "ends": "2026-10-24T16:00:00+11:00",
+      "price": 40,
+      "url": "https://momence.com/s/143495476",
+      "source": "momence"
+    },
+    {
+      "id": "momence:34431:iksre \"in all her forms (sound meditatio",
+      "studio": "grass-roots-st-kilda",
+      "kind": "workshop",
+      "title": "IKSRE \"in all her forms (sound meditations vol. 2)\" Sound Bath (75min)",
+      "teacher": "Phoebe Dubar",
+      "starts": "2026-10-25T19:00:00+11:00",
+      "ends": "2026-10-25T20:15:00+11:00",
+      "price": 45,
+      "url": "https://momence.com/s/143329954",
+      "source": "momence"
     },
     {
       "id": "momence:34431:sri lanka yoga & surf retreat",
