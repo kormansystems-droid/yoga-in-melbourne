@@ -352,15 +352,6 @@
         },
         {
           "studio": "within-south-yarra",
-          "day": "Thu",
-          "time": "9:30–10:30 AM",
-          "class": "Strong Flow Yoga",
-          "dates": [
-            "2026-09-17"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
           "day": "Sat",
           "time": "7:30–9:00 AM",
           "class": "Strong Flow 90 Mins",
@@ -402,6 +393,15 @@
           "class": "Yoga Flow",
           "dates": [
             "2026-09-23"
+          ]
+        },
+        {
+          "studio": "happy-melon-armadale",
+          "day": "Sun",
+          "time": "8:00–9:00 AM",
+          "class": "Yoga Flow",
+          "dates": [
+            "2026-09-20"
           ]
         },
         {
@@ -463,24 +463,6 @@
           "class": "Yin Yoga & Meditation",
           "dates": [
             "2026-09-22"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Fri",
-          "time": "6:00–7:00 AM",
-          "class": "Vinyasa Flow",
-          "dates": [
-            "2026-09-18"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Fri",
-          "time": "7:30–8:30 AM",
-          "class": "Vinyasa Flow",
-          "dates": [
-            "2026-09-18"
           ]
         },
         {
@@ -630,24 +612,6 @@
         {
           "studio": "within-south-yarra",
           "day": "Fri",
-          "time": "6:00–7:00 AM",
-          "class": "Strong Flow Yoga",
-          "dates": [
-            "2026-09-18"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Fri",
-          "time": "7:30–8:30 AM",
-          "class": "Slow Flow Yoga",
-          "dates": [
-            "2026-09-18"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Fri",
           "time": "9:30–10:30 AM",
           "class": "Strong Flow Yoga",
           "dates": [
@@ -673,7 +637,7 @@
           "time": "7:30–8:30 PM",
           "class": "Yin & Yoga Nidra",
           "dates": [
-            "2026-09-17"
+            "2026-09-24"
           ]
         },
         {
@@ -877,24 +841,6 @@
           ]
         },
         {
-          "studio": "warrior-one-brighton",
-          "day": "Thu",
-          "time": "5:00–6:00 PM",
-          "class": "Vinyasa Flow",
-          "dates": [
-            "2026-09-17"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Thu",
-          "time": "6:15–7:15 PM",
-          "class": "Slow Flow",
-          "dates": [
-            "2026-09-17"
-          ]
-        },
-        {
           "studio": "here-yoga-port-melbourne",
           "day": "Wed",
           "time": "5:00–6:00 PM",
@@ -958,8 +904,8 @@
           "time": "7:15–8:15 AM",
           "class": "Slow Flow",
           "dates": [
-            "2026-09-18",
-            "2026-09-25"
+            "2026-09-25",
+            "2026-10-02"
           ]
         },
         {
@@ -1000,7 +946,7 @@
           "time": "7:30–8:30 AM",
           "class": "Slow Flow",
           "dates": [
-            "2026-09-18"
+            "2026-10-02"
           ]
         },
         {
@@ -1068,8 +1014,8 @@
           "time": "7:15–8:15 AM",
           "class": "Slow Flow",
           "dates": [
-            "2026-09-18",
-            "2026-09-25"
+            "2026-09-25",
+            "2026-10-02"
           ]
         },
         {
@@ -1098,8 +1044,8 @@
           "time": "5:00–6:00 PM",
           "class": "Dynamic Flow",
           "dates": [
-            "2026-09-17",
-            "2026-09-24"
+            "2026-09-24",
+            "2026-10-01"
           ]
         },
         {
@@ -1108,8 +1054,8 @@
           "time": "6:15–7:15 PM",
           "class": "Candlelit Slow Flow",
           "dates": [
-            "2026-09-17",
-            "2026-09-24"
+            "2026-09-24",
+            "2026-10-01"
           ]
         },
         {
@@ -1118,8 +1064,8 @@
           "time": "7:30–8:30 PM",
           "class": "Candlelit Yin",
           "dates": [
-            "2026-09-17",
-            "2026-09-24"
+            "2026-09-24",
+            "2026-10-01"
           ]
         },
         {
