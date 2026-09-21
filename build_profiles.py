@@ -303,21 +303,48 @@ def build_one(tpl, data):
     if leftover: raise SystemExit(f"{tpl.name}: unfilled tokens {leftover}")
     return out
 
-def build_index(data):
-    """Fill the homepage router's teacher row from schedule.json.
+def build_index():
+    """Fill the homepage router's teacher column from the published pages.
 
     Hand-maintained lists rot the moment onboarding gets easy: Steph Philip and
     Ryan Mannix both went live with working pages and no route to them from the
     homepage, because someone had to remember to add a line and didn't.
 
-    Only the router row is generated. The Teachers grid stays hand-curated: it
+    Only the router column is generated. The Teachers grid stays hand-curated: it
     carries portraits and standfirsts for teachers whose profile has been written
     and approved, which is an editorial decision, not a list of rows in a table.
-    A listing belongs in the router because a reader looking for her timetable
-    should find it; it does not belong in the showcase until she has said yes to
-    a profile."""
+    A listing belongs in the router because a reader looking for a teacher should
+    find her; it does not belong in the showcase until she has said yes to a
+    profile."""
     idx = ROOT / "index.html"
     src = idx.read_text()
+    # The roster is the set of PUBLISHED PAGES, read from the templates. It used
+    # to be the teacher list in schedule.json, and that was wrong in a way that
+    # only surfaced when the first teacher without a studio feed arrived.
+    #
+    # Zoe Kanat has an approved profile and a generated page, and teaches online
+    # and on Insight Timer, so she correctly appears nowhere in schedule.json:
+    # there is no studio timetable to pull. A schedule-driven router therefore
+    # left a published teacher with no route to her from the homepage, which is
+    # the exact failure this function exists to prevent. Mark, 9 Sep 2026: add
+    # her to the roster.
+    #
+    # Reading it from the templates fixes the class of bug rather than the
+    # instance. build_one already treats a template whose data-teacher is absent
+    # from schedule.json as an online-only teacher and renders an empty schedule
+    # slot; the router now agrees with it about who exists, from the same source.
+    # The next teacher who teaches only online appears here the day her page does.
+    #
+    # The name comes from data-teacher, not from title-casing the filename,
+    # because the person decides how her name is spelled and a slug cannot carry
+    # an apostrophe, an interior capital or a lowercase particle. The href comes
+    # from the filename, so every link points at a page this script generates.
+    roster = []
+    for t in sorted(TEMPLATES.glob("*.template.html")):
+        if t.name.startswith("_"): continue
+        m = re.search(r'studio-grid" data-teacher="([^"]+)"', t.read_text())
+        if not m: raise SystemExit(f"{t.name}: no schedule data-teacher")
+        roster.append((html.unescape(m.group(1)), t.name.replace(".template.html", "")))
     # Alphabetical, by the name a reader actually reads first. Mark's call,
     # 20 Aug 2026, overruling the class-count sort this used to have: "no one
     # cares about the number, only the name."
@@ -346,11 +373,10 @@ def build_index(data):
     # A teacher with no vignette gets an empty span that holds the column, so the
     # names keep one left edge. An empty circle reads as a broken image; empty
     # space reads as a name.
-    order = sorted(data["teachers"], key=lambda n: (n.split()[0].lower(), n.lower()))
+    order = sorted(roster, key=lambda r: (r[0].split()[0].lower(), r[0].lower()))
     missing = []
     parts = []
-    for n in order:
-        slug = slug_of(n)
+    for n, slug in order:
         if (ROOT / "img" / "vig" / f"{slug}.jpg").exists():
             vig = (f'<span class="vig"><img src="/img/vig/{slug}.jpg" alt="" '
                    f'width="44" height="44" loading="lazy" decoding="async"></span>')
@@ -370,7 +396,7 @@ def build_index(data):
         raise SystemExit("index.html: ROUTER_PEOPLE markers missing")
     if out != src:
         idx.write_text(out)
-        print(f"built index.html router          <- {len(data['teachers'])} teachers")
+        print(f"built index.html router          <- {len(roster)} teachers")
 
 
 def poss(name):
@@ -387,7 +413,7 @@ def slug_of(name):
 
 def main():
     data = json.loads(DATA.read_text())
-    build_index(data)
+    build_index()
     tpls = sorted(t for t in TEMPLATES.glob("*.template.html") if not t.name.startswith("_"))
     if not tpls: raise SystemExit("no templates")
     for t in tpls:

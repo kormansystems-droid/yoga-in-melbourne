@@ -76,6 +76,22 @@ QUALITY = 82
 # reads correctly in the router; one that looks fine large becomes a smudge.
 CROP = {
     "janita-doelken": (0.58, 0.22, 0.58),
+    # Zoe, for a different reason than Janita, and worth separating because the
+    # two failures look alike in a contact sheet and are not the same.
+    #
+    # Janita's problem was horizontal: her face sits 58% across a wide frame and
+    # no vertical anchor could reach it. Zoe's is scale. Her photograph is a full
+    # seated shot, head to feet, taken well back. The default square is the
+    # source's whole 879px width, so it takes in the sofa, the planting and the
+    # fence, and her face lands at roughly 15% of the frame. At 160px that is
+    # still legible; at the 44px the router actually renders it is a smudge,
+    # beside ten faces that read clearly. In a column built to give every teacher
+    # identical prominence, one unreadable circle is not a neutral defect.
+    #
+    # 0.46 of the short edge is the tightest box that keeps her hair whole with a
+    # little headroom, which is the framing the other ten have. 0.36 and 0.42
+    # both clipped the top of her head; 0.55 read as another wide shot.
+    "zoe-kanat": (0.534, 0.215, 0.46),
 }
 
 
