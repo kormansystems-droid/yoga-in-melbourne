@@ -117,3 +117,16 @@ strip it: remove `has-portrait` from `.listing-head`, delete the `.lh-portrait` 
 
 The line that still holds: a portrait does not make a listing a profile. A profile needs an
 interview and her approval of the words.
+
+---
+
+## Homepage copy
+
+**"Find a teacher: every class they teach" stays.**
+*Decided 21 Sep 2026.*
+
+The rule is that "every class, every studio" and "across the studios we cover" must not
+appear in reader-facing copy. The homepage router label reads "every class they teach",
+and a session flagged it as close to the forbidden phrasing. Mark's call: it is fine. It
+describes what a teacher page is for, not a claim of complete coverage, and the coverage
+note on each page already states the limit. Do not raise it again.

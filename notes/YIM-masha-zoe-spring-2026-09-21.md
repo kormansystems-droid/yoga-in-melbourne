@@ -60,11 +60,11 @@ hero, it is all there.
 
 ## Decisions for you
 
-1. **Push to `main`?** Everything above goes live in one push. Say "make it live" and I will.
+1. **Push to `main`**: held by Mark until Masha's podcast episode is edited, so her page can carry the player and the homepage the episode row, and everything ships in one push.
 2. **Masha in the Teachers grid**: yes or no, and if yes, whether you want to write the
    standfirst or have me draft one for her to approve.
-3. **Homepage copy**: "Find a teacher: every class they teach" is close to the forbidden phrasing.
-   Not changed. Your call.
+3. **Homepage copy**: "Find a teacher: every class they teach" stays. Mark's call, 21 Sep, now in
+   `YIM-standing-decisions.md`. Closed.
 4. **Reel tools**: the bundle's `build_reel_video.py` and `build_solo_reel.py` are newer than the
    repo's, and `build_podcast_reel.py` and `build_article_reel.py` are not in the repo at all.
    Not committed. They are outside the nightly, so no workflow risk. Offer stands.
