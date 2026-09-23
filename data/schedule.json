@@ -200,7 +200,7 @@
           "time": "5:00–6:00 PM",
           "class": "Slow Flow Yoga",
           "dates": [
-            "2026-09-23"
+            "2026-09-30"
           ]
         },
         {
@@ -209,7 +209,7 @@
           "time": "6:15–7:15 PM",
           "class": "Strong Flow Yoga",
           "dates": [
-            "2026-09-23"
+            "2026-09-30"
           ]
         },
         {
@@ -218,7 +218,7 @@
           "time": "7:30–8:30 PM",
           "class": "Yin Yoga",
           "dates": [
-            "2026-09-23"
+            "2026-09-30"
           ]
         },
         {
@@ -263,7 +263,7 @@
           "time": "9:30–10:30 AM",
           "class": "Vinyasa Flow",
           "dates": [
-            "2026-09-23"
+            "2026-09-30"
           ]
         },
         {
@@ -272,7 +272,7 @@
           "time": "10:45–11:45 AM",
           "class": "Yin & Myofascial Release",
           "dates": [
-            "2026-09-23"
+            "2026-09-30"
           ]
         },
         {
@@ -281,7 +281,7 @@
           "time": "12:15–1:15 PM",
           "class": "Slow Flow & Yoga Nidra",
           "dates": [
-            "2026-09-23"
+            "2026-09-30"
           ]
         },
         {
@@ -369,15 +369,6 @@
         },
         {
           "studio": "happy-melon-armadale",
-          "day": "Wed",
-          "time": "9:30–10:30 AM",
-          "class": "Yoga Flow",
-          "dates": [
-            "2026-09-23"
-          ]
-        },
-        {
-          "studio": "happy-melon-armadale",
           "day": "Sat",
           "time": "8:00–9:15 AM",
           "class": "Yoga Flow Extended - 75min",
@@ -392,26 +383,6 @@
           "class": "Yoga Flow",
           "dates": [
             "2026-09-26"
-          ]
-        },
-        {
-          "studio": "kozen-yoga-hawthorn",
-          "day": "Wed",
-          "time": "6:15–7:15 PM",
-          "class": "Flow Class",
-          "dates": [
-            "2026-09-23",
-            "2026-09-30"
-          ]
-        },
-        {
-          "studio": "kozen-yoga-hawthorn",
-          "day": "Wed",
-          "time": "7:30–8:30 PM",
-          "class": "Yin Class",
-          "dates": [
-            "2026-09-23",
-            "2026-09-30"
           ]
         }
       ]
@@ -593,10 +564,28 @@
         {
           "studio": "within-south-yarra",
           "day": "Wed",
+          "time": "6:00–7:00 AM",
+          "class": "Strong Flow Yoga",
+          "dates": [
+            "2026-09-30"
+          ]
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Wed",
+          "time": "7:30–8:30 AM",
+          "class": "Slow Flow Yoga",
+          "dates": [
+            "2026-09-30"
+          ]
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Wed",
           "time": "9:30–10:30 AM",
           "class": "Strong Flow Yoga",
           "dates": [
-            "2026-09-23"
+            "2026-09-30"
           ]
         },
         {
@@ -763,8 +752,8 @@
           "time": "12:30–1:30 PM",
           "class": "Vinyasa Flow",
           "dates": [
-            "2026-09-23",
-            "2026-09-30"
+            "2026-09-30",
+            "2026-10-07"
           ]
         },
         {
@@ -803,8 +792,8 @@
           "time": "10:00–11:00 AM",
           "class": "Vinyasa Flow",
           "dates": [
-            "2026-09-23",
-            "2026-09-30"
+            "2026-09-30",
+            "2026-10-07"
           ]
         },
         {
@@ -813,8 +802,8 @@
           "time": "4:45–5:45 PM",
           "class": "Keep It Mellow",
           "dates": [
-            "2026-09-23",
-            "2026-09-30"
+            "2026-09-30",
+            "2026-10-07"
           ]
         },
         {
@@ -823,8 +812,8 @@
           "time": "6:00–7:00 PM",
           "class": "Vinyasa Flow",
           "dates": [
-            "2026-09-23",
-            "2026-09-30"
+            "2026-09-30",
+            "2026-10-07"
           ]
         }
       ]
@@ -872,8 +861,8 @@
           "time": "5:00–6:00 PM",
           "class": "Dynamic Flow",
           "dates": [
-            "2026-09-23",
-            "2026-09-30"
+            "2026-09-30",
+            "2026-10-07"
           ]
         },
         {
@@ -882,8 +871,16 @@
           "time": "6:15–7:15 PM",
           "class": "Candlelit Slow Flow",
           "dates": [
-            "2026-09-23",
             "2026-09-30"
+          ]
+        },
+        {
+          "studio": "here-yoga-port-melbourne",
+          "day": "Wed",
+          "time": "6:15–7:15 PM",
+          "class": "Slow Flow",
+          "dates": [
+            "2026-10-07"
           ]
         },
         {
@@ -892,8 +889,16 @@
           "time": "7:30–8:30 PM",
           "class": "Candlelit Yin",
           "dates": [
-            "2026-09-23",
             "2026-09-30"
+          ]
+        },
+        {
+          "studio": "here-yoga-port-melbourne",
+          "day": "Wed",
+          "time": "7:30–8:30 PM",
+          "class": "Yin",
+          "dates": [
+            "2026-10-07"
           ]
         },
         {
@@ -1000,7 +1005,8 @@
           "time": "6:15–7:30 PM",
           "class": "Slow Flow + Restorative (75mins)",
           "dates": [
-            "2026-09-30"
+            "2026-09-30",
+            "2026-10-07"
           ]
         },
         {
@@ -1035,24 +1041,6 @@
         "Stephanie Phillip"
       ],
       "classes": [
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Mon",
-          "time": "10:45–11:45 AM",
-          "class": "Yin & Sound Bowls",
-          "dates": [
-            "2026-09-28"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Mon",
-          "time": "12:15–1:15 PM",
-          "class": "Slow Flow",
-          "dates": [
-            "2026-09-28"
-          ]
-        },
         {
           "studio": "here-yoga-port-melbourne",
           "day": "Fri",
