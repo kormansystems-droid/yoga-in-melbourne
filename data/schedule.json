@@ -367,15 +367,6 @@
           "dates": [
             "2026-09-27"
           ]
-        },
-        {
-          "studio": "happy-melon-armadale",
-          "day": "Sat",
-          "time": "9:30–10:30 AM",
-          "class": "Yoga Flow",
-          "dates": [
-            "2026-09-26"
-          ]
         }
       ]
     },
@@ -610,10 +601,19 @@
         {
           "studio": "within-south-yarra",
           "day": "Sat",
+          "time": "7:30–9:00 AM",
+          "class": "Strong Flow 90 Mins",
+          "dates": [
+            "2026-10-03"
+          ]
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Sat",
           "time": "9:30–10:30 AM",
           "class": "Strong Flow Yoga",
           "dates": [
-            "2026-09-26"
+            "2026-10-03"
           ]
         }
       ]
@@ -1129,7 +1129,8 @@
           "class": "Dynamic Flow",
           "dates": [
             "2026-09-27",
-            "2026-10-04"
+            "2026-10-04",
+            "2026-10-11"
           ]
         },
         {
