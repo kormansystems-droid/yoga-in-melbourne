@@ -224,15 +224,6 @@
         {
           "studio": "within-south-yarra",
           "day": "Sun",
-          "time": "8:00–9:00 AM",
-          "class": "Strong Flow Yoga",
-          "dates": [
-            "2026-10-04"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Sun",
           "time": "9:30–10:30 AM",
           "class": "Yin Yoga",
           "dates": [
@@ -322,7 +313,26 @@
       "aliases": [
         "Emma Strembickyj"
       ],
-      "classes": []
+      "classes": [
+        {
+          "studio": "happy-melon-armadale",
+          "day": "Sat",
+          "time": "8:00–9:15 AM",
+          "class": "Yoga Flow Extended - 75min",
+          "dates": [
+            "2026-10-10"
+          ]
+        },
+        {
+          "studio": "happy-melon-armadale",
+          "day": "Sat",
+          "time": "9:30–10:30 AM",
+          "class": "Yoga Flow",
+          "dates": [
+            "2026-10-10"
+          ]
+        }
+      ]
     },
     "Franks Martin": {
       "name": {
@@ -388,15 +398,6 @@
           "class": "Vinyasa Flow",
           "dates": [
             "2026-10-09"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Sun",
-          "time": "8:00–9:00 AM",
-          "class": "Slow Flow",
-          "dates": [
-            "2026-10-04"
           ]
         },
         {
@@ -559,15 +560,6 @@
           "class": "Strong Flow Yoga",
           "dates": [
             "2026-10-09"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Sat",
-          "time": "9:30–10:30 AM",
-          "class": "Strong Flow Yoga",
-          "dates": [
-            "2026-10-03"
           ]
         }
       ]
@@ -1084,8 +1076,8 @@
           "time": "8:30–9:30 AM",
           "class": "Dynamic Flow",
           "dates": [
-            "2026-10-04",
-            "2026-10-11"
+            "2026-10-11",
+            "2026-10-18"
           ]
         },
         {
