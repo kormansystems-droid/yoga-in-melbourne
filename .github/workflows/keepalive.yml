@@ -1,0 +1,99 @@
+name: Keep Supabase awake
+
+# WHY THIS EXISTS, SEPARATELY FROM THE NIGHTLY
+#
+# The nightly timetable pull has read the database once every morning since
+# August, and has returned HTTP 200 every time. On 4 October Supabase still
+# warned that the project was scheduled to be paused for insufficient activity,
+# so one request a day is evidently under the line. Their wording is "a few user
+# requests to the database each day over the previous week".
+#
+# So: four runs a day, two reads each, eight requests daily, spread across the
+# clock rather than bunched. Each run takes a few seconds.
+#
+# It is a workflow of its own rather than more crons on pull.yml because the
+# nightly pulls studio timetables with a browser and commits to main. Running
+# that four times a day to keep a database warm would be absurd, and would put
+# three extra commits a day into the history for nothing.
+#
+# WHAT A PAUSE WOULD COST: every Follow button and the "Join the Community"
+# sign-in, on every teacher and studio page, plus the logging leg of the contact
+# form. As of 4 October the database holds 22 member profiles, 7 follows, 8 email
+# followers and 8 contact records.
+
+on:
+  schedule:
+    # 03:00, 09:00, 15:00 and 21:00 UTC. Melbourne is UTC+11 in daylight saving,
+    # so that is roughly 2pm, 8pm, 2am and 8am local, which keeps a gap of about
+    # six hours between touches whatever the season.
+    - cron: "0 3,9,15,21 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Read two tables
+        id: ping
+        env:
+          SB_URL: ${{ secrets.SUPABASE_URL }}
+          # Prefer the publishable key, which is already public in community.js
+          # on every page of the site. Falls back to the service key, which is
+          # what the nightly has been using. Neither is ever echoed.
+          SB_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+          SB_FALLBACK: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: |
+          set +e
+          [ -z "$SB_KEY" ] && SB_KEY="$SB_FALLBACK"
+          if [ -z "$SB_URL" ] || [ -z "$SB_KEY" ]; then
+            echo "status=000 secrets-missing" >> "$GITHUB_OUTPUT"
+            echo "SUPABASE_URL / SUPABASE_PUBLISHABLE_KEY are not set as Actions secrets."
+            exit 0
+          fi
+          # Ids only. Nothing readable comes back, so no subscriber email can end
+          # up in a public workflow log.
+          WORST=200
+          for TABLE in followers profiles; do
+            CODE=$(curl -sS -o /dev/null -w "%{http_code}" --max-time 30 \
+              -H "apikey: $SB_KEY" -H "Authorization: Bearer $SB_KEY" \
+              "$SB_URL/rest/v1/$TABLE?select=id&limit=1")
+            echo "$TABLE -> HTTP $CODE"
+            [ "$CODE" != "200" ] && WORST="$CODE"
+            sleep 3
+          done
+          echo "status=$WORST" >> "$GITHUB_OUTPUT"
+
+      # Only speaks up when something is wrong, and only once a day, so a bad
+      # afternoon does not produce four identical issues.
+      - name: Raise an issue if it failed
+        if: steps.ping.outputs.status != '200'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          STATUS: ${{ steps.ping.outputs.status }}
+        run: |
+          TODAY=$(date -u +%F)
+          TITLE="Supabase keep-alive failed ($TODAY)"
+          EXISTING=$(gh issue list --state open --search "$TITLE in:title" --json number --jq '.[0].number' 2>/dev/null)
+          [ -n "$EXISTING" ] && { echo "Already raised as #$EXISTING."; exit 0; }
+          BODY="The keep-alive read returned \`$STATUS\`.
+
+          While this is failing, the Follow buttons on every teacher and studio page
+          and the \"Join the Community\" sign-in are likely to be down. The contact
+          form still emails; only its logging leg fails.
+
+          - \`000\` with no other text usually means the project is paused: Supabase
+            tears the subdomain down, so the host stops resolving. Unpause it from the
+            Supabase dashboard.
+          - \`000 secrets-missing\` means \`SUPABASE_URL\` and a key are not set as
+            Actions secrets.
+          - \`401\` or \`403\` means the key was rotated or revoked.
+          - \`404\` means the table is gone.
+
+          Raised by .github/workflows/keepalive.yml"
+          gh issue create --title "$TITLE" --body "$BODY" --label "ops" 2>/dev/null \
+            || gh issue create --title "$TITLE" --body "$BODY"
+        shell: bash
