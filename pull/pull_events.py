@@ -89,12 +89,25 @@ def page_text(url):
     return re.sub(r"\n\s*\n+", "\n", txt).strip()
 
 
+def _price(price):
+    """Prices are not always numbers. A studio can publish words instead, and one
+    already does: Community Kirtan is "By donation". The weekly proposal crashed
+    on it from 5 Oct 2026, because the old line formatted every non-null price
+    with :g, which only accepts a number. Words pass through as written."""
+    if price is None or (isinstance(price, str) and not price.strip()):
+        return "price n/a"
+    if isinstance(price, bool):
+        return "price n/a"
+    if isinstance(price, (int, float)):
+        return "free" if price == 0 else f"${price:g}"
+    return str(price).strip()
+
+
 def _fmt(e):
     when = (e.get("starts") or "")[:10] or "date unknown"
-    price = e.get("price")
-    price = "free" if price == 0 else (f"${price:g}" if price is not None else "price n/a")
     who = f" · {e['teacher']}" if e.get("teacher") else ""
-    return f"**{e.get('title','(untitled)')}** — {when} · {e.get('studio') or 'studio n/a'}{who} · {price}"
+    return (f"**{e.get('title','(untitled)')}** · {when} · "
+            f"{e.get('studio') or 'studio n/a'}{who} · {_price(e.get('price'))}")
 
 
 def write_proposal(before, after, problems):
@@ -108,7 +121,7 @@ def write_proposal(before, after, problems):
                if i in old and {k: old[i].get(k) for k in ("title", "starts", "price", "url")}
                != {k: new[i].get(k) for k in ("title", "starts", "price", "url")}]
 
-    L = ["# Events — proposed changes", "",
+    L = ["# Events: proposed changes", "",
          f"{len(added)} new · {len(changed)} changed · {len(removed)} dropped · "
          f"{len(after)} live after this.", "",
          "Nothing here is on the site. Reply with what to keep and I will publish it.", ""]
@@ -119,7 +132,7 @@ def write_proposal(before, after, problems):
         for o, n in changed:
             bits = [f"{k}: {o.get(k)!r} → {n.get(k)!r}" for k in ("title", "starts", "price", "url")
                     if o.get(k) != n.get(k)]
-            L.append(f"- **{n.get('title')}** — " + "; ".join(bits))
+            L.append(f"- **{n.get('title')}**: " + "; ".join(bits))
         L.append("")
     if removed:
         L += ["## Dropped (past, or no longer in the feed)", ""] + \
