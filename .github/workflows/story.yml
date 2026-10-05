@@ -103,7 +103,7 @@ jobs:
           # Last night's card issue is a to-do with a 24 hour life: those frames
           # have expired by now. Close it as tonight's opens, so the list holds one
           # live task rather than a growing pile. 43 had accumulated by 4 Oct 2026.
-          gh issue list --state open --search "tomorrow in:title" --json number,title \
+          gh issue list --state open --limit 100 --search "tomorrow in:title" --json number,title \
             --jq '.[] | select(.title | endswith("-tomorrow")) | .number' 2>/dev/null \
             | while read -r N; do
                 gh issue close "$N" --comment "Superseded by tonight's cards. Those frames have expired." || true
