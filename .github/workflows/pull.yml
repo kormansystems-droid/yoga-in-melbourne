@@ -164,6 +164,14 @@ jobs:
         run: |
           if [ ! -s pull/_anomalies.md ]; then
             echo "No anomalies."
+            # A clean run should also clear the board. The attention issue collected
+            # 47 comments between August and October because nothing ever closed it,
+            # so a resolved problem looked identical to a live one.
+            CLEAN=$(gh issue list --state open --search "Timetable pull needs attention in:title" \
+              --json number --jq '.[0].number' 2>/dev/null || true)
+            if [ -n "$CLEAN" ]; then
+              gh issue close "$CLEAN" --comment "Clean run on $(date -u +%F): every feed pulled and no teacher is missing a timetable. Reopens automatically if it recurs." || true
+            fi
             exit 0
           fi
           TITLE="⚠ Timetable pull needs attention"
