@@ -308,8 +308,8 @@
           "time": "12:15–1:15 PM",
           "class": "Yin",
           "dates": [
-            "2026-10-09",
-            "2026-10-16"
+            "2026-10-16",
+            "2026-10-23"
           ]
         }
       ]
@@ -361,6 +361,33 @@
           "class": "Yin Yoga & Meditation",
           "dates": [
             "2026-10-13"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Fri",
+          "time": "6:00–7:00 AM",
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-10-16"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Fri",
+          "time": "7:30–8:30 AM",
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-10-16"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Fri",
+          "time": "9:30–10:30 AM",
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-10-16"
           ]
         },
         {
@@ -501,24 +528,6 @@
           "class": "Yin & Yoga Nidra",
           "dates": [
             "2026-10-15"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Fri",
-          "time": "10:45–11:45 AM",
-          "class": "Yin & Yoga Nidra",
-          "dates": [
-            "2026-10-09"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Fri",
-          "time": "12:15–1:15 PM",
-          "class": "Slow Flow",
-          "dates": [
-            "2026-10-09"
           ]
         },
         {
@@ -855,7 +864,7 @@
           "studio": "grass-roots-st-kilda",
           "day": "Sat",
           "time": "9:30–10:45 AM",
-          "class": "Extended Vinyasa Flow (75mins)",
+          "class": "OPEN DAY! - Extended Vinyasa Flow (75mins)",
           "dates": [
             "2026-10-17"
           ]
@@ -898,7 +907,7 @@
           "time": "5:00–6:00 PM",
           "class": "Slow Flow",
           "dates": [
-            "2026-10-09"
+            "2026-10-16"
           ]
         },
         {
@@ -907,7 +916,7 @@
           "time": "6:15–7:15 PM",
           "class": "Yin & Sound Bowls",
           "dates": [
-            "2026-10-09"
+            "2026-10-16"
           ]
         },
         {
@@ -918,24 +927,6 @@
           "dates": [
             "2026-10-16",
             "2026-10-23"
-          ]
-        },
-        {
-          "studio": "here-yoga-port-melbourne",
-          "day": "Sat",
-          "time": "8:00–9:00 AM",
-          "class": "Dynamic Flow",
-          "dates": [
-            "2026-10-10"
-          ]
-        },
-        {
-          "studio": "here-yoga-port-melbourne",
-          "day": "Sat",
-          "time": "10:00–11:00 AM",
-          "class": "Slow Flow",
-          "dates": [
-            "2026-10-10"
           ]
         },
         {
