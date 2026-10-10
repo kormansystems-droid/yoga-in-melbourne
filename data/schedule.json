@@ -224,15 +224,6 @@
         {
           "studio": "within-south-yarra",
           "day": "Sun",
-          "time": "8:00–9:00 AM",
-          "class": "Strong Flow Yoga",
-          "dates": [
-            "2026-10-11"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Sun",
           "time": "9:30–10:30 AM",
           "class": "Yin Yoga",
           "dates": [
@@ -388,15 +379,6 @@
           "class": "Vinyasa Flow",
           "dates": [
             "2026-10-16"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Sun",
-          "time": "8:00–9:00 AM",
-          "class": "Slow Flow",
-          "dates": [
-            "2026-10-11"
           ]
         },
         {
@@ -920,6 +902,24 @@
           ]
         },
         {
+          "studio": "warrior-one-brighton",
+          "day": "Sat",
+          "time": "9:45–10:45 AM",
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-10-17"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Sat",
+          "time": "11:00–12:00 PM",
+          "class": "Yin Yoga",
+          "dates": [
+            "2026-10-17"
+          ]
+        },
+        {
           "studio": "here-yoga-port-melbourne",
           "day": "Fri",
           "time": "7:15–8:15 AM",
@@ -985,8 +985,8 @@
           "time": "8:30–9:30 AM",
           "class": "Dynamic Flow",
           "dates": [
-            "2026-10-11",
-            "2026-10-18"
+            "2026-10-18",
+            "2026-10-25"
           ]
         },
         {
