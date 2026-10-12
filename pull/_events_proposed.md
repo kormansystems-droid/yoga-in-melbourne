@@ -1,23 +1,21 @@
 # Events: proposed changes
 
-7 new · 3 changed · 21 dropped · 17 live after this.
+6 new · 3 changed · 22 dropped · 15 live after this.
 
 Nothing here is on the site. Reply with what to keep and I will publish it.
 
 ## New
 
-- **Arm Balance Deep Dive Workshop** · 2026-10-11 · grass-roots-st-kilda · Janita Doelken · $60  
-  https://momence.com/s/144532896
 - **Inversion Masterclass** · 2026-10-24 · good-vibes-collingwood · Jodie  . · $40  
   https://momence.com/s/143495476
 - **IKSRE "in all her forms (sound meditations vol. 2)" Sound Bath (75min)** · 2026-10-25 · grass-roots-st-kilda · Phoebe Dubar · $45  
   https://momence.com/s/143329954
 - **Sri Lanka Yoga & Surf Retreat** · 2026-11-02 · grass-roots-st-kilda · Polly  & Kellee · $750  
   https://momence.com/s/138407665
-- **The Second Spring- Peri to Post Menopause Half Day Retreat** · 2026-11-15 · grass-roots-st-kilda · Rachel Goldenberg · $160  
-  https://momence.com/s/143057373
 - **IKSRE: In All Her Forms — A Live Sound Bath** · 2026-11-15 · warrior-one-mornington · $45  
   https://warrioroneyoga.com.au/workshops/
+- **The Second Spring- Peri to Post Menopause Half Day Retreat** · 2026-11-29 · grass-roots-st-kilda · Rachel Goldenberg · $160  
+  https://momence.com/s/143057373
 - **Yin Path 30 Hr Teacher Training** · 2027-03-06 · grass-roots-st-kilda · Janita Doelken &  Alessia Frisina · $1150  
   https://momence.com/s/143278376
 
@@ -50,3 +48,4 @@ Nothing here is on the site. Reply with what to keep and I will publish it.
 - **Yintention Day Retreat** · date unknown · studio n/a · price n/a
 - **Ceremonial Breathwork Journey: Manifestation** · 2026-09-12 · grass-roots-st-kilda · Duaa Dahho · $80
 - **Community Kirtan** · 2026-09-18 · grass-roots-st-kilda · Heidi Mellican · By donation
+- **An Evening of Yin and Cello** · 2026-10-09 · kozen-yoga-hawthorn · Ryan  Chhajed · $65

@@ -79,30 +79,6 @@
       "source": "momence"
     },
     {
-      "id": "momence:44752:an evening of yin and cello",
-      "studio": "kozen-yoga-hawthorn",
-      "kind": "workshop",
-      "title": "An Evening of Yin and Cello",
-      "teacher": "Ryan  Chhajed",
-      "starts": "2026-10-09T19:30:00+11:00",
-      "ends": "2026-10-09T21:00:00+11:00",
-      "price": 65,
-      "url": "https://momence.com/s/139363749",
-      "source": "momence"
-    },
-    {
-      "id": "momence:34431:arm balance deep dive workshop",
-      "studio": "grass-roots-st-kilda",
-      "kind": "workshop",
-      "title": "Arm Balance Deep Dive Workshop",
-      "teacher": "Janita Doelken",
-      "starts": "2026-10-11T14:00:00+11:00",
-      "ends": "2026-10-11T15:30:00+11:00",
-      "price": 60,
-      "url": "https://momence.com/s/144532896",
-      "source": "momence"
-    },
-    {
       "id": "momence:33014:sound bath, candlelit yin and cacao cere",
       "studio": "good-vibes-collingwood",
       "kind": "workshop",
@@ -175,18 +151,6 @@
       "source": "momence"
     },
     {
-      "id": "momence:34431:the second spring- peri to post menopaus",
-      "studio": "grass-roots-st-kilda",
-      "kind": "workshop",
-      "title": "The Second Spring- Peri to Post Menopause Half Day Retreat",
-      "teacher": "Rachel Goldenberg",
-      "starts": "2026-11-15T11:30:00+11:00",
-      "ends": "2026-11-15T15:30:00+11:00",
-      "price": 160,
-      "url": "https://momence.com/s/143057373",
-      "source": "momence"
-    },
-    {
       "id": "page:https://warrioroneyoga.com.au/workshops/#iksre-in-all-her-forms-a-live-sound-bath",
       "studio": "warrior-one-mornington",
       "kind": "workshop",
@@ -197,6 +161,18 @@
       "price": 45,
       "url": "https://warrioroneyoga.com.au/workshops/",
       "source": "page"
+    },
+    {
+      "id": "momence:34431:the second spring- peri to post menopaus",
+      "studio": "grass-roots-st-kilda",
+      "kind": "workshop",
+      "title": "The Second Spring- Peri to Post Menopause Half Day Retreat",
+      "teacher": "Rachel Goldenberg",
+      "starts": "2026-11-29T11:30:00+11:00",
+      "ends": "2026-11-29T15:30:00+11:00",
+      "price": 160,
+      "url": "https://momence.com/s/143057373",
+      "source": "momence"
     },
     {
       "id": "momence:34431:yin path 30 hr teacher training",
