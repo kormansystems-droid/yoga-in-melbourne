@@ -200,7 +200,7 @@
           "time": "5:00–6:00 PM",
           "class": "Slow Flow Yoga",
           "dates": [
-            "2026-10-14"
+            "2026-10-21"
           ]
         },
         {
@@ -209,7 +209,7 @@
           "time": "6:15–7:15 PM",
           "class": "Strong Flow Yoga",
           "dates": [
-            "2026-10-14"
+            "2026-10-21"
           ]
         },
         {
@@ -218,7 +218,7 @@
           "time": "7:30–8:30 PM",
           "class": "Yin Yoga",
           "dates": [
-            "2026-10-14"
+            "2026-10-21"
           ]
         },
         {
@@ -260,10 +260,19 @@
         {
           "studio": "warrior-one-brighton",
           "day": "Wed",
+          "time": "9:30–10:30 AM",
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-10-21"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Wed",
           "time": "10:45–11:45 AM",
           "class": "Yin & Myofascial Release",
           "dates": [
-            "2026-10-14"
+            "2026-10-21"
           ]
         },
         {
@@ -272,7 +281,7 @@
           "time": "12:15–1:15 PM",
           "class": "Slow Flow & Yoga Nidra",
           "dates": [
-            "2026-10-14"
+            "2026-10-21"
           ]
         },
         {
@@ -313,7 +322,26 @@
       "aliases": [
         "Emma Strembickyj"
       ],
-      "classes": []
+      "classes": [
+        {
+          "studio": "kozen-yoga-hawthorn",
+          "day": "Wed",
+          "time": "6:15–7:15 PM",
+          "class": "Flow Class",
+          "dates": [
+            "2026-10-28"
+          ]
+        },
+        {
+          "studio": "kozen-yoga-hawthorn",
+          "day": "Wed",
+          "time": "7:30–8:30 PM",
+          "class": "Yin Class",
+          "dates": [
+            "2026-10-28"
+          ]
+        }
+      ]
     },
     "Franks Martin": {
       "name": {
@@ -589,7 +617,6 @@
           "time": "12:30–1:30 PM",
           "class": "Vinyasa Flow",
           "dates": [
-            "2026-10-14",
             "2026-10-21"
           ]
         },
@@ -647,8 +674,8 @@
           "time": "5:00–6:00 PM",
           "class": "Dynamic Flow",
           "dates": [
-            "2026-10-14",
-            "2026-10-21"
+            "2026-10-21",
+            "2026-10-28"
           ]
         },
         {
@@ -657,8 +684,8 @@
           "time": "6:15–7:15 PM",
           "class": "Slow Flow",
           "dates": [
-            "2026-10-14",
-            "2026-10-21"
+            "2026-10-21",
+            "2026-10-28"
           ]
         },
         {
@@ -667,8 +694,8 @@
           "time": "7:30–8:30 PM",
           "class": "Yin",
           "dates": [
-            "2026-10-14",
-            "2026-10-21"
+            "2026-10-21",
+            "2026-10-28"
           ]
         },
         {
@@ -749,26 +776,8 @@
           "time": "6:15–7:30 PM",
           "class": "Slow Flow + Restorative (75mins)",
           "dates": [
-            "2026-10-14",
-            "2026-10-21"
-          ]
-        },
-        {
-          "studio": "grass-roots-st-kilda",
-          "day": "Thu",
-          "time": "7:00–8:00 AM",
-          "class": "Vinyasa flow",
-          "dates": [
-            "2026-10-15"
-          ]
-        },
-        {
-          "studio": "grass-roots-st-kilda",
-          "day": "Thu",
-          "time": "9:30–10:30 AM",
-          "class": "Vinyasa flow",
-          "dates": [
-            "2026-10-15"
+            "2026-10-21",
+            "2026-10-28"
           ]
         },
         {
