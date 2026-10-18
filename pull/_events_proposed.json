@@ -79,30 +79,6 @@
       "source": "momence"
     },
     {
-      "id": "momence:33014:sound bath, candlelit yin and cacao cere",
-      "studio": "good-vibes-collingwood",
-      "kind": "workshop",
-      "title": "Sound Bath, Candlelit Yin and Cacao Ceremony",
-      "teacher": "Georgia H",
-      "starts": "2026-10-16T18:30:00+11:00",
-      "ends": "2026-10-16T20:00:00+11:00",
-      "price": 70,
-      "url": "https://momence.com/s/144202932",
-      "source": "momence"
-    },
-    {
-      "id": "page:https://www.withinretreat.com.au/flight",
-      "studio": "within-south-yarra",
-      "kind": "workshop",
-      "title": "Flight School — a workshop series with Eliza & Gisele",
-      "teacher": "",
-      "starts": "2026-10-17T13:00:00+11:00",
-      "ends": "2026-10-17T15:00:00+11:00",
-      "price": 50,
-      "url": "https://www.withinretreat.com.au/flight",
-      "source": "page"
-    },
-    {
       "id": "page:https://warrioroneyoga.com.au/workshops/#spring-resonance-a-spring-sound-slow-flow-jo",
       "studio": "warrior-one-mordialloc",
       "kind": "workshop",
@@ -151,6 +127,18 @@
       "source": "momence"
     },
     {
+      "id": "momence:33014:burn by body medicine x good vibes",
+      "studio": "good-vibes-collingwood",
+      "kind": "workshop",
+      "title": "BURN by Body Medicine x Good Vibes",
+      "teacher": "Raj Barker",
+      "starts": "2026-11-14T14:30:00+11:00",
+      "ends": "2026-11-14T16:00:00+11:00",
+      "price": 55,
+      "url": "https://momence.com/s/145363469",
+      "source": "momence"
+    },
+    {
       "id": "page:https://warrioroneyoga.com.au/workshops/#iksre-in-all-her-forms-a-live-sound-bath",
       "studio": "warrior-one-mornington",
       "kind": "workshop",
@@ -163,6 +151,42 @@
       "source": "page"
     },
     {
+      "id": "momence:34431:introduction to sufi whirling (by donati",
+      "studio": "grass-roots-st-kilda",
+      "kind": "workshop",
+      "title": "Introduction to Sufi Whirling (By Donation)",
+      "teacher": "Duaa Dahho",
+      "starts": "2026-11-20T18:30:00+11:00",
+      "ends": "2026-11-20T20:00:00+11:00",
+      "price": null,
+      "url": "https://momence.com/s/145372752",
+      "source": "momence"
+    },
+    {
+      "id": "momence:34431:community kirtan - by donation",
+      "studio": "grass-roots-st-kilda",
+      "kind": "workshop",
+      "title": "Community Kirtan - By Donation",
+      "teacher": "Heidi Mellican",
+      "starts": "2026-11-27T18:30:00+11:00",
+      "ends": "2026-11-27T20:00:00+11:00",
+      "price": null,
+      "url": "https://momence.com/s/145371167",
+      "source": "momence"
+    },
+    {
+      "id": "momence:44752:yin to release and replenish",
+      "studio": "kozen-yoga-hawthorn",
+      "kind": "workshop",
+      "title": "Yin to Release and Replenish",
+      "teacher": "Taryn Ipenburg",
+      "starts": "2026-11-27T18:45:00+11:00",
+      "ends": "2026-11-27T20:45:00+11:00",
+      "price": 67,
+      "url": "https://momence.com/s/145648858",
+      "source": "momence"
+    },
+    {
       "id": "momence:34431:the second spring- peri to post menopaus",
       "studio": "grass-roots-st-kilda",
       "kind": "workshop",
@@ -170,7 +194,7 @@
       "teacher": "Rachel Goldenberg",
       "starts": "2026-11-29T11:30:00+11:00",
       "ends": "2026-11-29T15:30:00+11:00",
-      "price": 160,
+      "price": 180,
       "url": "https://momence.com/s/143057373",
       "source": "momence"
     },
