@@ -308,8 +308,8 @@
           "time": "12:15–1:15 PM",
           "class": "Yin",
           "dates": [
-            "2026-10-23",
-            "2026-10-30"
+            "2026-10-30",
+            "2026-11-06"
           ]
         },
         {
@@ -466,10 +466,28 @@
         {
           "studio": "warrior-one-brighton",
           "day": "Fri",
+          "time": "6:00–7:00 AM",
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-10-30"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Fri",
+          "time": "7:30–8:30 AM",
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-10-30"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Fri",
           "time": "9:30–10:30 AM",
           "class": "Vinyasa Flow",
           "dates": [
-            "2026-10-23"
+            "2026-10-30"
           ]
         },
         {
@@ -610,19 +628,28 @@
         {
           "studio": "within-south-yarra",
           "day": "Fri",
-          "time": "9:30–10:30 AM",
+          "time": "6:00–7:00 AM",
           "class": "Strong Flow Yoga",
           "dates": [
-            "2026-10-23"
+            "2026-10-30"
           ]
         },
         {
           "studio": "within-south-yarra",
-          "day": "Sat",
-          "time": "7:30–9:00 AM",
-          "class": "Strong Flow 90 Mins",
+          "day": "Fri",
+          "time": "7:30–8:30 AM",
+          "class": "Slow Flow Yoga",
           "dates": [
-            "2026-10-24"
+            "2026-10-30"
+          ]
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Fri",
+          "time": "9:30–10:30 AM",
+          "class": "Strong Flow Yoga",
+          "dates": [
+            "2026-10-30"
           ]
         },
         {
@@ -662,7 +689,7 @@
           "time": "10:45–11:45 AM",
           "class": "Yin & Yoga Nidra",
           "dates": [
-            "2026-10-23"
+            "2026-10-30"
           ]
         },
         {
@@ -671,7 +698,7 @@
           "time": "12:15–1:15 PM",
           "class": "Slow Flow",
           "dates": [
-            "2026-10-23"
+            "2026-10-30"
           ]
         },
         {
@@ -843,8 +870,8 @@
           "time": "9:30–10:30 AM",
           "class": "Dynamic Flow",
           "dates": [
-            "2026-10-23",
-            "2026-10-30"
+            "2026-10-30",
+            "2026-11-06"
           ]
         }
       ]
@@ -886,7 +913,8 @@
           "time": "9:30–10:30 AM",
           "class": "Vinyasa flow",
           "dates": [
-            "2026-10-30"
+            "2026-10-30",
+            "2026-11-06"
           ]
         }
       ]
@@ -927,7 +955,7 @@
           "time": "5:00–6:00 PM",
           "class": "Slow Flow",
           "dates": [
-            "2026-10-23"
+            "2026-10-30"
           ]
         },
         {
@@ -936,7 +964,7 @@
           "time": "6:15–7:15 PM",
           "class": "Yin & Sound Bowls",
           "dates": [
-            "2026-10-23"
+            "2026-10-30"
           ]
         },
         {
