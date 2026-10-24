@@ -224,15 +224,6 @@
         {
           "studio": "within-south-yarra",
           "day": "Sun",
-          "time": "8:00–9:00 AM",
-          "class": "Strong Flow Yoga",
-          "dates": [
-            "2026-10-25"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Sun",
           "time": "9:30–10:30 AM",
           "class": "Yin Yoga",
           "dates": [
@@ -493,15 +484,6 @@
         {
           "studio": "warrior-one-brighton",
           "day": "Sun",
-          "time": "8:00–9:00 AM",
-          "class": "Slow Flow",
-          "dates": [
-            "2026-10-25"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Sun",
           "time": "9:30–10:45 AM",
           "class": "Vinyasa Flow",
           "dates": [
@@ -655,10 +637,19 @@
         {
           "studio": "within-south-yarra",
           "day": "Sat",
+          "time": "7:30–9:00 AM",
+          "class": "Strong Flow 90 Mins",
+          "dates": [
+            "2026-10-31"
+          ]
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Sat",
           "time": "9:30–10:30 AM",
           "class": "Strong Flow Yoga",
           "dates": [
-            "2026-10-24"
+            "2026-10-31"
           ]
         }
       ]
@@ -968,6 +959,24 @@
           ]
         },
         {
+          "studio": "warrior-one-brighton",
+          "day": "Sat",
+          "time": "9:45–10:45 AM",
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-10-31"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Sat",
+          "time": "11:00–12:00 PM",
+          "class": "Yin Yoga",
+          "dates": [
+            "2026-10-31"
+          ]
+        },
+        {
           "studio": "here-yoga-malvern",
           "day": "Tue",
           "time": "7:30–8:30 AM",
@@ -1015,6 +1024,15 @@
           "dates": [
             "2026-10-29",
             "2026-11-05"
+          ]
+        },
+        {
+          "studio": "here-yoga-malvern",
+          "day": "Sat",
+          "time": "2:00–3:00 PM",
+          "class": "FREE Yin and Sound",
+          "dates": [
+            "2026-11-07"
           ]
         },
         {
