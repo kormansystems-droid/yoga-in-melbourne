@@ -41,17 +41,6 @@
       "band_title": "Sri Lanka"
     },
     {
-      "id": "manual:training:yin-yoga-teacher-training",
-      "kind": "training",
-      "title": "Yin Yoga Teacher Training",
-      "cat": "16–18 Oct 2026 · Warrior One, Mordialloc",
-      "blurb": "A 25-hour immersion in the art of Yin, weaving myofascial release and the anatomy of the long hold.",
-      "url": "https://warrioroneyoga.com.au/yin/",
-      "external": true,
-      "source": "manual",
-      "until": "2026-10-18"
-    },
-    {
       "id": "manual:retreat:yoga-surf-sri-lanka",
       "kind": "retreat",
       "title": "Yoga + Surf, Sri Lanka",
@@ -79,42 +68,6 @@
       "source": "momence"
     },
     {
-      "id": "page:https://warrioroneyoga.com.au/workshops/#spring-resonance-a-spring-sound-slow-flow-jo",
-      "studio": "warrior-one-mordialloc",
-      "kind": "workshop",
-      "title": "Spring Resonance — A Spring Sound & Slow Flow Journey",
-      "teacher": "",
-      "starts": "2026-10-18T19:15:00+11:00",
-      "ends": "2026-10-18T21:00:00+11:00",
-      "price": 75,
-      "url": "https://warrioroneyoga.com.au/workshops/",
-      "source": "page"
-    },
-    {
-      "id": "momence:33014:inversion masterclass",
-      "studio": "good-vibes-collingwood",
-      "kind": "workshop",
-      "title": "Inversion Masterclass",
-      "teacher": "Jodie  .",
-      "starts": "2026-10-24T14:30:00+11:00",
-      "ends": "2026-10-24T16:00:00+11:00",
-      "price": 40,
-      "url": "https://momence.com/s/143495476",
-      "source": "momence"
-    },
-    {
-      "id": "momence:34431:iksre \"in all her forms (sound meditatio",
-      "studio": "grass-roots-st-kilda",
-      "kind": "workshop",
-      "title": "IKSRE \"in all her forms (sound meditations vol. 2)\" Sound Bath (75min)",
-      "teacher": "Phoebe Dubar",
-      "starts": "2026-10-25T19:00:00+11:00",
-      "ends": "2026-10-25T20:15:00+11:00",
-      "price": 45,
-      "url": "https://momence.com/s/143329954",
-      "source": "momence"
-    },
-    {
       "id": "momence:34431:sri lanka yoga & surf retreat",
       "studio": "grass-roots-st-kilda",
       "kind": "retreat",
@@ -127,10 +80,22 @@
       "source": "momence"
     },
     {
-      "id": "momence:33014:burn by body medicine x good vibes",
+      "id": "page:https://www.withinretreat.com.au/flight",
+      "studio": "within-south-yarra",
+      "kind": "workshop",
+      "title": "Flight School — a workshop series with Eliza & Gisele",
+      "teacher": "",
+      "starts": "2026-11-08T00:00:00+11:00",
+      "ends": "",
+      "price": 50,
+      "url": "https://www.withinretreat.com.au/flight",
+      "source": "page"
+    },
+    {
+      "id": "momence:33014:body medicine x good vibes",
       "studio": "good-vibes-collingwood",
       "kind": "workshop",
-      "title": "BURN by Body Medicine x Good Vibes",
+      "title": "Body Medicine x Good Vibes",
       "teacher": "Raj Barker",
       "starts": "2026-11-14T14:30:00+11:00",
       "ends": "2026-11-14T16:00:00+11:00",
@@ -160,6 +125,18 @@
       "ends": "2026-11-20T20:00:00+11:00",
       "price": null,
       "url": "https://momence.com/s/145372752",
+      "source": "momence"
+    },
+    {
+      "id": "momence:33014:arm balance masterclass",
+      "studio": "good-vibes-collingwood",
+      "kind": "workshop",
+      "title": "Arm Balance Masterclass",
+      "teacher": "Aoife  .",
+      "starts": "2026-11-21T14:00:00+11:00",
+      "ends": "2026-11-21T15:30:00+11:00",
+      "price": 40,
+      "url": "https://momence.com/s/145737206",
       "source": "momence"
     },
     {
