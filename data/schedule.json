@@ -224,10 +224,19 @@
         {
           "studio": "within-south-yarra",
           "day": "Sun",
+          "time": "8:00–9:00 AM",
+          "class": "Strong Flow Yoga",
+          "dates": [
+            "2026-11-01"
+          ]
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Sun",
           "time": "9:30–10:30 AM",
           "class": "Yin Yoga",
           "dates": [
-            "2026-10-25"
+            "2026-11-01"
           ]
         },
         {
@@ -273,15 +282,6 @@
           "class": "Slow Flow & Yoga Nidra",
           "dates": [
             "2026-10-28"
-          ]
-        },
-        {
-          "studio": "warrior-one-mordialloc",
-          "day": "Mon",
-          "time": "6:00–7:00 AM",
-          "class": "Vinyasa Flow",
-          "dates": [
-            "2026-10-26"
           ]
         },
         {
@@ -360,24 +360,6 @@
           ]
         },
         {
-          "studio": "within-south-yarra",
-          "day": "Sun",
-          "time": "4:00–5:00 PM",
-          "class": "Slow Flow Yoga",
-          "dates": [
-            "2026-10-25"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Sun",
-          "time": "5:15–6:15 PM",
-          "class": "Yin Yoga",
-          "dates": [
-            "2026-10-25"
-          ]
-        },
-        {
           "studio": "grass-roots-st-kilda",
           "day": "Wed",
           "time": "6:15–7:15 AM",
@@ -397,6 +379,15 @@
         },
         {
           "studio": "kozen-yoga-hawthorn",
+          "day": "Tue",
+          "time": "6:15–7:15 PM",
+          "class": "Gentle Flow",
+          "dates": [
+            "2026-10-27"
+          ]
+        },
+        {
+          "studio": "kozen-yoga-hawthorn",
           "day": "Wed",
           "time": "6:15–7:15 PM",
           "class": "Flow Class",
@@ -411,6 +402,15 @@
           "class": "Yin Class",
           "dates": [
             "2026-10-28"
+          ]
+        },
+        {
+          "studio": "kozen-yoga-hawthorn",
+          "day": "Sun",
+          "time": "9:00–10:00 AM",
+          "class": "Flow Class",
+          "dates": [
+            "2026-11-08"
           ]
         }
       ]
@@ -484,10 +484,19 @@
         {
           "studio": "warrior-one-brighton",
           "day": "Sun",
+          "time": "8:00–9:00 AM",
+          "class": "Slow Flow",
+          "dates": [
+            "2026-11-01"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Sun",
           "time": "9:30–10:45 AM",
           "class": "Vinyasa Flow",
           "dates": [
-            "2026-10-25"
+            "2026-11-01"
           ]
         },
         {
@@ -496,7 +505,7 @@
           "time": "11:00–12:00 PM",
           "class": "Yin Yoga",
           "dates": [
-            "2026-10-25"
+            "2026-11-01"
           ]
         }
       ]
@@ -516,8 +525,8 @@
           "time": "6:15–7:15 AM",
           "class": "Hot Flow",
           "dates": [
-            "2026-10-26",
-            "2026-11-02"
+            "2026-11-02",
+            "2026-11-09"
           ]
         },
         {
@@ -554,8 +563,8 @@
           "time": "4:00–5:00 PM",
           "class": "Vinyasa flow",
           "dates": [
-            "2026-10-25",
-            "2026-11-01"
+            "2026-11-01",
+            "2026-11-08"
           ]
         },
         {
@@ -564,8 +573,8 @@
           "time": "5:15–6:15 PM",
           "class": "Yin",
           "dates": [
-            "2026-10-25",
-            "2026-11-01"
+            "2026-11-01",
+            "2026-11-08"
           ]
         }
       ]
@@ -1041,8 +1050,8 @@
           "time": "8:30–9:30 AM",
           "class": "Dynamic Flow",
           "dates": [
-            "2026-10-25",
-            "2026-11-01"
+            "2026-11-01",
+            "2026-11-08"
           ]
         },
         {
@@ -1051,8 +1060,8 @@
           "time": "10:00–11:00 AM",
           "class": "Slow Flow",
           "dates": [
-            "2026-10-25",
-            "2026-11-01"
+            "2026-11-01",
+            "2026-11-08"
           ]
         }
       ]
