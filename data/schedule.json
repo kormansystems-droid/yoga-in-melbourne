@@ -333,24 +333,6 @@
       ],
       "classes": [
         {
-          "studio": "warrior-one-brighton",
-          "day": "Fri",
-          "time": "6:00–7:00 AM",
-          "class": "Vinyasa Flow",
-          "dates": [
-            "2026-10-30"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Fri",
-          "time": "7:30–8:30 AM",
-          "class": "Vinyasa Flow",
-          "dates": [
-            "2026-10-30"
-          ]
-        },
-        {
           "studio": "grass-roots-st-kilda",
           "day": "Sat",
           "time": "8:00–9:00 AM",
@@ -452,15 +434,6 @@
           "class": "Yin Yoga & Meditation",
           "dates": [
             "2026-11-03"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Fri",
-          "time": "9:30–10:30 AM",
-          "class": "Vinyasa Flow",
-          "dates": [
-            "2026-10-30"
           ]
         },
         {
@@ -634,33 +607,6 @@
         },
         {
           "studio": "within-south-yarra",
-          "day": "Fri",
-          "time": "6:00–7:00 AM",
-          "class": "Strong Flow Yoga",
-          "dates": [
-            "2026-10-30"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Fri",
-          "time": "7:30–8:30 AM",
-          "class": "Slow Flow Yoga",
-          "dates": [
-            "2026-10-30"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Fri",
-          "time": "9:30–10:30 AM",
-          "class": "Strong Flow Yoga",
-          "dates": [
-            "2026-10-30"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
           "day": "Sat",
           "time": "7:30–9:00 AM",
           "class": "Strong Flow 90 Mins",
@@ -785,24 +731,6 @@
           ]
         },
         {
-          "studio": "warrior-one-mordialloc",
-          "day": "Thu",
-          "time": "5:15–6:15 PM",
-          "class": "Slow Flow",
-          "dates": [
-            "2026-10-29"
-          ]
-        },
-        {
-          "studio": "warrior-one-mordialloc",
-          "day": "Thu",
-          "time": "6:30–7:30 PM",
-          "class": "Yin & Myofascial Release",
-          "dates": [
-            "2026-10-29"
-          ]
-        },
-        {
           "studio": "here-yoga-port-melbourne",
           "day": "Wed",
           "time": "5:00–6:00 PM",
@@ -877,8 +805,8 @@
           "time": "7:15–8:15 AM",
           "class": "Slow Flow",
           "dates": [
-            "2026-10-30",
-            "2026-11-06"
+            "2026-11-06",
+            "2026-11-13"
           ]
         },
         {
@@ -887,8 +815,8 @@
           "time": "9:30–10:30 AM",
           "class": "Dynamic Flow",
           "dates": [
-            "2026-10-30",
-            "2026-11-06"
+            "2026-11-06",
+            "2026-11-13"
           ]
         }
       ]
@@ -938,7 +866,6 @@
           "time": "7:30–8:30 AM",
           "class": "Slow Flow",
           "dates": [
-            "2026-10-30",
             "2026-11-06"
           ]
         },
@@ -948,7 +875,6 @@
           "time": "9:30–10:30 AM",
           "class": "Vinyasa flow",
           "dates": [
-            "2026-10-30",
             "2026-11-06"
           ]
         }
@@ -1046,8 +972,8 @@
           "time": "5:00–6:00 PM",
           "class": "Dynamic Flow",
           "dates": [
-            "2026-10-29",
-            "2026-11-05"
+            "2026-11-05",
+            "2026-11-12"
           ]
         },
         {
@@ -1056,8 +982,8 @@
           "time": "6:15–7:15 PM",
           "class": "Slow Flow",
           "dates": [
-            "2026-10-29",
-            "2026-11-05"
+            "2026-11-05",
+            "2026-11-12"
           ]
         },
         {
@@ -1066,8 +992,8 @@
           "time": "7:30–8:30 PM",
           "class": "Yin",
           "dates": [
-            "2026-10-29",
-            "2026-11-05"
+            "2026-11-05",
+            "2026-11-12"
           ]
         },
         {
