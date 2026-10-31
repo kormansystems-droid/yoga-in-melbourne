@@ -224,15 +224,6 @@
         {
           "studio": "within-south-yarra",
           "day": "Sun",
-          "time": "8:00–9:00 AM",
-          "class": "Strong Flow Yoga",
-          "dates": [
-            "2026-11-01"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Sun",
           "time": "9:30–10:30 AM",
           "class": "Yin Yoga",
           "dates": [
@@ -450,15 +441,6 @@
         {
           "studio": "warrior-one-brighton",
           "day": "Sun",
-          "time": "8:00–9:00 AM",
-          "class": "Slow Flow",
-          "dates": [
-            "2026-11-01"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Sun",
           "time": "9:30–10:45 AM",
           "class": "Vinyasa Flow",
           "dates": [
@@ -623,6 +605,24 @@
           "class": "Strong Flow Yoga",
           "dates": [
             "2026-11-06"
+          ]
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Sat",
+          "time": "7:30–9:00 AM",
+          "class": "Strong Flow 90 Mins",
+          "dates": [
+            "2026-11-07"
+          ]
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Sat",
+          "time": "9:30–10:30 AM",
+          "class": "Strong Flow Yoga",
+          "dates": [
+            "2026-11-07"
           ]
         }
       ]
@@ -933,10 +933,19 @@
         {
           "studio": "warrior-one-brighton",
           "day": "Sat",
+          "time": "9:45–10:45 AM",
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-11-07"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Sat",
           "time": "11:00–12:00 PM",
           "class": "Yin Yoga",
           "dates": [
-            "2026-10-31"
+            "2026-11-07"
           ]
         },
         {
@@ -1004,8 +1013,8 @@
           "time": "8:30–9:30 AM",
           "class": "Dynamic Flow",
           "dates": [
-            "2026-11-01",
-            "2026-11-08"
+            "2026-11-08",
+            "2026-11-15"
           ]
         },
         {
