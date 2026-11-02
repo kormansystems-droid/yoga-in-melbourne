@@ -26,21 +26,6 @@
       "band_title": "Magnetic Island"
     },
     {
-      "id": "manual:retreat:within-sri-lanka",
-      "kind": "retreat",
-      "title": "Within, Sri Lanka",
-      "cat": "12–17 Oct 2026 · Sri Lanka",
-      "blurb": "Retreats with Melbourne teachers, Within takes the practice to the coast of Sri Lanka for a week of yoga, rest and travel.",
-      "url": "https://www.withinretreat.com.au/srilanka",
-      "external": true,
-      "source": "manual",
-      "until": "2026-10-31",
-      "image": "https://images.unsplash.com/photo-1566296314736-6eaac1ca0cb9?q=80&w=1000&h=1250&fit=crop&auto=format",
-      "alt": "The hill-country train winding through Sri Lanka's tea estates",
-      "region": "Hill country",
-      "band_title": "Sri Lanka"
-    },
-    {
       "id": "manual:retreat:yoga-surf-sri-lanka",
       "kind": "retreat",
       "title": "Yoga + Surf, Sri Lanka",
@@ -54,18 +39,6 @@
       "alt": "Surfer walking to the water at a Sri Lankan beach at golden hour",
       "region": "Yoga + Surf",
       "band_title": "Sri Lanka"
-    },
-    {
-      "id": "momence:34431:the subtle body: 4 week immersive course",
-      "studio": "grass-roots-st-kilda",
-      "kind": "training",
-      "title": "The Subtle Body: 4 week immersive course",
-      "teacher": "Shelley Armstrong",
-      "starts": "2026-10-06T19:15:00+11:00",
-      "ends": "2026-10-27T20:30:00+11:00",
-      "price": 175,
-      "url": "https://momence.com/s/141692801",
-      "source": "momence"
     },
     {
       "id": "momence:34431:sri lanka yoga & surf retreat",
@@ -176,6 +149,30 @@
       "source": "momence"
     },
     {
+      "id": "page:https://warrioroneyoga.com.au/workshops/#new-year-s-day-kirtan-with-heidi",
+      "studio": "warrior-one-mornington",
+      "kind": "workshop",
+      "title": "New Year's Day Kirtan with Heidi",
+      "teacher": "",
+      "starts": "2027-01-01T14:00:00+11:00",
+      "ends": "2027-01-01T15:30:00+11:00",
+      "price": 40,
+      "url": "https://warrioroneyoga.com.au/workshops/",
+      "source": "page"
+    },
+    {
+      "id": "page:https://warrioroneyoga.com.au/workshops/#summer-resonance-a-summer-sound-slow-flow-jo",
+      "studio": "warrior-one-mordialloc",
+      "kind": "workshop",
+      "title": "Summer Resonance: A Summer Sound & Slow Flow Journey",
+      "teacher": "",
+      "starts": "2027-01-17T19:15:00+11:00",
+      "ends": "2027-01-17T21:00:00+11:00",
+      "price": 75,
+      "url": "https://warrioroneyoga.com.au/workshops/",
+      "source": "page"
+    },
+    {
       "id": "momence:34431:yin path 30 hr teacher training",
       "studio": "grass-roots-st-kilda",
       "kind": "training",
@@ -186,6 +183,18 @@
       "price": 1150,
       "url": "https://momence.com/s/143278376",
       "source": "momence"
+    },
+    {
+      "id": "page:https://www.withinretreat.com.au/asana",
+      "studio": "within-south-yarra",
+      "kind": "workshop",
+      "title": "Strong Asana — community workshop with Masha",
+      "teacher": "",
+      "starts": "2027-08-29T12:00:00+10:00",
+      "ends": "2027-08-29T14:00:00+10:00",
+      "price": 0,
+      "url": "https://www.withinretreat.com.au/asana",
+      "source": "page"
     }
   ]
 }

@@ -1,6 +1,6 @@
 # Events: proposed changes
 
-8 new · 2 changed · 24 dropped · 15 live after this.
+10 new · 3 changed · 25 dropped · 16 live after this.
 
 Nothing here is on the site. Reply with what to keep and I will publish it.
 
@@ -20,6 +20,10 @@ Nothing here is on the site. Reply with what to keep and I will publish it.
   https://momence.com/s/145648858
 - **The Second Spring- Peri to Post Menopause Half Day Retreat** · 2026-11-29 · grass-roots-st-kilda · Rachel Goldenberg · $180  
   https://momence.com/s/143057373
+- **New Year's Day Kirtan with Heidi** · 2027-01-01 · warrior-one-mornington · $40  
+  https://warrioroneyoga.com.au/workshops/
+- **Summer Resonance: A Summer Sound & Slow Flow Journey** · 2027-01-17 · warrior-one-mordialloc · $75  
+  https://warrioroneyoga.com.au/workshops/
 - **Yin Path 30 Hr Teacher Training** · 2027-03-06 · grass-roots-st-kilda · Janita Doelken &  Alessia Frisina · $1150  
   https://momence.com/s/143278376
 
@@ -27,6 +31,7 @@ Nothing here is on the site. Reply with what to keep and I will publish it.
 
 - **Flight School — a workshop series with Eliza & Gisele**: starts: '2026-08-22T13:00:00+10:00' → '2026-11-08T00:00:00+11:00'
 - **Community Kirtan - By Donation**: title: 'Community Kirtan' → 'Community Kirtan - By Donation'; starts: '2026-09-18T18:30:00+10:00' → '2026-11-27T18:30:00+11:00'; price: 'By donation' → None; url: 'https://momence.com/s/140239910' → 'https://momence.com/s/145371167'
+- **Strong Asana — community workshop with Masha**: starts: '2026-08-29T12:00:00+10:00' → '2027-08-29T12:00:00+10:00'
 
 ## Dropped (past, or no longer in the feed)
 
@@ -40,7 +45,6 @@ Nothing here is on the site. Reply with what to keep and I will publish it.
 - **200hr Yoga Training Info Session** · 2026-08-23 · here-yoga-port-melbourne · Sarah  Metzger · price n/a
 - **Practise with Purpose: 6 Weeks. 6 Causes.** · 2026-08-24 · grass-roots-st-kilda · Various Teachers · price n/a
 - **21-Day Brighton August Challenge** · 2026-08-29 · warrior-one-brighton · $225
-- **Strong Asana — community workshop with Masha** · 2026-08-29 · within-south-yarra · free
 - **Sound Bath with IKSRE** · date unknown · studio n/a · price n/a
 - **Slow Flow to Yin with Lucy** · 2026-09-02 · warrior-one-mornington · price n/a
 - **Warrior One, Thailand** · date unknown · studio n/a · price n/a
@@ -51,6 +55,8 @@ Nothing here is on the site. Reply with what to keep and I will publish it.
 - **Yintention Day Retreat** · date unknown · studio n/a · price n/a
 - **Ceremonial Breathwork Journey: Manifestation** · 2026-09-12 · grass-roots-st-kilda · Duaa Dahho · $80
 - **Sound Bath, Candlelit Yin and Cacao Ceremony** · 2026-09-18 · good-vibes-collingwood · Georgia H · $70
+- **The Subtle Body: 4 week immersive course** · 2026-10-06 · grass-roots-st-kilda · Shelley Armstrong · $175
 - **An Evening of Yin and Cello** · 2026-10-09 · kozen-yoga-hawthorn · Ryan  Chhajed · $65
 - **Yin Yoga Teacher Training** · date unknown · studio n/a · price n/a
 - **Spring Resonance** · 2026-10-18 · warrior-one-mordialloc · $75
+- **Within, Sri Lanka** · date unknown · studio n/a · price n/a
