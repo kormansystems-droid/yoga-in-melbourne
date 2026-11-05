@@ -419,6 +419,15 @@
         },
         {
           "studio": "kozen-yoga-hawthorn",
+          "day": "Mon",
+          "time": "9:30–10:30 AM",
+          "class": "Flow Class",
+          "dates": [
+            "2026-11-09"
+          ]
+        },
+        {
+          "studio": "kozen-yoga-hawthorn",
           "day": "Wed",
           "time": "6:15–7:15 PM",
           "class": "Flow Class",
@@ -485,33 +494,6 @@
           "class": "Yin Yoga & Meditation",
           "dates": [
             "2026-11-10"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Fri",
-          "time": "6:00–7:00 AM",
-          "class": "Vinyasa Flow",
-          "dates": [
-            "2026-11-06"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Fri",
-          "time": "7:30–8:30 AM",
-          "class": "Vinyasa Flow",
-          "dates": [
-            "2026-11-06"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Fri",
-          "time": "9:30–10:30 AM",
-          "class": "Vinyasa Flow",
-          "dates": [
-            "2026-11-06"
           ]
         },
         {
@@ -670,33 +652,6 @@
         },
         {
           "studio": "within-south-yarra",
-          "day": "Fri",
-          "time": "6:00–7:00 AM",
-          "class": "Strong Flow Yoga",
-          "dates": [
-            "2026-11-06"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Fri",
-          "time": "7:30–8:30 AM",
-          "class": "Slow Flow Yoga",
-          "dates": [
-            "2026-11-06"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Fri",
-          "time": "9:30–10:30 AM",
-          "class": "Strong Flow Yoga",
-          "dates": [
-            "2026-11-06"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
           "day": "Sat",
           "time": "7:30–9:00 AM",
           "class": "Strong Flow 90 Mins",
@@ -726,6 +681,15 @@
         "Rayne Watkin"
       ],
       "classes": [
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Thu",
+          "time": "7:30–8:30 PM",
+          "class": "Yin & Yoga Nidra",
+          "dates": [
+            "2026-11-12"
+          ]
+        },
         {
           "studio": "warrior-one-mordialloc",
           "day": "Tue",
@@ -927,8 +891,8 @@
           "time": "7:15–8:15 AM",
           "class": "Slow Flow",
           "dates": [
-            "2026-11-06",
-            "2026-11-13"
+            "2026-11-13",
+            "2026-11-20"
           ]
         },
         {
@@ -937,8 +901,8 @@
           "time": "9:30–10:30 AM",
           "class": "Dynamic Flow",
           "dates": [
-            "2026-11-06",
-            "2026-11-13"
+            "2026-11-13",
+            "2026-11-20"
           ]
         }
       ]
@@ -969,7 +933,7 @@
           "time": "7:30–8:30 AM",
           "class": "Slow Flow",
           "dates": [
-            "2026-11-06"
+            "2026-11-20"
           ]
         },
         {
@@ -978,7 +942,7 @@
           "time": "9:30–10:30 AM",
           "class": "Vinyasa flow",
           "dates": [
-            "2026-11-06"
+            "2026-11-20"
           ]
         }
       ]
@@ -1075,8 +1039,8 @@
           "time": "5:00–6:00 PM",
           "class": "Dynamic Flow",
           "dates": [
-            "2026-11-05",
-            "2026-11-12"
+            "2026-11-12",
+            "2026-11-19"
           ]
         },
         {
@@ -1085,8 +1049,8 @@
           "time": "6:15–7:15 PM",
           "class": "Slow Flow",
           "dates": [
-            "2026-11-05",
-            "2026-11-12"
+            "2026-11-12",
+            "2026-11-19"
           ]
         },
         {
@@ -1095,8 +1059,8 @@
           "time": "7:30–8:30 PM",
           "class": "Yin",
           "dates": [
-            "2026-11-05",
-            "2026-11-12"
+            "2026-11-12",
+            "2026-11-19"
           ]
         },
         {
