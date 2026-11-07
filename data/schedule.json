@@ -222,24 +222,6 @@
           ]
         },
         {
-          "studio": "within-south-yarra",
-          "day": "Sun",
-          "time": "8:00–9:00 AM",
-          "class": "Strong Flow Yoga",
-          "dates": [
-            "2026-11-08"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Sun",
-          "time": "9:30–10:30 AM",
-          "class": "Yin Yoga",
-          "dates": [
-            "2026-11-08"
-          ]
-        },
-        {
           "studio": "warrior-one-brighton",
           "day": "Tue",
           "time": "6:00–7:00 AM",
@@ -452,7 +434,16 @@
           "time": "9:00–10:00 AM",
           "class": "Flow Class",
           "dates": [
-            "2026-11-08"
+            "2026-11-22"
+          ]
+        },
+        {
+          "studio": "here-yoga-malvern",
+          "day": "Sat",
+          "time": "2:00–3:30 PM",
+          "class": "Advance Your Asana: Arm Balances & Inversions",
+          "dates": [
+            "2026-11-21"
           ]
         }
       ]
@@ -521,24 +512,6 @@
           "class": "Vinyasa Flow",
           "dates": [
             "2026-11-13"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Sun",
-          "time": "8:00–9:00 AM",
-          "class": "Slow Flow",
-          "dates": [
-            "2026-11-08"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Sun",
-          "time": "9:30–10:45 AM",
-          "class": "Vinyasa Flow",
-          "dates": [
-            "2026-11-08"
           ]
         },
         {
@@ -623,15 +596,6 @@
         {
           "studio": "happy-melon-armadale",
           "day": "Sun",
-          "time": "9:10–9:35 AM",
-          "class": "Meditation 25",
-          "dates": [
-            "2026-11-08"
-          ]
-        },
-        {
-          "studio": "happy-melon-armadale",
-          "day": "Sun",
           "time": "11:00–12:00 PM",
           "class": "Hatha Yoga",
           "dates": [
@@ -702,6 +666,24 @@
           "class": "Strong Flow Yoga",
           "dates": [
             "2026-11-13"
+          ]
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Sat",
+          "time": "7:30–9:00 AM",
+          "class": "Strong Flow 90 Mins",
+          "dates": [
+            "2026-11-14"
+          ]
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Sat",
+          "time": "9:30–10:30 AM",
+          "class": "Strong Flow Yoga",
+          "dates": [
+            "2026-11-14"
           ]
         }
       ]
@@ -1050,12 +1032,21 @@
           ]
         },
         {
-          "studio": "warrior-one-brighton",
+          "studio": "warrior-one-mordialloc",
           "day": "Sat",
-          "time": "11:00–12:00 PM",
-          "class": "Yin Yoga",
+          "time": "8:00–9:00 AM",
+          "class": "Vinyasa Flow",
           "dates": [
-            "2026-11-07"
+            "2026-11-14"
+          ]
+        },
+        {
+          "studio": "warrior-one-mordialloc",
+          "day": "Sat",
+          "time": "9:30–10:30 AM",
+          "class": "Slow Flow",
+          "dates": [
+            "2026-11-14"
           ]
         },
         {
@@ -1064,8 +1055,7 @@
           "time": "7:30–8:30 AM",
           "class": "Slow Flow",
           "dates": [
-            "2026-11-10",
-            "2026-11-17"
+            "2026-11-10"
           ]
         },
         {
@@ -1074,8 +1064,7 @@
           "time": "9:30–10:30 AM",
           "class": "Dynamic Flow",
           "dates": [
-            "2026-11-10",
-            "2026-11-17"
+            "2026-11-10"
           ]
         },
         {
@@ -1110,21 +1099,12 @@
         },
         {
           "studio": "here-yoga-malvern",
-          "day": "Sat",
-          "time": "2:00–3:00 PM",
-          "class": "FREE Yin and Sound",
-          "dates": [
-            "2026-11-07"
-          ]
-        },
-        {
-          "studio": "here-yoga-malvern",
           "day": "Sun",
           "time": "8:30–9:30 AM",
           "class": "Dynamic Flow",
           "dates": [
-            "2026-11-08",
-            "2026-11-15"
+            "2026-11-15",
+            "2026-11-22"
           ]
         },
         {
