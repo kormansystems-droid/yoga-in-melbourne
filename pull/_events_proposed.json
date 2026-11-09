@@ -26,33 +26,6 @@
       "band_title": "Magnetic Island"
     },
     {
-      "id": "manual:retreat:yoga-surf-sri-lanka",
-      "kind": "retreat",
-      "title": "Yoga + Surf, Sri Lanka",
-      "cat": "2–7 Nov 2026 · Sri Lanka",
-      "blurb": "Grass Roots heads to Sri Lanka with Polly Schaverien and Kellee Lewis, six days of yoga, surf and slow mornings.",
-      "url": "https://www.grassrootsyoga.com/srilanka2026",
-      "external": true,
-      "source": "manual",
-      "until": "2026-11-07",
-      "image": "https://images.unsplash.com/photo-1502680390469-be75c86b636f?q=80&w=1000&h=1250&fit=crop&auto=format",
-      "alt": "Surfer walking to the water at a Sri Lankan beach at golden hour",
-      "region": "Yoga + Surf",
-      "band_title": "Sri Lanka"
-    },
-    {
-      "id": "momence:34431:sri lanka yoga & surf retreat",
-      "studio": "grass-roots-st-kilda",
-      "kind": "retreat",
-      "title": "Sri Lanka Yoga & Surf Retreat",
-      "teacher": "Polly  & Kellee",
-      "starts": "2026-11-02T15:30:00+11:00",
-      "ends": "2026-11-07T11:00:00+11:00",
-      "price": 750,
-      "url": "https://momence.com/s/138407665",
-      "source": "momence"
-    },
-    {
       "id": "page:https://www.withinretreat.com.au/flight",
       "studio": "within-south-yarra",
       "kind": "workshop",
@@ -113,6 +86,30 @@
       "source": "momence"
     },
     {
+      "id": "momence:34431:the yin path: teacher training info & ex",
+      "studio": "grass-roots-st-kilda",
+      "kind": "workshop",
+      "title": "The Yin Path: Teacher Training Info & Experience",
+      "teacher": "Janita Doelken &  Alessia Frisina",
+      "starts": "2026-11-21T14:00:00+11:00",
+      "ends": "2026-11-21T15:00:00+11:00",
+      "price": null,
+      "url": "https://momence.com/s/146756489",
+      "source": "momence"
+    },
+    {
+      "id": "momence:40780:advance your asana: arm balances & inver",
+      "studio": "here-yoga-malvern",
+      "kind": "workshop",
+      "title": "Advance Your Asana: Arm Balances & Inversions",
+      "teacher": "Emma Strembickyj",
+      "starts": "2026-11-21T14:00:00+11:00",
+      "ends": "2026-11-21T15:30:00+11:00",
+      "price": 65,
+      "url": "https://momence.com/s/146422838",
+      "source": "momence"
+    },
+    {
       "id": "momence:34431:community kirtan - by donation",
       "studio": "grass-roots-st-kilda",
       "kind": "workshop",
@@ -137,15 +134,15 @@
       "source": "momence"
     },
     {
-      "id": "momence:34431:the second spring- peri to post menopaus",
+      "id": "momence:34431:unwind the year: live music + embodied f",
       "studio": "grass-roots-st-kilda",
       "kind": "workshop",
-      "title": "The Second Spring- Peri to Post Menopause Half Day Retreat",
-      "teacher": "Rachel Goldenberg",
-      "starts": "2026-11-29T11:30:00+11:00",
-      "ends": "2026-11-29T15:30:00+11:00",
-      "price": 180,
-      "url": "https://momence.com/s/143057373",
+      "title": "Unwind the Year: Live Music + Embodied Flow",
+      "teacher": "Shelley Armstrong + Phoebe Dubar (IKSRE)",
+      "starts": "2026-12-04T18:30:00+11:00",
+      "ends": "2026-12-04T20:00:00+11:00",
+      "price": 75,
+      "url": "https://momence.com/s/146627700",
       "source": "momence"
     },
     {
@@ -171,6 +168,30 @@
       "price": 75,
       "url": "https://warrioroneyoga.com.au/workshops/",
       "source": "page"
+    },
+    {
+      "id": "page:https://warrioroneyoga.com.au/workshops/#beyond-the-basics-the-art-of-asana",
+      "studio": "warrior-one-mornington",
+      "kind": "workshop",
+      "title": "Beyond the Basics: The Art of Asana",
+      "teacher": "",
+      "starts": "2027-01-23T11:00:00+11:00",
+      "ends": "2027-01-23T13:00:00+11:00",
+      "price": 60,
+      "url": "https://warrioroneyoga.com.au/workshops/",
+      "source": "page"
+    },
+    {
+      "id": "momence:34431:the second spring- peri to post menopaus",
+      "studio": "grass-roots-st-kilda",
+      "kind": "workshop",
+      "title": "The Second Spring- Peri to Post Menopause Mini Urban Retreat",
+      "teacher": "Rachel Goldenberg",
+      "starts": "2027-02-21T12:00:00+11:00",
+      "ends": "2027-02-21T16:00:00+11:00",
+      "price": 180,
+      "url": "https://momence.com/s/146888101",
+      "source": "momence"
     },
     {
       "id": "momence:34431:yin path 30 hr teacher training",

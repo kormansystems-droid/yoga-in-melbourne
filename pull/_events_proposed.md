@@ -1,13 +1,11 @@
 # Events: proposed changes
 
-10 new · 3 changed · 25 dropped · 16 live after this.
+13 new · 3 changed · 26 dropped · 18 live after this.
 
 Nothing here is on the site. Reply with what to keep and I will publish it.
 
 ## New
 
-- **Sri Lanka Yoga & Surf Retreat** · 2026-11-02 · grass-roots-st-kilda · Polly  & Kellee · $750  
-  https://momence.com/s/138407665
 - **Body Medicine x Good Vibes** · 2026-11-14 · good-vibes-collingwood · Raj Barker · $55  
   https://momence.com/s/145363469
 - **IKSRE: In All Her Forms — A Live Sound Bath** · 2026-11-15 · warrior-one-mornington · $45  
@@ -16,14 +14,22 @@ Nothing here is on the site. Reply with what to keep and I will publish it.
   https://momence.com/s/145372752
 - **Arm Balance Masterclass** · 2026-11-21 · good-vibes-collingwood · Aoife  . · $40  
   https://momence.com/s/145737206
+- **The Yin Path: Teacher Training Info & Experience** · 2026-11-21 · grass-roots-st-kilda · Janita Doelken &  Alessia Frisina · price n/a  
+  https://momence.com/s/146756489
+- **Advance Your Asana: Arm Balances & Inversions** · 2026-11-21 · here-yoga-malvern · Emma Strembickyj · $65  
+  https://momence.com/s/146422838
 - **Yin to Release and Replenish** · 2026-11-27 · kozen-yoga-hawthorn · Taryn Ipenburg · $67  
   https://momence.com/s/145648858
-- **The Second Spring- Peri to Post Menopause Half Day Retreat** · 2026-11-29 · grass-roots-st-kilda · Rachel Goldenberg · $180  
-  https://momence.com/s/143057373
+- **Unwind the Year: Live Music + Embodied Flow** · 2026-12-04 · grass-roots-st-kilda · Shelley Armstrong + Phoebe Dubar (IKSRE) · $75  
+  https://momence.com/s/146627700
 - **New Year's Day Kirtan with Heidi** · 2027-01-01 · warrior-one-mornington · $40  
   https://warrioroneyoga.com.au/workshops/
 - **Summer Resonance: A Summer Sound & Slow Flow Journey** · 2027-01-17 · warrior-one-mordialloc · $75  
   https://warrioroneyoga.com.au/workshops/
+- **Beyond the Basics: The Art of Asana** · 2027-01-23 · warrior-one-mornington · $60  
+  https://warrioroneyoga.com.au/workshops/
+- **The Second Spring- Peri to Post Menopause Mini Urban Retreat** · 2027-02-21 · grass-roots-st-kilda · Rachel Goldenberg · $180  
+  https://momence.com/s/146888101
 - **Yin Path 30 Hr Teacher Training** · 2027-03-06 · grass-roots-st-kilda · Janita Doelken &  Alessia Frisina · $1150  
   https://momence.com/s/143278376
 
@@ -60,3 +66,4 @@ Nothing here is on the site. Reply with what to keep and I will publish it.
 - **Yin Yoga Teacher Training** · date unknown · studio n/a · price n/a
 - **Spring Resonance** · 2026-10-18 · warrior-one-mordialloc · $75
 - **Within, Sri Lanka** · date unknown · studio n/a · price n/a
+- **Yoga + Surf, Sri Lanka** · date unknown · studio n/a · price n/a
