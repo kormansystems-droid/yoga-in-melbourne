@@ -200,7 +200,7 @@
           "time": "5:00–6:00 PM",
           "class": "Slow Flow Yoga",
           "dates": [
-            "2026-11-18"
+            "2026-11-25"
           ]
         },
         {
@@ -209,7 +209,7 @@
           "time": "6:15–7:15 PM",
           "class": "Strong Flow Yoga",
           "dates": [
-            "2026-11-18"
+            "2026-11-25"
           ]
         },
         {
@@ -218,7 +218,25 @@
           "time": "7:30–8:30 PM",
           "class": "Yin Yoga",
           "dates": [
-            "2026-11-18"
+            "2026-11-25"
+          ]
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Sat",
+          "time": "4:00–5:00 PM",
+          "class": "Slow Flow Yoga",
+          "dates": [
+            "2026-11-21"
+          ]
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Sat",
+          "time": "5:15–6:15 PM",
+          "class": "Yin Yoga",
+          "dates": [
+            "2026-11-21"
           ]
         },
         {
@@ -255,6 +273,33 @@
           "class": "Vinyasa Flow",
           "dates": [
             "2026-11-24"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Wed",
+          "time": "9:30–10:30 AM",
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-11-25"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Wed",
+          "time": "10:45–11:45 AM",
+          "class": "Yin & Myofascial Release",
+          "dates": [
+            "2026-11-25"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Wed",
+          "time": "12:15–1:15 PM",
+          "class": "Slow Flow & Yoga Nidra",
+          "dates": [
+            "2026-11-25"
           ]
         },
         {
@@ -324,33 +369,6 @@
           ]
         },
         {
-          "studio": "within-south-yarra",
-          "day": "Thu",
-          "time": "6:00–7:00 AM",
-          "class": "Strong Flow Yoga",
-          "dates": [
-            "2026-11-19"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Thu",
-          "time": "7:30–8:30 AM",
-          "class": "Slow Flow Yoga",
-          "dates": [
-            "2026-11-19"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Thu",
-          "time": "9:30–10:30 AM",
-          "class": "Strong Flow Yoga",
-          "dates": [
-            "2026-11-19"
-          ]
-        },
-        {
           "studio": "grass-roots-st-kilda",
           "day": "Wed",
           "time": "6:15–7:15 AM",
@@ -381,6 +399,15 @@
           ]
         },
         {
+          "studio": "happy-melon-armadale",
+          "day": "Wed",
+          "time": "9:30–10:30 AM",
+          "class": "Yoga Flow",
+          "dates": [
+            "2026-11-25"
+          ]
+        },
+        {
           "studio": "here-yoga-port-melbourne",
           "day": "Tue",
           "time": "6:15–7:15 PM",
@@ -402,18 +429,10 @@
           "studio": "kozen-yoga-hawthorn",
           "day": "Wed",
           "time": "6:15–7:15 PM",
-          "class": "Vinyasa Flow",
-          "dates": [
-            "2026-11-18"
-          ]
-        },
-        {
-          "studio": "kozen-yoga-hawthorn",
-          "day": "Wed",
-          "time": "6:15–7:15 PM",
           "class": "Stronger Flow",
           "dates": [
-            "2026-11-25"
+            "2026-11-25",
+            "2026-12-02"
           ]
         },
         {
@@ -422,8 +441,8 @@
           "time": "7:30–8:30 PM",
           "class": "Yin Yoga",
           "dates": [
-            "2026-11-18",
-            "2026-11-25"
+            "2026-11-25",
+            "2026-12-02"
           ]
         },
         {
@@ -560,24 +579,6 @@
       ],
       "classes": [
         {
-          "studio": "within-south-yarra",
-          "day": "Sat",
-          "time": "4:00–5:00 PM",
-          "class": "Slow Flow Yoga",
-          "dates": [
-            "2026-11-21"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Sat",
-          "time": "5:15–6:15 PM",
-          "class": "Yin Yoga",
-          "dates": [
-            "2026-11-21"
-          ]
-        },
-        {
           "studio": "grass-roots-st-kilda",
           "day": "Mon",
           "time": "6:15–7:15 AM",
@@ -638,6 +639,33 @@
         "Masha"
       ],
       "classes": [
+        {
+          "studio": "within-south-yarra",
+          "day": "Wed",
+          "time": "6:00–7:00 AM",
+          "class": "Strong Flow Yoga",
+          "dates": [
+            "2026-11-25"
+          ]
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Wed",
+          "time": "7:30–8:30 AM",
+          "class": "Slow Flow Yoga",
+          "dates": [
+            "2026-11-25"
+          ]
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Wed",
+          "time": "9:30–10:30 AM",
+          "class": "Strong Flow Yoga",
+          "dates": [
+            "2026-11-25"
+          ]
+        },
         {
           "studio": "within-south-yarra",
           "day": "Fri",
@@ -883,8 +911,8 @@
           "time": "5:00–6:00 PM",
           "class": "Dynamic Flow",
           "dates": [
-            "2026-11-18",
-            "2026-11-25"
+            "2026-11-25",
+            "2026-12-02"
           ]
         },
         {
@@ -893,8 +921,8 @@
           "time": "6:15–7:15 PM",
           "class": "Slow Flow",
           "dates": [
-            "2026-11-18",
-            "2026-11-25"
+            "2026-11-25",
+            "2026-12-02"
           ]
         },
         {
@@ -903,8 +931,8 @@
           "time": "7:30–8:30 PM",
           "class": "Yin",
           "dates": [
-            "2026-11-18",
-            "2026-11-25"
+            "2026-11-25",
+            "2026-12-02"
           ]
         },
         {
@@ -982,8 +1010,8 @@
           "time": "6:15–7:30 PM",
           "class": "Slow Flow + Restorative (75mins)",
           "dates": [
-            "2026-11-18",
-            "2026-11-25"
+            "2026-11-25",
+            "2026-12-02"
           ]
         },
         {
