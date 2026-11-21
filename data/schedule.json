@@ -222,42 +222,6 @@
           ]
         },
         {
-          "studio": "within-south-yarra",
-          "day": "Sat",
-          "time": "4:00–5:00 PM",
-          "class": "Slow Flow Yoga",
-          "dates": [
-            "2026-11-21"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Sat",
-          "time": "5:15–6:15 PM",
-          "class": "Yin Yoga",
-          "dates": [
-            "2026-11-21"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Sun",
-          "time": "8:00–9:00 AM",
-          "class": "Strong Flow Yoga",
-          "dates": [
-            "2026-11-22"
-          ]
-        },
-        {
-          "studio": "within-south-yarra",
-          "day": "Sun",
-          "time": "9:30–10:30 AM",
-          "class": "Yin Yoga",
-          "dates": [
-            "2026-11-22"
-          ]
-        },
-        {
           "studio": "warrior-one-brighton",
           "day": "Tue",
           "time": "6:00–7:00 AM",
@@ -478,7 +442,7 @@
           "time": "9:00–10:00 AM",
           "class": "Vinyasa Flow",
           "dates": [
-            "2026-11-22"
+            "2026-12-06"
           ]
         },
         {
@@ -487,16 +451,7 @@
           "time": "10:15–11:15 AM",
           "class": "Unwind: Yin & Release",
           "dates": [
-            "2026-11-22"
-          ]
-        },
-        {
-          "studio": "here-yoga-malvern",
-          "day": "Sat",
-          "time": "2:00–3:30 PM",
-          "class": "Advance Your Asana: Arm Balances & Inversions",
-          "dates": [
-            "2026-11-21"
+            "2026-12-06"
           ]
         }
       ]
@@ -565,24 +520,6 @@
           "class": "Vinyasa Flow",
           "dates": [
             "2026-11-27"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Sun",
-          "time": "8:00–9:00 AM",
-          "class": "Slow Flow",
-          "dates": [
-            "2026-11-22"
-          ]
-        },
-        {
-          "studio": "warrior-one-brighton",
-          "day": "Sun",
-          "time": "9:30–10:45 AM",
-          "class": "Vinyasa Flow",
-          "dates": [
-            "2026-11-22"
           ]
         },
         {
@@ -718,6 +655,24 @@
           "class": "Strong Flow Yoga",
           "dates": [
             "2026-11-27"
+          ]
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Sat",
+          "time": "7:30–9:00 AM",
+          "class": "Strong Flow 90 Mins",
+          "dates": [
+            "2026-11-28"
+          ]
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Sat",
+          "time": "9:30–10:30 AM",
+          "class": "Strong Flow Yoga",
+          "dates": [
+            "2026-11-28"
           ]
         }
       ]
@@ -1092,6 +1047,24 @@
           ]
         },
         {
+          "studio": "warrior-one-mordialloc",
+          "day": "Sat",
+          "time": "8:00–9:00 AM",
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-11-28"
+          ]
+        },
+        {
+          "studio": "warrior-one-mordialloc",
+          "day": "Sat",
+          "time": "9:30–10:30 AM",
+          "class": "Slow Flow",
+          "dates": [
+            "2026-11-28"
+          ]
+        },
+        {
           "studio": "here-yoga-malvern",
           "day": "Mon",
           "time": "5:00–6:00 PM",
@@ -1163,8 +1136,8 @@
           "time": "8:30–9:30 AM",
           "class": "Dynamic Flow",
           "dates": [
-            "2026-11-22",
-            "2026-11-29"
+            "2026-11-29",
+            "2026-12-06"
           ]
         },
         {
@@ -1173,8 +1146,8 @@
           "time": "10:00–11:00 AM",
           "class": "Slow Flow",
           "dates": [
-            "2026-11-22",
-            "2026-11-29"
+            "2026-11-29",
+            "2026-12-06"
           ]
         }
       ]
