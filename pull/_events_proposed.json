@@ -11,66 +11,6 @@
       "source": "manual"
     },
     {
-      "id": "page:https://warrioroneyoga.com.au/workshops/#iksre-in-all-her-forms-a-live-sound-bath",
-      "studio": "warrior-one-mornington",
-      "kind": "workshop",
-      "title": "IKSRE: In All Her Forms — A Live Sound Bath",
-      "teacher": "",
-      "starts": "2026-11-15T19:15:00+11:00",
-      "ends": "2026-11-15T20:30:00+11:00",
-      "price": 45,
-      "url": "https://warrioroneyoga.com.au/workshops/",
-      "source": "page"
-    },
-    {
-      "id": "momence:34431:introduction to sufi whirling (by donati",
-      "studio": "grass-roots-st-kilda",
-      "kind": "workshop",
-      "title": "Introduction to Sufi Whirling (By Donation)",
-      "teacher": "Duaa Dahho",
-      "starts": "2026-11-20T18:30:00+11:00",
-      "ends": "2026-11-20T20:00:00+11:00",
-      "price": null,
-      "url": "https://momence.com/s/145372752",
-      "source": "momence"
-    },
-    {
-      "id": "momence:33014:arm balance masterclass",
-      "studio": "good-vibes-collingwood",
-      "kind": "workshop",
-      "title": "Arm Balance Masterclass",
-      "teacher": "Aoife  .",
-      "starts": "2026-11-21T14:00:00+11:00",
-      "ends": "2026-11-21T15:30:00+11:00",
-      "price": 40,
-      "url": "https://momence.com/s/145737206",
-      "source": "momence"
-    },
-    {
-      "id": "momence:34431:the yin path: teacher training info & ex",
-      "studio": "grass-roots-st-kilda",
-      "kind": "workshop",
-      "title": "The Yin Path: Teacher Training Info & Experience",
-      "teacher": "Janita Doelken &  Alessia Frisina",
-      "starts": "2026-11-21T14:00:00+11:00",
-      "ends": "2026-11-21T15:00:00+11:00",
-      "price": null,
-      "url": "https://momence.com/s/146756489",
-      "source": "momence"
-    },
-    {
-      "id": "momence:40780:advance your asana: arm balances & inver",
-      "studio": "here-yoga-malvern",
-      "kind": "workshop",
-      "title": "Advance Your Asana: Arm Balances & Inversions",
-      "teacher": "Emma Strembickyj",
-      "starts": "2026-11-21T14:00:00+11:00",
-      "ends": "2026-11-21T15:30:00+11:00",
-      "price": 65,
-      "url": "https://momence.com/s/146422838",
-      "source": "momence"
-    },
-    {
       "id": "momence:34431:community kirtan - by donation",
       "studio": "grass-roots-st-kilda",
       "kind": "workshop",
@@ -179,6 +119,18 @@
       "source": "momence"
     },
     {
+      "id": "momence:40780:release and restore - a dynamic meditati",
+      "studio": "here-yoga-port-melbourne",
+      "kind": "workshop",
+      "title": "Release and Restore - A dynamic meditation and restorative Yoga ritual.",
+      "teacher": "Candice Towson",
+      "starts": "2026-12-31T11:00:00+11:00",
+      "ends": "2026-12-31T12:15:00+11:00",
+      "price": 50,
+      "url": "https://momence.com/s/147506885",
+      "source": "momence"
+    },
+    {
       "id": "page:https://warrioroneyoga.com.au/workshops/#new-year-s-day-kirtan-with-heidi",
       "studio": "warrior-one-mornington",
       "kind": "workshop",
@@ -189,6 +141,18 @@
       "price": 40,
       "url": "https://warrioroneyoga.com.au/workshops/",
       "source": "page"
+    },
+    {
+      "id": "momence:33014:begin: a yoga journey",
+      "studio": "good-vibes-collingwood",
+      "kind": "training",
+      "title": "Begin: A Yoga Journey",
+      "teacher": "Ryan & Jane .",
+      "starts": "2027-01-09T14:00:00+11:00",
+      "ends": "2027-02-06T16:00:00+11:00",
+      "price": 275,
+      "url": "https://momence.com/s/147472954",
+      "source": "momence"
     },
     {
       "id": "page:https://warrioroneyoga.com.au/workshops/#summer-resonance-a-summer-sound-slow-flow-jo",
@@ -215,13 +179,49 @@
       "source": "page"
     },
     {
+      "id": "momence:34431:the subtle body: 4 week immersive course",
+      "studio": "grass-roots-st-kilda",
+      "kind": "training",
+      "title": "The Subtle Body: 4 week immersive course",
+      "teacher": "Shelley Armstrong",
+      "starts": "2027-02-02T19:15:00+11:00",
+      "ends": "2027-02-23T20:30:00+11:00",
+      "price": 195,
+      "url": "https://momence.com/s/147394762",
+      "source": "momence"
+    },
+    {
+      "id": "page:https://warrioroneyoga.com.au/workshops/#monthly-sound-immersion-with-julie-pagel",
+      "studio": "warrior-one-mordialloc",
+      "kind": "workshop",
+      "title": "Monthly Sound Immersion with Julie Pagel",
+      "teacher": "",
+      "starts": "2027-02-21T18:30:00+11:00",
+      "ends": "2027-02-21T23:59:00+11:00",
+      "price": null,
+      "url": "https://warrioroneyoga.com.au/workshops/",
+      "source": "page"
+    },
+    {
+      "id": "page:https://warrioroneyoga.com.au/workshops/#the-perimenopause-conversation-understanding",
+      "studio": "warrior-one-mordialloc",
+      "kind": "workshop",
+      "title": "The Perimenopause Conversation: Understanding What's Happening to Your Body",
+      "teacher": "",
+      "starts": "2027-02-24T19:45:00+11:00",
+      "ends": "2027-02-24T20:45:00+11:00",
+      "price": 55,
+      "url": "https://warrioroneyoga.com.au/workshops/",
+      "source": "page"
+    },
+    {
       "id": "momence:34431:the second spring- peri to post menopaus",
       "studio": "grass-roots-st-kilda",
       "kind": "workshop",
       "title": "The Second Spring- Peri to Post Menopause Mini Urban Retreat",
       "teacher": "Rachel Goldenberg",
-      "starts": "2027-02-21T12:00:00+11:00",
-      "ends": "2027-02-21T16:00:00+11:00",
+      "starts": "2027-02-28T12:00:00+11:00",
+      "ends": "2027-02-28T16:00:00+11:00",
       "price": 180,
       "url": "https://momence.com/s/146888101",
       "source": "momence"

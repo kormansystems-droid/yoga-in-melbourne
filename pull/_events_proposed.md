@@ -1,21 +1,11 @@
 # Events: proposed changes
 
-17 new · 3 changed · 27 dropped · 21 live after this.
+16 new · 4 changed · 26 dropped · 21 live after this.
 
 Nothing here is on the site. Reply with what to keep and I will publish it.
 
 ## New
 
-- **IKSRE: In All Her Forms — A Live Sound Bath** · 2026-11-15 · warrior-one-mornington · $45  
-  https://warrioroneyoga.com.au/workshops/
-- **Introduction to Sufi Whirling (By Donation)** · 2026-11-20 · grass-roots-st-kilda · Duaa Dahho · price n/a  
-  https://momence.com/s/145372752
-- **Arm Balance Masterclass** · 2026-11-21 · good-vibes-collingwood · Aoife  . · $40  
-  https://momence.com/s/145737206
-- **The Yin Path: Teacher Training Info & Experience** · 2026-11-21 · grass-roots-st-kilda · Janita Doelken &  Alessia Frisina · price n/a  
-  https://momence.com/s/146756489
-- **Advance Your Asana: Arm Balances & Inversions** · 2026-11-21 · here-yoga-malvern · Emma Strembickyj · $65  
-  https://momence.com/s/146422838
 - **Yin to Release and Replenish** · 2026-11-27 · kozen-yoga-hawthorn · Taryn Ipenburg · $67  
   https://momence.com/s/145648858
 - **Unwind the Year: Live Music + Embodied Flow** · 2026-12-04 · grass-roots-st-kilda · Shelley Armstrong + Phoebe Dubar (IKSRE) · $75  
@@ -30,13 +20,21 @@ Nothing here is on the site. Reply with what to keep and I will publish it.
   https://momence.com/s/147286493
 - **End of Year Community Carpark Party** · 2026-12-19 · grass-roots-st-kilda · Various Teachers · price n/a  
   https://momence.com/s/147286495
+- **Release and Restore - A dynamic meditation and restorative Yoga ritual.** · 2026-12-31 · here-yoga-port-melbourne · Candice Towson · $50  
+  https://momence.com/s/147506885
 - **New Year's Day Kirtan with Heidi** · 2027-01-01 · warrior-one-mornington · $40  
   https://warrioroneyoga.com.au/workshops/
+- **Begin: A Yoga Journey** · 2027-01-09 · good-vibes-collingwood · Ryan & Jane . · $275  
+  https://momence.com/s/147472954
 - **Summer Resonance: A Summer Sound & Slow Flow Journey** · 2027-01-17 · warrior-one-mordialloc · $75  
   https://warrioroneyoga.com.au/workshops/
 - **Beyond the Basics: The Art of Asana** · 2027-01-23 · warrior-one-mornington · $60  
   https://warrioroneyoga.com.au/workshops/
-- **The Second Spring- Peri to Post Menopause Mini Urban Retreat** · 2027-02-21 · grass-roots-st-kilda · Rachel Goldenberg · $180  
+- **Monthly Sound Immersion with Julie Pagel** · 2027-02-21 · warrior-one-mordialloc · price n/a  
+  https://warrioroneyoga.com.au/workshops/
+- **The Perimenopause Conversation: Understanding What's Happening to Your Body** · 2027-02-24 · warrior-one-mordialloc · $55  
+  https://warrioroneyoga.com.au/workshops/
+- **The Second Spring- Peri to Post Menopause Mini Urban Retreat** · 2027-02-28 · grass-roots-st-kilda · Rachel Goldenberg · $180  
   https://momence.com/s/146888101
 - **Yin Path 30 Hr Teacher Training** · 2027-03-06 · grass-roots-st-kilda · Janita Doelken &  Alessia Frisina · $1150  
   https://momence.com/s/143278376
@@ -45,6 +43,7 @@ Nothing here is on the site. Reply with what to keep and I will publish it.
 
 - **Community Kirtan - By Donation**: title: 'Community Kirtan' → 'Community Kirtan - By Donation'; starts: '2026-09-18T18:30:00+10:00' → '2026-11-27T18:30:00+11:00'; price: 'By donation' → None; url: 'https://momence.com/s/140239910' → 'https://momence.com/s/145371167'
 - **Sound Bath, Candlelit Yin and Cacao Ceremony**: starts: '2026-09-18T18:30:00+10:00' → '2026-12-11T18:30:00+11:00'; url: 'https://momence.com/s/141674215' → 'https://momence.com/s/147281425'
+- **The Subtle Body: 4 week immersive course**: starts: '2026-10-06T19:15:00+11:00' → '2027-02-02T19:15:00+11:00'; price: 175 → 195; url: 'https://momence.com/s/141692801' → 'https://momence.com/s/147394762'
 - **Strong Asana — community workshop with Masha**: starts: '2026-08-29T12:00:00+10:00' → '2027-08-29T12:00:00+10:00'
 
 ## Dropped (past, or no longer in the feed)
@@ -69,7 +68,6 @@ Nothing here is on the site. Reply with what to keep and I will publish it.
 - **Yintention Day Retreat** · date unknown · studio n/a · price n/a
 - **Yintention Day Retreat** · date unknown · studio n/a · price n/a
 - **Ceremonial Breathwork Journey: Manifestation** · 2026-09-12 · grass-roots-st-kilda · Duaa Dahho · $80
-- **The Subtle Body: 4 week immersive course** · 2026-10-06 · grass-roots-st-kilda · Shelley Armstrong · $175
 - **An Evening of Yin and Cello** · 2026-10-09 · kozen-yoga-hawthorn · Ryan  Chhajed · $65
 - **Yin Yoga Teacher Training** · date unknown · studio n/a · price n/a
 - **Spring Resonance** · 2026-10-18 · warrior-one-mordialloc · $75
