@@ -339,8 +339,8 @@
           "time": "8:00–9:00 AM",
           "class": "Hot Flow",
           "dates": [
-            "2026-11-28",
-            "2026-12-05"
+            "2026-12-05",
+            "2026-12-12"
           ]
         },
         {
@@ -349,8 +349,8 @@
           "time": "9:30–10:45 AM",
           "class": "Extended Vinyasa Flow (75mins)",
           "dates": [
-            "2026-11-28",
-            "2026-12-05"
+            "2026-12-05",
+            "2026-12-12"
           ]
         },
         {
@@ -468,6 +468,42 @@
           "class": "Yin Yoga & Meditation",
           "dates": [
             "2026-12-01"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Fri",
+          "time": "6:00–7:00 AM",
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-12-04"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Fri",
+          "time": "7:30–8:30 AM",
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-12-04"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Fri",
+          "time": "9:30–10:30 AM",
+          "class": "Vinyasa Flow",
+          "dates": [
+            "2026-12-04"
+          ]
+        },
+        {
+          "studio": "warrior-one-brighton",
+          "day": "Fri",
+          "time": "10:45–11:45 AM",
+          "class": "Yin & Yoga Nidra",
+          "dates": [
+            "2026-12-04"
           ]
         },
         {
@@ -599,20 +635,29 @@
         },
         {
           "studio": "within-south-yarra",
-          "day": "Sat",
-          "time": "7:30–9:00 AM",
-          "class": "Strong Flow 90 Mins",
+          "day": "Fri",
+          "time": "6:00–7:00 AM",
+          "class": "Strong Flow Yoga",
           "dates": [
-            "2026-11-28"
+            "2026-12-04"
           ]
         },
         {
           "studio": "within-south-yarra",
-          "day": "Sat",
+          "day": "Fri",
+          "time": "7:30–8:30 AM",
+          "class": "Slow Flow Yoga",
+          "dates": [
+            "2026-12-04"
+          ]
+        },
+        {
+          "studio": "within-south-yarra",
+          "day": "Fri",
           "time": "9:30–10:30 AM",
           "class": "Strong Flow Yoga",
           "dates": [
-            "2026-11-28"
+            "2026-12-04"
           ]
         }
       ]
@@ -818,7 +863,7 @@
           "time": "5:00–6:00 PM",
           "class": "Slow Flow",
           "dates": [
-            "2026-11-27"
+            "2026-12-04"
           ]
         },
         {
@@ -827,25 +872,7 @@
           "time": "6:15–7:15 PM",
           "class": "Yin & Sound Bowls",
           "dates": [
-            "2026-11-27"
-          ]
-        },
-        {
-          "studio": "warrior-one-mordialloc",
-          "day": "Sat",
-          "time": "8:00–9:00 AM",
-          "class": "Vinyasa Flow",
-          "dates": [
-            "2026-11-28"
-          ]
-        },
-        {
-          "studio": "warrior-one-mordialloc",
-          "day": "Sat",
-          "time": "9:30–10:30 AM",
-          "class": "Slow Flow",
-          "dates": [
-            "2026-11-28"
+            "2026-12-04"
           ]
         },
         {
